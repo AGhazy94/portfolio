@@ -1,6 +1,6 @@
-# Node version comes from .nvmrc.
+# Node version comes from .nvmrc. Checks run first, so a failing one blocks the deploy.
 [build]
-  command = "npm run build"
+  command = "npm run validate && npm run build"
   publish = "dist"
 
 # Only production gets indexed; previews render a noindex robots tag and no canonical.

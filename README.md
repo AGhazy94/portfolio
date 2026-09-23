@@ -31,5 +31,7 @@ are resized to WebP at build time. The résumé is served from `public/resume.pd
 
 ## Deploy
 
-Connect the repo in Netlify. `netlify.toml` sets the build command, publish directory, noindex flag for previews and
-the headers; Node comes from `.nvmrc`.
+Netlify deploys every push to `dev`, and opens a deploy preview for each pull request. `netlify.toml` sets the build
+command (`validate` runs before `build`, so a failing check blocks the deploy), publish directory, noindex flag for
+previews and the headers; Node comes from `.nvmrc`. The `Validate` GitHub workflow runs the same checks on pushes to
+`dev` and on pull requests, so failures show up in GitHub too.
