@@ -17,6 +17,12 @@
   status = 301
   force = true
 
+# @astrojs/sitemap only emits sitemap-index.xml; some tools guess /sitemap.xml without reading robots.txt.
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+
 # Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
 [[headers]]
   for = "/*"
