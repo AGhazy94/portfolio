@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 // Netlify sets URL to the site's primary domain at build time; the fallback covers local builds.
-const site = process.env.URL ?? 'https://ahmed-ghazy.netlify.app';
+const site = process.env.URL ?? 'https://ahmed-ghazy.com';
 
 export default defineConfig({
   site,

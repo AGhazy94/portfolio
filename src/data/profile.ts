@@ -32,11 +32,11 @@ export const profile = {
   description:
     'Ahmed Ghazy is a full-stack engineer who works mostly on the frontend. He builds LLM-native web apps with React, Next.js, TypeScript and Node.js.',
   location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
-  email: 'ahmed.h.ghazy@gmail.com',
+  email: 'info@ahmed-ghazy.com',
   resume: '/resume.pdf',
   // JSON-LD ProfilePage dates; bump `updated` whenever the copy changes.
   created: '2026-09-23',
-  updated: '2026-09-23',
+  updated: '2026-09-24',
   knowsAbout: [
     'React',
     'Next.js',

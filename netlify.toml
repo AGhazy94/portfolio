@@ -10,6 +10,13 @@
 [context.branch-deploy.environment]
   PUBLIC_NOINDEX = "true"
 
+# One canonical host for search engines; preview hosts (deploy-preview-N--…) don't match.
+[[redirects]]
+  from = "https://ahmed-ghazy.netlify.app/*"
+  to = "https://ahmed-ghazy.com/:splat"
+  status = 301
+  force = true
+
 # Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
 [[headers]]
   for = "/*"
