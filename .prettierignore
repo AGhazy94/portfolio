@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+package-lock.json
+public
+# Upstream-verbatim vendored content: never reformat (see .agents/output-styles/README.md)
+.agents/skills/
+.agents/output-styles/

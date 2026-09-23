@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { profile, ui } from '../data/profile';
+---
+
+<Layout title={`${ui.notFound.title} | ${profile.name}`} noindex>
+  <main class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12 font-sans md:px-12 md:py-16 lg:py-24">
+    <p class="text-sm font-bold uppercase tracking-widest text-teal-300">{ui.notFound.code}</p>
+    <h1 class="mt-3 text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">{ui.notFound.title}</h1>
+    <p class="mt-4 max-w-md leading-normal">{ui.notFound.body}</p>
+    <a class="group/link mt-8 inline-flex w-max items-center font-semibold leading-tight text-teal-300" href="/">
+      <Icon
+        name="arrow-left"
+        class="mr-1 h-4 w-4 transition-transform group-hover/link:-translate-x-2 group-focus-visible/link:-translate-x-2 motion-reduce:transition-none"
+      />
+      {ui.notFound.back}
+    </a>
+  </main>
+</Layout>

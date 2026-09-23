@@ -1,0 +1,33 @@
+# Node version comes from .nvmrc.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Only production gets indexed; previews render a noindex robots tag and no canonical.
+[context.deploy-preview.environment]
+  PUBLIC_NOINDEX = "true"
+
+[context.branch-deploy.environment]
+  PUBLIC_NOINDEX = "true"
+
+# Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Netlify would otherwise serve the manifest as application/octet-stream.
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

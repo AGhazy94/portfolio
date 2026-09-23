@@ -1,0 +1,28 @@
+<div id="spotlight" class="pointer-events-none fixed inset-0 z-30 lg:absolute"></div>
+
+<style>
+  #spotlight {
+    background: radial-gradient(
+      600px at var(--spot-x, -600px) var(--spot-y, -600px),
+      rgba(29, 78, 216, 0.15),
+      transparent 80%
+    );
+  }
+</style>
+
+<script>
+  const spotlight = document.getElementById('spotlight')!;
+  const finePointer = window.matchMedia('(pointer: fine)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  window.addEventListener(
+    'pointermove',
+    (event) => {
+      if (!finePointer.matches || reducedMotion.matches) return;
+      const rect = spotlight.getBoundingClientRect();
+      spotlight.style.setProperty('--spot-x', `${event.clientX - rect.left}px`);
+      spotlight.style.setProperty('--spot-y', `${event.clientY - rect.top}px`);
+    },
+    { passive: true },
+  );
+</script>

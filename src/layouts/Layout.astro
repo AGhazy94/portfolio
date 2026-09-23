@@ -1,0 +1,123 @@
+---
+import { Font } from 'astro:assets';
+import { experience, profile, socials } from '../data/profile';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  noindex?: boolean;
+}
+
+const { title = profile.seoTitle, noindex: hidden = false } = Astro.props;
+// Netlify sets PUBLIC_NOINDEX on deploy previews and branch deploys so only production is indexed.
+const noindex = hidden || import.meta.env.PUBLIC_NOINDEX === 'true';
+const siteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const { description } = profile;
+
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site);
+const ogImage = new URL('/og.png', site);
+const imageAlt = `${profile.name} — ${profile.title}`;
+const current = experience[0];
+
+const personId = new URL('/#person', site).href;
+const websiteId = new URL('/#website', site).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: site.href,
+      name: profile.name,
+      description: profile.description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': canonical.href,
+      url: canonical.href,
+      name: title,
+      isPartOf: { '@id': websiteId },
+      mainEntity: { '@id': personId },
+      dateCreated: profile.created,
+      dateModified: profile.updated,
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: profile.name,
+      jobTitle: current.role,
+      description: profile.description,
+      url: site.href,
+      email: `mailto:${profile.email}`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: profile.location.city,
+        addressCountry: profile.location.country,
+      },
+      worksFor: { '@type': 'Organization', name: current.company, url: current.href },
+      alumniOf: { '@type': 'EducationalOrganization', name: profile.education.school },
+      knowsAbout: profile.knowsAbout,
+      knowsLanguage: profile.languages.map((language) => ({
+        '@type': 'Language',
+        name: language.name,
+        alternateName: language.code,
+      })),
+      sameAs: socials.filter((social) => social.href.startsWith('http')).map((social) => social.href),
+    },
+  ],
+};
+// Escaped so copy containing "</script>" cannot end the JSON-LD block early.
+const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    {!noindex && <link rel="canonical" href={canonical} />}
+    {siteVerification && <meta name="google-site-verification" content={siteVerification} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={profile.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {!hidden && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="profile:first_name" content={profile.name.split(' ')[0]} />
+    <meta property="profile:last_name" content={profile.name.split(' ').slice(1).join(' ')} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="dark" />
+
+    <Font cssVariable="--font-inter" preload />
+    {!hidden && <script is:inline type="application/ld+json" set:html={jsonLd}></script>}
+  </head>
+  <body class="bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900">
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Follow Conventional Commits v1.0.0, with an emoji before the type: `<emoji> <type>[optional scope]: <description>`\n\nTypes with their emoji prefix:\n✨ feat | 🐛 fix | ♻️ refactor | ⚡ perf | 💄 style | ✅ test | 📝 docs | 🏗️ build | 👷 ci | 🔧 chore\n\nScope: optional, lowercase noun (e.g., seo, layout, content)\nDescription: imperative, present tense, max 50 characters, no period\nBreaking change: append `!` after type/scope (e.g., `✨ feat(api)!:`) and add a `BREAKING CHANGE:` footer line\n\nOmit body and footers unless a breaking change must be documented. Do not add bullets or extra prose."
+    }
+  ],
+  "github.copilot.chat.pullRequestDescriptionGeneration.instructions": [
+    {
+      "text": "Generate PR content only from the diff between the current branch and the base (merge target) branch. Do not invent changes or use stale context. If the diff is unavailable, say so.\n\nFormat:\n- Title: imperative, ≤70 chars, describes the outcome\n- Body: bullet points only — no headers, no sections, no prose\n\nBullet rules:\n- One bullet per logical change (component, hook, endpoint, config, schema)\n- State what changed and why only if non-obvious\n- Max 6 bullets; combine trivial changes into one\n- No restating the title; no filler phrases\n- If breaking: last bullet starts with `BREAKING CHANGE:` and explains impact"
+    }
+  ]
+}

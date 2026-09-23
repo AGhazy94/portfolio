@@ -1,0 +1,35 @@
+---
+import heroicons from '@iconify-json/heroicons/icons.json';
+import remix from '@iconify-json/ri/icons.json';
+
+const sets = {
+  'arrow-up-right': { set: heroicons, name: 'arrow-up-right-20-solid' },
+  'arrow-right': { set: heroicons, name: 'arrow-right-20-solid' },
+  'arrow-left': { set: heroicons, name: 'arrow-left-20-solid' },
+  github: { set: remix, name: 'github-fill' },
+  linkedin: { set: remix, name: 'linkedin-box-fill' },
+  mail: { set: remix, name: 'mail-fill' },
+} as const;
+
+type IconName = keyof typeof sets;
+
+interface Props {
+  name: IconName;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+const { set, name: key } = sets[name];
+const icon = (set.icons as Record<string, { body: string; width?: number; height?: number }>)[key];
+const width = icon.width ?? set.width ?? 24;
+const height = icon.height ?? set.height ?? 24;
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={`0 0 ${width} ${height}`}
+  class={className}
+  aria-hidden="true"
+  focusable="false"
+  set:html={icon.body}
+/>

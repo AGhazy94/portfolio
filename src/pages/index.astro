@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArrowLink from '../components/ArrowLink.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import ProjectItem from '../components/ProjectItem.astro';
+import RichText from '../components/RichText.astro';
+import Section from '../components/Section.astro';
+import Spotlight from '../components/Spotlight.astro';
+import { about, experience, profile, projects, ui } from '../data/profile';
+
+const [aboutSection, experienceSection, projectsSection] = ui.sections;
+---
+
+<Layout>
+  <div class="relative">
+    <Spotlight />
+    <div class="mx-auto min-h-screen max-w-7xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0">
+      <a
+        href="#content"
+        class="absolute left-0 top-0 block -translate-x-full rounded-sm bg-yellow-500 px-4 py-3 text-sm font-bold uppercase tracking-widest text-slate-900 focus-visible:translate-x-0"
+      >
+        {ui.skipLink}
+      </a>
+      <div class="lg:flex lg:justify-between lg:gap-4">
+        <Header sections={ui.sections} />
+
+        <div class="pt-24 lg:w-[52%] lg:py-24">
+          <main id="content">
+            <Section {...aboutSection}>
+              <div>
+                {about.map((paragraph) => (
+                  <RichText source={paragraph} class="mb-4 last:mb-0" />
+                ))}
+              </div>
+            </Section>
+
+            <Section {...experienceSection}>
+              <ol class="group/list">
+                {experience.map((item) => (
+                  <ExperienceItem item={item} />
+                ))}
+              </ol>
+              <div class="mt-12">
+                <ArrowLink href={profile.resume} lead={ui.resume.lead} last={ui.resume.last} external />
+              </div>
+            </Section>
+
+            <Section {...projectsSection}>
+              <ul class="group/list">
+                {projects.map((item) => (
+                  <ProjectItem item={item} />
+                ))}
+              </ul>
+            </Section>
+          </main>
+
+          <Footer />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
