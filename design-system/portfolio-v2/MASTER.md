@@ -24,7 +24,7 @@ accent, flat surfaces and no shadows.
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 1    | Keep and refine the design. No full redesign.                                                                                      |
 | 2    | Section order: Hero → Projects → Experience → About → Contact → Footer. _(Projects moved up in the Phase 4 review.)_               |
-| 3    | Hero role line: "Full-Stack Engineer (frontend-heavy)", then "Senior Frontend Engineer at Smart Bricks".                           |
+| 3    | Hero role line: "Full-Stack Engineer (frontend-heavy)", then "Senior Full-Stack Engineer at Smart Bricks".                         |
 | 4    | Hero shows availability ("Open to full-time roles and contract work") and location.                                                |
 | 5    | ~~Proof strip~~ Removed in the Phase 4 review. Still: no invented numbers anywhere in the copy.                                    |
 | 6    | Experience summaries are rewritten in `profile.ts` as 1–4 bullets that say what was built. _(Phase 4 dropped unverified numbers.)_ |

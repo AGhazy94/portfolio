@@ -27,7 +27,9 @@ Everything search engines, social cards and LLM crawlers read is generated from
 - Pages pass `noindex` for anything that should never rank (the 404 already does); such pages also
   skip the JSON-LD and `og:url`, since they are not the profile.
 - Dates are data, not build time: ProfilePage `dateCreated`/`dateModified` come from
-  `profile.created`/`profile.updated`. Bump `updated` when the copy changes. The sitemap carries no
+  `profile.created`/`profile.updated`, written as full ISO 8601 date-times with an offset
+  (`2026-09-24T00:00:00+03:00`); Google flags date-only values as invalid. Bump `updated` when the
+  copy changes. The sitemap carries no
   `lastmod`, because a build-time date would claim a change on every deploy.
 - JSON-LD nodes reference each other by `@id` (`/#website`, `/#person`, the page URL). Keep one
   Person node; add facts to it, not a second one.

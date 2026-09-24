@@ -121,7 +121,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   Contact → Footer. One component per section in `src/components/`; `/thanks/` is the no-JS form
   success page (noindex, not in the sitemap).
 - Audience is recruiters and hiring managers. Positioning is "Full-Stack Engineer
-  (frontend-heavy)"; the job title stays Senior Frontend Engineer.
+  (frontend-heavy)"; the job title is Senior Full-Stack Engineer.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
 - **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill
   in [.claude/skills/](.claude/skills/). The shared design is the reference; nothing is carried over

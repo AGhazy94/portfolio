@@ -35,9 +35,9 @@ export const profile = {
   email: 'info@ahmed-ghazy.com',
   resume: '/resume.pdf',
   portrait,
-  // JSON-LD ProfilePage dates; bump `updated` whenever the copy changes.
-  created: '2026-09-23',
-  updated: '2026-09-24',
+  // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
+  created: '2026-09-23T00:00:00+03:00',
+  updated: '2026-09-25T00:00:00+03:00',
   knowsAbout: [
     'React',
     'Next.js',
@@ -80,13 +80,12 @@ export const experience: Experience[] = [
   {
     start: '2025',
     end: 'Present',
-    role: 'Senior Frontend Engineer',
+    role: 'Senior Full-Stack Engineer',
     company: 'Smart Bricks',
     href: 'https://smart-bricks.com',
     summary: 'AI platform for real-estate investing, backed by a16z speedrun.',
     highlights: [
       'Moved data fetching to the server with the Next.js App Router, reworked client caching, and split the property pages into separate server-rendered sections.',
-      'Built the AI listing search, where you type what you want in plain English and the AI turns it into filters. It works across the UAE and UK markets.',
       'Lead the frontend architecture and build it hands-on. Rebuilt the valuation and score modals so investors can see why a property got its price and score, and built our Storybook component library.',
       'Review the team’s pull requests and mentor newer engineers.',
     ],
