@@ -1,13 +1,14 @@
 import { h } from './render';
 import { profile } from '../data/profile';
 
+// The light theme's pinned values from global.css; satori can't read CSS variables.
 const colors = {
-  bg: '#0f172a',
-  heading: '#e2e8f0',
-  body: '#94a3b8',
-  muted: '#7a889e',
-  accent: '#5eead4',
-  pill: 'rgba(45, 212, 191, 0.1)',
+  bg: '#fbfbfa',
+  surface: '#f0f0ee',
+  fg: '#111111',
+  body: '#3a3a3c',
+  muted: '#6a6a6f',
+  divider: '#e1e1de',
 };
 
 export function monogram({ rounded }: { rounded: boolean }) {
@@ -21,10 +22,11 @@ export function monogram({ rounded }: { rounded: boolean }) {
       justifyContent: 'center',
       backgroundColor: colors.bg,
       borderRadius: rounded ? '22%' : 0,
-      color: colors.accent,
-      fontSize: 240,
-      fontWeight: 700,
-      letterSpacing: -12,
+      color: colors.fg,
+      fontFamily: 'Instrument Serif',
+      fontSize: 300,
+      letterSpacing: -6,
+      paddingBottom: 24,
     },
     profile.name
       .split(' ')
@@ -44,41 +46,50 @@ export function ogCard(host: string) {
       justifyContent: 'space-between',
       padding: 80,
       backgroundColor: colors.bg,
-      backgroundImage: 'radial-gradient(circle at 88% 12%, rgba(29, 78, 216, 0.35), rgba(15, 23, 42, 0) 55%)',
-      fontFamily: 'Inter',
+      fontFamily: 'Geist',
     },
     [
       h('div', { display: 'flex', flexDirection: 'column' }, [
-        h('div', { fontSize: 88, fontWeight: 700, letterSpacing: -2.5, color: colors.heading }, profile.name),
         h(
           'div',
-          { marginTop: 16, fontSize: 40, fontWeight: 500, letterSpacing: -1, color: colors.heading },
-          profile.title,
+          { fontFamily: 'Instrument Serif', fontSize: 132, lineHeight: 0.92, letterSpacing: -2.5, color: colors.fg },
+          profile.name,
         ),
-        h('div', { marginTop: 28, maxWidth: 820, fontSize: 30, lineHeight: 1.45, color: colors.body }, profile.tagline),
+        h('div', { marginTop: 28, fontSize: 36, fontWeight: 500, color: colors.fg }, profile.title),
+        h('div', { marginTop: 16, maxWidth: 860, fontSize: 30, lineHeight: 1.4, color: colors.body }, profile.tagline),
       ]),
-      h('div', { display: 'flex', alignItems: 'center', justifyContent: 'space-between' }, [
-        h(
-          'div',
-          { display: 'flex' },
-          profile.ogTags.map((pill) =>
-            h(
-              'div',
-              {
-                marginRight: 14,
-                padding: '10px 24px',
-                borderRadius: 999,
-                backgroundColor: colors.pill,
-                color: colors.accent,
-                fontSize: 24,
-                fontWeight: 500,
-              },
-              pill,
+      h(
+        'div',
+        {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingTop: 28,
+          borderTop: `2px solid ${colors.divider}`,
+        },
+        [
+          h(
+            'div',
+            { display: 'flex' },
+            profile.ogTags.map((pill) =>
+              h(
+                'div',
+                {
+                  marginRight: 12,
+                  padding: '10px 22px',
+                  borderRadius: 999,
+                  backgroundColor: colors.surface,
+                  color: colors.body,
+                  fontSize: 22,
+                  fontWeight: 500,
+                },
+                pill,
+              ),
             ),
           ),
-        ),
-        h('div', { fontSize: 24, fontWeight: 500, color: colors.muted }, host),
-      ]),
+          h('div', { fontSize: 24, fontWeight: 500, color: colors.muted }, host),
+        ],
+      ),
     ],
   );
 }

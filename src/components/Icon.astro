@@ -1,14 +1,15 @@
 ---
-import heroicons from '@iconify-json/heroicons/icons.json';
 import remix from '@iconify-json/ri/icons.json';
+// Client logos from their own sites, reduced to one colour (currentColor) in the Iconify set format.
+import logos from '../assets/logos.json';
 
 const sets = {
-  'arrow-up-right': { set: heroicons, name: 'arrow-up-right-20-solid' },
-  'arrow-right': { set: heroicons, name: 'arrow-right-20-solid' },
-  'arrow-left': { set: heroicons, name: 'arrow-left-20-solid' },
-  github: { set: remix, name: 'github-fill' },
-  linkedin: { set: remix, name: 'linkedin-box-fill' },
-  mail: { set: remix, name: 'mail-fill' },
+  contrast: { set: remix, name: 'contrast-fill' },
+  check: { set: remix, name: 'checkbox-circle-fill' },
+  error: { set: remix, name: 'error-warning-fill' },
+  close: { set: remix, name: 'close-line' },
+  scriptbee: { set: logos, name: 'scriptbee' },
+  leicht: { set: logos, name: 'leicht' },
 } as const;
 
 type IconName = keyof typeof sets;
@@ -21,8 +22,9 @@ interface Props {
 const { name, class: className } = Astro.props;
 const { set, name: key } = sets[name];
 const icon = (set.icons as Record<string, { body: string; width?: number; height?: number }>)[key];
-const width = icon.width ?? set.width ?? 24;
-const height = icon.height ?? set.height ?? 24;
+const defaults = set as { width?: number; height?: number };
+const width = icon.width ?? defaults.width ?? 24;
+const height = icon.height ?? defaults.height ?? 24;
 ---
 
 <svg

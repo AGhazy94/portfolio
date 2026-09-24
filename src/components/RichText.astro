@@ -11,14 +11,14 @@ interface Props {
 const {
   source,
   class: className,
-  linkClass = 'font-medium text-slate-200 hover:text-teal-300 focus-visible:text-teal-300',
+  linkClass = 'text-accent underline decoration-1 underline-offset-3 transition-opacity duration-200 hover:opacity-70',
 } = Astro.props;
 ---
 
 <p class={className}>
   {parseInline(source).map((segment) => {
     if (segment.kind === 'text') return segment.text;
-    if (segment.kind === 'strong') return <span class="text-slate-200">{segment.text}</span>;
+    if (segment.kind === 'strong') return <strong class="font-semibold text-fg">{segment.text}</strong>;
     const external = /^https?:/.test(segment.href);
     return (
       <a

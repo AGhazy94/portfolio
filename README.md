@@ -1,7 +1,9 @@
 # Ahmed Ghazy — Portfolio
 
-Personal site built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com), deployed on
-[Netlify](https://www.netlify.com). Layout inspired by [Brittany Chiang](https://brittanychiang.com)'s portfolio.
+Personal site, v2. Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and
+[GSAP](https://gsap.com), set in Instrument Serif and Geist, and deployed on [Netlify](https://www.netlify.com). The
+design system lives in [`design-system/portfolio-v2/MASTER.md`](design-system/portfolio-v2/MASTER.md). v1 is frozen
+on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
 
 ## Commands
 
@@ -16,9 +18,23 @@ Personal site built with [Astro](https://astro.build) and [Tailwind CSS](https:/
 
 ## Editing content
 
-All copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description, About paragraphs,
-socials, experience, projects and the interface strings in `ui`. Project thumbnails live in `src/assets/projects/` and
-are resized to WebP at build time. The résumé is served from `public/resume.pdf`.
+All copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description,
+experience, projects, the About statement and paragraphs, socials, and the interface strings in `ui` (including every
+contact form label and message). The portrait and project screenshots live in `src/assets/` and are resized at build
+time. The résumé is served from `public/resume.pdf`.
+
+## Contact form
+
+The form in `src/components/Contact.astro` uses [Netlify Forms](https://docs.netlify.com/manage/forms/setup/). Netlify
+detects it in the built HTML; without JS it posts and redirects to `/thanks/`, and with JS it submits with `fetch` and
+shows inline success and error states. Submissions and email notifications are configured in the Netlify UI. Test it on
+a Deploy Preview, not on production.
+
+## Theme and motion
+
+Light and dark follow the system setting until the visitor picks one with the header toggle. The colour tokens are
+pinned hex pairs in `src/styles/global.css`. GSAP drives two effects, the hero portrait zoom and the About statement
+reveal. It loads after the page is idle and is skipped entirely under `prefers-reduced-motion`.
 
 ## SEO and social cards
 

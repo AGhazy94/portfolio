@@ -1,0 +1,73 @@
+---
+import RichText from './RichText.astro';
+import { about, profile, statement, ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'about')!;
+const words = statement.split(' ');
+const facts = [
+  { term: ui.about.education, detail: `${profile.education.degree}, ${profile.education.years}` },
+  {
+    term: ui.about.languages,
+    detail: profile.languages.map(({ name, level }) => `${name} (${level})`).join(', '),
+  },
+];
+---
+
+<section id={section.id} aria-labelledby="about-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+  <div class="mx-auto max-w-page">
+    <h2 id="about-title" class="type-section text-fg">
+      {section.title}
+    </h2>
+
+    <p data-statement class="type-statement mt-[clamp(32px,5cqi,56px)] max-w-[22ch] text-fg">
+      {words.map((word, index) => [<span data-word>{word}</span>, index < words.length - 1 ? ' ' : ''])}
+    </p>
+
+    <div class="mt-[clamp(40px,6cqi,72px)] grid gap-x-12 gap-y-10 border-t border-divider pt-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+      <dl class="space-y-5 text-[15px]">
+        {facts.map(({ term, detail }) => (
+          <div>
+            <dt class="text-[13px] text-muted">{term}</dt>
+            <dd class="mt-1 leading-normal text-fg">{detail}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div class="max-w-[62ch] space-y-5 text-[17px] leading-[1.6] text-body">
+        {about.map((paragraph) => (
+          <RichText source={paragraph} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { withMotion } from '../lib/with-motion';
+
+  withMotion(({ gsap, ScrollTrigger }) => {
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', (context) => {
+      // Words dim only just before they scroll in, so text nobody has reached yet stays at full contrast.
+      ScrollTrigger.create({
+        trigger: '[data-statement]',
+        start: 'top bottom+=200',
+        once: true,
+        onEnter: () =>
+          context.add(() => {
+            // The words start at 0.2, not the design's 0.14, so the line never reads as missing text.
+            gsap.fromTo(
+              '[data-word]',
+              { opacity: 0.2 },
+              {
+                opacity: 1,
+                duration: 0.6,
+                ease: 'power1.out',
+                stagger: 0.07,
+                scrollTrigger: { trigger: '[data-statement]', start: 'top 80%', once: true },
+              },
+            );
+          }),
+      });
+    });
+  });
+</script>

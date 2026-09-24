@@ -1,0 +1,25 @@
+---
+import { profile, ui } from '../data/profile';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<a
+  href={profile.resume}
+  target="_blank"
+  rel="noreferrer noopener"
+  data-resume
+  class="group inline-flex min-h-11 items-center text-[15px] font-medium text-accent transition-opacity duration-200 hover:opacity-70"
+>
+  {label}
+  <span data-resume-new-tab class="sr-only">
+    {ui.newTab}
+  </span>
+  <span aria-hidden="true" class="ml-1 transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]">
+    ›
+  </span>
+</a>

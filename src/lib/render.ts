@@ -16,16 +16,25 @@ export const h = (type: string, style: Style, children?: Child | Child[]): Node 
   props: { style, children },
 });
 
-const weights = [400, 500, 700] as const;
+// satori reads WOFF but not WOFF2, so the files come from the Fontsource packages.
+const faces = [
+  {
+    name: 'Instrument Serif',
+    weight: 400,
+    file: '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff',
+  },
+  { name: 'Geist', weight: 400, file: '@fontsource/geist/files/geist-latin-400-normal.woff' },
+  { name: 'Geist', weight: 500, file: '@fontsource/geist/files/geist-latin-500-normal.woff' },
+] as const;
 let fonts: ReturnType<typeof loadFonts> | undefined;
 
 function loadFonts() {
   return Promise.all(
-    weights.map(async (weight) => ({
-      name: 'Inter',
+    faces.map(async ({ name, weight, file }) => ({
+      name,
       weight,
       style: 'normal' as const,
-      data: await readFile(require.resolve(`@fontsource/inter/files/inter-latin-${weight}-normal.woff`)),
+      data: await readFile(require.resolve(file)),
     })),
   );
 }
