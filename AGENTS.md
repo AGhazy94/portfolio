@@ -93,6 +93,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   via the Astro Fonts API (Fontsource), `@astrojs/sitemap`, satori + sharp for generated images.
   Deployed on Netlify ([netlify.toml](netlify.toml)).
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
+- **This is v1 — frozen.** The `v1` branch is served at `v1.ahmed-ghazy.com` (noindex) as an
+  archive. Only fixes land here; new work, including the v2 redesign, goes to `dev`.
 - Layout inspired by Brittany Chiang's portfolio; keep the footer credit. Geometry is matched to it
   (48%/52% columns, `max-w-7xl`, `lg:py-24`) — do not nudge spacing without measuring.
 
