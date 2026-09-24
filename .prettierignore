@@ -6,3 +6,4 @@ public
 # Upstream-verbatim vendored content: never reformat (see .agents/output-styles/README.md)
 .agents/skills/
 .agents/output-styles/
+.claude/skills/
