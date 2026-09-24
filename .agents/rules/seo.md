@@ -31,6 +31,8 @@ Everything search engines, social cards and LLM crawlers read is generated from
   (`2026-09-24T00:00:00+03:00`); Google flags date-only values as invalid. Bump `updated` when the
   copy changes. The sitemap carries no
   `lastmod`, because a build-time date would claim a change on every deploy.
+- `og:image` and `twitter:image` carry `?v=<hash of the card>`. LinkedIn and chat apps cache the card
+  by URL, so the hash changes only when the card does and forces one refetch.
 - JSON-LD nodes reference each other by `@id` (`/#website`, `/#person`, the page URL). Keep one
   Person node; add facts to it, not a second one.
 - The Person `image` is the real headshot, `src/assets/portrait.jpg`, rendered by `getImage` as a

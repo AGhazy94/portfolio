@@ -1,7 +1,9 @@
 ---
+import { createHash } from 'node:crypto';
 import { Font, getImage } from 'astro:assets';
 import ScrollBar from '../components/ScrollBar.astro';
 import { experience, profile, socials } from '../data/profile';
+import { ogCard } from '../lib/graphics';
 import '../styles/global.css';
 
 interface Props {
@@ -17,7 +19,12 @@ const { description } = profile;
 
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
-const ogImage = new URL('/og.png', site);
+// LinkedIn and chat apps cache the card by URL, so a hash of its content makes them refetch when it changes.
+const cardHash = createHash('sha256')
+  .update(JSON.stringify(ogCard(new URL(process.env.URL ?? site.href).host)))
+  .digest('hex')
+  .slice(0, 8);
+const ogImage = new URL(`/og.png?v=${cardHash}`, site);
 const imageAlt = `${profile.name} — ${profile.title}`;
 const current = experience[0];
 const headshot = await getImage({ src: profile.portrait, width: 400, height: 400, format: 'jpg' });
