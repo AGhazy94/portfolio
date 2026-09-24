@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import ResumeLink from './ResumeLink.astro';
+import { experience, profile, socials, ui } from '../data/profile';
+
+const current = experience[0];
+const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
+---
+
+<section id="top" aria-labelledby="hero-title" class="gutter pt-[clamp(48px,6cqi,88px)] pb-[clamp(40px,4cqi,64px)]">
+  <div class="mx-auto flex max-w-page flex-col items-center text-center">
+    <div class="size-22 overflow-hidden rounded-full bg-surface">
+      <Image
+        src={profile.portrait}
+        alt={ui.hero.portraitAlt}
+        width={88}
+        height={88}
+        densities={[1, 2]}
+        loading="eager"
+        data-portrait
+        class="size-full object-cover"
+      />
+    </div>
+
+    <h1 id="hero-title" class="type-hero mt-8 text-fg">
+      {profile.name}
+    </h1>
+    <p class="mt-6 text-[17px] font-medium text-fg">{ui.hero.role}</p>
+    <p class="type-lead mt-3 max-w-[38ch] text-balance text-body">{profile.tagline}</p>
+    <p class="mt-4 text-[13px] leading-relaxed text-muted">
+      {`${current.role} ${ui.hero.at} ${current.company} · ${ui.hero.location}`}
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+      <a
+        href="#contact"
+        class="inline-flex min-h-11 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+      >
+        {ui.hero.contact}
+      </a>
+      <ResumeLink label={ui.hero.resume} />
+    </div>
+    <p class="mt-3 text-[13px] text-muted">{ui.hero.availability}</p>
+    <ul aria-label={ui.socialLabel} class="mt-1 flex gap-x-4 text-[13px] text-muted">
+      {profiles.map(({ label, href }) => (
+        <li>
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="inline-flex min-h-6 items-center underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
+          >
+            {label}
+            <span class="sr-only">{ui.newTab}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  import { withMotion } from '../lib/with-motion';
+
+  withMotion(({ gsap }) => {
+    gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', () => {
+      gsap.fromTo(
+        '[data-portrait]',
+        { scale: 1.12 },
+        {
+          scale: 1,
+          ease: 'none',
+          // A short scrub lag eases the portrait into place when GSAP arrives after the first paint.
+          scrollTrigger: { trigger: '[data-portrait]', start: 'top bottom', end: 'bottom top', scrub: 0.5 },
+        },
+      );
+    });
+  });
+</script>

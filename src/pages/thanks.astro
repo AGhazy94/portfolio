@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { profile, ui } from '../data/profile';
+---
+
+<Layout title={`${ui.thanks.title} | ${profile.name}`} noindex>
+  <main class="gutter flex min-h-dvh items-center">
+    <div class="mx-auto w-full max-w-page">
+      <Icon name="check" class="size-8 text-accent" />
+      <h1 class="type-section mt-6 max-w-[16ch] text-fg">{ui.thanks.heading}</h1>
+      <p class="mt-5 max-w-[48ch] text-[17px] leading-normal text-body">{ui.thanks.body}</p>
+      <a
+        href="/"
+        class="mt-10 inline-flex min-h-11 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+      >
+        {ui.thanks.back}
+      </a>
+    </div>
+  </main>
+</Layout>

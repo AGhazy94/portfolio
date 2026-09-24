@@ -1,0 +1,84 @@
+<div
+  data-scrollbar
+  aria-hidden="true"
+  class="group fixed inset-y-0.5 right-0 z-50 hidden w-3 opacity-0 transition-opacity duration-300 hover:opacity-100 data-active:opacity-100 motion-reduce:transition-none pointer-fine:block"
+>
+  <div
+    data-scrollbar-thumb
+    class="absolute top-0 right-0.5 w-1.5 cursor-default rounded-full bg-muted transition-colors duration-200 group-hover:bg-fg group-data-dragging:bg-fg"
+  ></div>
+</div>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-scrollbar]')!;
+  const thumb = bar.querySelector<HTMLElement>('[data-scrollbar-thumb]')!;
+  const root = document.documentElement;
+  const MIN_THUMB = 32;
+  let thumbHeight = 0;
+  let hideTimer = 0;
+  let frame = 0;
+
+  const range = () => root.scrollHeight - window.innerHeight;
+  const track = () => bar.clientHeight - thumbHeight;
+
+  const layout = () => {
+    frame = 0;
+    const scrollable = range() > 0;
+    bar.hidden = !scrollable;
+    if (!scrollable) return;
+    thumbHeight = Math.max(MIN_THUMB, (bar.clientHeight * window.innerHeight) / root.scrollHeight);
+    thumb.style.height = `${thumbHeight}px`;
+    thumb.style.transform = `translateY(${(window.scrollY / range()) * track()}px)`;
+  };
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(layout);
+  };
+
+  // Like shadcn's ScrollArea: the thumb shows while scrolling, then fades once the page settles.
+  const reveal = () => {
+    bar.dataset.active = '';
+    clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(() => {
+      if (!('dragging' in bar.dataset)) delete bar.dataset.active;
+    }, 900);
+  };
+
+  const scrollToY = (top: number) => window.scrollTo({ top, behavior: 'instant' });
+
+  thumb.addEventListener('pointerdown', (event) => {
+    event.preventDefault();
+    thumb.setPointerCapture(event.pointerId);
+    bar.dataset.dragging = '';
+    const startY = event.clientY;
+    const startScroll = window.scrollY;
+    const move = (moveEvent: PointerEvent) =>
+      scrollToY(startScroll + ((moveEvent.clientY - startY) * range()) / track());
+    const end = () => {
+      delete bar.dataset.dragging;
+      thumb.removeEventListener('pointermove', move);
+      reveal();
+    };
+    thumb.addEventListener('pointermove', move);
+    thumb.addEventListener('pointerup', end, { once: true });
+    thumb.addEventListener('pointercancel', end, { once: true });
+  });
+
+  // A click on the track jumps so the thumb centres on the pointer, as a native track click does.
+  bar.addEventListener('pointerdown', (event) => {
+    if (event.target !== bar) return;
+    const top = bar.getBoundingClientRect().top;
+    scrollToY(((event.clientY - top - thumbHeight / 2) / track()) * range());
+  });
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      schedule();
+      reveal();
+    },
+    { passive: true },
+  );
+  window.addEventListener('resize', schedule);
+  new ResizeObserver(schedule).observe(document.body);
+  layout();
+</script>

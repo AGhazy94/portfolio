@@ -59,29 +59,53 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 ## Non-Negotiable Rules
 
-- No new dependencies without explicit approval.
+- No new dependencies without explicit approval. Approved so far: GSAP, and
+  `@fontsource/instrument-serif` + `@fontsource/geist` (satori needs their WOFF files for the OG
+  image), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
+  configured in [knip.jsonc](knip.jsonc)).
+- **Design source is [design-system/portfolio-v2/MASTER.md](design-system/portfolio-v2/MASTER.md).**
+  Reread it, and any `pages/<page>.md` override, before a UI change. Where the skill's generic
+  output and the agreed design disagree, the design wins.
 - **Content lives in [src/data/profile.ts](src/data/profile.ts)** — copy, experience, projects,
-  About, and interface strings and labels in `ui`. Components render it; never hard-code copy in
-  markup. `about` and `ui.footer` use `[text](url)` and `**text**`, parsed by
-  [src/lib/inline.ts](src/lib/inline.ts) for both the page and `llms.txt`.
+  About, the statement, and interface strings and labels in `ui` (form labels,
+  errors and messages included). Components render it; never hard-code copy in markup. `about`,
+  `ui.footer.credit`, `ui.contact.intro` and `ui.contact.failure` use `[text](url)` and
+  `**text**`, parsed by [src/lib/inline.ts](src/lib/inline.ts) for both the page and `llms.txt`.
 - **Every page renders through [src/layouts/Layout.astro](src/layouts/Layout.astro)**, which owns
   the title, description, canonical, OG/Twitter tags, icons and JSON-LD. No ad-hoc meta tags in a
   page.
 - Absolute URLs come from `Astro.site`, never a hard-coded domain.
-- **Generated files stay generated.** `/og.png`, the favicons, `site.webmanifest`, `robots.txt` and
-  `llms.txt` are endpoints in `src/pages/`; change the data or
+- **Generated files stay generated.** `/og.png`, the favicons, `robots.txt` and `llms.txt` are
+  endpoints in `src/pages/`; change the data or
   [src/lib/graphics.ts](src/lib/graphics.ts), never drop a static copy into `public/`.
 - Static output only — no adapter, no SSR, no UI-framework islands. Interactivity is a small
   `<script>` in the component that needs it.
 - Icons go through [src/components/Icon.astro](src/components/Icon.astro) (Iconify JSON sets);
   never ship a raw `.svg`. Images go through `astro:assets` from `src/assets/`; `public/` is for
   files served verbatim (the résumé PDF).
-- **Colours are pinned.** Tailwind v4 ships OKLCH palettes, so
-  [src/styles/global.css](src/styles/global.css) pins the sRGB hex values the design uses. Muted
-  text is `text-muted` (WCAG AA), never `text-slate-500` (3.75:1 on the page background).
+- **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
+  palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
+  (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). Use the tokens; there is no `slate`. Muted
+  text is `text-muted` (WCAG AA on every surface). The contact card uses the `inverse` utility,
+  which flips the tokens inside it. Every text pair must pass 4.5:1 and every field border 3:1,
+  in both themes.
+- **Theme** follows `prefers-color-scheme` until the visitor picks one; the toggle stores it and
+  sets `data-theme` on `<html>`, and an inline head script applies it before first paint.
+- **Fonts** load through the Astro Fonts API (Fontsource provider). Use Google Fonts directly only
+  when a font isn't on Fontsource, and add its origin to the CSP.
+- **Motion is GSAP, loaded through [src/lib/with-motion.ts](src/lib/with-motion.ts)**, which skips
+  the download under `prefers-reduced-motion` and waits for load and idle so it never delays LCP.
+  Animate only `transform` and `opacity`, at most 2 elements per view, and never set a dimmed
+  start state on content far below the fold (it fails the contrast audit before anyone sees it).
 - **Tailwind v4 renamed the bare utilities.** v3 `rounded` is v4 `rounded-sm`, v3 `backdrop-blur`
-  is v4 `backdrop-blur-sm`, and the drop-shadow scale changed — use `card-lift`. The important
-  modifier is a suffix: `opacity-100!`.
+  is v4 `backdrop-blur-sm`. v2 is flat: no shadows. The important modifier is a suffix:
+  `opacity-100!`.
+- **Contact form is Netlify Forms.** Keep `name="contact"`, `data-netlify="true"`, the hidden
+  `form-name`, the `netlify-honeypot` field, the `email` input name (it sets Reply-to) and the
+  hidden `subject`. It must work without JS (posts to `/thanks/`); with JS it submits with
+  `fetch`. The CSP allows `form-action 'self'` only.
+- **Deploys cost credits.** Each production deploy (a push to `dev`) costs 15 of 300 monthly Netlify
+  credits. Test on a PR Deploy Preview, and say so before any push that deploys production.
 - **External links** get `target="_blank" rel="noreferrer noopener"` and a visually hidden
   ` (opens in a new tab)` span inside the link — never an `aria-label` that replaces the visible
   text.
@@ -89,12 +113,23 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 ## Project Context
 
-- Stack: Astro 7 static output, Tailwind CSS v4 via `@tailwindcss/vite`, TypeScript strict, Inter
-  via the Astro Fonts API (Fontsource), `@astrojs/sitemap`, satori + sharp for generated images.
-  Deployed on Netlify ([netlify.toml](netlify.toml)).
+- Stack: Astro 7 static output, Tailwind CSS v4 via `@tailwindcss/vite`, TypeScript strict,
+  Instrument Serif (display) + Geist (UI and body) via the Astro Fonts API (Fontsource), GSAP +
+  ScrollTrigger, `@astrojs/sitemap`, satori + sharp for generated images. Deployed on Netlify
+  ([netlify.toml](netlify.toml)), with Netlify Forms for the contact form.
+- Page order: Header → Hero (role, tagline, CTAs) → Projects → Experience → About (statement, facts) →
+  Contact → Footer. One component per section in `src/components/`; `/thanks/` is the no-JS form
+  success page (noindex, not in the sitemap).
+- Audience is recruiters and hiring managers. Positioning is "Full-Stack Engineer
+  (frontend-heavy)"; the job title stays Senior Frontend Engineer.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
-- Layout inspired by Brittany Chiang's portfolio; keep the footer credit. Geometry is matched to it
-  (48%/52% columns, `max-w-7xl`, `lg:py-24`) — do not nudge spacing without measuring.
+- **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill
+  in [.claude/skills/](.claude/skills/). The shared design is the reference; nothing is carried over
+  from v1 unless the user asks.
+- **v1 is frozen** on the `v1` branch and served at `v1.ahmed-ghazy.com` (noindex). Its
+  Brittany Chiang-inspired layout, geometry and footer credit are v1 rules only. Do not port them
+  here, and never commit v2 work to `v1`.
+- `dev` → production at `ahmed-ghazy.com`.
 
 ## Dev Server
 

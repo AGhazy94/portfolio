@@ -1,0 +1,94 @@
+---
+import Icon from './Icon.astro';
+import { profile, ui } from '../data/profile';
+---
+
+<dialog
+  data-resume-dialog
+  aria-labelledby="resume-title"
+  class="m-auto h-[min(92dvh,1120px)] max-h-none w-[min(960px,calc(100%-32px))] max-w-none translate-y-3 rounded-panel bg-surface p-0 text-fg opacity-0 transition-[opacity,translate,display,overlay] transition-discrete duration-200 ease-out backdrop:bg-scrim open:translate-y-0 open:opacity-100 motion-reduce:transition-none starting:open:translate-y-3 starting:open:opacity-0"
+>
+  <div class="flex h-full flex-col gap-5 p-5 sm:p-7">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <p class="text-[13px] text-muted">{ui.resume.eyebrow}</p>
+        <h2 id="resume-title" class="type-project mt-1 text-fg">
+          {profile.name}
+        </h2>
+      </div>
+      <button
+        type="button"
+        data-resume-close
+        aria-label={ui.resume.close}
+        class="group grid size-11 shrink-0 cursor-pointer place-items-center rounded-full bg-surface-2 text-fg transition-opacity duration-200 hover:opacity-70"
+      >
+        <Icon name="close" class="size-5 transition-[rotate] duration-300 ease-out motion-safe:group-hover:rotate-90" />
+      </button>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <a
+        href={profile.resume}
+        download
+        class="inline-flex min-h-11 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+      >
+        {ui.resume.download}
+      </a>
+      <a
+        href={profile.resume}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="group inline-flex min-h-11 items-center text-[15px] font-medium text-accent transition-opacity duration-200 hover:opacity-70"
+      >
+        {ui.resume.open}
+        <span class="sr-only">{ui.newTab}</span>
+        <span
+          aria-hidden="true"
+          class="ml-1 transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]"
+        >
+          ›
+        </span>
+      </a>
+    </div>
+
+    <iframe
+      data-resume-frame
+      data-src={`${profile.resume}#navpanes=0&view=FitH`}
+      title={ui.resume.frameTitle}
+      class="min-h-0 w-full flex-1 rounded-media bg-bg"
+    ></iframe>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-resume-dialog]')!;
+  const frame = dialog.querySelector<HTMLIFrameElement>('[data-resume-frame]')!;
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-resume]');
+  // Phone browsers can't show a PDF inside an iframe, so below 768px the links open it in a new tab.
+  const wide = matchMedia('(min-width: 768px)');
+
+  const sync = () => {
+    for (const link of links) {
+      link.querySelector('[data-resume-new-tab]')?.toggleAttribute('hidden', wide.matches);
+      if (wide.matches) link.setAttribute('aria-haspopup', 'dialog');
+      else link.removeAttribute('aria-haspopup');
+    }
+  };
+  sync();
+  wide.addEventListener('change', sync);
+
+  for (const link of links) {
+    link.addEventListener('click', (event) => {
+      if (!wide.matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      // The PDF loads on first open, so it never competes with the page load.
+      if (!frame.getAttribute('src')) frame.src = frame.dataset.src!;
+      dialog.showModal();
+    });
+  }
+
+  dialog.querySelector('[data-resume-close]')!.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+</script>

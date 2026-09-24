@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { projects, ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'projects')!;
+---
+
+<section
+  id={section.id}
+  aria-labelledby="projects-title"
+  class="gutter pt-[clamp(40px,4cqi,64px)] pb-[clamp(80px,12cqi,160px)]"
+>
+  <div class="mx-auto max-w-page">
+    <h2 id="projects-title" class="type-section text-fg">
+      {section.title}
+    </h2>
+
+    <ul class="mt-[clamp(32px,5cqi,56px)] grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
+      {projects.map((project) => (
+        <li class="group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1">
+          {/* The logo repeats the h3's name, so Icon keeps it hidden from screen readers. */}
+          <Icon name={project.logo} class="h-6 w-auto self-start text-fg" />
+          <p class="mt-8 text-[13px] text-muted">{project.kind}</p>
+          <h3 class="type-project mt-1 text-fg">
+            {/* The stretched ::after makes the whole card the hit area while the link keeps a short name. */}
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent"
+            >
+              {project.name}
+              <span class="sr-only">{ui.newTab}</span>
+            </a>
+          </h3>
+          <p class="mt-3 text-base leading-[1.6] text-body md:text-[15px]">{project.summary}</p>
+          <p class="mt-4 text-[13px] leading-[1.6] text-muted">
+            <span class="sr-only">{ui.tagsLabel}: </span>
+            {project.tags.join(', ')}
+          </p>
+          <p aria-hidden="true" class="mt-auto pt-6 text-[15px] font-medium text-accent">
+            {ui.projects.visit}{' '}
+            <span class="inline-block transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]">
+              ›
+            </span>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

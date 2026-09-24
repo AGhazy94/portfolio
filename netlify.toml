@@ -24,23 +24,18 @@
   status = 301
 
 # Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
+# Same-origin framing lets the résumé dialog show /resume.pdf; a per-path rule could merge with this one rather than replace it.
 [[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    Content-Security-Policy = "object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"
     Cross-Origin-Opener-Policy = "same-origin"
 
 [[headers]]
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# Netlify would otherwise serve the manifest as application/octet-stream.
-[[headers]]
-  for = "/site.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json"

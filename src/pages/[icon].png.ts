@@ -2,11 +2,10 @@ import type { APIRoute, GetStaticPaths } from 'astro';
 import { monogram } from '../lib/graphics';
 import { renderPng } from '../lib/render';
 
-// Touch and maskable icons get a full-bleed square; platforms apply their own corner mask.
+// Touch icons get a full-bleed square; platforms apply their own corner mask.
 const sizes = {
   'apple-touch-icon': 180,
   'icon-192': 192,
-  'icon-512': 512,
 };
 
 export const getStaticPaths = (() =>

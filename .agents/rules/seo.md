@@ -13,12 +13,13 @@ Everything search engines, social cards and LLM crawlers read is generated from
 | `/sitemap-index.xml`                                          | `@astrojs/sitemap` in [astro.config.mjs](../../astro.config.mjs), no `lastmod`                    |
 | `/robots.txt`                                                 | [src/pages/robots.txt.ts](../../src/pages/robots.txt.ts) — allows every crawler, AI ones included |
 | `/llms.txt`                                                   | [src/pages/llms.txt.ts](../../src/pages/llms.txt.ts), [llmstxt.org](https://llmstxt.org) format   |
-| `/site.webmanifest`                                           | [src/pages/site.webmanifest.ts](../../src/pages/site.webmanifest.ts)                              |
 
 ## Invariants
 
-- `site` in `astro.config.mjs` reads Netlify's `URL` (the primary domain). Every absolute URL —
-  canonical, `og:url`, `og:image`, sitemap, robots, JSON-LD `@id`s — derives from it. A custom
+- `site` in `astro.config.mjs` reads Netlify's `URL` (the primary domain) in production and
+  `DEPLOY_PRIME_URL` (the deploy's own address) in every other context. Every absolute URL —
+  canonical, `og:url`, `og:image`, sitemap, robots, JSON-LD `@id`s — derives from it, so a shared
+  preview link shows that preview's OG card. The card's printed domain always reads `URL`. A custom
   domain needs no code change.
 - **Only production is indexed.** [netlify.toml](../../netlify.toml) sets `PUBLIC_NOINDEX=true` on
   deploy previews and branch deploys; `Layout.astro` then renders `noindex, follow` and drops the
@@ -30,8 +31,9 @@ Everything search engines, social cards and LLM crawlers read is generated from
   `lastmod`, because a build-time date would claim a change on every deploy.
 - JSON-LD nodes reference each other by `@id` (`/#website`, `/#person`, the page URL). Keep one
   Person node; add facts to it, not a second one.
-- The Person has **no `image`** on purpose: the OG card is not a photo of the person. Add one only
-  when a real headshot exists in `src/assets/`.
+- The Person `image` is the real headshot, `src/assets/portrait.jpg`, rendered by `getImage` as a
+  400×400 JPEG with an absolute URL. Never point it at the OG card, which is not a photo of the
+  person.
 - `sameAs` lists only profiles that link back or clearly belong to the person — it is how Google ties
   them into one entity.
 - Title pattern: `Name — Role` on the home page; subpages `Page | Name`.

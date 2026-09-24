@@ -26,6 +26,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# skill script bytecode
+__pycache__/
+
 # per-developer Claude Code overrides
 .claude/settings.local.json
 

@@ -1,0 +1,62 @@
+---
+import ResumeLink from './ResumeLink.astro';
+import { experience, ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'experience')!;
+---
+
+<section id={section.id} aria-labelledby="experience-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+  <div class="mx-auto max-w-page">
+    <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-divider pb-8">
+      <h2 id="experience-title" class="type-section text-fg">
+        {section.title}
+      </h2>
+      <ResumeLink label={ui.experience.resume} />
+    </div>
+
+    <ol>
+      {experience.map((job) => (
+        <li class="grid gap-x-12 gap-y-5 border-b border-divider py-[clamp(28px,4cqi,44px)] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div>
+            <p class="text-[13px] font-medium text-muted tabular-nums">
+              {job.start}
+              <span aria-hidden="true"> — </span>
+              <span class="sr-only"> {ui.dateTo} </span>
+              {job.end}
+              {job.note && <span class="ml-2 font-normal">{job.note}</span>}
+            </p>
+            <h3 class="type-company mt-2 text-fg">
+              {job.href ? (
+                <a
+                  href={job.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="transition-colors duration-200 hover:text-accent"
+                >
+                  {job.company}
+                  <span class="sr-only">{ui.newTab}</span>
+                </a>
+              ) : (
+                job.company
+              )}
+            </h3>
+            <p class="mt-2 font-medium text-fg">{job.role}</p>
+          </div>
+
+          <div class="max-w-[62ch]">
+            <p class="leading-[1.65] text-body">{job.summary}</p>
+            <ul class="mt-3 list-disc space-y-2 pl-5 leading-[1.65] text-body marker:text-muted">
+              {job.highlights.map((highlight) => (
+                <li>{highlight}</li>
+              ))}
+            </ul>
+            <p class="mt-4 text-[13px] leading-[1.6] text-muted">
+              <span class="sr-only">{ui.tagsLabel}: </span>
+              {job.tags.join(', ')}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
