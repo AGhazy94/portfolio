@@ -13,7 +13,6 @@ Everything search engines, social cards and LLM crawlers read is generated from
 | `/sitemap-index.xml`                                          | `@astrojs/sitemap` in [astro.config.mjs](../../astro.config.mjs), no `lastmod`                    |
 | `/robots.txt`                                                 | [src/pages/robots.txt.ts](../../src/pages/robots.txt.ts) — allows every crawler, AI ones included |
 | `/llms.txt`                                                   | [src/pages/llms.txt.ts](../../src/pages/llms.txt.ts), [llmstxt.org](https://llmstxt.org) format   |
-| `/site.webmanifest`                                           | [src/pages/site.webmanifest.ts](../../src/pages/site.webmanifest.ts)                              |
 
 ## Invariants
 

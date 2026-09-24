@@ -39,9 +39,3 @@
   for = "/_astro/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# Netlify would otherwise serve the manifest as application/octet-stream.
-[[headers]]
-  for = "/site.webmanifest"
-  [headers.values]
-    Content-Type = "application/manifest+json"

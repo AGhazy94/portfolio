@@ -20,22 +20,22 @@ accent, flat surfaces and no shadows.
 
 ## Phase 1 Decisions
 
-| #    | Decision                                                                                                                        |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------- |
-| 1    | Keep and refine the design. No full redesign.                                                                                   |
-| 2    | Section order: Hero → Projects → Experience → About → Contact → Footer. _(Projects moved up in the Phase 4 review.)_            |
-| 3    | Hero role line: "Full-Stack Engineer (frontend-heavy)", then "Senior Frontend Engineer at Smart Bricks".                        |
-| 4    | Hero shows availability ("Open to full-time roles and contract work") and location.                                             |
-| 5    | ~~Proof strip~~ Removed in the Phase 4 review. Still: no invented numbers anywhere in the copy.                                 |
-| 6    | Experience summaries are rewritten in `profile.ts` as 3–4 bullets, each led by its number.                                      |
-| 7    | The 112px start-year numeral is dropped; the date range stays in the meta line. _(A Claude pick; no recommendation was given.)_ |
-| 8    | Keep the statement pull quote and cut the matching first sentence from About.                                                   |
-| 9–11 | Cut Side projects. No testimonials. No writing section.                                                                         |
-| 12   | The form keeps three fields: name, email, message. _(A Claude pick; no recommendation was given.)_                              |
-| 13   | No-JS success goes to a custom `/thanks/` page rendered through Layout.astro, `noindex`.                                        |
-| 14   | Theme follows `prefers-color-scheme` and remembers the visitor's choice, with no flash on load.                                 |
-| 15   | Keep the blue accent.                                                                                                           |
-| 16   | Instrument Serif + Geist, both on Fontsource (checked 2026-09-24), loaded with the Astro Fonts API.                             |
+| #    | Decision                                                                                                                           |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | Keep and refine the design. No full redesign.                                                                                      |
+| 2    | Section order: Hero → Projects → Experience → About → Contact → Footer. _(Projects moved up in the Phase 4 review.)_               |
+| 3    | Hero role line: "Full-Stack Engineer (frontend-heavy)", then "Senior Frontend Engineer at Smart Bricks".                           |
+| 4    | Hero shows availability ("Open to full-time roles and contract work") and location.                                                |
+| 5    | ~~Proof strip~~ Removed in the Phase 4 review. Still: no invented numbers anywhere in the copy.                                    |
+| 6    | Experience summaries are rewritten in `profile.ts` as 1–4 bullets that say what was built. _(Phase 4 dropped unverified numbers.)_ |
+| 7    | The 112px start-year numeral is dropped; the date range stays in the meta line. _(A Claude pick; no recommendation was given.)_    |
+| 8    | Keep the statement pull quote and cut the matching first sentence from About.                                                      |
+| 9–11 | Cut Side projects. No testimonials. No writing section.                                                                            |
+| 12   | The form keeps three fields: name, email, message. _(A Claude pick; no recommendation was given.)_                                 |
+| 13   | No-JS success goes to a custom `/thanks/` page rendered through Layout.astro, `noindex`.                                           |
+| 14   | Theme follows `prefers-color-scheme` and remembers the visitor's choice, with no flash on load.                                    |
+| 15   | Keep the blue accent.                                                                                                              |
+| 16   | Instrument Serif + Geist, both on Fontsource (checked 2026-09-24), loaded with the Astro Fonts API.                                |
 
 ---
 
@@ -183,10 +183,9 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
   company as h3 (linked when `href` is set) and the role. The right column holds a one-line summary, 3–4
   bullets, then tags as 13px muted text joined by commas.
 - **Project card:** the h3 link stretches over the whole card with `::after`, so the card is one hit area
-  while the link name stays short. Background `--color-surface`, radius 28px. It holds a 16:9 logo tile
-  (`--color-bg`, radius 18px) with the client's logo in `--color-fg` at `clamp(28px, 3.4cqi, 40px)` tall, a
-  kind label ending "· Client work through caisy", the h3, the summary (16px on phones, 15px from 768px), tags
-  and "Visit site ›". The logos live in `src/assets/logos.json` (Iconify format, one colour) and render
+  while the link name stays short. Background `--color-surface`, radius 28px. It is text-first: the client's
+  logo small at the top left (`--color-fg`, 24px tall), then a kind label ending "· Client work through
+  caisy", the h3, the summary (16px on phones, 15px from 768px), tags and "Visit site ›". The logos live in `src/assets/logos.json` (Iconify format, one colour) and render
   through `Icon.astro`, hidden from screen readers because the h3 repeats the name. They replaced the
   homepage screenshots in the Phase 4 review.
 - **About:** h2, the statement, then a 2fr / 3fr grid: a facts list (education, languages) and the
@@ -231,7 +230,7 @@ inside `gsap.matchMedia()`. Content is fully visible without JS, because initial
 | Portrait zoom         | `scale` 1.12 → 1 as the portrait crosses the viewport (`start: 'top bottom'`, `end: 'bottom top'`, `scrub: 0.5` so the late load eases in). No pin.                                                                                                                                                                                                            |
 | Statement word reveal | Words are split in markup at build time (`<span>` per word, one text run for screen readers). They dim to 0.2 only when the statement is 200px from the viewport, so no dimmed text exists at load, then animate to 1 (0.6s, `power1.out`, stagger 0.07s) once at `start: 'top 80%'`. 0.2 is up from the design's 0.14, which was below the skill's 0.2 floor. |
 | Hover and state       | CSS transitions, 200ms for opacity and 300ms for transform. The theme switch transitions colour over 300ms.                                                                                                                                                                                                                                                    |
-| Micro-interactions    | CSS only, `motion-safe`. Text-link `›` slides 3px on hover; pill buttons press to `scale(0.97)`; the project logo scales to 1.04 (500ms) inside its tile on card hover; a 1px nav underline grows from the left (`scaleX`, 300ms) on hover and on the current section; the theme icon turns 180° in dark (500ms); the dialog ✕ turns 90° on hover.             |
+| Micro-interactions    | CSS only, `motion-safe`. Text-link `›` slides 3px on hover; pill buttons press to `scale(0.97)`; a 1px nav underline grows from the left (`scaleX`, 300ms) on hover and on the current section; the theme icon turns 180° in dark (500ms); the dialog ✕ turns 90° on hover.                                                                                    |
 | Overlay scrollbar     | On `pointer: fine` the native page scrollbar is hidden and `ScrollBar.astro` draws a 6px `--color-muted` thumb (`--color-fg` on hover) that fades in on scroll or edge hover and out 900ms after, is draggable and track-clickable. Locking scroll for the dialog shifts nothing. Touch devices keep their native overlay scrollbars.                          |
 
 - At most 2 animated elements per view, per the skill's "Animate 1-2 key elements per view." Hover and press

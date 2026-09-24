@@ -61,7 +61,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 - No new dependencies without explicit approval. Approved so far: GSAP, and
   `@fontsource/instrument-serif` + `@fontsource/geist` (satori needs their WOFF files for the OG
-  image).
+  image), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
+  configured in [knip.jsonc](knip.jsonc)).
 - **Design source is [design-system/portfolio-v2/MASTER.md](design-system/portfolio-v2/MASTER.md).**
   Reread it, and any `pages/<page>.md` override, before a UI change. Where the skill's generic
   output and the agreed design disagree, the design wins.
@@ -74,8 +75,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   the title, description, canonical, OG/Twitter tags, icons and JSON-LD. No ad-hoc meta tags in a
   page.
 - Absolute URLs come from `Astro.site`, never a hard-coded domain.
-- **Generated files stay generated.** `/og.png`, the favicons, `site.webmanifest`, `robots.txt` and
-  `llms.txt` are endpoints in `src/pages/`; change the data or
+- **Generated files stay generated.** `/og.png`, the favicons, `robots.txt` and `llms.txt` are
+  endpoints in `src/pages/`; change the data or
   [src/lib/graphics.ts](src/lib/graphics.ts), never drop a static copy into `public/`.
 - Static output only — no adapter, no SSR, no UI-framework islands. Interactivity is a small
   `<script>` in the component that needs it.

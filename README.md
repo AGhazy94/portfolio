@@ -40,8 +40,8 @@ reveal. It loads after the page is idle and is skipped entirely under `prefers-r
 
 - Canonical URL, sitemap and robots.txt use `site` from `astro.config.mjs`. On Netlify it reads the `URL` env var,
   so adding a custom domain updates every absolute URL on the next deploy.
-- `/og.png` and the favicons are drawn by `src/lib/graphics.ts`; the web manifest comes from
-  `src/pages/site.webmanifest.ts`. All of them follow the content in `profile.ts`.
+- `/og.png` and the favicons are drawn by `src/lib/graphics.ts` and follow the content in `profile.ts`.
+  There is no web app manifest; a portfolio doesn't need to install as an app.
 - The page head carries a JSON-LD `@graph` of WebSite, ProfilePage and Person. Bump `updated` in `profile.ts` when the
   copy changes.
 

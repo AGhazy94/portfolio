@@ -19,13 +19,8 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
       {projects.map((project) => (
         <li class="group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1">
           {/* The logo repeats the h3's name, so Icon keeps it hidden from screen readers. */}
-          <div class="grid aspect-[16/9] place-items-center rounded-media bg-bg">
-            <Icon
-              name={project.logo}
-              class="h-[clamp(28px,3.4cqi,40px)] w-auto text-fg transition-[scale] duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
-            />
-          </div>
-          <p class="mt-6 text-[13px] text-muted">{project.kind}</p>
+          <Icon name={project.logo} class="h-6 w-auto self-start text-fg" />
+          <p class="mt-8 text-[13px] text-muted">{project.kind}</p>
           <h3 class="type-project mt-1 text-fg">
             {/* The stretched ::after makes the whole card the hit area while the link keeps a short name. */}
             <a
