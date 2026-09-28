@@ -3,6 +3,9 @@
 @source not '../lib';
 @source not '../pages/*.ts';
 
+/* Collapsed content only stays collapsed where a script can open it again. */
+@custom-variant js (@media (scripting: enabled));
+
 /* Tailwind v4 ships OKLCH palettes; drop them and pin the design's sRGB hex pairs (light, dark). */
 @theme {
   --color-*: initial;

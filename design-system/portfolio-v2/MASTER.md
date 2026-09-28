@@ -177,7 +177,9 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
   links open the PDF in a new tab, because phone browsers can't render a PDF in an iframe.
 - **Experience row:** two columns from 768px (2fr / 3fr). The left column holds the date range and note, the
   company as h3 (linked when `href` is set) and the role. The right column holds a one-line summary, 3–4
-  bullets, then tags as 13px muted text joined by commas.
+  bullets, then tags as 13px muted text joined by commas. Below 768px the bullets and tags start closed behind a
+  "What I built" button (`aria-expanded`, a chevron that turns 180°); from 768px, and without JS, they are always
+  open.
 - **Project card:** the h3 link stretches over the whole card with `::after`, so the card is one hit area
   while the link name stays short. Background `--color-surface`, radius 28px. It is text-first: the client's
   logo small at the top left (`--color-fg`, 24px tall), then a kind label ending "· Client work through
@@ -222,7 +224,8 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
 
 GSAP and ScrollTrigger load through `src/lib/with-motion.ts`: skipped entirely under reduced motion, and
 otherwise imported after `load` and an idle callback, so they never delay LCP. Lighthouse scored 100 with and
-without the GSAP chunk (LCP 1.7s against 1.6–1.7s). Only transform and opacity animate. Everything runs
+without the GSAP chunk (LCP 1.7s against 1.6–1.7s). Only transform and opacity animate, apart from the
+Experience disclosure below. Everything runs
 inside `gsap.matchMedia()`. Content is fully visible without JS, because initial states are only set by JS.
 
 | Effect                | Spec                                                                                                                                                                                                                                                                                                                                                           |
@@ -235,6 +238,8 @@ inside `gsap.matchMedia()`. Content is fully visible without JS, because initial
 
 - At most 2 animated elements per view, per the skill's "Animate 1-2 key elements per view." Hover and press
   micro-interactions are user-triggered and don't count toward it.
+- The phone Experience disclosure is the one size animation: `grid-template-rows` 0fr ↔ 1fr plus `visibility`,
+  300ms ease-out, user-triggered, one row at a time, and none under reduced motion. Never animate `height`.
 - No scroll-reveal on every section, no pinning, no SplitText.
 - Call `ScrollTrigger.refresh()` after fonts load (`document.fonts.ready`).
 

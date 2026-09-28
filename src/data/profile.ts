@@ -183,7 +183,7 @@ export const ui = {
     contact: 'Get in touch',
     resume: 'View résumé',
   },
-  experience: { resume: 'Full résumé' },
+  experience: { resume: 'Full résumé', details: 'What I built' },
   resume: {
     eyebrow: 'Résumé',
     download: 'Download PDF',

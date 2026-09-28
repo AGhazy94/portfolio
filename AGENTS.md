@@ -97,6 +97,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   the download under `prefers-reduced-motion` and waits for load and idle so it never delays LCP.
   Animate only `transform` and `opacity`, at most 2 elements per view, and never set a dimmed
   start state on content far below the fold (it fails the contrast audit before anyone sees it).
+  The one exception is the phone Experience disclosure, which transitions `grid-template-rows`
+  (0fr ↔ 1fr). Never animate `height` itself.
 - **Tailwind v4 renamed the bare utilities.** v3 `rounded` is v4 `rounded-sm`, v3 `backdrop-blur`
   is v4 `backdrop-blur-sm`. v2 is flat: no shadows. The important modifier is a suffix:
   `opacity-100!`.
