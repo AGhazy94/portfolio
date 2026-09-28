@@ -50,8 +50,8 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  // Engineering since January 2022, per the résumé; it becomes "5 years" in January 2027.
-  ogLine: 'Almost 5 years building React and Next.js apps',
+  // Counts from January 2022, when the engineering work on the résumé starts.
+  ogLine: '5 years building React and Next.js apps',
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
