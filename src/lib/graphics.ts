@@ -3,13 +3,9 @@ import { join } from 'node:path';
 import { h, img } from './render';
 import { profile } from '../data/profile';
 
-// The light theme's pinned values from global.css; satori can't read CSS variables.
-const colors = {
-  bg: '#fbfbfa',
-  surface: '#f0f0ee',
-  fg: '#111111',
-  muted: '#6a6a6f',
-};
+// Pinned values from global.css; satori can't read CSS variables.
+const light = { bg: '#fbfbfa', fg: '#111111' };
+const dark = { bg: '#0b0b0b', fg: '#f3f3f1', muted: '#98989d', accent: '#4aa3ff' };
 
 let portrait: Promise<string> | undefined;
 
@@ -28,9 +24,9 @@ export function monogram({ rounded }: { rounded: boolean }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: colors.bg,
+      backgroundColor: light.bg,
       borderRadius: rounded ? '22%' : 0,
-      color: colors.fg,
+      color: light.fg,
       fontFamily: 'Instrument Serif',
       fontSize: 300,
       letterSpacing: -6,
@@ -53,18 +49,18 @@ export async function ogCard() {
       display: 'flex',
       alignItems: 'center',
       padding: '0 88px',
-      backgroundColor: colors.surface,
+      backgroundColor: dark.bg,
       fontFamily: 'Geist',
     },
     [
       h('div', { display: 'flex', flexDirection: 'column', flexGrow: 1 }, [
         h(
           'div',
-          { fontFamily: 'Instrument Serif', fontSize: 128, lineHeight: 0.92, letterSpacing: -2.5, color: colors.fg },
+          { fontFamily: 'Instrument Serif', fontSize: 128, lineHeight: 0.92, letterSpacing: -2.5, color: dark.fg },
           profile.name,
         ),
-        h('div', { marginTop: 30, fontSize: 40, fontWeight: 500, color: colors.fg }, profile.title),
-        h('div', { marginTop: 14, fontSize: 30, color: colors.muted }, profile.location.label),
+        h('div', { marginTop: 30, fontSize: 40, fontWeight: 500, color: dark.accent }, profile.title),
+        h('div', { marginTop: 14, fontSize: 30, color: dark.muted }, profile.ogLine),
       ]),
       img(await portrait, 300, { marginLeft: 48, borderRadius: '50%', objectFit: 'cover' }),
     ],

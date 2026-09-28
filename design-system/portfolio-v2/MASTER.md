@@ -187,9 +187,10 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
 - **About:** h2, the statement, then a 2fr / 3fr grid: a facts list (education, languages) and the
   paragraphs at 62ch. Hover is `translateY(-4px)` over 300ms (transform only). External-link
   rules come from AGENTS.md.
-- **OG card:** 1200×630 on `--color-surface`. The name (display, 128px), the role (sans 500, 40px) and the location
-  line (sans, 30px, muted) sit on the left, and the round portrait (300px) on the right. No tech pills and no domain:
-  link previews already print the title, description and domain beside the image.
+- **OG card:** 1200×630 in the dark theme (`#0b0b0b`). The name (display, 128px, fg), the role (sans 500, 40px,
+  accent) and the experience line from `profile.ogLine` (sans, 30px, muted) sit on the left, and the round portrait
+  (300px) on the right. No location, tech pills or domain: link previews already print the title, description and
+  domain beside the image.
 - **Focus:** `outline: 2px solid var(--color-accent); outline-offset: 3px` on every interactive element.
   Never `outline: none` without this replacement.
 
