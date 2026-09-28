@@ -24,11 +24,14 @@ export type Project = {
   tags: string[];
 };
 
+// Counts from January 2022, when the engineering work on the résumé starts.
+const yearsOfExperience = '5+ years';
+
 export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Senior Frontend Engineer',
   seoTitle: 'Ahmed Ghazy — Senior Frontend Engineer',
-  tagline: 'I build React and Next.js frontends, plus the Node.js work behind them.',
+  tagline: `I’ve spent ${yearsOfExperience} building React and Next.js frontends, plus the Node.js work behind them.`,
   description:
     'Builds React and Next.js frontends for an a16z speedrun–backed AI platform. Open to remote full-time roles and contract work.',
   location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
@@ -50,8 +53,7 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  // Counts from January 2022, when the engineering work on the résumé starts.
-  ogLine: '5+ years building React and Next.js apps',
+  ogLine: `${yearsOfExperience} building React and Next.js apps`,
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
