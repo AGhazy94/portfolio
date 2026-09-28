@@ -28,9 +28,9 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Senior Frontend Engineer',
   seoTitle: 'Ahmed Ghazy — Senior Frontend Engineer',
-  tagline: 'I lead and build React and Next.js frontends, plus the Node.js work behind them.',
+  tagline: 'I build React and Next.js frontends, plus the Node.js work behind them.',
   description:
-    'Leads frontend architecture on an a16z speedrun–backed AI platform. React, Next.js and TypeScript. Open to remote full-time roles and contract work.',
+    'Builds React and Next.js frontends for an a16z speedrun–backed AI platform. Open to remote full-time roles and contract work.',
   location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -87,10 +87,10 @@ export const experience: Experience[] = [
     href: 'https://smart-bricks.com',
     summary: 'AI platform for real-estate investing, backed by a16z speedrun.',
     highlights: [
-      'Lead the frontend architecture and build it hands-on, review the team’s pull requests, and mentor newer engineers.',
       'Moved data fetching to the server with the Next.js App Router, reworked client caching, and split the property pages into separate server-rendered sections.',
       'Rebuilt the valuation and score modals so investors can see why a property got its price and score.',
       'Built our Storybook component library.',
+      'Lead the frontend architecture and build it hands-on, review the team’s pull requests, and mentor newer engineers.',
     ],
     tags: ['Next.js', 'TypeScript', 'React', 'TanStack Query', 'Tailwind CSS', 'Storybook', 'PostHog', 'Grafana'],
   },
