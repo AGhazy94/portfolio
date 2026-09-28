@@ -60,23 +60,19 @@ changed from the design to pass WCAG AA.
 | `--color-hairline`  | `rgb(0 0 0 / 0.06)`            | `rgb(255 255 255 / 0.08)` | Header bottom border                                            |
 | `--color-scrim`     | `rgb(0 0 0 / 0.6)`             | `rgb(0 0 0 / 0.6)`        | Résumé dialog backdrop                                          |
 
-### Inverse (contact card)
+### Contact card
 
-The contact card uses the opposite theme: dark in light mode, light in dark mode. In code, the `inverse` utility
-redefines `surface`, `fg`, `body`, `muted` and `accent` inside the card, and `field`, `field-border`, `error` and
-`success` are their own tokens. The `inv-*` names below are the spec's labels, not CSS variables.
+The contact card sits on `--color-surface`, like the project cards (1.10:1 against the page in light, 1.09:1 in
+dark), so the pill button is its one high-contrast element. It used to invert the theme (18.24:1 and 17.72:1), which
+outside feedback on 2026-09-28 found too heavy. Placeholders use `--color-muted`, labels `--color-body`, and links
+and the focus ring `--color-accent`. The form has its own tokens:
 
-| Token                     | Light mode (dark card)         | Dark mode (light card)         | Use                                                  |
-| ------------------------- | ------------------------------ | ------------------------------ | ---------------------------------------------------- |
-| `--color-inv-bg`          | `#111111`                      | `#f3f3f1`                      | Card                                                 |
-| `--color-inv-fg`          | `#f3f3f1`                      | `#111111`                      | Heading, submit button background                    |
-| `--color-inv-body`        | `#c7c7cc`                      | `#3a3a3c`                      | Paragraph, labels                                    |
-| `--color-inv-field`       | `#1c1c1c`                      | `#ffffff`                      | Input background                                     |
-| `--color-inv-border`      | ⚠ `#686868` (design `#333333`) | ⚠ `#8c8c8c` (design `#d9d9d6`) | Input border                                         |
-| `--color-inv-placeholder` | ⚠ `#98989d` (design `#757575`) | `#6a6a6f`                      | Placeholder                                          |
-| `--color-inv-accent`      | `#4aa3ff`                      | `#0066cc`                      | Focus ring, links                                    |
-| `--color-inv-error`       | `#ff7a70`                      | `#b42318`                      | Field error text and icon _(new; not in the design)_ |
-| `--color-inv-success`     | `#5fd38d`                      | `#157a36`                      | Success icon _(new; not in the design)_              |
+| Token                  | Light     | Dark      | Use                                                  |
+| ---------------------- | --------- | --------- | ---------------------------------------------------- |
+| `--color-field`        | `#ffffff` | `#0b0b0b` | Input background                                     |
+| `--color-field-border` | `#858585` | `#686868` | Input border                                         |
+| `--color-error`        | `#b42318` | `#ff7a70` | Field error text and icon _(new; not in the design)_ |
+| `--color-success`      | `#157a36` | `#5fd38d` | Success icon _(new; not in the design)_              |
 
 ### Measured contrast (WCAG 2.2)
 
@@ -87,11 +83,11 @@ redefines `surface`, `fg`, `body`, `muted` and `accent` inside the card, and `fi
 | `--color-muted` on surface-2 (light) `#6a6a6f`/`#ececea` | 4.55          | 4.5   |
 | `--color-muted` on surface (dark) `#98989d`/`#161616`    | 6.30          | 4.5   |
 | `--color-accent` on surface: light / dark                | 4.88 / 6.87   | 4.5   |
-| Input border `#686868`/`#111111`, `#686868`/`#1c1c1c`    | 3.39 / 3.06   | 3     |
-| Input border `#8c8c8c`/`#f3f3f1`, `#8c8c8c`/`#ffffff`    | 3.03 / 3.36   | 3     |
-| Placeholder `#98989d`/`#1c1c1c`                          | 5.93          | 4.5   |
-| Error `#ff7a70`/`#1c1c1c`, `#b42318`/`#ffffff`           | 6.71 / 6.57   | 4.5   |
-| Success `#5fd38d`/`#111111`, `#157a36`/`#f3f3f1`         | 10.06 / 4.89  | 4.5   |
+| Input border, light `#858585` on `#ffffff` / `#f0f0ee`   | 3.69 / 3.23   | 3     |
+| Input border, dark `#686868` on `#0b0b0b` / `#161616`    | 3.53 / 3.25   | 3     |
+| Placeholder `#6a6a6f`/`#ffffff`, `#98989d`/`#0b0b0b`     | 5.38 / 6.85   | 4.5   |
+| Error `#b42318`/`#f0f0ee`, `#ff7a70`/`#161616`           | 5.76 / 7.13   | 4.5   |
+| Success `#157a36`/`#f0f0ee`, `#5fd38d`/`#161616`         | 4.76 / 9.64   | 4.5   |
 
 ---
 
@@ -111,7 +107,7 @@ the clamps below work as written.
 | Style                   | Font         | Size                        | Line height | Tracking | Colour               |
 | ----------------------- | ------------ | --------------------------- | ----------- | -------- | -------------------- |
 | Hero name (h1)          | Display      | `clamp(64px, 13cqi, 156px)` | 0.92        | -0.02em  | fg                   |
-| Contact heading (h2)    | Display      | `clamp(44px, 7cqi, 84px)`   | 1           | -0.01em  | inv-fg               |
+| Contact heading (h2)    | Display      | `clamp(44px, 7cqi, 84px)`   | 1           | -0.01em  | fg                   |
 | Section heading (h2)    | Display      | `clamp(44px, 6.5cqi, 76px)` | 1           | -0.01em  | fg                   |
 | Statement               | Display      | `clamp(34px, 5.6cqi, 68px)` | 1.06        | -0.01em  | fg, max-width 22ch   |
 | Company (h3)            | Display      | `clamp(32px, 3.8cqi, 42px)` | 1.02        | 0        | fg                   |
@@ -191,8 +187,11 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
 - **About:** h2, the statement, then a 2fr / 3fr grid: a facts list (education, languages) and the
   paragraphs at 62ch. Hover is `translateY(-4px)` over 300ms (transform only). External-link
   rules come from AGENTS.md.
+- **OG card:** 1200×630 on `--color-surface`. The name (display, 128px), the role (sans 500, 40px) and the location
+  line (sans, 30px, muted) sit on the left, and the round portrait (300px) on the right. No tech pills and no domain:
+  link previews already print the title, description and domain beside the image.
 - **Focus:** `outline: 2px solid var(--color-accent); outline-offset: 3px` on every interactive element.
-  Inside the contact card it is `--color-inv-accent`. Never `outline: none` without this replacement.
+  Never `outline: none` without this replacement.
 
 ### Contact form
 

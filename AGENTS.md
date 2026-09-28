@@ -86,9 +86,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
   palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
   (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). Use the tokens; there is no `slate`. Muted
-  text is `text-muted` (WCAG AA on every surface). The contact card uses the `inverse` utility,
-  which flips the tokens inside it. Every text pair must pass 4.5:1 and every field border 3:1,
-  in both themes.
+  text is `text-muted` (WCAG AA on every surface). The contact card sits on `surface`, like the
+  project cards; never flip the theme inside it. Every text pair must pass 4.5:1 and every field
+  border 3:1, in both themes.
 - **Theme** follows `prefers-color-scheme` until the visitor picks one; the toggle stores it and
   sets `data-theme` on `<html>`, and an inline head script applies it before first paint.
 - **Fonts** load through the Astro Fonts API (Fontsource provider). Use Google Fonts directly only

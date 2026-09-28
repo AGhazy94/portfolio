@@ -19,8 +19,7 @@ Everything search engines, social cards and LLM crawlers read is generated from
 - `site` in `astro.config.mjs` reads Netlify's `URL` (the primary domain) in production and
   `DEPLOY_PRIME_URL` (the deploy's own address) in every other context. Every absolute URL —
   canonical, `og:url`, `og:image`, sitemap, robots, JSON-LD `@id`s — derives from it, so a shared
-  preview link shows that preview's OG card. The card's printed domain always reads `URL`. A custom
-  domain needs no code change.
+  preview link shows that preview's OG card. A custom domain needs no code change.
 - **Only production is indexed.** [netlify.toml](../../netlify.toml) sets `PUBLIC_NOINDEX=true` on
   deploy previews and branch deploys; `Layout.astro` then renders `noindex, follow` and drops the
   canonical. Never block previews in `robots.txt` instead — a blocked page cannot show its noindex.

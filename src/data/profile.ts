@@ -49,7 +49,6 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  ogTags: ['React', 'Next.js', 'TypeScript', 'Node.js'],
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
