@@ -120,8 +120,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - Page order: Header → Hero (role, tagline, CTAs) → Projects → Experience → About (statement, facts) →
   Contact → Footer. One component per section in `src/components/`; `/thanks/` is the no-JS form
   success page (noindex, not in the sitemap).
-- Audience is recruiters and hiring managers. Positioning is "Full-Stack Engineer
-  (frontend-heavy)"; the job title is Senior Full-Stack Engineer.
+- Audience is recruiters and hiring managers. Positioning and job title are both "Senior Frontend
+  Engineer"; the backend work is supporting reach (tagline, About), never the headline.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
 - **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill
   in [.claude/skills/](.claude/skills/). The shared design is the reference; nothing is carried over

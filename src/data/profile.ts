@@ -26,18 +26,18 @@ export type Project = {
 
 export const profile = {
   name: 'Ahmed Ghazy',
-  title: 'Full-Stack Engineer',
-  seoTitle: 'Ahmed Ghazy — Full-Stack Engineer',
+  title: 'Senior Frontend Engineer',
+  seoTitle: 'Ahmed Ghazy — Senior Frontend Engineer',
   tagline: 'I build React and Next.js apps, including the Node.js and PostgreSQL work behind them.',
   description:
-    'Ahmed Ghazy is a full-stack engineer who builds React and Next.js apps, including the Node.js and PostgreSQL work behind them.',
+    'Ahmed Ghazy is a senior frontend engineer who builds React and Next.js apps, including the Node.js and PostgreSQL work behind them.',
   location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   resume: '/resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-09-25T00:00:00+03:00',
+  updated: '2026-09-28T00:00:00+03:00',
   knowsAbout: [
     'React',
     'Next.js',
@@ -80,7 +80,7 @@ export const experience: Experience[] = [
   {
     start: '2025',
     end: 'Present',
-    role: 'Senior Full-Stack Engineer',
+    role: 'Senior Frontend Engineer',
     company: 'Smart Bricks',
     href: 'https://smart-bricks.com',
     summary: 'AI platform for real-estate investing, backed by a16z speedrun.',
@@ -171,8 +171,8 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    role: 'Full-Stack Engineer (frontend-heavy)',
-    at: 'at',
+    role: 'Senior Frontend Engineer',
+    at: 'Currently at',
     location: 'Based in Alexandria, Egypt',
     availability: 'Open to remote full-time roles and contract work',
     contact: 'Get in touch',
