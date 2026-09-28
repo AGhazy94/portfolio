@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import ResumeLink from './ResumeLink.astro';
 import { experience, ui } from '../data/profile';
 
@@ -15,7 +16,7 @@ const section = ui.sections.find(({ id }) => id === 'experience')!;
     </div>
 
     <ol>
-      {experience.map((job) => (
+      {experience.map((job, index) => (
         <li class="grid gap-x-12 gap-y-5 border-b border-divider py-[clamp(28px,4cqi,44px)] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div>
             <p class="text-[13px] font-medium text-muted tabular-nums">
@@ -45,18 +46,48 @@ const section = ui.sections.find(({ id }) => id === 'experience')!;
 
           <div class="max-w-[62ch]">
             <p class="leading-[1.65] text-body">{job.summary}</p>
-            <ul class="mt-3 list-disc space-y-2 pl-5 leading-[1.65] text-body marker:text-muted">
-              {job.highlights.map((highlight) => (
-                <li>{highlight}</li>
-              ))}
-            </ul>
-            <p class="mt-4 text-[13px] leading-[1.6] text-muted">
-              <span class="sr-only">{ui.tagsLabel}: </span>
-              {job.tags.join(', ')}
-            </p>
+            {/* Phones start with the duties closed; from 768px, and without JS, they are always open. */}
+            <button
+              type="button"
+              data-job-toggle
+              aria-expanded="false"
+              aria-controls={`job-${index}-details`}
+              class="peer group mt-1 inline-flex min-h-11 cursor-pointer items-center gap-1 text-[15px] font-medium text-accent md:hidden noscript:hidden"
+            >
+              {ui.experience.details}
+              <span class="sr-only">, {job.company}</span>
+              <Icon
+                name="chevron"
+                class="size-5 transition-[rotate] duration-300 ease-out group-aria-expanded:rotate-180 motion-reduce:transition-none"
+              />
+            </button>
+            <div
+              id={`job-${index}-details`}
+              class="grid grid-rows-[1fr] transition-[grid-template-rows,visibility] duration-300 ease-out motion-reduce:transition-none max-md:js:peer-aria-[expanded=false]:invisible max-md:js:peer-aria-[expanded=false]:grid-rows-[0fr]"
+            >
+              <div class="min-h-0 max-md:overflow-hidden">
+                <ul class="mt-3 list-disc space-y-2 pl-5 leading-[1.65] text-body marker:text-muted">
+                  {job.highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+                <p class="mt-4 text-[13px] leading-[1.6] text-muted">
+                  <span class="sr-only">{ui.tagsLabel}: </span>
+                  {job.tags.join(', ')}
+                </p>
+              </div>
+            </div>
           </div>
         </li>
       ))}
     </ol>
   </div>
 </section>
+
+<script>
+  for (const toggle of document.querySelectorAll<HTMLButtonElement>('[data-job-toggle]')) {
+    toggle.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') === 'false'));
+    });
+  }
+</script>

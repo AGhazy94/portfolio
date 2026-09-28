@@ -9,11 +9,19 @@ const require = createRequire(join(process.cwd(), 'package.json'));
 
 type Style = Record<string, string | number>;
 type Child = Node | string;
-type Node = { type: string; props: { style?: Style; children?: Child | Child[] } };
+type Node = {
+  type: string;
+  props: { style?: Style; children?: Child | Child[]; src?: string; width?: number; height?: number };
+};
 
 export const h = (type: string, style: Style, children?: Child | Child[]): Node => ({
   type,
   props: { style, children },
+});
+
+export const img = (src: string, size: number, style: Style): Node => ({
+  type: 'img',
+  props: { src, width: size, height: size, style },
 });
 
 // satori reads WOFF but not WOFF2, so the files come from the Fontsource packages.

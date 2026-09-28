@@ -19,11 +19,14 @@ const buttonClass =
 ---
 
 <section id={section.id} aria-labelledby="contact-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
-  <div class="inverse mx-auto max-w-page rounded-panel bg-surface px-[clamp(20px,6cqi,72px)] py-[clamp(28px,7cqi,80px)] text-center">
+  <div class="mx-auto max-w-page rounded-panel bg-surface px-[clamp(20px,6cqi,72px)] py-[clamp(28px,7cqi,80px)] text-center">
     <h2 id="contact-title" class="type-contact text-fg">
       {section.title}
     </h2>
-    <RichText source={ui.contact.intro} class="mx-auto mt-5 max-w-[40ch] text-[17px] leading-normal text-body" />
+    <RichText
+      source={ui.contact.intro}
+      class="mx-auto mt-5 max-w-[40ch] text-[17px] leading-normal text-balance text-body *:whitespace-nowrap"
+    />
 
     <form
       name="contact"

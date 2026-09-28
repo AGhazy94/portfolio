@@ -86,9 +86,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
   palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
   (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). Use the tokens; there is no `slate`. Muted
-  text is `text-muted` (WCAG AA on every surface). The contact card uses the `inverse` utility,
-  which flips the tokens inside it. Every text pair must pass 4.5:1 and every field border 3:1,
-  in both themes.
+  text is `text-muted` (WCAG AA on every surface). The contact card sits on `surface`, like the
+  project cards; never flip the theme inside it. Every text pair must pass 4.5:1 and every field
+  border 3:1, in both themes.
 - **Theme** follows `prefers-color-scheme` until the visitor picks one; the toggle stores it and
   sets `data-theme` on `<html>`, and an inline head script applies it before first paint.
 - **Fonts** load through the Astro Fonts API (Fontsource provider). Use Google Fonts directly only
@@ -97,6 +97,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   the download under `prefers-reduced-motion` and waits for load and idle so it never delays LCP.
   Animate only `transform` and `opacity`, at most 2 elements per view, and never set a dimmed
   start state on content far below the fold (it fails the contrast audit before anyone sees it).
+  The one exception is the phone Experience disclosure, which transitions `grid-template-rows`
+  (0fr ↔ 1fr). Never animate `height` itself.
 - **Tailwind v4 renamed the bare utilities.** v3 `rounded` is v4 `rounded-sm`, v3 `backdrop-blur`
   is v4 `backdrop-blur-sm`. v2 is flat: no shadows. The important modifier is a suffix:
   `opacity-100!`.
@@ -120,8 +122,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - Page order: Header → Hero (role, tagline, CTAs) → Projects → Experience → About (statement, facts) →
   Contact → Footer. One component per section in `src/components/`; `/thanks/` is the no-JS form
   success page (noindex, not in the sitemap).
-- Audience is recruiters and hiring managers. Positioning is "Full-Stack Engineer
-  (frontend-heavy)"; the job title is Senior Full-Stack Engineer.
+- Audience is recruiters and hiring managers. Positioning and job title are both "Senior Frontend
+  Engineer"; the backend work is supporting reach (tagline, About), never the headline.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
 - **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill
   in [.claude/skills/](.claude/skills/). The shared design is the reference; nothing is carried over

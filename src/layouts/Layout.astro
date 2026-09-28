@@ -21,7 +21,7 @@ const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
 // LinkedIn and chat apps cache the card by URL, so a hash of its content makes them refetch when it changes.
 const cardHash = createHash('sha256')
-  .update(JSON.stringify(ogCard(new URL(process.env.URL ?? site.href).host)))
+  .update(JSON.stringify(await ogCard()))
   .digest('hex')
   .slice(0, 8);
 const ogImage = new URL(`/og.png?v=${cardHash}`, site);

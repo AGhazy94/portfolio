@@ -3,6 +3,9 @@
 @source not '../lib';
 @source not '../pages/*.ts';
 
+/* Collapsed content only stays collapsed where a script can open it again. */
+@custom-variant js (@media (scripting: enabled));
+
 /* Tailwind v4 ships OKLCH palettes; drop them and pin the design's sRGB hex pairs (light, dark). */
 @theme {
   --color-*: initial;
@@ -24,12 +27,11 @@
   /* One value for both themes: ::backdrop doesn't reliably inherit color-scheme. */
   --color-scrim: rgb(0 0 0 / 0.6);
 
-  /* Form colours live on the inverse contact card, so each pair reads (light page, dark page). */
-  --color-field: light-dark(#1c1c1c, #ffffff);
-  /* The design's field borders were 1.49:1 and 1.27:1; these clear the 3:1 non-text minimum. */
-  --color-field-border: light-dark(#686868, #8c8c8c);
-  --color-error: light-dark(#ff7a70, #b42318);
-  --color-success: light-dark(#5fd38d, #157a36);
+  --color-field: light-dark(#ffffff, #0b0b0b);
+  /* Clears 3:1 against both the field and the contact card's surface; #8c8c8c was 2.95:1 on #f0f0ee. */
+  --color-field-border: light-dark(#858585, #686868);
+  --color-error: light-dark(#b42318, #ff7a70);
+  --color-success: light-dark(#157a36, #5fd38d);
 
   --radius-pill: 980px;
   --radius-card: 28px;
@@ -91,15 +93,6 @@
 @utility type-lead {
   font-size: clamp(19px, 2.2cqi, 24px);
   line-height: 1.4;
-}
-
-/* The contact card flips the theme: dark on the light page, light on the dark one. */
-@utility inverse {
-  --color-surface: light-dark(#111111, #f3f3f1);
-  --color-fg: light-dark(#f3f3f1, #111111);
-  --color-body: light-dark(#c7c7cc, #3a3a3c);
-  --color-muted: light-dark(#98989d, #6a6a6f);
-  --color-accent: light-dark(#4aa3ff, #0066cc);
 }
 
 @layer base {

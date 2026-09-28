@@ -24,7 +24,7 @@ accent, flat surfaces and no shadows.
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | 1    | Keep and refine the design. No full redesign.                                                                                      |
 | 2    | Section order: Hero → Projects → Experience → About → Contact → Footer. _(Projects moved up in the Phase 4 review.)_               |
-| 3    | Hero role line: "Full-Stack Engineer (frontend-heavy)", then "Senior Full-Stack Engineer at Smart Bricks".                         |
+| 3    | Hero role line: "Senior Frontend Engineer", then "Currently at Smart Bricks".                                                      |
 | 4    | Hero shows availability ("Open to full-time roles and contract work") and location.                                                |
 | 5    | ~~Proof strip~~ Removed in the Phase 4 review. Still: no invented numbers anywhere in the copy.                                    |
 | 6    | Experience summaries are rewritten in `profile.ts` as 1–4 bullets that say what was built. _(Phase 4 dropped unverified numbers.)_ |
@@ -60,23 +60,19 @@ changed from the design to pass WCAG AA.
 | `--color-hairline`  | `rgb(0 0 0 / 0.06)`            | `rgb(255 255 255 / 0.08)` | Header bottom border                                            |
 | `--color-scrim`     | `rgb(0 0 0 / 0.6)`             | `rgb(0 0 0 / 0.6)`        | Résumé dialog backdrop                                          |
 
-### Inverse (contact card)
+### Contact card
 
-The contact card uses the opposite theme: dark in light mode, light in dark mode. In code, the `inverse` utility
-redefines `surface`, `fg`, `body`, `muted` and `accent` inside the card, and `field`, `field-border`, `error` and
-`success` are their own tokens. The `inv-*` names below are the spec's labels, not CSS variables.
+The contact card sits on `--color-surface`, like the project cards (1.10:1 against the page in light, 1.09:1 in
+dark), so the pill button is its one high-contrast element. It used to invert the theme (18.24:1 and 17.72:1), which
+outside feedback on 2026-09-28 found too heavy. Placeholders use `--color-muted`, labels `--color-body`, and links
+and the focus ring `--color-accent`. The form has its own tokens:
 
-| Token                     | Light mode (dark card)         | Dark mode (light card)         | Use                                                  |
-| ------------------------- | ------------------------------ | ------------------------------ | ---------------------------------------------------- |
-| `--color-inv-bg`          | `#111111`                      | `#f3f3f1`                      | Card                                                 |
-| `--color-inv-fg`          | `#f3f3f1`                      | `#111111`                      | Heading, submit button background                    |
-| `--color-inv-body`        | `#c7c7cc`                      | `#3a3a3c`                      | Paragraph, labels                                    |
-| `--color-inv-field`       | `#1c1c1c`                      | `#ffffff`                      | Input background                                     |
-| `--color-inv-border`      | ⚠ `#686868` (design `#333333`) | ⚠ `#8c8c8c` (design `#d9d9d6`) | Input border                                         |
-| `--color-inv-placeholder` | ⚠ `#98989d` (design `#757575`) | `#6a6a6f`                      | Placeholder                                          |
-| `--color-inv-accent`      | `#4aa3ff`                      | `#0066cc`                      | Focus ring, links                                    |
-| `--color-inv-error`       | `#ff7a70`                      | `#b42318`                      | Field error text and icon _(new; not in the design)_ |
-| `--color-inv-success`     | `#5fd38d`                      | `#157a36`                      | Success icon _(new; not in the design)_              |
+| Token                  | Light     | Dark      | Use                                                  |
+| ---------------------- | --------- | --------- | ---------------------------------------------------- |
+| `--color-field`        | `#ffffff` | `#0b0b0b` | Input background                                     |
+| `--color-field-border` | `#858585` | `#686868` | Input border                                         |
+| `--color-error`        | `#b42318` | `#ff7a70` | Field error text and icon _(new; not in the design)_ |
+| `--color-success`      | `#157a36` | `#5fd38d` | Success icon _(new; not in the design)_              |
 
 ### Measured contrast (WCAG 2.2)
 
@@ -87,11 +83,11 @@ redefines `surface`, `fg`, `body`, `muted` and `accent` inside the card, and `fi
 | `--color-muted` on surface-2 (light) `#6a6a6f`/`#ececea` | 4.55          | 4.5   |
 | `--color-muted` on surface (dark) `#98989d`/`#161616`    | 6.30          | 4.5   |
 | `--color-accent` on surface: light / dark                | 4.88 / 6.87   | 4.5   |
-| Input border `#686868`/`#111111`, `#686868`/`#1c1c1c`    | 3.39 / 3.06   | 3     |
-| Input border `#8c8c8c`/`#f3f3f1`, `#8c8c8c`/`#ffffff`    | 3.03 / 3.36   | 3     |
-| Placeholder `#98989d`/`#1c1c1c`                          | 5.93          | 4.5   |
-| Error `#ff7a70`/`#1c1c1c`, `#b42318`/`#ffffff`           | 6.71 / 6.57   | 4.5   |
-| Success `#5fd38d`/`#111111`, `#157a36`/`#f3f3f1`         | 10.06 / 4.89  | 4.5   |
+| Input border, light `#858585` on `#ffffff` / `#f0f0ee`   | 3.69 / 3.23   | 3     |
+| Input border, dark `#686868` on `#0b0b0b` / `#161616`    | 3.53 / 3.25   | 3     |
+| Placeholder `#6a6a6f`/`#ffffff`, `#98989d`/`#0b0b0b`     | 5.38 / 6.85   | 4.5   |
+| Error `#b42318`/`#f0f0ee`, `#ff7a70`/`#161616`           | 5.76 / 7.13   | 4.5   |
+| Success `#157a36`/`#f0f0ee`, `#5fd38d`/`#161616`         | 4.76 / 9.64   | 4.5   |
 
 ---
 
@@ -111,7 +107,7 @@ the clamps below work as written.
 | Style                   | Font         | Size                        | Line height | Tracking | Colour               |
 | ----------------------- | ------------ | --------------------------- | ----------- | -------- | -------------------- |
 | Hero name (h1)          | Display      | `clamp(64px, 13cqi, 156px)` | 0.92        | -0.02em  | fg                   |
-| Contact heading (h2)    | Display      | `clamp(44px, 7cqi, 84px)`   | 1           | -0.01em  | inv-fg               |
+| Contact heading (h2)    | Display      | `clamp(44px, 7cqi, 84px)`   | 1           | -0.01em  | fg                   |
 | Section heading (h2)    | Display      | `clamp(44px, 6.5cqi, 76px)` | 1           | -0.01em  | fg                   |
 | Statement               | Display      | `clamp(34px, 5.6cqi, 68px)` | 1.06        | -0.01em  | fg, max-width 22ch   |
 | Company (h3)            | Display      | `clamp(32px, 3.8cqi, 42px)` | 1.02        | 0        | fg                   |
@@ -181,7 +177,9 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
   links open the PDF in a new tab, because phone browsers can't render a PDF in an iframe.
 - **Experience row:** two columns from 768px (2fr / 3fr). The left column holds the date range and note, the
   company as h3 (linked when `href` is set) and the role. The right column holds a one-line summary, 3–4
-  bullets, then tags as 13px muted text joined by commas.
+  bullets, then tags as 13px muted text joined by commas. Below 768px the bullets and tags start closed behind a
+  "What I built" button (`aria-expanded`, a chevron that turns 180°); from 768px, and without JS, they are always
+  open.
 - **Project card:** the h3 link stretches over the whole card with `::after`, so the card is one hit area
   while the link name stays short. Background `--color-surface`, radius 28px. It is text-first: the client's
   logo small at the top left (`--color-fg`, 24px tall), then a kind label ending "· Client work through
@@ -191,8 +189,12 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
 - **About:** h2, the statement, then a 2fr / 3fr grid: a facts list (education, languages) and the
   paragraphs at 62ch. Hover is `translateY(-4px)` over 300ms (transform only). External-link
   rules come from AGENTS.md.
+- **OG card:** 1200×630 in the dark theme (`#0b0b0b`). The name (display, 128px, fg), the role (sans 500, 40px,
+  accent) and the experience line from `profile.ogLine` (sans, 30px, muted) sit on the left, and the round portrait
+  (300px) on the right. No location, tech pills or domain: link previews already print the title, description and
+  domain beside the image.
 - **Focus:** `outline: 2px solid var(--color-accent); outline-offset: 3px` on every interactive element.
-  Inside the contact card it is `--color-inv-accent`. Never `outline: none` without this replacement.
+  Never `outline: none` without this replacement.
 
 ### Contact form
 
@@ -222,7 +224,8 @@ Flat design: **no box-shadows**. Surfaces separate by colour only.
 
 GSAP and ScrollTrigger load through `src/lib/with-motion.ts`: skipped entirely under reduced motion, and
 otherwise imported after `load` and an idle callback, so they never delay LCP. Lighthouse scored 100 with and
-without the GSAP chunk (LCP 1.7s against 1.6–1.7s). Only transform and opacity animate. Everything runs
+without the GSAP chunk (LCP 1.7s against 1.6–1.7s). Only transform and opacity animate, apart from the
+Experience disclosure below. Everything runs
 inside `gsap.matchMedia()`. Content is fully visible without JS, because initial states are only set by JS.
 
 | Effect                | Spec                                                                                                                                                                                                                                                                                                                                                           |
@@ -235,6 +238,8 @@ inside `gsap.matchMedia()`. Content is fully visible without JS, because initial
 
 - At most 2 animated elements per view, per the skill's "Animate 1-2 key elements per view." Hover and press
   micro-interactions are user-triggered and don't count toward it.
+- The phone Experience disclosure is the one size animation: `grid-template-rows` 0fr ↔ 1fr plus `visibility`,
+  300ms ease-out, user-triggered, one row at a time, and none under reduced motion. Never animate `height`.
 - No scroll-reveal on every section, no pinning, no SplitText.
 - Call `ScrollTrigger.refresh()` after fonts load (`document.fonts.ready`).
 
