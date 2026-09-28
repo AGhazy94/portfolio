@@ -28,11 +28,12 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Senior Frontend Engineer',
   seoTitle: 'Ahmed Ghazy — Senior Frontend Engineer',
-  tagline: 'I build React and Next.js apps, including the Node.js and PostgreSQL work behind them.',
+  tagline: 'I lead and build React and Next.js frontends, plus the Node.js work behind them.',
   description:
-    'Ahmed Ghazy is a senior frontend engineer who builds React and Next.js apps, including the Node.js and PostgreSQL work behind them.',
+    'Leads frontend architecture on an a16z speedrun–backed AI platform. React, Next.js and TypeScript. Open to remote full-time roles and contract work.',
   location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
+  linkedin: 'https://www.linkedin.com/in/ahmedhg94',
   resume: '/resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
@@ -64,14 +65,14 @@ export const profile = {
 export const statement = 'Working in quality taught me to look at software from the customer’s side.';
 
 export const about: string[] = [
-  'Most of my work is on the frontend, but I don’t stop at the UI. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'I didn’t start in engineering. Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account.',
+  'Most of my work is on the frontend, but I don’t stop at the UI. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.',
 ];
 
 export const socials: Social[] = [
   { label: 'GitHub', href: 'https://github.com/AGhazy94' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmedhg94' },
+  { label: 'LinkedIn', href: profile.linkedin },
   { label: 'Email', href: `mailto:${profile.email}` },
 ];
 
@@ -84,9 +85,10 @@ export const experience: Experience[] = [
     href: 'https://smart-bricks.com',
     summary: 'AI platform for real-estate investing, backed by a16z speedrun.',
     highlights: [
+      'Lead the frontend architecture and build it hands-on, review the team’s pull requests, and mentor newer engineers.',
       'Moved data fetching to the server with the Next.js App Router, reworked client caching, and split the property pages into separate server-rendered sections.',
-      'Lead the frontend architecture and build it hands-on. Rebuilt the valuation and score modals so investors can see why a property got its price and score, and built our Storybook component library.',
-      'Review the team’s pull requests and mentor newer engineers.',
+      'Rebuilt the valuation and score modals so investors can see why a property got its price and score.',
+      'Built our Storybook component library.',
     ],
     tags: ['Next.js', 'TypeScript', 'React', 'TanStack Query', 'Tailwind CSS', 'Storybook', 'PostHog', 'Grafana'],
   },
@@ -96,7 +98,7 @@ export const experience: Experience[] = [
     role: 'Frontend Engineer',
     company: 'caisy',
     href: 'https://caisy.io',
-    summary: 'Headless CMS. Almost three years on the frontend.',
+    summary: 'Headless CMS.',
     highlights: [
       'Fixed the re-renders that made the editor slow when typing or switching documents.',
       'Moved the app from class components to hooks, and from styled-components to Tailwind, on my own.',
@@ -136,6 +138,14 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
+    name: 'Leicht Kitchen Designer',
+    kind: 'Kitchen configurator · Client work through caisy',
+    href: 'https://leicht.com/',
+    summary: 'Built the multi-language kitchen configurator on a headless CMS and GraphQL.',
+    logo: 'leicht',
+    tags: ['GraphQL', 'Headless CMS', 'i18n'],
+  },
+  {
     name: 'ScriptBee',
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
@@ -143,14 +153,6 @@ export const projects: Project[] = [
       'Built the AI workflows for SEO and content generation, with integrations for Google Analytics, Google Search Console, Semrush, Bright Data and several LLM providers. Mastra AI and Trigger.dev run each workflow and retry failed steps.',
     logo: 'scriptbee',
     tags: ['Mastra AI', 'Trigger.dev', 'TypeScript', 'LLM integrations'],
-  },
-  {
-    name: 'Leicht Kitchen Designer',
-    kind: 'Kitchen configurator · Client work through caisy',
-    href: 'https://leicht.com/',
-    summary: 'Built the multi-language kitchen configurator on a headless CMS and GraphQL.',
-    logo: 'leicht',
-    tags: ['GraphQL', 'Headless CMS', 'i18n'],
   },
 ];
 
@@ -187,7 +189,7 @@ export const ui = {
   },
   projects: { visit: 'Visit site' },
   contact: {
-    intro: `Open to full-time roles and contract work. Or email [${profile.email}](mailto:${profile.email}).`,
+    intro: `Open to remote full-time roles and contract work. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',
     honeypot: 'Leave this empty if you’re human',
     fields: {
