@@ -4,8 +4,7 @@ Primary instruction source for every agent here (Claude Code, Codex, Copilot, Cu
 directions; the code holds the specifics. When a rule names a file, read that file.
 
 **This file is always on.** Everything in it applies from turn 1, to every task, without being
-asked for. Reference detail lives in [.agents/rules/](.agents/rules/README.md) — the **Rule Index**
-at the bottom lists it.
+asked for.
 
 ## Rule Priority
 
@@ -24,8 +23,7 @@ On conflict: security and correctness > this file > existing patterns in the tou
 - **Load the semantic tools before the session's first symbol lookup, and wait for them.** "Still
   connecting" is the normal start state, never a reason to fall back to `rg`.
 - **Fine as-is, not blocked:** `… | rg foo`, `git log --grep=`, `find -type d`. Enforced in Claude
-  Code by [.claude/hooks/no-recursive-grep.py](.claude/hooks/no-recursive-grep.py); other agents are
-  on the honour system. **A missing `rg` makes the hook stop blocking.**
+  Code by a `PreToolUse` hook; other agents are on the honour system. **A missing `rg` makes the hook stop blocking.**
 
 ## Editing Files — Edit/Write by default
 
@@ -43,8 +41,7 @@ On conflict: security and correctness > this file > existing patterns in the tou
 On from turn 1 for every agent, never announced — [Attention Span](https://github.com/alexgreensh/attention-span)'s
 Rundown style, body verbatim between the markers at the end of this file. Claude Code loads it as an
 output style and Cursor and Copilot inline it, so only Codex needs the block. Also installed as
-`/rundown`. Re-sync per [.agents/output-styles/README.md](.agents/output-styles/README.md); do not
-edit between the markers.
+`/rundown`. Do not edit between the markers.
 
 **Subagents inherit nothing.** Open every Agent-tool prompt with:
 
@@ -63,9 +60,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   `@fontsource/instrument-serif` + `@fontsource/geist` (satori needs their WOFF files for the OG
   image), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
   configured in [knip.jsonc](knip.jsonc)).
-- **Design source is [design-system/portfolio-v2/MASTER.md](design-system/portfolio-v2/MASTER.md).**
-  Reread it, and any `pages/<page>.md` override, before a UI change. Where the skill's generic
-  output and the agreed design disagree, the design wins.
+- **Design source is the agreed v2 design,** kept in a local, git-ignored design system; without it,
+  the tokens in [src/styles/global.css](src/styles/global.css) are the reference. Reread it before a
+  UI change. Where the skill's generic output and the agreed design disagree, the design wins.
 - **Content lives in [src/data/profile.ts](src/data/profile.ts)** — copy, experience, projects,
   About, the statement, and interface strings and labels in `ui` (form labels,
   errors and messages included). Components render it; never hard-code copy in markup. `about`,
@@ -125,8 +122,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - Audience is recruiters and hiring managers. Positioning and job title are both "Senior Frontend
   Engineer"; the backend work is supporting reach (tagline, About), never the headline.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
-- **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill
-  in [.claude/skills/](.claude/skills/). The shared design is the reference; nothing is carried over
+- **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill.
+  The shared design is the reference; nothing is carried over
   from v1 unless the user asks.
 - **v1 is frozen** on the `v1` branch and served at `v1.ahmed-ghazy.com` (noindex). Its
   Brittany Chiang-inspired layout, geometry and footer credit are v1 rules only. Do not port them
@@ -146,21 +143,14 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 1. `npm run validate` — `astro check` and `prettier --check`. Zero errors.
 2. `npm run build` — must pass; it renders every endpoint (OG image, icons, `llms.txt`).
-3. Touched the head, structured data, robots or sitemap → read [seo](.agents/rules/seo.md) and
-   re-check the built `dist/index.html`.
+3. Touched the head, structured data, robots or sitemap → re-check the built `dist/index.html`.
 4. Visual change → verify at 1440×900 and 375px.
 
 ## Review Bias
 
 Prioritize correctness, regressions, accessibility, SEO and performance over style.
 
-## Rule Index
-
-Nothing attaches these — read the one your task lands in.
-
-| Doc                         | Read it when                                                            |
-| --------------------------- | ----------------------------------------------------------------------- |
-| [seo](.agents/rules/seo.md) | head tags, JSON-LD, sitemap, robots, `llms.txt`, OG image, deploy flags |
+## References
 
 Astro docs: [routing](https://docs.astro.build/en/guides/routing/),
 [components](https://docs.astro.build/en/basics/astro-components/),
