@@ -153,9 +153,10 @@ export const projects: Project[] = [
     name: 'ScriptBee',
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
-    summary: 'Built the chat interface, task widget and Trigger.dev background tasks for ScriptBee’s Next.js app.',
+    summary:
+      'Built ScriptBee’s Next.js app: the chat interface, task widget and Trigger.dev background tasks, the Google Ads and Search Console connections, a Keyword Planner tool and the onboarding flow.',
     logo: 'scriptbee',
-    tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Chat UI'],
+    tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Google Ads API'],
   },
 ];
 
