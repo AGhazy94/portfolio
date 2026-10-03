@@ -1,8 +1,7 @@
 # Ahmed Ghazy — Portfolio
 
 Personal site, v2. Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and
-[GSAP](https://gsap.com), set in Instrument Serif and Geist, and deployed on [Netlify](https://www.netlify.com). The
-design system lives in [`design-system/portfolio-v2/MASTER.md`](design-system/portfolio-v2/MASTER.md). v1 is frozen
+[GSAP](https://gsap.com), set in Instrument Serif and Geist, and deployed on [Netlify](https://www.netlify.com). v1 is frozen
 on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
 
 ## Commands

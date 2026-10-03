@@ -9,11 +9,9 @@ context from turn 1:
 @AGENTS.md
 
 The rules below are always on and non-negotiable — follow the links and read them in full.
-Reference detail lives in [.agents/rules/](.agents/rules/README.md); the Rule Index at the bottom of
-AGENTS.md lists it.
 
-- Response style — [Rundown](AGENTS.md#response-style--rundown-always-on). `.claude/settings.json`
-  pins it as the output style; `/rundown` reinstates it for one conversation if it was switched off.
+- Response style — [Rundown](AGENTS.md#response-style--rundown-always-on). A local setting pins it
+  as the output style; `/rundown` reinstates it for one conversation if it was switched off.
   **Subagents inherit nothing** — every Agent-tool prompt opens with the Rundown preamble quoted in
   that section.
 - Searching — [ripgrep, never `grep -r`](AGENTS.md#searching--ripgrep-never-grep--r), enforced by a

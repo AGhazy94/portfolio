@@ -104,12 +104,12 @@ export const experience: Experience[] = [
     href: 'https://caisy.io',
     summary: 'Headless CMS.',
     highlights: [
+      'Rebuilt the blog category and article pages of caisy’s marketing site from styled-components to Tailwind CSS, and rewrote a class-based photo-gallery slider as a hooks component.',
       'Fixed the re-renders that made the editor slow when typing or switching documents.',
-      'Moved the app from class components to hooks, and from styled-components to Tailwind, on my own.',
-      'Set up the Next.js, tRPC and Prisma base that later features were built on.',
-      'Added AI content generation to the editor.',
+      'Built features on Next.js, tRPC and Drizzle codebases: schema and migrations for Stripe billing and subscriptions, users, workspaces and chat.',
+      'Added AI translation of content fields to the editor.',
     ],
-    tags: ['React', 'Next.js', 'TypeScript', 'tRPC', 'Prisma', 'Tailwind CSS', 'styled-components'],
+    tags: ['React', 'Next.js', 'TypeScript', 'tRPC', 'Drizzle', 'Tailwind CSS', 'styled-components'],
   },
   {
     start: '2022',
@@ -154,9 +154,9 @@ export const projects: Project[] = [
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
     summary:
-      'Built the AI workflows for SEO and content generation, with integrations for Google Analytics, Google Search Console, Semrush, Bright Data and several LLM providers. Mastra AI and Trigger.dev run each workflow and retry failed steps.',
+      'Built ScriptBee’s Next.js app: the chat interface, task widget and Trigger.dev background tasks, the Google Ads and Search Console connections, a Keyword Planner tool and the onboarding flow.',
     logo: 'scriptbee',
-    tags: ['Mastra AI', 'Trigger.dev', 'TypeScript', 'LLM integrations'],
+    tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Google Ads API'],
   },
 ];
 
