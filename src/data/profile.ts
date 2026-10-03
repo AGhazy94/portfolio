@@ -104,12 +104,12 @@ export const experience: Experience[] = [
     href: 'https://caisy.io',
     summary: 'Headless CMS.',
     highlights: [
+      'Rebuilt the blog category and article pages of caisy’s marketing site from styled-components to Tailwind CSS, and rewrote a class-based photo-gallery slider as a hooks component.',
       'Fixed the re-renders that made the editor slow when typing or switching documents.',
-      'Moved the app from class components to hooks, and from styled-components to Tailwind, on my own.',
-      'Set up the Next.js, tRPC and Prisma base that later features were built on.',
-      'Added AI content generation to the editor.',
+      'Built features on Next.js, tRPC and Drizzle codebases: schema and migrations for Stripe billing and subscriptions, users, workspaces and chat.',
+      'Added AI translation of content fields to the editor.',
     ],
-    tags: ['React', 'Next.js', 'TypeScript', 'tRPC', 'Prisma', 'Tailwind CSS', 'styled-components'],
+    tags: ['React', 'Next.js', 'TypeScript', 'tRPC', 'Drizzle', 'Tailwind CSS', 'styled-components'],
   },
   {
     start: '2022',
