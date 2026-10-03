@@ -29,8 +29,11 @@ pnpm-debug.log*
 # skill script bytecode
 __pycache__/
 
-# per-developer Claude Code overrides
-.claude/settings.local.json
+# agent tooling, rules and design notes: local only, never committed
+.agents/
+.claude/
+.cursor/
+design-system/
 
 # Serena's project config is shared; a global `.serena/` ignore would otherwise drop it.
 !.serena/
