@@ -153,10 +153,9 @@ export const projects: Project[] = [
     name: 'ScriptBee',
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
-    summary:
-      'Built the AI workflows for SEO and content generation, with integrations for Google Analytics, Google Search Console, Semrush, Bright Data and several LLM providers. Mastra AI and Trigger.dev run each workflow and retry failed steps.',
+    summary: 'Built the chat interface, task widget and Trigger.dev background tasks for ScriptBee’s Next.js app.',
     logo: 'scriptbee',
-    tags: ['Mastra AI', 'Trigger.dev', 'TypeScript', 'LLM integrations'],
+    tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Chat UI'],
   },
 ];
 
