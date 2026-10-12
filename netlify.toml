@@ -17,6 +17,12 @@
   status = 301
   force = true
 
+# The résumé moved to a named file; keep old links to /resume.pdf working.
+[[redirects]]
+  from = "/resume.pdf"
+  to = "/ahmed-ghazy-resume.pdf"
+  status = 301
+
 # @astrojs/sitemap only emits sitemap-index.xml; some tools guess /sitemap.xml without reading robots.txt.
 [[redirects]]
   from = "/sitemap.xml"
@@ -24,7 +30,7 @@
   status = 301
 
 # Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
-# Same-origin framing lets the résumé dialog show /resume.pdf; a per-path rule could merge with this one rather than replace it.
+# Same-origin framing lets the résumé dialog show /ahmed-ghazy-resume.pdf; a per-path rule could merge with this one rather than replace it.
 [[headers]]
   for = "/*"
   [headers.values]

@@ -20,7 +20,7 @@ on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
 All copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description,
 experience, projects, the About statement and paragraphs, socials, and the interface strings in `ui` (including every
 contact form label and message). The portrait and project screenshots live in `src/assets/` and are resized at build
-time. The résumé is served from `public/resume.pdf`.
+time. The résumé is served from `public/ahmed-ghazy-resume.pdf`.
 
 ## Contact form
 
