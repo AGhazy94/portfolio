@@ -4,7 +4,7 @@ heading: I build the first version of your product, start to launch.
 description: Freelance full-stack developer for MVPs, one person from first commit to launch, TypeScript front to back, built so the next developer can take it on.
 cardTitle: Build an MVP
 cardSummary: One developer from first commit to launch. A small, working first version of your product that real users can try.
-order: 2
+order: 3
 updated: 2026-10-13
 faq:
   - question: How long does an MVP take?

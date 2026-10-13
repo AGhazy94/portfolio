@@ -23,7 +23,7 @@ ScriptBee is an AI marketing platform. I joined the team's Next.js app in May 20
 - **The chat interface.** The chat screens and the experience around them.
 - **A task widget and background tasks.** Chat work that runs in the background through Trigger.dev, and a Tasks page to see it.
 - **The Google Ads connection.** An OAuth flow, customer selection and metrics.
-- **A Keyword Planner tool** that the AI agent can use.
+- **Agent tools.** A Google Keyword Planner tool and a YouTube video analysis tool that the AI agent can call.
 - **Onboarding.** I built the flow on top of an initial scaffold from a teammate: persona generation, team invitations, a workspace step, email-verification rate limiting, access control and bulk personas. In onboarding I also built the popup sign-in for the Google Ads, Google Analytics and Search Console connections, with success and error handling.
 
 ## What I didn't build

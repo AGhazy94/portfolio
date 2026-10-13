@@ -4,7 +4,7 @@ heading: I take over existing web apps and keep them moving.
 description: Freelance full-stack developer who takes over an existing web app. I read the code, stabilise it, then keep shipping. For founders whose developer left.
 cardTitle: Take over an existing app
 cardSummary: The developer left, or the team can't keep up. I read the code, tell you what is solid and what is risky, then keep shipping.
-order: 1
+order: 2
 updated: 2026-10-13
 faq:
   - question: How long does the first audit take?

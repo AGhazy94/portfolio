@@ -4,7 +4,7 @@ heading: A full-stack developer to build your web app or website.
 description: Freelance full-stack developer in Egypt. I build web apps and websites in TypeScript from front to back, from design to login, payments and deployment.
 cardTitle: Build your web app or website
 cardSummary: A site or app with a real back end, with accounts, a database, forms, payments, an admin side. Built, deployed and explained.
-order: 3
+order: 4
 updated: 2026-10-13
 faq:
   - question: Do you build simple websites too?

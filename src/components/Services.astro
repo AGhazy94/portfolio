@@ -18,6 +18,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     </h2>
     <PageCards
       class="mt-[clamp(32px,5cqi,56px)]"
+      columns={3}
       items={services.map(({ id, data }) => ({
         title: data.cardTitle,
         summary: data.cardSummary,

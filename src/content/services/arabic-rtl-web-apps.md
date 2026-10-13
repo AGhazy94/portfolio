@@ -4,7 +4,7 @@ heading: Web apps that work properly in Arabic and English.
 description: Freelance full-stack developer and native Arabic speaker. I build web apps with real right-to-left layouts, bilingual content and Arabic-friendly forms.
 cardTitle: Arabic and bilingual web apps
 cardSummary: Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.
-order: 4
+order: 5
 updated: 2026-10-13
 faq:
   - question: Is RTL just a CSS direction switch?

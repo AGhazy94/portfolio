@@ -133,10 +133,11 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
   (all from collections) and `/thanks/`, the no-JS form success page (noindex, not in the sitemap).
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
-  Positioning (decided 2026-10-13): a freelance full-stack developer who takes over existing web
-  apps, builds MVPs, builds web apps and ships Arabic/English products, TypeScript front to back.
-  The Senior Frontend résumé variants carry the recruiter positioning; the site does not.
-  Python is not claimed anywhere until a shipped Python project exists.
+  Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps
+  and AI products (LLM features, agents), builds MVPs and takes over existing apps, TypeScript
+  front to back. Arabic/RTL is one service page, not the headline. The hero carries no employer or
+  location line. The Senior Frontend résumé variants carry the recruiter positioning; the site does
+  not. Python and retrieval (RAG) are not claimed anywhere until a shipped project backs them.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
 - **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill.
   The shared design is the reference; nothing is carried over

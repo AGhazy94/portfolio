@@ -32,9 +32,9 @@ export const profile = {
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
   tagline:
-    'Full-stack developer who takes over existing web apps, builds MVPs and ships bilingual Arabic/English products.',
+    'Full-stack developer building web apps and AI products, from LLM features and agents to the product around them.',
   description:
-    'Freelance full-stack developer for hire in Egypt. I take over web apps, build MVPs and ship bilingual Arabic/English products for startups and agencies.',
+    'Freelance full-stack developer for hire. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps for startups and agencies.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -42,11 +42,13 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-10-13T00:00:00+03:00',
+  updated: '2026-10-14T00:00:00+03:00',
   knowsAbout: [
     'Full-stack development',
     'MVP development',
     'Taking over existing codebases',
+    'AI product development',
+    'AI agents',
     'TypeScript',
     'React',
     'Next.js',
@@ -58,7 +60,7 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  ogLine: `${yearsOfExperience} taking over and building web apps`,
+  ogLine: `${yearsOfExperience} building web apps and AI products`,
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
@@ -191,10 +193,10 @@ export const ui = {
   services: {
     more: 'Read more',
     indexTitle: 'Services',
-    indexHeading: 'Four ways to work with me',
+    indexHeading: 'Five ways to work with me',
     indexLead: 'Each page below covers one situation: what I do, what the first two weeks look like and how to start.',
     indexDescription:
-      'Freelance full-stack development services: take over an existing web app, build an MVP, build your web app, or ship an Arabic RTL web app.',
+      'Freelance full-stack development services: AI features and agents, taking over an existing web app, MVPs, web apps and Arabic RTL web apps.',
     provider: 'Service provider',
   },
   work: {
@@ -227,8 +229,6 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    at: 'Currently at',
-    location: 'Based in Egypt',
     availability: 'Open to client projects, retainers and remote full-time roles',
     contact: 'Get in touch',
     resume: 'View résumé',
@@ -258,6 +258,7 @@ export const ui = {
         label: 'What do you need?',
         placeholder: 'Choose one',
         options: [
+          'AI feature, agent or product',
           'Take over an existing web app',
           'Build an MVP',
           'Build a web app or website',

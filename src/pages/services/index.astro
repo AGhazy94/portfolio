@@ -29,6 +29,7 @@ const nodes = [
   <p>{ui.services.indexLead}</p>
   <PageCards
     class="mt-10 max-w-none"
+    columns={3}
     items={services.map(({ id, data }) => ({
       title: data.cardTitle,
       summary: data.cardSummary,
