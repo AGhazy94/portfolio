@@ -29,31 +29,36 @@ const yearsOfExperience = '5+ years';
 
 export const profile = {
   name: 'Ahmed Ghazy',
-  title: 'Senior Frontend Engineer',
-  seoTitle: 'Ahmed Ghazy — Senior Frontend Engineer',
-  tagline: `I’ve spent ${yearsOfExperience} building React and Next.js frontends, plus the Node.js work behind them.`,
+  title: 'Full-Stack Developer',
+  seoTitle: 'Ahmed Ghazy — Full-Stack Developer in Egypt',
+  tagline:
+    'Full-stack developer who takes over existing web apps, builds MVPs and ships bilingual Arabic/English products.',
   description:
-    'Builds React and Next.js frontends for an a16z speedrun–backed AI platform. Open to remote full-time roles and contract work.',
-  location: { city: 'Alexandria', country: 'EG', label: 'Alexandria, Egypt, and open to remote work' },
+    'Full-stack developer in Egypt. I take over existing web apps, build MVPs and ship bilingual Arabic/English products, in TypeScript from front to back.',
+  location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
   resume: '/ahmed-ghazy-resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-09-28T00:00:00+03:00',
+  updated: '2026-10-13T00:00:00+03:00',
   knowsAbout: [
+    'Full-stack development',
+    'MVP development',
+    'Taking over existing codebases',
+    'TypeScript',
     'React',
     'Next.js',
-    'TypeScript',
     'Node.js',
     'PostgreSQL',
+    'Internationalization',
     'Tailwind CSS',
     'Design systems',
     'Web performance',
     'LLM integrations',
   ],
-  ogLine: `${yearsOfExperience} building React and Next.js apps`,
+  ogLine: `${yearsOfExperience} taking over and building web apps`,
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
@@ -176,10 +181,10 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    role: 'Senior Frontend Engineer',
+    role: 'Full-Stack Developer',
     at: 'Currently at',
-    location: 'Based in Alexandria, Egypt',
-    availability: 'Open to remote full-time roles and contract work',
+    location: 'Based in Egypt',
+    availability: 'Open to client projects, retainers and remote full-time roles',
     contact: 'Get in touch',
     resume: 'View résumé',
   },
@@ -193,7 +198,7 @@ export const ui = {
   },
   projects: { visit: 'Visit site' },
   contact: {
-    intro: `Open to remote full-time roles and contract work. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
+    intro: `Open to client projects, retainers and remote full-time roles. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',
     honeypot: 'Leave this empty if you’re human',
     fields: {
@@ -228,7 +233,7 @@ export const ui = {
     languages: 'Languages',
   },
   footer: {
-    place: 'Alexandria, Egypt',
+    place: 'Egypt',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },
