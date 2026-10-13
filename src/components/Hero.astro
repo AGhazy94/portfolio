@@ -25,8 +25,7 @@ const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
     <h1 id="hero-title" class="type-hero mt-8 text-fg">
       {profile.name}
     </h1>
-    <p class="mt-6 text-[17px] font-medium text-fg">{ui.hero.role}</p>
-    <p class="type-lead mt-3 max-w-[38ch] text-balance text-body">{profile.tagline}</p>
+    <p class="type-lead mt-6 max-w-[38ch] text-balance text-body">{profile.tagline}</p>
     <p class="mt-4 text-[13px] leading-relaxed text-muted">
       {`${ui.hero.at} ${current.company} · ${ui.hero.location}`}
     </p>

@@ -181,7 +181,6 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    role: 'Full-Stack Developer',
     at: 'Currently at',
     location: 'Based in Egypt',
     availability: 'Open to client projects, retainers and remote full-time roles',
