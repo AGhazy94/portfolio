@@ -1,0 +1,48 @@
+---
+import { getCollection, render } from 'astro:content';
+import ContentPage from '../../layouts/ContentPage.astro';
+import { profile, ui } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('work');
+  return projects.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    name: data.title,
+    description: data.description,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+    dateModified: data.updated.toISOString(),
+    about: { '@id': new URL('/#person', Astro.site).href },
+  },
+];
+---
+
+<ContentPage
+  title={`${data.title} | ${profile.name}`}
+  description={data.description}
+  heading={data.title}
+  eyebrow={data.kind}
+  nodes={nodes}
+  crumbs={[{ label: ui.work.indexTitle, href: '/work/' }, { label: data.title }]}
+>
+  <Content />
+  {data.href && (
+    <p>
+      <a href={data.href} target="_blank" rel="noreferrer noopener">
+        {ui.work.visit}
+        <span class="sr-only">{ui.newTab}</span>
+      </a>
+    </p>
+  )}
+  <p>Stack: {data.tags.join(', ')}.</p>
+</ContentPage>

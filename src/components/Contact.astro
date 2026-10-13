@@ -71,6 +71,20 @@ const buttonClass =
         </div>
       ))}
 
+      {ui.contact.choices.map((choice, index) => (
+        <div class:list={['grid content-start gap-2', index === 0 && 'sm:col-span-2']}>
+          <label for={`contact-${choice.name}`} class="text-[13px] font-medium text-body">
+            {choice.label}
+          </label>
+          <select id={`contact-${choice.name}`} name={choice.name} class={`${fieldClass} appearance-auto`}>
+            <option value="">{choice.placeholder}</option>
+            {choice.options.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
+          </select>
+        </div>
+      ))}
+
       <div class="grid gap-2 sm:col-span-2">
         <label for="contact-message" class="text-[13px] font-medium text-body">
           {fields.message.label}

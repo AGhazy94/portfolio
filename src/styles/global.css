@@ -2,6 +2,7 @@
 @import 'tailwindcss' source('..');
 @source not '../lib';
 @source not '../pages/*.ts';
+@source not '../content';
 
 /* Collapsed content only stays collapsed where a script can open it again. */
 @custom-variant js (@media (scripting: enabled));
@@ -93,6 +94,100 @@
 @utility type-lead {
   font-size: clamp(19px, 2.2cqi, 24px);
   line-height: 1.4;
+}
+
+/* Styles for rendered Markdown (services, work, blog). Only the tokens above, so both themes stay AA. */
+@layer components {
+  .prose-page {
+    max-width: 68ch;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--color-body);
+  }
+
+  .prose-page > * + * {
+    margin-top: 1.25em;
+  }
+
+  .prose-page h2 {
+    margin-top: 2.4em;
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.6cqi, 40px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+
+  .prose-page h3 {
+    margin-top: 1.9em;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--color-fg);
+  }
+
+  .prose-page h2 + *,
+  .prose-page h3 + * {
+    margin-top: 0.75em;
+  }
+
+  .prose-page a:not([class]) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: opacity 200ms;
+  }
+
+  .prose-page a:not([class]):hover {
+    opacity: 0.7;
+  }
+
+  .prose-page strong {
+    font-weight: 600;
+    color: var(--color-fg);
+  }
+
+  .prose-page ul:not([class]),
+  .prose-page ol:not([class]) {
+    padding-left: 1.4em;
+  }
+
+  .prose-page ul:not([class]) {
+    list-style: disc;
+  }
+
+  .prose-page ol:not([class]) {
+    list-style: decimal;
+  }
+
+  .prose-page :is(ul, ol):not([class]) li + li {
+    margin-top: 0.5em;
+  }
+
+  .prose-page :is(ul, ol):not([class]) li::marker {
+    color: var(--color-muted);
+  }
+
+  .prose-page blockquote {
+    border-left: 2px solid var(--color-divider);
+    padding-left: 1.1em;
+    color: var(--color-fg);
+  }
+
+  .prose-page code {
+    border-radius: 6px;
+    background: var(--color-surface);
+    padding: 0.15em 0.4em;
+    font-size: 0.9em;
+  }
+
+  .prose-page hr {
+    border: 0;
+    border-top: 1px solid var(--color-divider);
+    margin-block: 2.4em;
+  }
 }
 
 @layer base {

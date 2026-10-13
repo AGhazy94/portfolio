@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import PageCards from './PageCards.astro';
+import { ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'writing')!;
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
+  .slice(0, 3);
+const format = (value: Date) =>
+  value.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<section id={section.id} aria-labelledby="writing-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+  <div class="mx-auto max-w-page">
+    <h2 id="writing-title" class="type-section max-w-[18ch] text-fg">
+      {section.title}
+    </h2>
+    <PageCards
+      class="mt-[clamp(32px,5cqi,56px)]"
+      columns={3}
+      items={posts.map((post) => ({
+        title: post.data.title,
+        summary: post.data.description,
+        href: `/blog/${post.id}/`,
+        meta: format(post.data.published),
+        cta: ui.blog.more,
+      }))}
+    />
+    <p class="mt-8 text-[15px] font-medium">
+      <a
+        href="/blog/"
+        class="text-accent underline decoration-1 underline-offset-3 transition-opacity duration-200 hover:opacity-70"
+      >
+        {ui.blog.homeMore}
+      </a>
+    </p>
+  </div>
+</section>

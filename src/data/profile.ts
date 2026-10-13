@@ -173,11 +173,57 @@ export const ui = {
   socialLabel: 'Social media',
   tagsLabel: 'Technologies used',
   sections: [
-    { id: 'projects', title: 'Selected projects', nav: 'Projects' },
-    { id: 'experience', title: 'Experience', nav: 'Work' },
-    { id: 'about', title: 'About', nav: 'About' },
-    { id: 'contact', title: 'Let’s work together.', nav: 'Contact' },
+    { id: 'services', title: 'How I can help' },
+    { id: 'projects', title: 'Selected projects' },
+    { id: 'experience', title: 'Experience' },
+    { id: 'writing', title: 'Writing for people who hire' },
+    { id: 'about', title: 'About' },
+    { id: 'contact', title: 'Let’s work together.' },
   ],
+  // `section` marks links that scroll to a home-page section; the rest are pages.
+  nav: [
+    { label: 'Services', href: '/services/', section: undefined },
+    { label: 'Work', href: '/work/', section: undefined },
+    { label: 'Blog', href: '/blog/', section: undefined },
+    { label: 'About', href: '/#about', section: 'about' },
+    { label: 'Contact', href: '/#contact', section: 'contact' },
+  ],
+  services: {
+    more: 'Read more',
+    indexTitle: 'Services',
+    indexHeading: 'Four ways to work with me',
+    indexLead: 'Each page below covers one situation: what I do, what the first two weeks look like and how to start.',
+    indexDescription:
+      'Freelance full-stack development services: take over an existing web app, build an MVP, build your web app, or ship an Arabic RTL web app.',
+    provider: 'Service provider',
+  },
+  work: {
+    indexTitle: 'Work',
+    indexHeading: 'Projects and what I did on them',
+    indexLead: 'Each case study lists only what I built and what the repository history backs.',
+    indexDescription:
+      'Case studies by Ahmed Ghazy, freelance full-stack developer: what was built, which parts were his and the stack.',
+    visit: 'Visit the live site',
+    more: 'Read the case study',
+  },
+  blog: {
+    indexTitle: 'Blog',
+    indexHeading: 'Articles for people deciding who to hire',
+    indexLead: 'Plain answers to the questions founders ask before they hire a developer.',
+    indexDescription:
+      'Articles for founders and teams hiring a freelance developer: taking over a codebase, MVP costs, fix or rebuild, and Arabic RTL.',
+    published: 'Published',
+    updated: 'Updated',
+    more: 'Read the article',
+    homeMore: 'All articles',
+  },
+  page: {
+    faq: 'Questions people ask',
+    relatedServices: 'Related services',
+    relatedArticles: 'Related articles',
+    breadcrumbLabel: 'Breadcrumb',
+    home: 'Home',
+  },
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
@@ -203,8 +249,36 @@ export const ui = {
     fields: {
       name: { label: 'Name', placeholder: 'Jane Smith' },
       email: { label: 'Email', placeholder: 'jane@company.com' },
-      message: { label: 'Message', placeholder: 'What’s the role or project?' },
+      message: { label: 'Message', placeholder: 'What are you building, or what needs fixing?' },
     },
+    // Optional selects: they help me answer with a real plan, and a visitor can skip them.
+    choices: [
+      {
+        name: 'project-type',
+        label: 'What do you need?',
+        placeholder: 'Choose one',
+        options: [
+          'Take over an existing web app',
+          'Build an MVP',
+          'Build a web app or website',
+          'Arabic or RTL web app',
+          'A full-time role',
+          'Something else',
+        ],
+      },
+      {
+        name: 'budget',
+        label: 'Budget',
+        placeholder: 'Choose a range',
+        options: ['Under $2,000', '$2,000 to $5,000', '$5,000 to $15,000', '$15,000 or more', 'Not sure yet'],
+      },
+      {
+        name: 'timeline',
+        label: 'Timeline',
+        placeholder: 'Choose a timeline',
+        options: ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'],
+      },
+    ],
     errors: {
       nameRequired: 'Enter your name.',
       emailRequired: 'Enter your email address.',

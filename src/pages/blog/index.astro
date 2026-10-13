@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import ContentPage from '../../layouts/ContentPage.astro';
+import PageCards from '../../components/PageCards.astro';
+import { profile, ui } from '../../data/profile';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: ui.blog.indexTitle,
+    description: ui.blog.indexDescription,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+    about: { '@id': new URL('/#person', Astro.site).href },
+  },
+];
+const format = (value: Date) =>
+  value.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<ContentPage
+  title={`${ui.blog.indexTitle} | ${profile.name}`}
+  description={ui.blog.indexDescription}
+  heading={ui.blog.indexHeading}
+  nodes={nodes}
+  crumbs={[{ label: ui.blog.indexTitle }]}
+>
+  <p>{ui.blog.indexLead}</p>
+  <PageCards
+    class="mt-10 max-w-none"
+    items={posts.map((post) => ({
+      title: post.data.title,
+      summary: post.data.description,
+      href: `/blog/${post.id}/`,
+      meta: format(post.data.published),
+      cta: ui.blog.more,
+    }))}
+  />
+</ContentPage>

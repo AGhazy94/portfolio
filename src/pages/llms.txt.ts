@@ -1,10 +1,16 @@
 import type { APIRoute } from 'astro';
+import { getCollection } from 'astro:content';
 import { toPlainText } from '../lib/inline';
 import { about, experience, profile, projects, socials, statement } from '../data/profile';
 
 // Follows llmstxt.org: H1, blockquote, free-form sections, then H2 sections that only hold link lists.
-export const GET: APIRoute = ({ site }) => {
+export const GET: APIRoute = async ({ site }) => {
   const url = (path: string) => new URL(path, site).href;
+  const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+  const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+  const articles = (await getCollection('blog')).sort(
+    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+  );
   const lines = [
     `# ${profile.name}`,
     '',
@@ -28,6 +34,18 @@ export const GET: APIRoute = ({ site }) => {
     `- ${profile.knowsAbout.join(', ')}`,
     `- Languages: ${profile.languages.map((language) => `${language.name} (${language.level})`).join(', ')}`,
     `- Education: ${profile.education.degree}, ${profile.education.school}, ${profile.education.years}`,
+    '',
+    '## Services',
+    '',
+    ...services.map(({ id, data }) => `- [${data.cardTitle}](${url(`/services/${id}/`)}): ${data.description}`),
+    '',
+    '## Case studies',
+    '',
+    ...work.map(({ id, data }) => `- [${data.title}](${url(`/work/${id}/`)}): ${data.description}`),
+    '',
+    '## Articles',
+    '',
+    ...articles.map(({ id, data }) => `- [${data.title}](${url(`/blog/${id}/`)}): ${data.description}`),
     '',
     '## Projects',
     '',

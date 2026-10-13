@@ -1,0 +1,149 @@
+---
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import RichText from '../components/RichText.astro';
+import { ui } from '../data/profile';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  eyebrow?: string;
+  type?: 'website' | 'article';
+  nodes?: Record<string, unknown>[];
+  crumbs: { label: string; href?: string }[];
+  published?: Date;
+  updated?: Date;
+  faq?: { question: string; answer: string }[];
+  cta?: boolean;
+}
+
+const {
+  title,
+  description,
+  heading,
+  eyebrow,
+  type = 'website',
+  nodes = [],
+  crumbs,
+  published,
+  updated,
+  faq = [],
+  cta = false,
+} = Astro.props;
+
+const site = Astro.site!;
+const date = (value: Date) => value.toISOString().slice(0, 10);
+const label = (value: Date) =>
+  value.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+
+const trail = [{ label: ui.page.home, href: '/' }, ...crumbs];
+const graph = [
+  ...nodes,
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.label,
+      ...(crumb.href ? { item: new URL(crumb.href, site).href } : {}),
+    })),
+  },
+  ...(faq.length
+    ? [
+        {
+          '@type': 'FAQPage',
+          mainEntity: faq.map(({ question, answer }) => ({
+            '@type': 'Question',
+            name: question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: answer.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*/g, ''),
+            },
+          })),
+        },
+      ]
+    : []),
+];
+---
+
+<Layout title={title} description={description} type={type} nodes={graph}>
+  <a
+    href="#content"
+    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+  >
+    {ui.skipLink}
+  </a>
+  <Header />
+  <main id="content">
+    <article class="gutter pt-[clamp(32px,4cqi,56px)] pb-[clamp(64px,9cqi,120px)]">
+      <div class="mx-auto max-w-page">
+        <nav aria-label={ui.page.breadcrumbLabel} class="text-[13px] text-muted">
+          <ol class="flex flex-wrap items-center gap-x-2">
+            {trail.map((crumb, index) => (
+              <li class="flex items-center gap-x-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {crumb.href ? (
+                  <a href={crumb.href} class="transition-colors duration-200 hover:text-fg">
+                    {crumb.label}
+                  </a>
+                ) : (
+                  <span aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        {eyebrow && <p class="mt-10 text-[13px] font-medium text-muted">{eyebrow}</p>}
+        <h1 class:list={['type-section max-w-[24ch] text-fg', eyebrow ? 'mt-2' : 'mt-10']}>{heading}</h1>
+        {(published || updated) && (
+          <p class="mt-5 text-[13px] text-muted">
+            {published && (
+              <>
+                {ui.blog.published} <time datetime={date(published)}>{label(published)}</time>
+                {updated && ' · '}
+              </>
+            )}
+            {updated && (
+              <>
+                {ui.blog.updated} <time datetime={date(updated)}>{label(updated)}</time>
+              </>
+            )}
+          </p>
+        )}
+
+        {cta && (
+          <a
+            href="#contact"
+            class="mt-8 inline-flex min-h-12 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+          >
+            {ui.hero.contact}
+          </a>
+        )}
+
+        <div class="prose-page mt-10">
+          <slot />
+        </div>
+
+        {faq.length > 0 && (
+          <section aria-labelledby="faq-title" class="prose-page mt-16">
+            <h2 id="faq-title">{ui.page.faq}</h2>
+            {faq.map(({ question, answer }) => (
+              <>
+                <h3>{question}</h3>
+                <RichText source={answer} />
+              </>
+            ))}
+          </section>
+        )}
+
+        <slot name="after" />
+      </div>
+    </article>
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

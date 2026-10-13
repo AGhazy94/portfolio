@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import PageCards from './PageCards.astro';
+import { ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'services')!;
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<section
+  id={section.id}
+  aria-labelledby="services-title"
+  class="gutter pt-[clamp(40px,4cqi,64px)] pb-[clamp(64px,9cqi,120px)]"
+>
+  <div class="mx-auto max-w-page">
+    <h2 id="services-title" class="type-section text-fg">
+      {section.title}
+    </h2>
+    <PageCards
+      class="mt-[clamp(32px,5cqi,56px)]"
+      items={services.map(({ id, data }) => ({
+        title: data.cardTitle,
+        summary: data.cardSummary,
+        href: `/services/${id}/`,
+        cta: ui.services.more,
+      }))}
+    />
+  </div>
+</section>
