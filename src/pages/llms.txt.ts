@@ -1,16 +1,14 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getPosts, getServices, getWork } from '../lib/content';
 import { toPlainText } from '../lib/inline';
 import { about, experience, profile, projects, socials, statement } from '../data/profile';
 
 // Follows llmstxt.org: H1, blockquote, free-form sections, then H2 sections that only hold link lists.
 export const GET: APIRoute = async ({ site }) => {
   const url = (path: string) => new URL(path, site).href;
-  const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-  const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
-  const articles = (await getCollection('blog')).sort(
-    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
-  );
+  const services = await getServices();
+  const work = await getWork();
+  const articles = await getPosts();
   const lines = [
     `# ${profile.name}`,
     '',

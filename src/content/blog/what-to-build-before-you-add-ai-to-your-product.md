@@ -3,6 +3,7 @@ title: What to build before you add AI to your product
 description: A checklist for adding an LLM feature or an agent to a real product, from the narrow job to limits, logging and a person in the loop.
 published: 2026-10-14
 updated: 2026-10-14
+imageAlt: Illustration of an AI feature surrounded by safeguards, a test checklist, a spending cap and an off switch
 faq:
   - question: Should I start with an agent or a simple LLM call?
     answer: Start with the simplest thing that does the job, usually one model call with a clear prompt. Add tools and multiple steps only when a single call can't do it, because each step adds cost, delay and ways to fail.
@@ -85,6 +86,6 @@ Say clearly that a feature is AI-generated, and give users a way to correct or r
 
 ## Where I fit
 
-I build the product around the AI feature: the interface, the calls to the model, the tools, the background tasks, the data and the deployment. I've done this on ScriptBee, where I built the chat interface and the background tasks, and on caisy, where I added AI translation to an editor. I don't train models or build research-heavy retrieval systems.
+I build the product around the AI feature: the interface, the calls to the model, the tools, the background tasks, the data and the deployment. I've done this on ScriptBee, where I built the chat interface and the background tasks, and on caisy, where I added AI translation to an editor. I build with hosted models through their APIs.
 
 If you have a feature in mind, [the AI page](/services/ai-products-and-agents/) explains how I'd approach it, and the contact form is the place to describe the job and the data it needs.

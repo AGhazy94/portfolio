@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import PageCards from './PageCards.astro';
+import { contentImage, getServices } from '../lib/content';
 import { ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'services')!;
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = await getServices();
 ---
 
 <section
@@ -24,6 +24,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
         summary: data.cardSummary,
         href: `/services/${id}/`,
         cta: ui.services.more,
+        image: contentImage('services', id),
       }))}
     />
   </div>

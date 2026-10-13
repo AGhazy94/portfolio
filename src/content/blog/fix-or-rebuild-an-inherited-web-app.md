@@ -3,6 +3,7 @@ title: Fix or rebuild? How to decide on an inherited web app
 description: A way to decide whether an inherited web app should be repaired or rewritten, with the signs that point each way and a safer middle path.
 published: 2026-10-13
 updated: 2026-10-13
+imageAlt: Illustration of a worn building being repaired on one side and a new one framed on the other
 faq:
   - question: Is a rewrite ever the right call?
     answer: Yes, but less often than developers who dislike the code claim. A rewrite makes sense when the data model is wrong, the platform can't be maintained, or every change breaks something else.

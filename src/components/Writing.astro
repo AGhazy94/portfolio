@@ -1,14 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import PageCards from './PageCards.astro';
+import { contentImage, formatDate, getPosts } from '../lib/content';
 import { ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'writing')!;
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
-  .slice(0, 3);
-const format = (value: Date) =>
-  value.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const posts = (await getPosts()).slice(0, 3);
 ---
 
 <section id={section.id} aria-labelledby="writing-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
@@ -23,8 +19,9 @@ const format = (value: Date) =>
         title: post.data.title,
         summary: post.data.description,
         href: `/blog/${post.id}/`,
-        meta: format(post.data.published),
+        meta: formatDate(post.data.published),
         cta: ui.blog.more,
+        image: contentImage('blog', post.id),
       }))}
     />
     <p class="mt-8 text-[15px] font-medium">

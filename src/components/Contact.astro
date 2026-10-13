@@ -76,12 +76,23 @@ const buttonClass =
           <label for={`contact-${choice.name}`} class="text-[13px] font-medium text-body">
             {choice.label}
           </label>
-          <select id={`contact-${choice.name}`} name={choice.name} class={`${fieldClass} appearance-auto`}>
-            <option value="">{choice.placeholder}</option>
-            {choice.options.map((option) => (
-              <option value={option}>{option}</option>
-            ))}
-          </select>
+          <div class="relative">
+            <select
+              id={`contact-${choice.name}`}
+              name={choice.name}
+              class={`${fieldClass} cursor-pointer appearance-none truncate pr-11`}
+            >
+              <option value="">{choice.placeholder}</option>
+              {choice.options.map((option) => (
+                <option value={option}>{option}</option>
+              ))}
+            </select>
+            {/* The native arrow sits on the border, so the select is drawn flat and the arrow gets its own inset. */}
+            <Icon
+              name="chevron"
+              class="pointer-events-none absolute top-1/2 right-3.5 size-5 -translate-y-1/2 text-muted"
+            />
+          </div>
         </div>
       ))}
 

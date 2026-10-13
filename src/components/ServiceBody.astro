@@ -1,0 +1,90 @@
+---
+import Icon from './Icon.astro';
+import RichText from './RichText.astro';
+import { ui } from '../data/profile';
+
+interface Props {
+  fit: string[];
+  notFit?: string;
+  gets: { title: string; text: string }[];
+  steps: { title: string; text: string }[];
+  experience: string[];
+  terms: string[];
+}
+
+const { fit, notFit, gets, steps, experience, terms } = Astro.props;
+const copy = ui.service;
+
+const section = 'mt-[clamp(56px,8cqi,96px)] grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-14';
+const heading = 'type-project text-fg lg:sticky lg:top-24 lg:self-start';
+const cardBase = 'rounded-card bg-surface p-[clamp(20px,3cqi,28px)]';
+const prose = 'prose-page max-w-none';
+---
+
+<section aria-labelledby="fit-title" class={section}>
+  <h2 id="fit-title" class={heading}>
+    {copy.fit}
+  </h2>
+  <div>
+    <ul class="grid gap-3 sm:grid-cols-2">
+      {fit.map((item) => (
+        <li class:list={[cardBase, 'flex items-start gap-3']}>
+          <Icon name="check" class="mt-0.5 size-5 shrink-0 text-accent" />
+          <RichText source={item} class="text-base leading-[1.6] text-body" />
+        </li>
+      ))}
+    </ul>
+    {notFit && <RichText source={notFit} class="mt-5 text-[15px] leading-[1.6] text-muted" />}
+  </div>
+</section>
+
+<section aria-labelledby="gets-title" class="mt-[clamp(56px,8cqi,96px)]">
+  <h2 id="gets-title" class="type-project text-fg">
+    {copy.gets}
+  </h2>
+  <ul class:list={['mt-8 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2', gets.length % 3 === 0 && 'lg:grid-cols-3']}>
+    {gets.map((item) => (
+      <li class={cardBase}>
+        <h3 class="text-[19px] leading-snug font-semibold text-fg">{item.title}</h3>
+        <RichText source={item.text} class="mt-3 text-base leading-[1.6] text-body md:text-[15px]" />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<section aria-labelledby="steps-title" class="mt-[clamp(56px,8cqi,96px)]">
+  <h2 id="steps-title" class="type-project text-fg">
+    {copy.steps}
+  </h2>
+  <ol class="mt-8 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
+    {steps.map((item, index) => (
+      <li class={cardBase}>
+        <p class="text-[13px] font-medium text-muted">{`${copy.week} ${index + 1}`}</p>
+        <h3 class="mt-1 text-[19px] leading-snug font-semibold text-fg">{item.title}</h3>
+        <RichText source={item.text} class="mt-3 text-base leading-[1.6] text-body md:text-[15px]" />
+      </li>
+    ))}
+  </ol>
+</section>
+
+<section aria-labelledby="experience-title" class={section}>
+  <h2 id="experience-title" class={heading}>
+    {copy.experience}
+  </h2>
+  <div class="grid gap-4">
+    {experience.map((paragraph) => (
+      <RichText source={paragraph} class={prose} />
+    ))}
+  </div>
+</section>
+
+<section aria-labelledby="terms-title" class={section}>
+  <h2 id="terms-title" class={heading}>
+    {copy.terms}
+  </h2>
+  <div class="grid gap-4">
+    {terms.map((paragraph) => (
+      <RichText source={paragraph} class={prose} />
+    ))}
+  </div>
+</section>

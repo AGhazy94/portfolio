@@ -1,21 +1,23 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
+import { contentImage, getPosts, getServices } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getPosts();
   return posts.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
+const image = contentImage('blog', entry.id);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const personId = new URL('/#person', Astro.site).href;
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = await getServices();
 const nodes = [
   {
     '@type': 'Article',
@@ -44,6 +46,8 @@ const nodes = [
   published={data.published}
   updated={data.updated}
   faq={data.faq}
+  image={image}
+  imageAlt={data.imageAlt}
 >
   <Content />
   <section slot="after" aria-labelledby="related-title" class="mt-20">
@@ -52,11 +56,13 @@ const nodes = [
     </h2>
     <PageCards
       class="mt-6"
+      columns={3}
       items={services.map((service) => ({
         title: service.data.cardTitle,
         summary: service.data.cardSummary,
         href: `/services/${service.id}/`,
         cta: ui.services.more,
+        image: contentImage('services', service.id),
       }))}
     />
   </section>

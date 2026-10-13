@@ -219,6 +219,14 @@ export const ui = {
     more: 'Read the article',
     homeMore: 'All articles',
   },
+  service: {
+    fit: 'Is this for you?',
+    gets: 'What you get',
+    steps: 'What the first two weeks look like',
+    week: 'Week',
+    experience: 'Relevant experience',
+    terms: 'How we work and what it costs',
+  },
   page: {
     faq: 'Questions people ask',
     relatedServices: 'Related services',

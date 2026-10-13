@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
+import { contentImage, formatDate, getPosts } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
-const posts = (await getCollection('blog')).sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+const posts = await getPosts();
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
   {
@@ -17,8 +17,6 @@ const nodes = [
     about: { '@id': new URL('/#person', Astro.site).href },
   },
 ];
-const format = (value: Date) =>
-  value.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <ContentPage
@@ -31,12 +29,14 @@ const format = (value: Date) =>
   <p>{ui.blog.indexLead}</p>
   <PageCards
     class="mt-10 max-w-none"
+    columns={3}
     items={posts.map((post) => ({
       title: post.data.title,
       summary: post.data.description,
       href: `/blog/${post.id}/`,
-      meta: format(post.data.published),
+      meta: formatDate(post.data.published),
       cta: ui.blog.more,
+      image: contentImage('blog', post.id),
     }))}
   />
 </ContentPage>

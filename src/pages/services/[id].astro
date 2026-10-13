@@ -1,11 +1,12 @@
 ---
-import { getCollection, render } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
+import ServiceBody from '../../components/ServiceBody.astro';
+import { contentImage, getPosts, getServices } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
 export async function getStaticPaths() {
-  const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+  const services = await getServices();
   return services.map((entry) => ({
     params: { id: entry.id },
     props: { entry, others: services.filter((other) => other.id !== entry.id) },
@@ -13,13 +14,11 @@ export async function getStaticPaths() {
 }
 
 const { entry, others } = Astro.props;
-const { Content } = await render(entry);
 const { data } = entry;
+const image = contentImage('services', entry.id);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
-const articles = (await getCollection('blog'))
-  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
-  .slice(0, 2);
+const articles = (await getPosts()).slice(0, 2);
 const nodes = [
   {
     '@type': 'WebPage',
@@ -48,20 +47,31 @@ const nodes = [
   title={`${data.title} | ${profile.name}`}
   description={data.description}
   heading={data.heading}
+  lead={data.lead}
   eyebrow={ui.services.indexTitle}
   nodes={nodes}
   crumbs={[{ label: ui.services.indexTitle, href: '/services/' }, { label: data.cardTitle }]}
   faq={data.faq}
+  image={image}
+  imageAlt={data.imageAlt}
   cta
+  wide
 >
-  <Content />
+  <ServiceBody
+    fit={data.fit}
+    notFit={data.notFit}
+    gets={data.gets}
+    steps={data.steps}
+    experience={data.experience}
+    terms={data.terms}
+  />
   <Fragment slot="after">
-    <section aria-labelledby="related-title" class="mt-20">
+    <section aria-labelledby="related-title" class="mt-[clamp(56px,8cqi,96px)]">
       <h2 id="related-title" class="type-project text-fg">
         {ui.page.relatedServices}
       </h2>
       <PageCards
-        class="mt-6"
+        class="mt-8"
         items={others.map((other) => ({
           title: other.data.cardTitle,
           summary: other.data.cardSummary,
@@ -72,12 +82,12 @@ const nodes = [
       />
     </section>
     {articles.length > 0 && (
-      <section aria-labelledby="related-articles-title" class="mt-16">
+      <section aria-labelledby="related-articles-title" class="mt-[clamp(56px,8cqi,96px)]">
         <h2 id="related-articles-title" class="type-project text-fg">
           {ui.page.relatedArticles}
         </h2>
         <PageCards
-          class="mt-6"
+          class="mt-8"
           items={articles.map((article) => ({
             title: article.data.title,
             summary: article.data.description,

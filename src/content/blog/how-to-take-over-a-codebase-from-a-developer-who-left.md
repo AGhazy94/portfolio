@@ -3,6 +3,7 @@ title: How to take over a codebase from a developer who left
 description: A practical checklist for founders and new developers, from getting access to shipping a first small change without breaking production.
 published: 2026-10-13
 updated: 2026-10-13
+imageAlt: Illustration of a developer reading a handover checklist next to a laptop showing an unfamiliar codebase
 faq:
   - question: What should I do first when my developer leaves?
     answer: Secure access before anything else. List every account the app depends on, make sure you own the ones that matter, and rotate shared passwords and keys. Only then start reading code.

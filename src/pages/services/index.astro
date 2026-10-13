@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
+import { contentImage, getServices } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
-const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const services = await getServices();
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
   {
@@ -35,6 +35,7 @@ const nodes = [
       summary: data.cardSummary,
       href: `/services/${id}/`,
       cta: ui.services.more,
+      image: contentImage('services', id),
     }))}
   />
 </ContentPage>

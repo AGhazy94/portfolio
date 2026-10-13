@@ -74,8 +74,15 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   carries the title, description (160 characters at most, enforced by the schema), dates and `faq`;
   the body is plain Markdown, no raw HTML and no code fences that need highlighting (the CSP and
   `syntaxHighlight: false` rule that out). Every claim in them must be one the commit history backs;
-  no invented prices, statistics, testimonials or client stories. YAML values holding `: ` need
-  quotes, so prefer rewording.
+  no invented prices, statistics, testimonials or client stories, and no future project written as
+  finished. Public copy lists what Ahmed did and does not add "what I didn't build" disclaimers;
+  omission is the rule, never a false or implied claim. YAML values holding `: ` need quotes in
+  frontmatter. Service pages are laid out from structured frontmatter (`lead`, `fit`, `gets`, `steps`,
+  `experience`, `terms`, `faq`) by `ServiceBody.astro`. A `work` entry with `status: draft` builds in
+  dev only and is the way to preview a finished site before the work exists. **Pictures** are found by
+  file name: `src/assets/content/<services|blog|work>/<id>.png|jpg|webp` (16:9, no text in the image),
+  with `imageAlt` in the frontmatter; they feed the hero, cards, JSON-LD and og:image. Briefs live in
+  the private `career-ops` repo.
 - **Every page renders through [src/layouts/Layout.astro](src/layouts/Layout.astro)**, which owns
   the title, description, canonical, OG/Twitter tags, icons and JSON-LD. No ad-hoc meta tags in a
   page. Collection pages go through [src/layouts/ContentPage.astro](src/layouts/ContentPage.astro),
