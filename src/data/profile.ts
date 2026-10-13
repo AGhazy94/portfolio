@@ -30,11 +30,11 @@ const yearsOfExperience = '5+ years';
 export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
-  seoTitle: 'Ahmed Ghazy — Full-Stack Developer in Egypt',
+  seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
   tagline:
     'Full-stack developer who takes over existing web apps, builds MVPs and ships bilingual Arabic/English products.',
   description:
-    'Full-stack developer in Egypt. I take over existing web apps, build MVPs and ship bilingual Arabic/English products, in TypeScript from front to back.',
+    'Freelance full-stack developer for hire in Egypt. I take over web apps, build MVPs and ship bilingual Arabic/English products for startups and agencies.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
