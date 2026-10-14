@@ -3,7 +3,10 @@ title: How to take over a codebase from a developer who left
 description: A practical checklist for founders and new developers, from getting access to shipping a first small change without breaking production.
 published: 2026-10-13
 updated: 2026-10-14
-imageAlt: Illustration of a developer reading a handover checklist next to a laptop showing an unfamiliar codebase
+service: take-over-an-app
+relatedArticles:
+  - fix-or-rebuild-an-inherited-web-app
+imageAlt: A handover checklist and key beside a laptop displaying a code editor
 faq:
   - question: What should I do first when my developer leaves?
     answer: Secure access before anything else. List every account the app depends on, make sure you own the ones that matter, and rotate shared passwords and keys. Only then start reading code.
@@ -39,6 +42,8 @@ Do this in writing, and keep the answers.
 ## 3. Secure access
 
 After a developer leaves, remove their access and rotate the secrets they knew: API keys, database passwords, deployment tokens and any shared logins. This is routine hygiene, not an accusation. It also protects you from an old laptop that nobody wiped.
+
+For each secret, identify the services that use it. Update those services and verify the replacement before revoking the old credential where a controlled cutover is possible. If a credential is compromised, follow your incident plan and revoke it promptly rather than keeping it active for convenience.
 
 If you can't tell which secrets exist, that is a finding for the audit, not a reason to wait.
 
@@ -82,6 +87,8 @@ Pick a harmless fix and ship it through the full process: branch, review, deploy
 ## 10. Write down what you learned
 
 Keep a short document with the account list, how to run the app, how to deploy it and the known risks. A takeover is only complete when the next takeover would be easy.
+
+For each account, record its owner, purpose, access-transfer status and recovery contact. For each service, record its deployment steps, monitoring link and backup location. Store credentials in a password manager or secrets store, not in the handover document.
 
 ## When to ask for help
 

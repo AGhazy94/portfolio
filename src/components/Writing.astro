@@ -1,36 +1,46 @@
 ---
-import PageCards from './PageCards.astro';
-import { contentImage, formatDate, getPosts } from '../lib/content';
+import Icon from './Icon.astro';
+import { formatDate, getPosts } from '../lib/content';
 import { ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'writing')!;
 const posts = (await getPosts()).slice(0, 3);
 ---
 
-<section id={section.id} aria-labelledby="writing-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+<section id={section.id} aria-labelledby="writing-title" class="gutter border-t border-divider py-16 md:py-20">
   <div class="mx-auto max-w-page">
-    <h2 id="writing-title" class="type-section max-w-[18ch] text-fg">
-      {section.title}
-    </h2>
-    <PageCards
-      class="mt-[clamp(32px,5cqi,56px)]"
-      columns={3}
-      items={posts.map((post) => ({
-        title: post.data.title,
-        summary: post.data.description,
-        href: `/blog/${post.id}/`,
-        meta: formatDate(post.data.published),
-        cta: ui.blog.more,
-        image: contentImage('blog', post.id),
-      }))}
-    />
-    <p class="mt-8 text-[15px] font-medium">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="writing-title" class="type-section text-fg">
+        {section.title}
+      </h2>
       <a
         href="/blog/"
-        class="text-accent underline decoration-1 underline-offset-3 transition-opacity duration-200 hover:opacity-70"
+        class="inline-flex min-h-11 items-center text-[15px] font-medium text-accent underline underline-offset-4 hover:opacity-70"
       >
         {ui.blog.homeMore}
       </a>
-    </p>
+    </div>
+    <ul class="mt-8 divide-y divide-divider border-y border-divider">
+      {posts.map((post) => (
+        <li>
+          <a
+            href={`/blog/${post.id}/`}
+            aria-labelledby={`home-post-${post.id}`}
+            class="group grid grid-cols-[1fr_auto] items-start gap-5 py-6 md:grid-cols-[140px_1fr_auto] md:gap-8"
+          >
+            <time datetime={post.data.published.toISOString()} class="text-[13px] text-muted max-md:col-span-2">
+              {formatDate(post.data.published)}
+            </time>
+            <div>
+              <h3 id={`home-post-${post.id}`} class="type-project text-fg group-hover:underline underline-offset-4">
+                {post.data.title}
+              </h3>
+              <p class="mt-2 max-w-[68ch] text-[15px] leading-relaxed text-body">{post.data.description}</p>
+            </div>
+            <Icon name="chevron" class="mt-1 size-5 -rotate-90 text-accent" />
+          </a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>

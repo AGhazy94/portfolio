@@ -15,7 +15,9 @@ export const onSuccess = async ({ constants }) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify({ host, key, keyLocation: `${origin}/indexnow.txt`, urlList }),
+      signal: AbortSignal.timeout(10000),
     });
+    if (!response.ok) throw new Error(`IndexNow rejected the request with HTTP ${response.status}`);
     console.log(`IndexNow: ${response.status} for ${urlList.length} URLs`);
   } catch (error) {
     // A failed ping must never read as a failed deploy.

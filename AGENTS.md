@@ -71,8 +71,11 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   and `llms.txt`. **Long-form pages are Markdown content collections** defined in
   [src/content.config.ts](src/content.config.ts): `src/content/services/` (one buyer situation per
   page), `src/content/work/` (case studies) and `src/content/blog/` (decision articles). Frontmatter
-  carries the title, description (160 characters at most, enforced by the schema), dates and `faq`;
-  the body is plain Markdown, no raw HTML and no code fences that need highlighting (the CSP and
+  carries the title, description (160 characters at most, enforced by the schema), dates and `faq`.
+  Blog entries also need a `service` reference and may list up to two `relatedArticles`; related
+  links come from these references, never publication order, and drafts never appear in them in
+  production. Every service page also links the other services. The body is plain Markdown, no raw
+  HTML and no code fences that need highlighting (the CSP and
   `syntaxHighlight: false` rule that out). Every claim in them must be one the commit history backs;
   no invented prices, statistics, testimonials or client stories, and no future project written as
   finished. Public copy lists what Ahmed did and does not add "what I didn't build" disclaimers;
@@ -100,7 +103,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
   palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
   (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). Use the tokens; there is no `slate`. Muted
-  text is `text-muted` (WCAG AA on every surface). The contact card sits on `surface`, like the
+  text is `text-muted` (WCAG AA on every surface). The contact section sits on `surface`, like the
   project cards; never flip the theme inside it. Every text pair must pass 4.5:1 and every field
   border 3:1, in both themes.
 - **Theme** follows `prefers-color-scheme` until the visitor picks one; the toggle stores it and
@@ -137,8 +140,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   Instrument Serif (display) + Geist (UI and body) via the Astro Fonts API (Fontsource), GSAP +
   ScrollTrigger, `@astrojs/sitemap`, satori + sharp for generated images. Deployed on Netlify
   ([netlify.toml](netlify.toml)), with Netlify Forms for the contact form.
-- Page order on `/`: Header → Hero (tagline, CTAs) → Services → Projects → Experience → Writing
-  → About (statement, facts) → Contact → Footer. One component per section in `src/components/`.
+- Page order on `/`: Header → Hero (tagline, CTAs) → Projects → Services → Testimonials → Experience
+  → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
+  The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
   Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
   (all from collections) and `/thanks/`, the no-JS form success page (noindex, not in the sitemap).
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
@@ -167,7 +171,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 ## Execution Workflow
 
-1. `npm run validate` — `astro check` and `prettier --check`. Zero errors.
+1. `npm run validate` — `npm test`, `astro check` and `prettier --check`. Zero errors.
 2. `npm run build` — must pass; it renders every endpoint (OG image, icons, `llms.txt`).
 3. Touched the head, structured data, robots or sitemap → re-check the built `dist/index.html`.
 4. Visual change → verify at 1440×900 and 375px.

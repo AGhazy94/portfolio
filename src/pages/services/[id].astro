@@ -2,6 +2,7 @@
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
 import ServiceBody from '../../components/ServiceBody.astro';
+import ServiceRows from '../../components/ServiceRows.astro';
 import { contentImage, getPosts, getServices } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
@@ -18,7 +19,7 @@ const { data } = entry;
 const image = contentImage('services', entry.id);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
-const articles = (await getPosts()).slice(0, 2);
+const articles = (await getPosts()).filter((post) => post.data.service.id === entry.id);
 const nodes = [
   {
     '@type': 'WebPage',
@@ -66,23 +67,8 @@ const nodes = [
     terms={data.terms}
   />
   <Fragment slot="after">
-    <section aria-labelledby="related-title" class="mt-[clamp(56px,8cqi,96px)]">
-      <h2 id="related-title" class="type-project text-fg">
-        {ui.page.relatedServices}
-      </h2>
-      <PageCards
-        class="mt-8"
-        items={others.map((other) => ({
-          title: other.data.cardTitle,
-          summary: other.data.cardSummary,
-          href: `/services/${other.id}/`,
-          cta: ui.services.more,
-        }))}
-        columns={3}
-      />
-    </section>
     {articles.length > 0 && (
-      <section aria-labelledby="related-articles-title" class="mt-[clamp(56px,8cqi,96px)]">
+      <section aria-labelledby="related-articles-title" class="mt-12 border-t border-divider pt-8">
         <h2 id="related-articles-title" class="type-project text-fg">
           {ui.page.relatedArticles}
         </h2>
@@ -97,5 +83,11 @@ const nodes = [
         />
       </section>
     )}
+    <section aria-labelledby="other-services-title" class="mt-12 border-t border-divider pt-8">
+      <h2 id="other-services-title" class="type-project text-fg">
+        {ui.page.otherServices}
+      </h2>
+      <ServiceRows class="mt-4" services={others} idPrefix="other-service" />
+    </section>
   </Fragment>
 </ContentPage>

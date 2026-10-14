@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  services: CollectionEntry<'services'>[];
+  idPrefix: string;
+  class?: string;
+}
+
+const { services, idPrefix, class: className } = Astro.props;
+---
+
+<ul class:list={['divide-y divide-divider', className]}>
+  {services.map(({ id, data }) => (
+    <li>
+      <a
+        href={`/services/${id}/`}
+        aria-labelledby={`${idPrefix}-${id}`}
+        class="group grid grid-cols-[1fr_auto] items-start gap-4 py-5"
+      >
+        <div>
+          <h3
+            id={`${idPrefix}-${id}`}
+            class="text-xl leading-snug font-medium text-fg group-hover:underline underline-offset-4"
+          >
+            {data.cardTitle}
+          </h3>
+          <p class="mt-2 text-[15px] leading-relaxed text-body">{data.cardSummary}</p>
+        </div>
+        <Icon name="chevron" class="mt-0.5 size-5 -rotate-90 text-accent" />
+      </a>
+    </li>
+  ))}
+</ul>

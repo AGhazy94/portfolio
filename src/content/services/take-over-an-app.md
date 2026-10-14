@@ -1,12 +1,12 @@
 ---
-title: 'Take Over an Existing Web App | Freelance Developer'
+title: 'Take Over an Existing Web App'
 heading: 'I take over existing web apps and keep them moving.'
 description: 'Freelance full-stack developer who takes over an existing web app. I read the code, stabilise it, then keep shipping. For founders whose developer left.'
 cardTitle: 'Take over an existing app'
 cardSummary: "The developer left, or the team can't keep up. I read the code, tell you what is solid and what is risky, then keep shipping."
 order: 2
 updated: 2026-10-14
-imageAlt: 'Illustration of a developer opening a large, unfamiliar codebase and mapping it with a flashlight'
+imageAlt: 'A path of connected folders highlighted across a cube representing an existing codebase'
 lead: "The developer left, or the team can't keep up. I read the code, tell you what is solid and what is risky, then keep shipping."
 fit:
   - 'The developer who built your app stopped replying, or left, and nobody else knows how it runs.'
@@ -41,7 +41,7 @@ faq:
   - question: 'Do I need to give you access to everything on day one?'
     answer: 'No. I start with read access to the repository and the hosting dashboard. Production data, payment keys and admin accounts stay with you until we agree what I need and why.'
   - question: 'What if the code is a mess?'
-    answer: "Most inherited code is. The audit tells you which parts are fine, which are risky and which are cheaper to rewrite than to repair. Then you choose. I don't start a rewrite unasked. [Fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) covers how I decide."
+    answer: 'The audit separates unfamiliar code from actual problems. It identifies what can stay, what needs repair and where replacement may make sense. We agree the next step before any rewrite. [Fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) covers how I decide.'
   - question: 'Can you work next to my other developer?'
     answer: 'Yes. I work in the same repository through pull requests, follow the conventions already there and write down what I change.'
   - question: 'What do I own at the end?'

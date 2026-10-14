@@ -3,6 +3,9 @@ title: Fix or rebuild? How to decide on an inherited web app
 description: A way to decide whether an inherited web app should be repaired or rewritten, with the signs that point each way and a safer middle path.
 published: 2026-10-13
 updated: 2026-10-14
+service: take-over-an-app
+relatedArticles:
+  - how-to-take-over-a-codebase-from-a-developer-who-left
 imageAlt: Illustration of a worn building being repaired on one side and a new one framed on the other
 faq:
   - question: Is a rewrite ever the right call?
@@ -52,9 +55,9 @@ In 2026 I audited the frontend of an AI platform for real-estate investors. The 
 - **A missing setting looked like a backend outage.** The app started without a required setting and then failed on every request. It now checks its settings at startup and refuses to run without them.
 - **One broken section took down the whole page.** Each section of the property page got its own error boundary, so a failure stays inside that section.
 
-Separately, moving the property pages' data fetching to the server with the Next.js App Router fixed three things at once: a slow first load, requests that waited on each other, and pages that search engines saw as empty.
+Separately, I moved the property pages' data fetching to the server with the Next.js App Router and split them into server-rendered sections. The initial response could include the page content instead of waiting for browser-side requests to fill it in.
 
-None of this needed a rewrite, and the product stayed live throughout. Error reports went down, and more property pages showed up in Google.
+These changes addressed specific failure modes without replacing the whole application.
 
 ## Signs that point to rebuilding
 
@@ -90,11 +93,13 @@ A good answer is specific. A weak answer is "the code is bad".
 
 ## The cost of each choice
 
-**Fixing** costs less up front, and it keeps risk low. It can leave you with an app that stays awkward.
+| Approach          | When it fits                              | Trade-off                                                 |
+| ----------------- | ----------------------------------------- | --------------------------------------------------------- |
+| Repair            | A working product with isolated faults    | Less disruption, but structural limits may remain         |
+| Replace in stages | A useful product with a few weak areas    | Continued delivery, with temporary integration complexity |
+| Rebuild           | Structural blockers confirmed by an audit | Migration risk and a longer wait for the replacement      |
 
-**Rebuilding** costs more and takes longer, and a delay has no revenue attached to it. It can give you a clean base.
-
-**Replacing in stages** costs somewhere in between and spreads the risk.
+Compare the work and migration plan for your app, not only the quoted development price. A replacement also has to preserve the behavior that existing users rely on.
 
 ## What I do
 

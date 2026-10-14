@@ -13,17 +13,17 @@ const facts = [
 ];
 ---
 
-<section id={section.id} aria-labelledby="about-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+<section id={section.id} aria-labelledby="about-title" class="gutter border-t border-divider py-16 md:py-20">
   <div class="mx-auto max-w-page">
     <h2 id="about-title" class="type-section text-fg">
       {section.title}
     </h2>
 
-    <p data-statement class="type-statement mt-[clamp(32px,5cqi,56px)] max-w-[22ch] text-fg">
+    <p data-statement class="type-statement mt-8 max-w-[28ch] text-fg">
       {words.map((word, index) => [<span data-word>{word}</span>, index < words.length - 1 ? ' ' : ''])}
     </p>
 
-    <div class="mt-[clamp(40px,6cqi,72px)] grid gap-x-12 gap-y-10 border-t border-divider pt-10 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+    <div class="mt-8 grid gap-x-12 gap-y-8 border-t border-divider pt-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
       <dl class="space-y-5 text-[15px]">
         {facts.map(({ term, detail }) => (
           <div>

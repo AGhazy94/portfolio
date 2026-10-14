@@ -1,5 +1,5 @@
 ---
-title: 'AI Agent and LLM Developer for Hire | AI Product Development'
+title: 'AI Agent and LLM Developer for Hire'
 heading: 'I build web apps with AI features and agents in them.'
 description: 'Freelance full-stack developer for AI products. LLM features, chat interfaces, agent tools and background tasks inside a real web app, not a demo.'
 cardTitle: 'Build AI features and agents'
@@ -22,7 +22,7 @@ gets:
   - title: "Background work that doesn't freeze the screen"
     text: "Long tasks run in the background and report progress to the user, so a slow model call doesn't block the page."
   - title: 'Visibility and limits'
-    text: "Logs of what was asked and answered, error reporting, and caps so a bug can't produce a surprise bill."
+    text: 'Error reporting, usage tracking and application-side limits, with sensitive data kept out of logs.'
   - title: 'Notes you can hand on'
     text: 'How the feature works, what it costs per use and what to watch.'
 steps:

@@ -3,6 +3,9 @@ title: Freelance developer, agency or fractional CTO for your MVP?
 description: How to choose between a freelance developer, an agency and a fractional CTO for a first product, by what each one is good at and where each one breaks down.
 published: 2026-10-13
 updated: 2026-10-13
+service: mvp-development
+relatedArticles:
+  - what-an-mvp-costs-and-what-moves-the-price
 status: draft
 imageAlt: Illustration of three paths leading to one product, taken by a single developer, a team and an advisor
 faq:

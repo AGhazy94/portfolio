@@ -1,8 +1,9 @@
 ---
-title: How much does an MVP cost? What moves the price
+title: 'MVP cost: what changes the price'
 description: Why MVP quotes differ so much, the eight things that change the price, and how to get a number you can trust before you start.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-10-14
+service: mvp-development
 imageAlt: Illustration of a small product built from a few blocks beside a scale weighing features against budget
 faq:
   - question: Why do quotes for the same idea differ so much?
@@ -13,11 +14,11 @@ faq:
     answer: Cut features, not quality. Keep one user role, one main flow and the tools everyone uses. Move everything else to a later list.
 ---
 
-"How much does an MVP cost?" is the first question founders ask, and it has no honest single answer. Two quotes for the same idea can differ by a large margin, and both can be reasonable. This article doesn't give a number, because any number without a scope would be a guess. It explains what moves the price, so that you can judge a quote.
+The biggest differences in MVP quotes usually come from scope: how many user roles, integrations and complete workflows are included, and who handles design, testing and deployment. Compare those assumptions before comparing totals. Here is a way to turn an idea into a brief that developers can price consistently.
 
 ## Eight things that change the price
 
-**1. The number of distinct features.** Every feature is design, code, testing and a thing that can break. Ten small features cost much more than three.
+**1. Complete workflows, not just features.** A report over existing data may take less work than a checkout with refunds and payment retries. Count the full flow, including its failure cases, rather than the number of buttons on a screen.
 
 **2. The number of user roles.** A product with one kind of user is simpler than one with customers, staff and an admin, each seeing different things.
 
@@ -45,6 +46,19 @@ A useful quote names:
 
 If a quote is one line with one number, ask what is inside.
 
+## A short brief to send with your request
+
+Write down these answers before asking for an estimate:
+
+- **The user:** who will use the first version, and what they need to finish.
+- **The main flow:** where the user starts, what they do and what counts as success.
+- **Accounts and data:** who can see or change what, and which information must be stored.
+- **Integrations:** payments, email or other services the flow depends on.
+- **What already exists:** designs, content, a codebase or a prototype the developer can inspect.
+- **The release boundary:** what has to work at launch and what can wait.
+
+Send the same brief to each developer. Ask them to identify assumptions and exclusions in the quote so you can compare like for like.
+
 ## Fixed price, hourly or monthly
 
 **Fixed price** suits a clear scope. It protects your budget, but only if changes are priced separately and the scope is written down.
@@ -68,7 +82,7 @@ A common pattern is a small paid scoping step first, then a fixed price for vers
 - One user role, one main flow.
 - Common tools, which are easier to hire for later.
 - Use a service for what is not your business, such as payments or email sending, instead of building it.
-- Skip the polish until people use the product.
+- Keep the visual styling simple without cutting accessibility, clear errors or a usable main flow.
 - Launch to a small group first.
 
 What not to cut: security basics, backups, and the ability to deploy a change safely.

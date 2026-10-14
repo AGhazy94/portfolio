@@ -1,6 +1,6 @@
 ---
-import PageCards from './PageCards.astro';
-import { contentImage, getServices } from '../lib/content';
+import ServiceRows from './ServiceRows.astro';
+import { getServices } from '../lib/content';
 import { ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'services')!;
@@ -10,22 +10,15 @@ const services = await getServices();
 <section
   id={section.id}
   aria-labelledby="services-title"
-  class="gutter pt-[clamp(40px,4cqi,64px)] pb-[clamp(64px,9cqi,120px)]"
+  class="gutter border-t border-divider bg-surface py-16 md:py-20"
 >
-  <div class="mx-auto max-w-page">
-    <h2 id="services-title" class="type-section text-fg">
-      {section.title}
-    </h2>
-    <PageCards
-      class="mt-[clamp(32px,5cqi,56px)]"
-      columns={3}
-      items={services.map(({ id, data }) => ({
-        title: data.cardTitle,
-        summary: data.cardSummary,
-        href: `/services/${id}/`,
-        cta: ui.services.more,
-        image: contentImage('services', id),
-      }))}
-    />
+  <div class="mx-auto grid max-w-page gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
+    <div>
+      <h2 id="services-title" class="type-section text-fg">
+        {section.title}
+      </h2>
+      <p class="mt-4 max-w-[36ch] text-[17px] leading-relaxed text-body">{ui.services.indexLead}</p>
+    </div>
+    <ServiceRows services={services} idPrefix="home-service" />
   </div>
 </section>

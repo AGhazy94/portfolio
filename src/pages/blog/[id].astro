@@ -1,9 +1,12 @@
 ---
-import { render } from 'astro:content';
+import { getEntry, render, type CollectionEntry } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
-import PageCards from '../../components/PageCards.astro';
-import { contentImage, getPosts, getServices } from '../../lib/content';
+import { contentImage, getPosts } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -11,13 +14,17 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 const { data } = entry;
 const image = contentImage('blog', entry.id);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const personId = new URL('/#person', Astro.site).href;
-const services = await getServices();
+const service = await getEntry(data.service);
+if (!service) throw new Error(`Missing service for article ${entry.id}`);
+const relatedArticles = (await getPosts()).filter((post) =>
+  data.relatedArticles.some((reference) => reference.id === post.id),
+);
 const nodes = [
   {
     '@type': 'Article',
@@ -48,22 +55,39 @@ const nodes = [
   faq={data.faq}
   image={image}
   imageAlt={data.imageAlt}
+  headings={headings}
 >
   <Content />
-  <section slot="after" aria-labelledby="related-title" class="mt-20">
-    <h2 id="related-title" class="type-project text-fg">
-      {ui.page.relatedServices}
-    </h2>
-    <PageCards
-      class="mt-6"
-      columns={3}
-      items={services.map((service) => ({
-        title: service.data.cardTitle,
-        summary: service.data.cardSummary,
-        href: `/services/${service.id}/`,
-        cta: ui.services.more,
-        image: contentImage('services', service.id),
-      }))}
-    />
-  </section>
+  <div slot="after" class="mt-12 grid gap-10 border-t border-divider pt-8 md:grid-cols-2">
+    <section aria-labelledby="related-service-title">
+      <h2 id="related-service-title" class="text-sm font-medium text-muted">
+        {ui.page.relatedServices}
+      </h2>
+      <h3 class="type-project mt-3 text-fg">
+        <a href={`/services/${service.id}/`} class="underline underline-offset-4 hover:text-accent">
+          {service.data.cardTitle}
+        </a>
+      </h3>
+      <p class="mt-3 text-[15px] leading-relaxed text-body">{service.data.cardSummary}</p>
+    </section>
+    {relatedArticles.length > 0 && (
+      <section aria-labelledby="related-articles-title">
+        <h2 id="related-articles-title" class="text-sm font-medium text-muted">
+          {ui.page.relatedArticles}
+        </h2>
+        <ul class="mt-3 space-y-4">
+          {relatedArticles.map((article) => (
+            <li>
+              <a
+                href={`/blog/${article.id}/`}
+                class="text-lg leading-snug text-fg underline underline-offset-4 hover:text-accent"
+              >
+                {article.data.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </div>
 </ContentPage>

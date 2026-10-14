@@ -1,5 +1,5 @@
 ---
-title: 'MVP Development Services for Startups | Freelance Developer'
+title: 'MVP Development Services for Startups'
 heading: 'I build the first version of your product, start to launch.'
 description: 'Freelance full-stack developer for MVPs, one person from first commit to launch, TypeScript front to back, built so the next developer can take it on.'
 cardTitle: 'Build an MVP'

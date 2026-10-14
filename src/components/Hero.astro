@@ -1,19 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import ResumeLink from './ResumeLink.astro';
+import Icon from './Icon.astro';
 import { profile, socials, ui } from '../data/profile';
 
 const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
 ---
 
-<section id="top" aria-labelledby="hero-title" class="gutter pt-[clamp(48px,6cqi,88px)] pb-[clamp(40px,4cqi,64px)]">
+<section id="top" aria-labelledby="hero-title" class="gutter py-10 md:py-14">
   <div class="mx-auto flex max-w-page flex-col items-center text-center">
-    <div class="size-22 overflow-hidden rounded-full bg-surface">
+    <div class="size-16 overflow-hidden rounded-full bg-surface">
       <Image
         src={profile.portrait}
         alt={ui.hero.portraitAlt}
-        width={88}
-        height={88}
+        width={64}
+        height={64}
         densities={[1, 2]}
         loading="eager"
         data-portrait
@@ -21,23 +21,29 @@ const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
       />
     </div>
 
-    <h1 id="hero-title" class="mt-8">
+    <h1 id="hero-title" class="mt-5">
       <span class="type-hero block text-fg">{profile.name}</span>
       <span class="sr-only">, </span>
-      <span class="type-lead mx-auto mt-6 block max-w-[38ch] text-balance text-body">{profile.tagline}</span>
+      <span class="type-lead mx-auto mt-4 block max-w-[40ch] text-balance text-body">{profile.tagline}</span>
     </h1>
 
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+    <div class="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
       <a
         href="#contact"
         class="inline-flex min-h-11 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
       >
         {ui.hero.contact}
       </a>
-      <ResumeLink label={ui.hero.resume} />
+      <a
+        href="#projects"
+        class="inline-flex min-h-11 items-center gap-1 text-[15px] font-medium text-accent hover:underline underline-offset-4"
+      >
+        {ui.hero.work}
+        <Icon name="chevron" class="size-5 -rotate-90" />
+      </a>
     </div>
     <p class="mt-3 text-[13px] text-muted">{ui.hero.availability}</p>
-    <ul aria-label={ui.socialLabel} class="mt-1 flex gap-x-4 text-[13px] text-muted">
+    <ul aria-label={ui.socialLabel} class="mt-1 flex flex-wrap justify-center gap-x-4 text-[13px] text-muted">
       {profiles.map(({ label, href }) => (
         <li>
           <a
