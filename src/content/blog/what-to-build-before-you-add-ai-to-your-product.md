@@ -3,12 +3,15 @@ title: What to build before you add AI to your product
 description: A checklist for adding an LLM feature or an agent to a real product, from the narrow job to limits, logging and a person in the loop.
 published: 2026-10-14
 updated: 2026-10-14
+service: ai-products-and-agents
+relatedArticles:
+  - what-an-mvp-costs-and-what-moves-the-price
 imageAlt: Illustration of an AI feature surrounded by safeguards, a test checklist, a spending cap and an off switch
 faq:
   - question: Should I start with an agent or a simple LLM call?
     answer: Start with the simplest thing that does the job, usually one model call with a clear prompt. Add tools and multiple steps only when a single call can't do it, because each step adds cost, delay and ways to fail.
   - question: How do I know whether the AI feature is good enough?
-    answer: Write down 20 to 50 real examples with the answers you'd accept, and run the feature against them every time you change it. Without that list, you are judging by feel.
+    answer: Start with 20 to 50 representative examples and the answers you would accept, including failure cases. This is a starting point, not proof of reliability. Expand the set as you learn how people use the feature.
   - question: Do I need to train my own model?
     answer: Almost never for a first version. Hosted models through an API are enough to find out whether people want the feature. Training is a later decision, with a real reason.
 ---
@@ -25,7 +28,7 @@ Write the job in one sentence, and write down what the AI should not do.
 
 ## 2. Decide how you'll know it works
 
-Before building, collect 20 to 50 real examples: the input, and the output you would accept. This is your test set. You'll run the feature against it each time you change the prompt, the model or the code.
+Before building, start with 20 to 50 representative examples: the input, and the output you would accept. Include ambiguous requests and failures as well as the easy cases. This is a starting test set, not a reliability guarantee. Run it each time you change the prompt, the model or the code, and expand it using real failures.
 
 Without a test set, every change is a guess, and a fix for one case quietly breaks another.
 
@@ -59,12 +62,12 @@ Model usage is billed per use, and a bug or a heavy user can run up a large bill
 
 - Cap the size of the input.
 - Limit how often one user can call the feature.
-- Set a spending limit with your provider.
+- Use an enforced spending limit where the provider supports one. A budget alert is not a hard cap; add application-side limits as well.
 - Log how much each call costs, so you can see the cost per user and per feature.
 
 ## 7. Log what was asked and answered
 
-When something goes wrong, you need to see the input, the prompt, the output and the error. Store these safely, with care for personal data. Logs are how you find the 5% of cases that your test set didn't cover, and they become part of the test set.
+When something goes wrong, you need enough context to understand the request, the output and the error. Redact sensitive data, restrict access and choose a retention period. Logs help you find cases your test set missed and add them to the next test run.
 
 ## 8. Think about the data you're sending
 

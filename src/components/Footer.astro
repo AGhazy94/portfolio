@@ -32,6 +32,20 @@ const year = new Date().getFullYear();
           </li>
         );
       })}
+      <li>
+        <a
+          href={profile.resume}
+          target="_blank"
+          rel="noreferrer noopener"
+          data-resume
+          class="flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-fg"
+        >
+          {ui.footer.resume}
+          <span data-resume-new-tab class="sr-only">
+            {ui.newTab}
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 </footer>

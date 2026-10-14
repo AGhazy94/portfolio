@@ -2,25 +2,33 @@
 import Icon from './Icon.astro';
 import { profile, ui } from '../data/profile';
 
+interface Props {
+  contactHref?: string;
+}
+
 const path = Astro.url.pathname;
 const home = path === '/';
+const { contactHref = home ? '#contact' : '/#contact' } = Astro.props;
+const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
 ---
 
 <header class="sticky top-0 z-40 border-b border-hairline bg-header backdrop-blur-lg backdrop-saturate-180">
   <div class="gutter">
     <div class="mx-auto flex h-13 max-w-page items-center justify-between gap-4">
-      <a href={home ? '#top' : '/'} class="-ml-2 flex min-h-11 items-center px-2 text-sm font-semibold text-fg">
+      <a
+        href={home ? '#top' : '/'}
+        class="-ml-2 flex min-h-11 items-center px-2 text-sm font-semibold whitespace-nowrap text-fg"
+      >
         {profile.name}
       </a>
 
       <div class="flex items-center">
-        <nav aria-label={ui.navLabel}>
-          {/* Phones keep the three page links; About and Contact are one scroll away on the home page. */}
+        <nav aria-label={ui.navLabel} class="max-sm:hidden">
           <ul class="flex items-center">
             {ui.nav.map(({ label, href, section }) => (
-              <li class:list={[section && 'max-sm:hidden']}>
+              <li>
                 <a
-                  href={href}
+                  href={section === 'contact' ? contactHref : href}
                   data-nav-link={home ? section : undefined}
                   aria-current={!section && path.startsWith(href) ? 'page' : undefined}
                   class="relative flex min-h-11 items-center px-2 text-[13px] text-muted transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
@@ -32,12 +40,19 @@ const home = path === '/';
           </ul>
         </nav>
 
+        <a
+          href={contactHref}
+          class="inline-flex min-h-11 items-center px-2 text-[13px] font-medium text-accent sm:hidden"
+        >
+          {contactLink.label}
+        </a>
+
         <button
           type="button"
           data-theme-toggle
           aria-pressed="false"
           hidden
-          class="group -mr-2 ml-1 grid size-11 cursor-pointer place-items-center text-fg"
+          class="group ml-1 grid size-11 cursor-pointer place-items-center text-fg sm:-mr-2"
         >
           <span class="sr-only">{ui.theme}</span>
           <span class="grid size-7 place-items-center rounded-full bg-surface-2 transition-opacity duration-200 hover:opacity-80">
@@ -47,12 +62,59 @@ const home = path === '/';
             />
           </span>
         </button>
+
+        <details data-mobile-menu class="group relative -mr-2 sm:hidden">
+          <summary class="grid size-11 cursor-pointer list-none place-items-center text-fg [&::-webkit-details-marker]:hidden">
+            <span class="sr-only">{ui.menu}</span>
+            <Icon name="menu" class="size-5 group-open:hidden" />
+            <Icon name="close" class="hidden size-5 group-open:block" />
+          </summary>
+          <nav
+            aria-label={ui.navLabel}
+            class="absolute top-full right-0 mt-2 w-56 rounded-field border border-divider bg-bg p-2"
+          >
+            <ul>
+              {ui.nav.map(({ label, href, section }) => (
+                <li>
+                  <a
+                    href={section === 'contact' ? contactHref : href}
+                    aria-current={!section && path.startsWith(href) ? 'page' : undefined}
+                    class="flex min-h-11 items-center rounded-field px-4 text-[15px] text-body hover:bg-surface hover:text-fg aria-[current]:bg-surface aria-[current]:text-fg"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </details>
       </div>
     </div>
   </div>
 </header>
 
 <script>
+  const menu = document.querySelector<HTMLDetailsElement>('[data-mobile-menu]')!;
+  const menuToggle = menu.querySelector('summary')!;
+  for (const link of menu.querySelectorAll('a')) {
+    link.addEventListener('click', () => {
+      menu.open = false;
+    });
+  }
+  document.addEventListener('click', (event) => {
+    if (menu.open && !menu.contains(event.target as Node)) menu.open = false;
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu.open) {
+      event.preventDefault();
+      menu.open = false;
+      menuToggle.focus();
+    }
+  });
+  matchMedia('(min-width: 640px)').addEventListener('change', ({ matches }) => {
+    if (matches) menu.open = false;
+  });
+
   const root = document.documentElement;
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
   const system = matchMedia('(prefers-color-scheme: dark)');

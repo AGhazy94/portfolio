@@ -3,6 +3,7 @@ title: Mistakes in Arabic RTL web apps, and how to avoid them
 description: The most common problems when a web app is shown in Arabic, from broken mirroring, mixed text, numbers, fonts and forms, with the fix for each.
 published: 2026-10-13
 updated: 2026-10-14
+service: arabic-rtl-web-apps
 imageAlt: Illustration of an app screen mirrored between left-to-right and right-to-left layouts with misplaced icons
 faq:
   - question: Is setting dir="rtl" enough to support Arabic?

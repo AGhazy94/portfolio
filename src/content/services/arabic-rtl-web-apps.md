@@ -1,5 +1,5 @@
 ---
-title: 'Arabic RTL Web App Developer | Arabic and English'
+title: 'Arabic RTL Web App Developer'
 heading: 'Web apps that work properly in Arabic and English.'
 description: 'Freelance full-stack developer and native Arabic speaker. I build web apps with real right-to-left layouts, bilingual content and Arabic-friendly forms.'
 cardTitle: 'Arabic and bilingual web apps'

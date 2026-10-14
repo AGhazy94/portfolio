@@ -7,7 +7,7 @@ import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import RichText from '../components/RichText.astro';
 import { formatDate } from '../lib/content';
-import { ui } from '../data/profile';
+import { profile, ui } from '../data/profile';
 
 interface Props {
   title: string;
@@ -26,6 +26,7 @@ interface Props {
   wide?: boolean;
   image?: ImageMetadata;
   imageAlt?: string;
+  headings?: { depth: number; slug: string; text: string }[];
 }
 
 const {
@@ -44,10 +45,13 @@ const {
   wide = false,
   image,
   imageAlt = '',
+  headings = [],
 } = Astro.props;
 
 const site = Astro.site!;
 const date = (value: Date) => value.toISOString().slice(0, 10);
+const contents = headings.filter(({ depth }) => depth === 2);
+const showUpdated = updated && (!published || updated.getTime() !== published.getTime());
 
 const trail = [{ label: ui.page.home, href: '/' }, ...crumbs];
 const imageUrl = image && new URL((await getImage({ src: image, width: 1200 })).src, site).href;
@@ -89,9 +93,9 @@ const graph = [
   >
     {ui.skipLink}
   </a>
-  <Header />
+  <Header contactHref="#contact" />
   <main id="content">
-    <article class="gutter pt-[clamp(32px,4cqi,56px)] pb-[clamp(64px,9cqi,120px)]">
+    <article class="gutter pt-8 pb-16 md:pt-12 md:pb-20">
       <div class="mx-auto max-w-page">
         <nav aria-label={ui.page.breadcrumbLabel} class="text-[13px] text-muted">
           <ol class="flex flex-wrap items-center gap-x-2">
@@ -99,7 +103,10 @@ const graph = [
               <li class="flex items-center gap-x-2">
                 {index > 0 && <span aria-hidden="true">/</span>}
                 {crumb.href ? (
-                  <a href={crumb.href} class="transition-colors duration-200 hover:text-fg">
+                  <a
+                    href={crumb.href}
+                    class="inline-flex min-h-6 items-center transition-colors duration-200 hover:text-fg"
+                  >
                     {crumb.label}
                   </a>
                 ) : (
@@ -124,19 +131,26 @@ const graph = [
             </h1>
             {lead && <p class="type-lead mt-6 max-w-[40ch] text-body">{lead}</p>}
             {(published || updated) && (
-              <p class="mt-5 text-[13px] text-muted">
+              <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted">
+                {type === 'article' && (
+                  <p>
+                    {ui.blog.by}{' '}
+                    <a href="/#about" rel="author" class="text-fg underline underline-offset-3">
+                      {profile.name}
+                    </a>
+                  </p>
+                )}
                 {published && (
-                  <>
+                  <p>
                     {ui.blog.published} <time datetime={date(published)}>{formatDate(published)}</time>
-                    {updated && ' · '}
-                  </>
+                  </p>
                 )}
-                {updated && (
-                  <>
+                {showUpdated && (
+                  <p>
                     {ui.blog.updated} <time datetime={date(updated)}>{formatDate(updated)}</time>
-                  </>
+                  </p>
                 )}
-              </p>
+              </div>
             )}
             {cta && (
               <a
@@ -164,9 +178,27 @@ const graph = [
         {wide ? (
           <slot />
         ) : (
-          <div class="prose-page mt-12">
-            <slot />
-          </div>
+          <>
+            {contents.length > 3 && (
+              <nav aria-label={ui.page.onThisPage} class="mt-8 max-w-[68ch]">
+                <details class="border-y border-divider py-3">
+                  <summary class="cursor-pointer py-1 text-[15px] font-medium text-fg">{ui.page.onThisPage}</summary>
+                  <ol class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+                    {contents.map(({ slug, text }) => (
+                      <li>
+                        <a href={`#${slug}`} class="text-accent underline underline-offset-3">
+                          {text}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+              </nav>
+            )}
+            <div class="prose-page mt-8">
+              <slot />
+            </div>
+          </>
         )}
 
         {faq.length > 0 && wide && (

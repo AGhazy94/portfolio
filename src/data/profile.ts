@@ -18,6 +18,7 @@ export type Project = {
   name: string;
   kind: string;
   href: string;
+  caseStudy: string;
   summary: string;
   // Names a client logo in src/assets/logos.json, rendered through Icon.astro.
   logo: 'scriptbee' | 'leicht';
@@ -28,14 +29,14 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
-  tagline:
-    'Full-stack developer building web apps and AI products, from LLM features and agents to the product around them.',
+  tagline: 'Full-stack developer. I build web apps, MVPs and AI features, and take over existing apps.',
   description:
-    'Freelance full-stack developer for hire. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps for startups and agencies.',
+    'Freelance full-stack developer in Egypt, working remotely. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
   upwork: 'https://www.upwork.com/freelancers/~01245a63e0d4efbb5a',
+  contra: 'https://contra.com/ahmed_ghazy',
   resume: '/ahmed-ghazy-resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
@@ -83,6 +84,7 @@ export const socials: Social[] = [
   { label: 'GitHub', href: 'https://github.com/AGhazy94' },
   { label: 'LinkedIn', href: profile.linkedin },
   { label: 'Upwork', href: profile.upwork },
+  { label: 'Contra', href: profile.contra },
   { label: 'Email', href: `mailto:${profile.email}` },
 ];
 
@@ -148,21 +150,23 @@ export const experience: Experience[] = [
 
 export const projects: Project[] = [
   {
-    name: 'Leicht Kitchen Designer',
-    kind: 'Kitchen configurator · Client work through caisy',
-    href: 'https://leicht.com/',
-    summary: 'Built the multi-language kitchen configurator on a headless CMS and GraphQL.',
-    logo: 'leicht',
-    tags: ['GraphQL', 'Headless CMS', 'i18n'],
-  },
-  {
     name: 'ScriptBee',
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
+    caseStudy: '/work/scriptbee/',
     summary:
-      'Built features across ScriptBee’s Next.js app: the chat interface, task widget and Trigger.dev background tasks, the Google Ads and Search Console connections, a Keyword Planner tool and the onboarding flow.',
+      'Built the chat experience, agent tools and background tasks that let users return to long-running work, plus Google Ads connections and onboarding.',
     logo: 'scriptbee',
     tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Google Ads API'],
+  },
+  {
+    name: 'LEICHT',
+    kind: 'Kitchen configurator and brand site · Through caisy',
+    href: 'https://leicht.com/',
+    caseStudy: '/work/leicht/',
+    summary: 'Built a multilingual kitchen configurator and brand-site features with CMS content and GraphQL.',
+    logo: 'leicht',
+    tags: ['GraphQL', 'Headless CMS', 'i18n', 'Qwik'],
   },
 ];
 
@@ -203,15 +207,16 @@ export const ui = {
   skipLink: 'Skip to Content',
   newTab: ' (opens in a new tab)',
   dateTo: 'to',
-  navLabel: 'In-page jump links',
+  navLabel: 'Main navigation',
+  menu: 'Navigation menu',
   socialLabel: 'Social media',
   tagsLabel: 'Technologies used',
   sections: [
     { id: 'services', title: 'How I can help' },
-    { id: 'projects', title: 'Selected projects' },
-    { id: 'testimonials', title: 'What clients and colleagues say' },
+    { id: 'projects', title: 'Selected work' },
+    { id: 'testimonials', title: 'Clients and colleagues' },
     { id: 'experience', title: 'Experience' },
-    { id: 'writing', title: 'Writing for people who hire' },
+    { id: 'writing', title: 'Notes for founders' },
     { id: 'about', title: 'About' },
     { id: 'contact', title: 'Let’s work together.' },
   ],
@@ -226,16 +231,18 @@ export const ui = {
   services: {
     more: 'Read more',
     indexTitle: 'Services',
-    indexHeading: 'Five ways to work with me',
-    indexLead: 'Each page below covers one situation: what I do, what the first two weeks look like and how to start.',
+    metaTitle: 'Freelance Full-Stack Development Services',
+    indexHeading: 'Web apps, AI features, and ongoing development',
+    indexLead: 'A first product, a feature your team needs, or an app that needs a new developer.',
     indexDescription:
       'Freelance full-stack development services: AI features and agents, taking over an existing web app, MVPs, web apps and Arabic RTL web apps.',
     provider: 'Service provider',
   },
   work: {
     indexTitle: 'Work',
-    indexHeading: 'Projects and what I did on them',
-    indexLead: 'Each case study lists only what I built and what the repository history backs.',
+    metaTitle: 'Case Studies: Next.js and AI Projects',
+    indexHeading: 'Selected work',
+    indexLead: 'Projects, my role, and the decisions behind the work.',
     indexDescription:
       'Case studies by Ahmed Ghazy, freelance full-stack developer: what was built, which parts were his and the stack.',
     visit: 'Visit the live site',
@@ -243,12 +250,14 @@ export const ui = {
   },
   blog: {
     indexTitle: 'Blog',
-    indexHeading: 'Articles for people deciding who to hire',
-    indexLead: 'Plain answers to the questions founders ask before they hire a developer.',
+    metaTitle: 'Articles on Hiring a Developer',
+    indexHeading: 'Practical notes for founders',
+    indexLead: 'Guides to scoping a product, taking over an app, and choosing a developer.',
     indexDescription:
       'Articles for founders and teams hiring a developer: adding AI to a product, taking over a codebase, MVP costs, fix or rebuild, and Arabic RTL.',
     published: 'Published',
     updated: 'Updated',
+    by: 'By',
     more: 'Read the article',
     homeMore: 'All articles',
   },
@@ -263,16 +272,18 @@ export const ui = {
   page: {
     faq: 'Questions people ask',
     relatedServices: 'Related services',
+    otherServices: 'Other services',
     relatedArticles: 'Related articles',
     breadcrumbLabel: 'Breadcrumb',
     home: 'Home',
+    onThisPage: 'On this page',
   },
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    availability: 'Open to client projects, retainers and remote full-time roles',
+    availability: 'Open to client projects and retainers',
     contact: 'Get in touch',
-    resume: 'View résumé',
+    work: 'View selected work',
   },
   experience: { resume: 'Full résumé', details: 'What I built' },
   resume: {
@@ -285,9 +296,10 @@ export const ui = {
   projects: { visit: 'Visit site' },
   testimonials: { via: 'Posted on' },
   contact: {
-    intro: `Open to client projects, retainers and remote full-time roles. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
+    intro: `Tell me what you are building or what needs fixing. You can also email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',
     honeypot: 'Leave this empty if you’re human',
+    optional: 'Optional',
     fields: {
       name: { label: 'Name', placeholder: 'Jane Smith' },
       email: { label: 'Email', placeholder: 'jane@company.com' },
@@ -350,6 +362,7 @@ export const ui = {
   },
   footer: {
     place: 'Egypt',
+    resume: 'Résumé',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },

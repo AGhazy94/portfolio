@@ -1,5 +1,5 @@
 ---
-title: 'ScriptBee: AI chat, agent tools and background tasks in Next.js'
+title: 'ScriptBee: AI chat and background tasks'
 description: Case study of the chat interface, background tasks, agent tools, Google Ads connection and onboarding I built on ScriptBee's Next.js app.
 kind: AI marketing platform · Client work through caisy
 order: 1

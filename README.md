@@ -6,21 +6,32 @@ on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
 
 ## Commands
 
-| Command            | Action                                           |
-| :----------------- | :----------------------------------------------- |
-| `npm install`      | Install dependencies                             |
-| `npm run dev`      | Start the dev server at `localhost:4321`         |
-| `npm run build`    | Build the static site to `./dist/`               |
-| `npm run preview`  | Serve the built site locally                     |
-| `npm run validate` | Type-check with `astro check` and run `prettier` |
-| `npm run format`   | Format every file with Prettier                  |
+| Command            | Action                                         |
+| :----------------- | :--------------------------------------------- |
+| `npm install`      | Install dependencies                           |
+| `npm run dev`      | Start the dev server at `localhost:4321`       |
+| `npm run build`    | Build the static site to `./dist/`             |
+| `npm run preview`  | Serve the built site locally                   |
+| `npm test`         | Run mocked IndexNow regression tests           |
+| `npm run validate` | Run tests, Astro checks, and formatting checks |
+| `npm run format`   | Format every file with Prettier                |
 
 ## Editing content
 
-All copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description,
+Home-page and interface copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description,
 experience, projects, the About statement and paragraphs, socials, and the interface strings in `ui` (including every
-contact form label and message). The portrait and project screenshots live in `src/assets/` and are resized at build
-time. The résumé is served from `public/ahmed-ghazy-resume.pdf`.
+contact form label and message). Long-form pages live in the Markdown collections under `src/content/services/`,
+`src/content/blog/`, and `src/content/work/`, validated by [`src/content.config.ts`](src/content.config.ts).
+
+Each article names a primary `service` and may name up to two `relatedArticles` by collection ID. These relationships
+drive related links on both articles and service pages. Draft articles and case studies remain excluded from production.
+
+The portrait and content illustrations live in `src/assets/` and are resized at build time. The current case-study
+covers are illustrations, not product screenshots. The résumé is served from `public/ahmed-ghazy-resume.pdf`.
+
+The home page leads with selected work, followed by compact service rows, named recommendations, experience, About,
+writing, and contact. Mobile navigation uses a native disclosure and keeps Contact visible. Articles include a visible
+byline and a section list generated from their Markdown headings.
 
 ## Contact form
 
@@ -28,6 +39,9 @@ The form in `src/components/Contact.astro` uses [Netlify Forms](https://docs.net
 detects it in the built HTML; without JS it posts and redirects to `/thanks/`, and with JS it submits with `fetch` and
 shows inline success and error states. Submissions and email notifications are configured in the Netlify UI. Test it on
 a Deploy Preview, not on production.
+
+The optional project details are labeled as optional. The hidden `page` field records the submission page, and header
+contact links stay on that page wherever a form exists. It is not a record of the visitor's original acquisition source.
 
 ## Theme and motion
 
@@ -43,6 +57,10 @@ reveal. It loads after the page is idle and is skipped entirely under `prefers-r
   There is no web app manifest; a portfolio doesn't need to install as an app.
 - The page head carries a JSON-LD `@graph` of WebSite, ProfilePage and Person. Bump `updated` in `profile.ts` when the
   copy changes.
+- Collection pages add their own structured data and use their content image for social previews. Article descriptions
+  and service relationships come from frontmatter; do not add ad-hoc metadata in components.
+- The IndexNow plugin runs only on production deploys, uses a 10-second deadline, and warns rather than failing a deploy
+  when a notification is rejected. Its tests mock the network and never notify search engines.
 
 ## Deploy
 

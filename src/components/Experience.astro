@@ -6,7 +6,7 @@ import { experience, ui } from '../data/profile';
 const section = ui.sections.find(({ id }) => id === 'experience')!;
 ---
 
-<section id={section.id} aria-labelledby="experience-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+<section id={section.id} aria-labelledby="experience-title" class="gutter border-t border-divider py-16 md:py-20">
   <div class="mx-auto max-w-page">
     <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-divider pb-8">
       <h2 id="experience-title" class="type-section text-fg">
@@ -17,7 +17,7 @@ const section = ui.sections.find(({ id }) => id === 'experience')!;
 
     <ol>
       {experience.map((job, index) => (
-        <li class="grid gap-x-12 gap-y-5 border-b border-divider py-[clamp(28px,4cqi,44px)] md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+        <li class="grid gap-x-12 gap-y-5 border-b border-divider py-[clamp(28px,4cqi,44px)] last:border-b-0 last:pb-0 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
           <div>
             <p class="text-[13px] font-medium text-muted tabular-nums">
               {job.start}

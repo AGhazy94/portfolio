@@ -11,10 +11,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "node --test netlify/plugins/indexnow/index.test.js",
     "check": "astro check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate": "astro check && prettier --check .",
+    "validate": "npm test && astro check && prettier --check .",
     "knip": "knip"
   },
   "dependencies": {
