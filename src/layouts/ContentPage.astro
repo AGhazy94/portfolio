@@ -103,7 +103,10 @@ const graph = [
               <li class="flex items-center gap-x-2">
                 {index > 0 && <span aria-hidden="true">/</span>}
                 {crumb.href ? (
-                  <a href={crumb.href} class="transition-colors duration-200 hover:text-fg">
+                  <a
+                    href={crumb.href}
+                    class="inline-flex min-h-6 items-center transition-colors duration-200 hover:text-fg"
+                  >
                     {crumb.label}
                   </a>
                 ) : (
@@ -178,8 +181,8 @@ const graph = [
           <>
             {contents.length > 3 && (
               <nav aria-label={ui.page.onThisPage} class="mt-8 max-w-[68ch]">
-                <details class="border-y border-divider py-4">
-                  <summary class="cursor-pointer text-[15px] font-medium text-fg">{ui.page.onThisPage}</summary>
+                <details class="border-y border-divider py-3">
+                  <summary class="cursor-pointer py-1 text-[15px] font-medium text-fg">{ui.page.onThisPage}</summary>
                   <ol class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
                     {contents.map(({ slug, text }) => (
                       <li>
