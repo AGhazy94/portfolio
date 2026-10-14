@@ -1,27 +1,31 @@
 ---
 import Icon from './Icon.astro';
 import { profile, ui } from '../data/profile';
+
+const path = Astro.url.pathname;
+const home = path === '/';
 ---
 
 <header class="sticky top-0 z-40 border-b border-hairline bg-header backdrop-blur-lg backdrop-saturate-180">
   <div class="gutter">
     <div class="mx-auto flex h-13 max-w-page items-center justify-between gap-4">
-      <a href="#top" class="-ml-2 flex min-h-11 items-center px-2 text-sm font-semibold text-fg">
+      <a href={home ? '#top' : '/'} class="-ml-2 flex min-h-11 items-center px-2 text-sm font-semibold text-fg">
         {profile.name}
       </a>
 
       <div class="flex items-center">
         <nav aria-label={ui.navLabel}>
-          {/* Phones drop Contact: the hero's "Get in touch" already goes there. */}
+          {/* Phones keep the three page links; About and Contact are one scroll away on the home page. */}
           <ul class="flex items-center">
-            {ui.sections.map(({ id, nav }) => (
-              <li class:list={[id === 'contact' && 'max-sm:hidden']}>
+            {ui.nav.map(({ label, href, section }) => (
+              <li class:list={[section && 'max-sm:hidden']}>
                 <a
-                  href={`#${id}`}
-                  data-nav-link={id}
-                  class="relative flex min-h-11 items-center px-2 text-[13px] text-muted transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current=location]:text-fg aria-[current=location]:after:scale-x-100 motion-reduce:after:transition-none"
+                  href={href}
+                  data-nav-link={home ? section : undefined}
+                  aria-current={!section && path.startsWith(href) ? 'page' : undefined}
+                  class="relative flex min-h-11 items-center px-2 text-[13px] text-muted transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
                 >
-                  {nav}
+                  {label}
                 </a>
               </li>
             ))}

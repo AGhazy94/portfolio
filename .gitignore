@@ -34,6 +34,7 @@ __pycache__/
 .claude/
 .cursor/
 design-system/
+skills-lock.json
 
 # Serena's project config is shared; a global `.serena/` ignore would otherwise drop it.
 !.serena/

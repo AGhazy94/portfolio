@@ -1,9 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import ResumeLink from './ResumeLink.astro';
-import { experience, profile, socials, ui } from '../data/profile';
+import { profile, socials, ui } from '../data/profile';
 
-const current = experience[0];
 const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
 ---
 
@@ -22,14 +21,11 @@ const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
       />
     </div>
 
-    <h1 id="hero-title" class="type-hero mt-8 text-fg">
-      {profile.name}
+    <h1 id="hero-title" class="mt-8">
+      <span class="type-hero block text-fg">{profile.name}</span>
+      <span class="sr-only">, </span>
+      <span class="type-lead mx-auto mt-6 block max-w-[38ch] text-balance text-body">{profile.tagline}</span>
     </h1>
-    <p class="mt-6 text-[17px] font-medium text-fg">{ui.hero.role}</p>
-    <p class="type-lead mt-3 max-w-[38ch] text-balance text-body">{profile.tagline}</p>
-    <p class="mt-4 text-[13px] leading-relaxed text-muted">
-      {`${ui.hero.at} ${current.company} · ${ui.hero.location}`}
-    </p>
 
     <div class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
       <a

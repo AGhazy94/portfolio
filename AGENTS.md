@@ -63,14 +63,31 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **Design source is the agreed v2 design,** kept in a local, git-ignored design system; without it,
   the tokens in [src/styles/global.css](src/styles/global.css) are the reference. Reread it before a
   UI change. Where the skill's generic output and the agreed design disagree, the design wins.
-- **Content lives in [src/data/profile.ts](src/data/profile.ts)** — copy, experience, projects,
-  About, the statement, and interface strings and labels in `ui` (form labels,
-  errors and messages included). Components render it; never hard-code copy in markup. `about`,
-  `ui.footer.credit`, `ui.contact.intro` and `ui.contact.failure` use `[text](url)` and
-  `**text**`, parsed by [src/lib/inline.ts](src/lib/inline.ts) for both the page and `llms.txt`.
+- **Content lives in two places.** [src/data/profile.ts](src/data/profile.ts) holds the home page
+  and every interface string: copy, experience, projects, About, the statement, and `ui` (form
+  labels, choices, errors, nav, section and card labels). Components render it; never hard-code copy
+  in markup. `about`, `ui.footer.credit`, `ui.contact.intro` and `ui.contact.failure` use
+  `[text](url)` and `**text**`, parsed by [src/lib/inline.ts](src/lib/inline.ts) for both the page
+  and `llms.txt`. **Long-form pages are Markdown content collections** defined in
+  [src/content.config.ts](src/content.config.ts): `src/content/services/` (one buyer situation per
+  page), `src/content/work/` (case studies) and `src/content/blog/` (decision articles). Frontmatter
+  carries the title, description (160 characters at most, enforced by the schema), dates and `faq`;
+  the body is plain Markdown, no raw HTML and no code fences that need highlighting (the CSP and
+  `syntaxHighlight: false` rule that out). Every claim in them must be one the commit history backs;
+  no invented prices, statistics, testimonials or client stories, and no future project written as
+  finished. Public copy lists what Ahmed did and does not add "what I didn't build" disclaimers;
+  omission is the rule, never a false or implied claim. YAML values holding `: ` need quotes in
+  frontmatter. Service pages are laid out from structured frontmatter (`lead`, `fit`, `gets`, `steps`,
+  `experience`, `terms`, `faq`) by `ServiceBody.astro`. A `work` entry with `status: draft` builds in
+  dev only and is the way to preview a finished site before the work exists. **Pictures** are found by
+  file name: `src/assets/content/<services|blog|work>/<id>.png|jpg|webp` (16:9, no text in the image),
+  with `imageAlt` in the frontmatter; they feed the hero, cards, JSON-LD and og:image. Briefs live in
+  the private `career-ops` repo.
 - **Every page renders through [src/layouts/Layout.astro](src/layouts/Layout.astro)**, which owns
   the title, description, canonical, OG/Twitter tags, icons and JSON-LD. No ad-hoc meta tags in a
-  page.
+  page. Collection pages go through [src/layouts/ContentPage.astro](src/layouts/ContentPage.astro),
+  which wraps Layout, adds the breadcrumb, FAQ block, contact form and the `BreadcrumbList` and
+  `FAQPage` nodes; each route adds its own `Service`, `Article`, `CollectionPage` or `WebPage` node.
 - Absolute URLs come from `Astro.site`, never a hard-coded domain.
 - **Generated files stay generated.** `/og.png`, the favicons, `robots.txt` and `llms.txt` are
   endpoints in `src/pages/`; change the data or
@@ -102,7 +119,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **Contact form is Netlify Forms.** Keep `name="contact"`, `data-netlify="true"`, the hidden
   `form-name`, the `netlify-honeypot` field, the `email` input name (it sets Reply-to) and the
   hidden `subject`. It must work without JS (posts to `/thanks/`); with JS it submits with
-  `fetch`. The CSP allows `form-action 'self'` only.
+  `fetch`. The CSP allows `form-action 'self'` only. The optional selects (`project-type`,
+  `budget`, `timeline`) come from `ui.contact.choices`; the form renders on the home page and at the
+  end of every collection page with identical fields, so Netlify sees one form.
 - **Deploys cost credits.** Each production deploy (a push to `dev`) costs 15 of 300 monthly Netlify
   credits. Test on a PR Deploy Preview, and say so before any push that deploys production.
 - **External links** get `target="_blank" rel="noreferrer noopener"` and a visually hidden
@@ -116,11 +135,16 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   Instrument Serif (display) + Geist (UI and body) via the Astro Fonts API (Fontsource), GSAP +
   ScrollTrigger, `@astrojs/sitemap`, satori + sharp for generated images. Deployed on Netlify
   ([netlify.toml](netlify.toml)), with Netlify Forms for the contact form.
-- Page order: Header → Hero (role, tagline, CTAs) → Projects → Experience → About (statement, facts) →
-  Contact → Footer. One component per section in `src/components/`; `/thanks/` is the no-JS form
-  success page (noindex, not in the sitemap).
-- Audience is recruiters and hiring managers. Positioning and job title are both "Senior Frontend
-  Engineer"; the backend work is supporting reach (tagline, About), never the headline.
+- Page order on `/`: Header → Hero (tagline, CTAs) → Services → Projects → Experience → Writing
+  → About (statement, facts) → Contact → Footer. One component per section in `src/components/`.
+  Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
+  (all from collections) and `/thanks/`, the no-JS form success page (noindex, not in the sitemap).
+- Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
+  Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps
+  and AI products (LLM features, agents), builds MVPs and takes over existing apps, TypeScript
+  front to back. Arabic/RTL is one service page, not the headline. The hero carries no employer or
+  location line. The Senior Frontend résumé variants carry the recruiter positioning; the site does
+  not. Python and retrieval (RAG) are not claimed anywhere until a shipped project backs them.
 - Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
 - **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill.
   The shared design is the reference; nothing is carried over

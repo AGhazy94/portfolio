@@ -1,0 +1,41 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import PageCards from '../../components/PageCards.astro';
+import { contentImage, getServices } from '../../lib/content';
+import { profile, ui } from '../../data/profile';
+
+const services = await getServices();
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: ui.services.indexTitle,
+    description: ui.services.indexDescription,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+    about: { '@id': new URL('/#person', Astro.site).href },
+  },
+];
+---
+
+<ContentPage
+  title={`${ui.services.indexTitle} | ${profile.name}`}
+  description={ui.services.indexDescription}
+  heading={ui.services.indexHeading}
+  nodes={nodes}
+  crumbs={[{ label: ui.services.indexTitle }]}
+>
+  <p>{ui.services.indexLead}</p>
+  <PageCards
+    class="mt-10 max-w-none"
+    columns={3}
+    items={services.map(({ id, data }) => ({
+      title: data.cardTitle,
+      summary: data.cardSummary,
+      href: `/services/${id}/`,
+      cta: ui.services.more,
+      image: contentImage('services', id),
+    }))}
+  />
+</ContentPage>

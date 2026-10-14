@@ -1,0 +1,42 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import PageCards from '../../components/PageCards.astro';
+import { contentImage, formatDate, getPosts } from '../../lib/content';
+import { profile, ui } from '../../data/profile';
+
+const posts = await getPosts();
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: ui.blog.indexTitle,
+    description: ui.blog.indexDescription,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+    about: { '@id': new URL('/#person', Astro.site).href },
+  },
+];
+---
+
+<ContentPage
+  title={`${ui.blog.indexTitle} | ${profile.name}`}
+  description={ui.blog.indexDescription}
+  heading={ui.blog.indexHeading}
+  nodes={nodes}
+  crumbs={[{ label: ui.blog.indexTitle }]}
+>
+  <p>{ui.blog.indexLead}</p>
+  <PageCards
+    class="mt-10 max-w-none"
+    columns={3}
+    items={posts.map((post) => ({
+      title: post.data.title,
+      summary: post.data.description,
+      href: `/blog/${post.id}/`,
+      meta: formatDate(post.data.published),
+      cta: ui.blog.more,
+      image: contentImage('blog', post.id),
+    }))}
+  />
+</ContentPage>

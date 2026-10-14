@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  items: { title: string; summary: string; href: string; meta?: string; cta: string; image?: ImageMetadata }[];
+  columns?: 2 | 3;
+  class?: string;
+}
+
+const { items, columns = 2, class: className } = Astro.props;
+---
+
+<ul
+  class:list={[
+    'grid gap-[clamp(14px,3cqi,28px)]',
+    columns === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-2',
+    className,
+  ]}
+>
+  {items.map((item) => (
+    <li class="group relative flex flex-col overflow-hidden rounded-card bg-surface transition-transform duration-300 motion-safe:hover:-translate-y-1">
+      {item.image && (
+        <Image
+          src={item.image}
+          alt=""
+          widths={[360, 540, 720]}
+          sizes="(min-width: 1024px) 340px, (min-width: 768px) 50vw, 100vw"
+          class="aspect-video w-full object-cover"
+        />
+      )}
+      <div class="flex flex-1 flex-col p-[clamp(20px,3cqi,28px)]">
+        {item.meta && <p class="text-[13px] text-muted">{item.meta}</p>}
+        <h3 class:list={['type-project text-fg', item.meta && 'mt-1']}>
+          {/* The stretched ::after makes the whole card the hit area while the link keeps a short name. */}
+          <a
+            href={item.href}
+            class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent"
+          >
+            {item.title}
+          </a>
+        </h3>
+        <p class="mt-3 text-base leading-[1.6] text-body md:text-[15px]">{item.summary}</p>
+        <p aria-hidden="true" class="mt-auto pt-6 text-[15px] font-medium text-accent">
+          {item.cta}{' '}
+          <span class="inline-block transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]">
+            ›
+          </span>
+        </p>
+      </div>
+    </li>
+  ))}
+</ul>

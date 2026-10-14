@@ -1,21 +1,38 @@
 ---
 import { createHash } from 'node:crypto';
+import type { ImageMetadata } from 'astro';
 import { Font, getImage } from 'astro:assets';
 import ScrollBar from '../components/ScrollBar.astro';
-import { experience, profile, socials } from '../data/profile';
+import { profile, socials } from '../data/profile';
 import { ogCard } from '../lib/graphics';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
+  description?: string;
   noindex?: boolean;
+  // Home carries the ProfilePage node; inner pages describe themselves through `nodes`.
+  home?: boolean;
+  type?: 'profile' | 'website' | 'article';
+  nodes?: Record<string, unknown>[];
+  // A page's own picture replaces the shared card in og:image and twitter:image.
+  image?: ImageMetadata;
+  imageAlt?: string;
 }
 
-const { title = profile.seoTitle, noindex: hidden = false } = Astro.props;
+const {
+  title = profile.seoTitle,
+  description = profile.description,
+  noindex: hidden = false,
+  home = false,
+  type = home ? 'profile' : 'website',
+  nodes = [],
+  image,
+  imageAlt,
+} = Astro.props;
 // Netlify sets PUBLIC_NOINDEX on deploy previews and branch deploys so only production is indexed.
 const noindex = hidden || import.meta.env.PUBLIC_NOINDEX === 'true';
 const siteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
-const { description } = profile;
 
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
@@ -24,9 +41,10 @@ const cardHash = createHash('sha256')
   .update(JSON.stringify(await ogCard()))
   .digest('hex')
   .slice(0, 8);
-const ogImage = new URL(`/og.png?v=${cardHash}`, site);
-const imageAlt = `${profile.name} — ${profile.title}`;
-const current = experience[0];
+const pageImage = image && (await getImage({ src: image, width: 1200, height: 630, format: 'jpg', fit: 'cover' }));
+const ogImage = pageImage ? new URL(pageImage.src, site) : new URL(`/og.png?v=${cardHash}`, site);
+const ogImageType = pageImage ? 'image/jpeg' : 'image/png';
+const ogImageAlt = (pageImage && imageAlt) || `${profile.name} — ${profile.title}`;
 const headshot = await getImage({ src: profile.portrait, width: 400, height: 400, format: 'jpg' });
 
 const personId = new URL('/#person', site).href;
@@ -43,31 +61,34 @@ const structuredData = {
       inLanguage: 'en',
       publisher: { '@id': personId },
     },
-    {
-      '@type': 'ProfilePage',
-      '@id': canonical.href,
-      url: canonical.href,
-      name: title,
-      isPartOf: { '@id': websiteId },
-      mainEntity: { '@id': personId },
-      dateCreated: profile.created,
-      dateModified: profile.updated,
-    },
+    ...(home
+      ? [
+          {
+            '@type': 'ProfilePage',
+            '@id': canonical.href,
+            url: canonical.href,
+            name: title,
+            isPartOf: { '@id': websiteId },
+            mainEntity: { '@id': personId },
+            dateCreated: profile.created,
+            dateModified: profile.updated,
+          },
+        ]
+      : []),
+    ...nodes,
     {
       '@type': 'Person',
       '@id': personId,
       name: profile.name,
-      jobTitle: current.role,
+      jobTitle: profile.title,
       description: profile.description,
       url: site.href,
       image: new URL(headshot.src, site).href,
       email: `mailto:${profile.email}`,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: profile.location.city,
         addressCountry: profile.location.country,
       },
-      worksFor: { '@type': 'Organization', name: current.company, url: current.href },
       alumniOf: { '@type': 'EducationalOrganization', name: profile.education.school },
       knowsAbout: profile.knowsAbout,
       knowsLanguage: profile.languages.map((language) => ({
@@ -96,25 +117,25 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     {siteVerification && <meta name="google-site-verification" content={siteVerification} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={type} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {!hidden && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content={ogImageType} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={imageAlt} />
-    <meta property="profile:first_name" content={profile.name.split(' ')[0]} />
-    <meta property="profile:last_name" content={profile.name.split(' ').slice(1).join(' ')} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {type === 'profile' && <meta property="profile:first_name" content={profile.name.split(' ')[0]} />}
+    {type === 'profile' && <meta property="profile:last_name" content={profile.name.split(' ').slice(1).join(' ')} />}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

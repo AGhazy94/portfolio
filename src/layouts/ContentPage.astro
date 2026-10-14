@@ -1,0 +1,208 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import RichText from '../components/RichText.astro';
+import { formatDate } from '../lib/content';
+import { ui } from '../data/profile';
+
+interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  eyebrow?: string;
+  lead?: string;
+  type?: 'website' | 'article';
+  nodes?: Record<string, unknown>[];
+  crumbs: { label: string; href?: string }[];
+  published?: Date;
+  updated?: Date;
+  faq?: { question: string; answer: string }[];
+  cta?: boolean;
+  // Wide pages lay their own sections out in the slot; the rest get a readable Markdown column.
+  wide?: boolean;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const {
+  title,
+  description,
+  heading,
+  eyebrow,
+  lead,
+  type = 'website',
+  nodes = [],
+  crumbs,
+  published,
+  updated,
+  faq = [],
+  cta = false,
+  wide = false,
+  image,
+  imageAlt = '',
+} = Astro.props;
+
+const site = Astro.site!;
+const date = (value: Date) => value.toISOString().slice(0, 10);
+
+const trail = [{ label: ui.page.home, href: '/' }, ...crumbs];
+const imageUrl = image && new URL((await getImage({ src: image, width: 1200 })).src, site).href;
+const graph = [
+  ...nodes.map((node) =>
+    imageUrl && ['Article', 'Service'].includes(String(node['@type'])) ? { ...node, image: imageUrl } : node,
+  ),
+  {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.label,
+      ...(crumb.href ? { item: new URL(crumb.href, site).href } : {}),
+    })),
+  },
+  ...(faq.length
+    ? [
+        {
+          '@type': 'FAQPage',
+          mainEntity: faq.map(({ question, answer }) => ({
+            '@type': 'Question',
+            name: question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: answer.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*/g, ''),
+            },
+          })),
+        },
+      ]
+    : []),
+];
+---
+
+<Layout title={title} description={description} type={type} nodes={graph} image={image} imageAlt={imageAlt}>
+  <a
+    href="#content"
+    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+  >
+    {ui.skipLink}
+  </a>
+  <Header />
+  <main id="content">
+    <article class="gutter pt-[clamp(32px,4cqi,56px)] pb-[clamp(64px,9cqi,120px)]">
+      <div class="mx-auto max-w-page">
+        <nav aria-label={ui.page.breadcrumbLabel} class="text-[13px] text-muted">
+          <ol class="flex flex-wrap items-center gap-x-2">
+            {trail.map((crumb, index) => (
+              <li class="flex items-center gap-x-2">
+                {index > 0 && <span aria-hidden="true">/</span>}
+                {crumb.href ? (
+                  <a href={crumb.href} class="transition-colors duration-200 hover:text-fg">
+                    {crumb.label}
+                  </a>
+                ) : (
+                  <span aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+
+        <header class:list={['mt-10 grid gap-10', image && 'lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14']}>
+          <div>
+            {eyebrow && <p class="text-[13px] font-medium text-muted">{eyebrow}</p>}
+            <h1
+              class:list={[
+                'text-fg',
+                eyebrow && 'mt-2',
+                image || wide ? 'type-statement max-w-[20ch]' : 'type-section max-w-[24ch]',
+              ]}
+            >
+              {heading}
+            </h1>
+            {lead && <p class="type-lead mt-6 max-w-[40ch] text-body">{lead}</p>}
+            {(published || updated) && (
+              <p class="mt-5 text-[13px] text-muted">
+                {published && (
+                  <>
+                    {ui.blog.published} <time datetime={date(published)}>{formatDate(published)}</time>
+                    {updated && ' · '}
+                  </>
+                )}
+                {updated && (
+                  <>
+                    {ui.blog.updated} <time datetime={date(updated)}>{formatDate(updated)}</time>
+                  </>
+                )}
+              </p>
+            )}
+            {cta && (
+              <a
+                href="#contact"
+                class="mt-8 inline-flex min-h-12 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+              >
+                {ui.hero.contact}
+              </a>
+            )}
+          </div>
+          {image && (
+            <div class="overflow-hidden rounded-media bg-surface">
+              <Image
+                src={image}
+                alt={imageAlt}
+                widths={[480, 720, 1080]}
+                sizes="(min-width: 1024px) 520px, 100vw"
+                loading="eager"
+                class="aspect-video w-full object-cover"
+              />
+            </div>
+          )}
+        </header>
+
+        {wide ? (
+          <slot />
+        ) : (
+          <div class="prose-page mt-12">
+            <slot />
+          </div>
+        )}
+
+        {faq.length > 0 && wide && (
+          <section
+            aria-labelledby="faq-title"
+            class="mt-[clamp(56px,8cqi,96px)] grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-14"
+          >
+            <h2 id="faq-title" class="type-project text-fg">
+              {ui.page.faq}
+            </h2>
+            <div class="grid gap-8">
+              {faq.map(({ question, answer }) => (
+                <div>
+                  <h3 class="text-[19px] leading-snug font-semibold text-fg">{question}</h3>
+                  <RichText source={answer} class="prose-page mt-2" />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+        {faq.length > 0 && !wide && (
+          <section aria-labelledby="faq-title" class="prose-page mt-16">
+            <h2 id="faq-title">{ui.page.faq}</h2>
+            {faq.map(({ question, answer }) => (
+              <>
+                <h3>{question}</h3>
+                <RichText source={answer} />
+              </>
+            ))}
+          </section>
+        )}
+
+        <slot name="after" />
+      </div>
+    </article>
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

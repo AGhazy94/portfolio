@@ -1,0 +1,41 @@
+---
+import ContentPage from '../../layouts/ContentPage.astro';
+import PageCards from '../../components/PageCards.astro';
+import { contentImage, getWork } from '../../lib/content';
+import { profile, ui } from '../../data/profile';
+
+const projects = await getWork();
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'CollectionPage',
+    '@id': url,
+    url,
+    name: ui.work.indexTitle,
+    description: ui.work.indexDescription,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+    about: { '@id': new URL('/#person', Astro.site).href },
+  },
+];
+---
+
+<ContentPage
+  title={`${ui.work.indexTitle} | ${profile.name}`}
+  description={ui.work.indexDescription}
+  heading={ui.work.indexHeading}
+  nodes={nodes}
+  crumbs={[{ label: ui.work.indexTitle }]}
+>
+  <p>{ui.work.indexLead}</p>
+  <PageCards
+    class="mt-10 max-w-none"
+    items={projects.map((project) => ({
+      title: project.data.status === 'draft' ? `[Draft] ${project.data.title}` : project.data.title,
+      summary: project.data.description,
+      href: `/work/${project.id}/`,
+      meta: project.data.kind,
+      cta: ui.work.more,
+      image: contentImage('work', project.id),
+    }))}
+  />
+</ContentPage>

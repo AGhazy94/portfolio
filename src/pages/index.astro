@@ -2,8 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Writing from '../components/Writing.astro';
 import Experience from '../components/Experience.astro';
 import Projects from '../components/Projects.astro';
+import Testimonials from '../components/Testimonials.astro';
 import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
@@ -11,7 +14,7 @@ import ResumeDialog from '../components/ResumeDialog.astro';
 import { ui } from '../data/profile';
 ---
 
-<Layout>
+<Layout home>
   <a
     href="#content"
     class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
@@ -21,8 +24,11 @@ import { ui } from '../data/profile';
   <Header />
   <main id="content">
     <Hero />
+    <Services />
     <Projects />
+    <Testimonials />
     <Experience />
+    <Writing />
     <About />
     <Contact />
   </main>

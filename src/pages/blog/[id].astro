@@ -1,0 +1,69 @@
+---
+import { render } from 'astro:content';
+import ContentPage from '../../layouts/ContentPage.astro';
+import PageCards from '../../components/PageCards.astro';
+import { contentImage, getPosts, getServices } from '../../lib/content';
+import { profile, ui } from '../../data/profile';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const image = contentImage('blog', entry.id);
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const personId = new URL('/#person', Astro.site).href;
+const services = await getServices();
+const nodes = [
+  {
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    mainEntityOfPage: url,
+    url,
+    headline: data.title,
+    description: data.description,
+    datePublished: data.published.toISOString(),
+    dateModified: data.updated.toISOString(),
+    inLanguage: 'en',
+    author: { '@id': personId },
+    publisher: { '@id': personId },
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+  },
+];
+---
+
+<ContentPage
+  title={`${data.title} | ${profile.name}`}
+  description={data.description}
+  heading={data.title}
+  type="article"
+  nodes={nodes}
+  crumbs={[{ label: ui.blog.indexTitle, href: '/blog/' }, { label: data.title }]}
+  published={data.published}
+  updated={data.updated}
+  faq={data.faq}
+  image={image}
+  imageAlt={data.imageAlt}
+>
+  <Content />
+  <section slot="after" aria-labelledby="related-title" class="mt-20">
+    <h2 id="related-title" class="type-project text-fg">
+      {ui.page.relatedServices}
+    </h2>
+    <PageCards
+      class="mt-6"
+      columns={3}
+      items={services.map((service) => ({
+        title: service.data.cardTitle,
+        summary: service.data.cardSummary,
+        href: `/services/${service.id}/`,
+        cta: ui.services.more,
+        image: contentImage('services', service.id),
+      }))}
+    />
+  </section>
+</ContentPage>
