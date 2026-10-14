@@ -1,5 +1,5 @@
 ---
-title: 'Web App and Website Development | Full-Stack Developer'
+title: 'Hire a Full-Stack Next.js Developer for Your Web App'
 heading: 'A full-stack developer to build your web app or website.'
 description: 'Freelance full-stack developer. I build web apps and websites in TypeScript from front to back, from design to login, payments and deployment.'
 cardTitle: 'Build your web app or website'

@@ -36,7 +36,7 @@ export const profile = {
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
   upwork: 'https://www.upwork.com/freelancers/~01245a63e0d4efbb5a',
-  contra: 'https://contra.com/ahmed_ghazy_ikfarlod',
+  contra: 'https://contra.com/ahmed_ghazy',
   resume: '/ahmed-ghazy-resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
@@ -228,6 +228,7 @@ export const ui = {
   services: {
     more: 'Read more',
     indexTitle: 'Services',
+    metaTitle: 'Freelance Full-Stack Development Services',
     indexHeading: 'Five ways to work with me',
     indexLead: 'Each page below covers one situation: what I do, what the first two weeks look like and how to start.',
     indexDescription:
@@ -236,6 +237,7 @@ export const ui = {
   },
   work: {
     indexTitle: 'Work',
+    metaTitle: 'Case Studies: Next.js and AI Projects',
     indexHeading: 'Projects and what I did on them',
     indexLead: 'Each case study lists only what I built and what the repository history backs.',
     indexDescription:
@@ -245,6 +247,7 @@ export const ui = {
   },
   blog: {
     indexTitle: 'Blog',
+    metaTitle: 'Articles on Hiring a Developer',
     indexHeading: 'Articles for people deciding who to hire',
     indexLead: 'Plain answers to the questions founders ask before they hire a developer.',
     indexDescription:
@@ -272,7 +275,7 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    availability: 'Open to client projects, retainers and remote full-time roles',
+    availability: 'Open to client projects and retainers',
     contact: 'Get in touch',
     resume: 'View résumé',
   },
@@ -287,7 +290,7 @@ export const ui = {
   projects: { visit: 'Visit site' },
   testimonials: { via: 'Posted on' },
   contact: {
-    intro: `Open to client projects, retainers and remote full-time roles. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
+    intro: `Open to client projects and retainers. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',
     honeypot: 'Leave this empty if you’re human',
     fields: {

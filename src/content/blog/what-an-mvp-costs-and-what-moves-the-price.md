@@ -1,5 +1,5 @@
 ---
-title: What an MVP costs, and what moves the price
+title: How much does an MVP cost? What moves the price
 description: Why MVP quotes differ so much, the eight things that change the price, and how to get a number you can trust before you start.
 published: 2026-10-13
 updated: 2026-10-13

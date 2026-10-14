@@ -1,5 +1,5 @@
 ---
-title: 'AI Product Development, LLM Features and Agents | Freelance Developer'
+title: 'AI Agent and LLM Developer for Hire | AI Product Development'
 heading: 'I build web apps with AI features and agents in them.'
 description: 'Freelance full-stack developer for AI products. LLM features, chat interfaces, agent tools and background tasks inside a real web app, not a demo.'
 cardTitle: 'Build AI features and agents'
