@@ -31,11 +31,12 @@ export const profile = {
   tagline:
     'Full-stack developer building web apps and AI products, from LLM features and agents to the product around them.',
   description:
-    'Freelance full-stack developer for hire. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps for startups and agencies.',
+    'Freelance full-stack developer in Egypt, working remotely. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
   upwork: 'https://www.upwork.com/freelancers/~01245a63e0d4efbb5a',
+  contra: 'https://contra.com/ahmed_ghazy_ikfarlod',
   resume: '/ahmed-ghazy-resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
@@ -83,6 +84,7 @@ export const socials: Social[] = [
   { label: 'GitHub', href: 'https://github.com/AGhazy94' },
   { label: 'LinkedIn', href: profile.linkedin },
   { label: 'Upwork', href: profile.upwork },
+  { label: 'Contra', href: profile.contra },
   { label: 'Email', href: `mailto:${profile.email}` },
 ];
 
