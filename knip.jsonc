@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema-jsonc.json",
+  // Netlify loads local build plugins by path from netlify.toml.
+  "entry": ["netlify/plugins/*/index.js"],
   // Skill tooling runs from the CLI (`node scripts/…`), so nothing imports it.
   "ignore": [".claude/**"],
   // src/lib/render.ts reads these WOFF files by path for satori; knip can't see a path string.
