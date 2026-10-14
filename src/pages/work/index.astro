@@ -28,7 +28,8 @@ const nodes = [
 >
   <p>{ui.work.indexLead}</p>
   <PageCards
-    class="mt-10 max-w-none"
+    slot="after"
+    class="mt-10"
     items={projects.map((project) => ({
       title: project.data.status === 'draft' ? `[Draft] ${project.data.title}` : project.data.title,
       summary: project.data.description,
