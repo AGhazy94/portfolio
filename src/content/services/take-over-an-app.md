@@ -29,12 +29,12 @@ steps:
   - title: 'First fixes and first feature'
     text: "The first fixes and the first small feature, shipped to production if the deployment is safe to use, or to a staging copy if it isn't."
 experience:
-  - 'Since 2022 most of my work has been in codebases that other people set up. At caisy I built features on Next.js, tRPC and Drizzle codebases, including schema and migrations for Stripe billing and subscriptions, and AI translation of content fields in the editor.'
+  - "Since 2022 most of my work has been in codebases other people set up. The largest was caisy's CMS editor, a repository with more than 5,000 commits. I read the data model first, then traced one feature from the screen through the API to the database before I changed anything. At caisy I also built features on Next.js, tRPC and Drizzle codebases, including schema and migrations for Stripe billing and subscriptions."
   - "On ScriptBee's Next.js app I joined a team's repository and built the chat interface, background tasks, the Google Ads connection and the onboarding flow. The [case study](/work/scriptbee/) has the details. At Smart Bricks I moved data fetching to the Next.js App Router and built the Storybook component library inside an existing product."
 terms:
-  - 'I work in TypeScript, React, Next.js and Node.js, with PostgreSQL on the data side.'
-  - 'Pricing depends on the size of the app and how much you need me. I quote the audit as a fixed piece of work, then we agree either a monthly retainer for ongoing work or a price per task. You see the number before I start.'
-  - "Tell me in the form below what the app does, which stack it uses and what has gone wrong, and I'll reply with next steps."
+  - 'Most of the apps I have taken on were TypeScript, React and Next.js, with Node.js and PostgreSQL behind them.'
+  - 'The audit is a fixed piece of work with a fixed price. After it, we agree a monthly retainer or a price per task, depending on how much you need me.'
+  - "Tell me what the app does, which stack it uses and what has gone wrong, and I'll reply with next steps."
 faq:
   - question: 'How long does the first audit take?'
     answer: 'It depends on the size of the app. I look at the repository and the deployment first, then give you a time estimate for the audit before I start it. A small app is days of reading, not weeks.'

@@ -2,7 +2,7 @@
 title: How to take over a codebase from a developer who left
 description: A practical checklist for founders and new developers, from getting access to shipping a first small change without breaking production.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-10-14
 imageAlt: Illustration of a developer reading a handover checklist next to a laptop showing an unfamiliar codebase
 faq:
   - question: What should I do first when my developer leaves?
@@ -50,7 +50,7 @@ Never use real customer data or real payment keys for this. Create separate test
 
 ## 5. Check backups and restore one
 
-A backup you have never restored is a hope, not a backup. Find where the database backups go, and restore the latest one into a test database. If there are none, set them up before the first change.
+Until you have restored a backup, you don't know that it works. Find where the database backups go, and restore the latest one into a test database. If there are none, set them up before the first change.
 
 ## 6. Read the code in the right order
 
@@ -64,6 +64,8 @@ Read the structure first, not the details:
 6. The tests, if any, to see what the old developer considered important.
 
 Note what is solid, what is surprising and what looks risky. Don't fix anything yet.
+
+The largest codebase I joined was caisy's CMS editor, a repository with more than 5,000 commits. Reading it file by file would have taken weeks. I read the data model first, then picked one feature and traced it from the screen through the API to the database. After one full trace, the rest of the code had a map to hang on.
 
 ## 7. Understand how a change reaches production
 

@@ -24,9 +24,6 @@ export type Project = {
   tags: string[];
 };
 
-// Counts from January 2022, when the engineering work on the résumé starts.
-const yearsOfExperience = '5+ years';
-
 export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
@@ -38,6 +35,7 @@ export const profile = {
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
+  upwork: 'https://www.upwork.com/freelancers/~01245a63e0d4efbb5a',
   resume: '/ahmed-ghazy-resume.pdf',
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
@@ -60,7 +58,7 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  ogLine: `${yearsOfExperience} building web apps and AI products`,
+  ogLine: 'Building web apps and AI products',
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
@@ -77,13 +75,14 @@ export const statement = 'Working in quality taught me to look at software from 
 
 export const about: string[] = [
   'I didn’t start in engineering. Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account.',
-  'Most of my work is on the frontend, but I don’t stop at the UI. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
+  'I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.',
 ];
 
 export const socials: Social[] = [
   { label: 'GitHub', href: 'https://github.com/AGhazy94' },
   { label: 'LinkedIn', href: profile.linkedin },
+  { label: 'Upwork', href: profile.upwork },
   { label: 'Email', href: `mailto:${profile.email}` },
 ];
 
@@ -112,7 +111,6 @@ export const experience: Experience[] = [
     summary: 'Headless CMS.',
     highlights: [
       'Rebuilt the blog category and article pages of caisy’s marketing site from styled-components to Tailwind CSS, and rewrote a class-based photo-gallery slider as a hooks component.',
-      'Fixed the re-renders that made the editor slow when typing or switching documents.',
       'Built features on Next.js, tRPC and Drizzle codebases: schema and migrations for Stripe billing and subscriptions, users, workspaces and chat.',
       'Added AI translation of content fields to the editor.',
     ],
@@ -128,8 +126,9 @@ export const experience: Experience[] = [
     summary: 'Fractional real-estate investment platform.',
     highlights: [
       'Built features and shared components for the investor-facing web app. The product details are confidential.',
+      'Built the marketing team’s emails in Arabic and English, with right-to-left layouts that held up across email apps.',
     ],
-    tags: ['React', 'TypeScript', 'Sass'],
+    tags: ['React', 'TypeScript', 'Sass', 'HTML email', 'Arabic RTL'],
   },
   {
     start: '2022',
@@ -161,9 +160,42 @@ export const projects: Project[] = [
     kind: 'AI marketing platform · Client work through caisy',
     href: 'https://www.scriptbee.ai/',
     summary:
-      'Built ScriptBee’s Next.js app: the chat interface, task widget and Trigger.dev background tasks, the Google Ads and Search Console connections, a Keyword Planner tool and the onboarding flow.',
+      'Built features across ScriptBee’s Next.js app: the chat interface, task widget and Trigger.dev background tasks, the Google Ads and Search Console connections, a Keyword Planner tool and the onboarding flow.',
     logo: 'scriptbee',
     tags: ['Next.js', 'Trigger.dev', 'TypeScript', 'Google Ads API'],
+  },
+];
+
+export type Testimonial = { quote: string; name: string; context: string; source: 'LinkedIn' | 'Upwork' };
+
+// Quoted word for word; an ellipsis marks a cut. Each one is public on the source profile.
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      'Ahmed is a great engineer who was conscious of my team’s deadlines to deliver even when we had given him last minute tasks. He was reliable and available to us at any time we needed to introduce something new or make a change.',
+    name: 'Haya Doughan',
+    context: 'Stake marketing team · 2022 to 2024',
+    source: 'LinkedIn',
+  },
+  {
+    quote: 'He’s met my expectations and even went beyond. I would definitely hire him again.',
+    name: 'Upwork client',
+    context: 'Convert two design screens into HTML · 2022',
+    source: 'Upwork',
+  },
+  {
+    quote:
+      'Ahmed was great! Highly attentive and will do what it takes to get the job done. I will definitely rehire Ahmed whenever I have another project.',
+    name: 'Upwork client',
+    context: 'Modify a media player · 2022',
+    source: 'Upwork',
+  },
+  {
+    quote:
+      'Ahmed is the kind of senior engineer who makes everyone around him better without making a big deal of it. … he hands over challenging work instead of holding onto it, and he makes sure people have the support to grow through it.',
+    name: 'Mohammed Ahmed Abdus',
+    context: 'Full-stack engineer at Smart Bricks · 2026',
+    source: 'LinkedIn',
   },
 ];
 
@@ -177,6 +209,7 @@ export const ui = {
   sections: [
     { id: 'services', title: 'How I can help' },
     { id: 'projects', title: 'Selected projects' },
+    { id: 'testimonials', title: 'What clients and colleagues say' },
     { id: 'experience', title: 'Experience' },
     { id: 'writing', title: 'Writing for people who hire' },
     { id: 'about', title: 'About' },
@@ -213,7 +246,7 @@ export const ui = {
     indexHeading: 'Articles for people deciding who to hire',
     indexLead: 'Plain answers to the questions founders ask before they hire a developer.',
     indexDescription:
-      'Articles for founders and teams hiring a freelance developer: taking over a codebase, MVP costs, fix or rebuild, and Arabic RTL.',
+      'Articles for founders and teams hiring a developer: adding AI to a product, taking over a codebase, MVP costs, fix or rebuild, and Arabic RTL.',
     published: 'Published',
     updated: 'Updated',
     more: 'Read the article',
@@ -250,6 +283,7 @@ export const ui = {
     frameTitle: 'Résumé PDF preview',
   },
   projects: { visit: 'Visit site' },
+  testimonials: { via: 'Posted on' },
   contact: {
     intro: `Open to client projects, retainers and remote full-time roles. Write to me below, email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',

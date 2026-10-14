@@ -7,7 +7,7 @@ cardSummary: 'One developer from first commit to launch. A small, working first 
 order: 3
 updated: 2026-10-14
 imageAlt: 'Illustration of a small product taking shape from a sketch to a live app on a laptop'
-lead: 'One developer from first commit to launch. A small, working first version of your product that real people can use, not a demo.'
+lead: 'One developer from first commit to launch. A small, working first version of your product that real people can sign up for and use.'
 fit:
   - 'You have an idea and no technical co-founder, and want one person you can talk to directly.'
   - "You have a budget and a date, and you want a clear list of what is and isn't in version one."

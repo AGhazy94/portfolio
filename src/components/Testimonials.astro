@@ -1,0 +1,42 @@
+---
+import { profile, testimonials, ui } from '../data/profile';
+
+const section = ui.sections.find(({ id }) => id === 'testimonials')!;
+const sources = {
+  LinkedIn: `${profile.linkedin}/details/recommendations/`,
+  Upwork: profile.upwork,
+};
+---
+
+<section id={section.id} aria-labelledby="testimonials-title" class="gutter pb-[clamp(80px,12cqi,160px)]">
+  <div class="mx-auto max-w-page">
+    <h2 id="testimonials-title" class="type-section text-fg">
+      {section.title}
+    </h2>
+
+    <ul class="mt-[clamp(32px,5cqi,56px)] grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
+      {testimonials.map((item) => (
+        <li class="flex">
+          <figure class="flex w-full flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)]">
+            <blockquote class="text-base leading-[1.6] text-fg md:text-[17px]">
+              <p>“{item.quote}”</p>
+            </blockquote>
+            <figcaption class="mt-auto pt-6 text-[13px] leading-[1.6] text-muted">
+              <span class="block font-medium text-body">{item.name}</span>
+              {item.context} · {ui.testimonials.via}{' '}
+              <a
+                href={sources[item.source]}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
+              >
+                {item.source}
+                <span class="sr-only">{ui.newTab}</span>
+              </a>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

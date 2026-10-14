@@ -31,11 +31,11 @@ steps:
   - title: 'A working first version'
     text: 'The first working version of the feature, behind a sign-in, tried against your examples, with logging turned on. After that we improve it using real examples from real use.'
 experience:
-  - 'On ScriptBee, an AI marketing platform, I built the chat interface, a task widget and the background tasks that run chat work through Trigger.dev. I built agent tools, including a Google Keyword Planner tool and a YouTube video analysis tool, and the Google Ads connection and onboarding. At caisy, I added AI translation of content fields to a CMS editor.'
-  - 'The [ScriptBee case study](/work/scriptbee/) has the details. I also work AI-assisted every day, using Claude Code and other AI coding tools.'
+  - "On ScriptBee, an AI marketing platform, an agent run could take two to ten minutes. Inside a normal request, users who refreshed the page lost the answer. I moved chat work into Trigger.dev background tasks and built the Tasks page, so a run kept going and the user could come back to it. I also built two of the agent's tools, a Google Keyword Planner tool and a YouTube video analysis tool, plus the Google Ads connection."
+  - 'At caisy, I added AI translation of content fields to a CMS editor. The [ScriptBee case study](/work/scriptbee/) has the details. I also work AI-assisted every day, using Claude Code and other AI coding tools.'
 terms:
-  - 'I work in TypeScript, React, Next.js and Node.js with PostgreSQL, and I call models through their APIs. I quote a fixed price for a scoped first version, or a monthly price for ongoing work, and you see the number before I start. Model usage is billed by the provider to your account, so you see that cost directly.'
-  - 'Tell me in the form below what the AI should do, who will use it and what data it works with.'
+  - 'I build in TypeScript, React, Next.js and Node.js with PostgreSQL, and call models through their APIs. A scoped first version gets a fixed price; ongoing work gets a monthly one. Model usage is billed by the provider to your account, so that cost is never hidden inside my invoice.'
+  - 'Use the form below to describe what the AI should do, who will use it and what data it works with.'
 faq:
   - question: 'What kind of AI features do you build?'
     answer: 'Features that call a hosted language model from inside a product, such as a chat interface, a tool the model can call, content translation or summaries, and long-running tasks that run in the background. I build them with the app around them, so they work with real accounts, data and billing.'

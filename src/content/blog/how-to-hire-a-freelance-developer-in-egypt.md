@@ -3,6 +3,7 @@ title: How to hire a freelance developer in Egypt
 description: What to check before hiring a freelance developer in Egypt, from where to look, how to judge the work, time zones, payment, contracts and who owns the code.
 published: 2026-10-13
 updated: 2026-10-13
+status: draft
 imageAlt: Illustration of a world map with a connection line to a laptop and a hiring checklist
 faq:
   - question: Is it safe to hire a freelance developer in Egypt?

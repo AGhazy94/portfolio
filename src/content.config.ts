@@ -37,6 +37,7 @@ const blog = defineCollection({
     description: z.string().max(160),
     published: z.coerce.date(),
     updated: z.coerce.date(),
+    status: z.enum(['published', 'draft']).default('published'),
     imageAlt: z.string().optional(),
     faq,
   }),

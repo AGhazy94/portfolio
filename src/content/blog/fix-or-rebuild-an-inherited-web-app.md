@@ -2,7 +2,7 @@
 title: Fix or rebuild? How to decide on an inherited web app
 description: A way to decide whether an inherited web app should be repaired or rewritten, with the signs that point each way and a safer middle path.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-10-14
 imageAlt: Illustration of a worn building being repaired on one side and a new one framed on the other
 faq:
   - question: Is a rewrite ever the right call?
@@ -13,7 +13,7 @@ faq:
     answer: You, with a written audit from someone who has read the code. The person who would earn more from a rewrite should not be the only voice.
 ---
 
-Someone gives you a web app that they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". It's sometimes true, often expensive and rarely the first step. Here is a way to decide.
+Someone gives you a web app that they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". Sometimes that's right. Usually it's expensive, and it's almost never the first step. Here is how I decide.
 
 ## Why the question is hard
 
@@ -43,6 +43,18 @@ A short audit answers these. [Taking over a codebase](/blog/how-to-take-over-a-c
 - Changes are slow but they don't break unrelated things.
 
 In this case, a rewrite would spend months to reach where you already are. Fix the worst problems, add tests around what matters and keep shipping.
+
+## What fixing looked like on a real app
+
+In 2026 I audited the frontend of an AI platform for real-estate investors. The app worked, and it had the kind of problems that make a rewrite tempting. I listed them, ranked them by how much they hurt users, and fixed them in that order:
+
+- **Expired sessions failed silently.** A user whose login had expired got an empty page, with no message and no way back to sign-in. One shared request client with a single handler for expired sessions fixed it on every page.
+- **A missing setting looked like a backend outage.** The app started without a required setting and then failed on every request. It now checks its settings at startup and refuses to run without them.
+- **One broken section took down the whole page.** Each section of the property page got its own error boundary, so a failure stays inside that section.
+
+Separately, moving the property pages' data fetching to the server with the Next.js App Router fixed three things at once: a slow first load, requests that waited on each other, and pages that search engines saw as empty.
+
+None of this needed a rewrite, and the product stayed live throughout. Error reports went down, and more property pages showed up in Google.
 
 ## Signs that point to rebuilding
 

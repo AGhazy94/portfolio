@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getPosts, getServices, getWork } from '../lib/content';
 import { toPlainText } from '../lib/inline';
-import { about, experience, profile, projects, socials, statement } from '../data/profile';
+import { about, experience, profile, projects, socials, statement, testimonials } from '../data/profile';
 
 // Follows llmstxt.org: H1, blockquote, free-form sections, then H2 sections that only hold link lists.
 export const GET: APIRoute = async ({ site }) => {
@@ -14,7 +14,7 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     `> ${profile.description}`,
     '',
-    `${experience[0].role} at ${experience[0].company}. Based in ${profile.location.label}.`,
+    `${profile.title}, freelance. Based in ${profile.location.label}.`,
     '',
     statement,
     '',
@@ -26,6 +26,10 @@ export const GET: APIRoute = async ({ site }) => {
       const note = job.note ? ` (${job.note})` : '';
       return `- ${job.role}, ${company}${note}, ${job.start}–${job.end}: ${job.summary} ${job.highlights.join(' ')} Tech: ${job.tags.join(', ')}.`;
     }),
+    '',
+    '**What clients and colleagues say**',
+    '',
+    ...testimonials.map((item) => `- "${item.quote}" ${item.name}, ${item.context} (on ${item.source})`),
     '',
     '**Skills**',
     '',

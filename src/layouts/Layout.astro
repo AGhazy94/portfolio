@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import type { ImageMetadata } from 'astro';
 import { Font, getImage } from 'astro:assets';
 import ScrollBar from '../components/ScrollBar.astro';
-import { experience, profile, socials } from '../data/profile';
+import { profile, socials } from '../data/profile';
 import { ogCard } from '../lib/graphics';
 import '../styles/global.css';
 
@@ -45,7 +45,6 @@ const pageImage = image && (await getImage({ src: image, width: 1200, height: 63
 const ogImage = pageImage ? new URL(pageImage.src, site) : new URL(`/og.png?v=${cardHash}`, site);
 const ogImageType = pageImage ? 'image/jpeg' : 'image/png';
 const ogImageAlt = (pageImage && imageAlt) || `${profile.name} — ${profile.title}`;
-const current = experience[0];
 const headshot = await getImage({ src: profile.portrait, width: 400, height: 400, format: 'jpg' });
 
 const personId = new URL('/#person', site).href;
@@ -90,7 +89,6 @@ const structuredData = {
         '@type': 'PostalAddress',
         addressCountry: profile.location.country,
       },
-      worksFor: { '@type': 'Organization', name: current.company, url: current.href },
       alumniOf: { '@type': 'EducationalOrganization', name: profile.education.school },
       knowsAbout: profile.knowsAbout,
       knowsLanguage: profile.languages.map((language) => ({

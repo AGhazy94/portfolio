@@ -30,11 +30,11 @@ steps:
   - title: 'Shared pieces, side by side'
     text: 'The shared layout pieces fixed or built, such as the header, forms, buttons and navigation, with Arabic and English running side by side on a preview link.'
 experience:
-  - 'Since 2022 I have built multi-language products: dealer landing pages for German and Swiss markets, and a multi-language kitchen configurator on a headless CMS and GraphQL.'
-  - "Arabic is my first language, and I'm a full-stack developer, so I can build the layout and the logic behind it. The [work page](/work/) lists what I did on each project."
+  - "From 2022 to 2024 I built Stake's marketing emails in Arabic and English. Email apps are strict about right-to-left text: several ignored CSS direction, so direction and alignment had to sit on every table and cell, and two-column layouts had to be reordered for Arabic, not just flipped."
+  - 'I have also built multi-language products since 2022: the interface of a German e-learning app translated into German, dealer landing pages for German and Swiss markets, and a multi-language kitchen configurator on a headless CMS and GraphQL. Arabic is my first language, and I build the logic behind the layout too.'
 terms:
-  - 'I work in TypeScript, React and Next.js with Node.js and PostgreSQL behind them. I quote a fixed price for an audit or a scoped build, or a monthly price for ongoing work, and you see the number before I start.'
-  - 'Tell me in the form below what you are building and which languages and regions it serves.'
+  - 'An audit of your Arabic screens or a scoped build is a fixed price. Ongoing work is monthly.'
+  - 'Write below what you are building and which languages and regions it serves.'
 faq:
   - question: 'Is RTL just a CSS direction switch?'
     answer: 'No. Setting the direction flips the text flow, but spacing, icons, animations, mixed Arabic and English text, numbers and form fields all need decisions of their own. [Mistakes in Arabic RTL web apps](/blog/mistakes-in-arabic-rtl-web-apps/) lists the ones I see most.'

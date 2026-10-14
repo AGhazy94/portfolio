@@ -2,7 +2,7 @@
 title: Mistakes in Arabic RTL web apps, and how to avoid them
 description: The most common problems when a web app is shown in Arabic, from broken mirroring, mixed text, numbers, fonts and forms, with the fix for each.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-10-14
 imageAlt: Illustration of an app screen mirrored between left-to-right and right-to-left layouts with misplaced icons
 faq:
   - question: Is setting dir="rtl" enough to support Arabic?
@@ -13,13 +13,17 @@ faq:
     answer: Usually not a separate design, but you do need a design review in Arabic. Text length, line height and the position of some elements change.
 ---
 
-Many products add Arabic by translating the text and setting the page direction to right-to-left. The result looks almost right, which is the problem: the small errors are the ones a native reader notices at once and a team without an Arabic reader never sees. These are the mistakes I'd check first.
+Many products add Arabic by translating the text and setting the page direction to right-to-left. The result looks almost right, which is the problem: the small errors are the ones a native reader notices at once and a team without an Arabic reader never sees.
+
+Arabic is my first language, and from 2022 to 2024 I built Stake's marketing emails in Arabic and English. Email is the least forgiving place for right-to-left text, so most of this list comes from there and from the Arabic apps I use every day. These are the mistakes I'd check first.
 
 ## 1. Treating RTL as a direction switch
 
 Setting `dir="rtl"` on the page flips the flow of text and the order of inline items. It doesn't fix the things you built with fixed left and right values.
 
 **The fix:** use logical CSS properties. Write `margin-inline-start` and `padding-inline-end` instead of `margin-left` and `padding-right`, and `text-align: start` instead of `left`. Modern CSS and most frameworks support these, and the layout then mirrors by itself.
+
+Email is harder. Several email apps ignored the CSS direction in Stake's emails, so `dir` and `align` had to sit on the tables and cells themselves.
 
 ## 2. Mirroring things that should not mirror
 
@@ -32,9 +36,11 @@ Mirror the layout, navigation, progress bars and arrows that point in a directio
 
 **The fix:** decide the rule once per icon, and keep a short list. Test arrows, chevrons and sliders by clicking through them.
 
+Mirroring is also a layout decision, not only a flip. In a two-column email built from tables, the columns had to be reordered for the Arabic version so the reading order made sense, not just swapped by a setting.
+
 ## 3. Mixed Arabic and English text
 
-An Arabic sentence with an English product name, a URL or a number inside it is where bidirectional text goes wrong. Punctuation can jump to the wrong side, and an English phrase can reorder itself.
+An Arabic sentence with an English product name, a URL or a number inside it is where bidirectional text goes wrong. Punctuation can jump to the wrong side, and an English phrase can reorder itself. As a reader, this is the mistake I run into most in Arabic apps.
 
 **The fix:** wrap embedded fragments with the right direction (the `<bdi>` element, or `dir="auto"` for user-written content), and test strings that mix both languages. Always test with real examples, such as names with numbers and sentences ending in a brand name.
 
@@ -46,7 +52,7 @@ Email addresses, URLs and phone numbers read left to right, even inside an Arabi
 
 ## 5. Numbers chosen by accident
 
-Arabic readers may expect either Western digits (0 to 9) or Arabic-Indic digits, depending on the country and the product. Browsers and libraries may pick one for you, and different screens can end up showing different digits.
+Arabic readers may expect either Western digits (0 to 9) or Arabic-Indic digits, depending on the country and the product. Browsers and libraries may pick one for you, and different screens can end up showing different digits. I have seen both kinds of digits on the same screen of an app I use.
 
 **The fix:** choose a style on purpose. When you format numbers, dates and currency, set the locale and the numbering system explicitly, and test prices, dates and phone numbers in every place they appear.
 
@@ -88,6 +94,7 @@ Before you launch:
 2. Click every arrow and slider.
 3. Enter an Arabic name, an English name, an email address and a phone number in each form.
 4. Check prices, dates and counts.
-5. Read each screen aloud as a customer would.
+5. Switch language on every page and check that you land on the same page in the other language. On one multi-language site I fixed a language switch that sent people to a 404.
+6. Read each screen aloud as a customer would.
 
-Arabic is my first language, and I build [bilingual and Arabic web apps](/services/arabic-rtl-web-apps/) as a full-stack developer. If you have a product that looks almost right in Arabic, the form is a good place to send it.
+I build [bilingual and Arabic web apps](/services/arabic-rtl-web-apps/) as a full-stack developer. If you have a product that looks almost right in Arabic, send it through the form below.

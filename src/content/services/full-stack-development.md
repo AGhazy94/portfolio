@@ -1,5 +1,5 @@
 ---
-title: 'Freelance Full-Stack Developer to Build Your Web App'
+title: 'Web App and Website Development | Full-Stack Developer'
 heading: 'A full-stack developer to build your web app or website.'
 description: 'Freelance full-stack developer. I build web apps and websites in TypeScript from front to back, from design to login, payments and deployment.'
 cardTitle: 'Build your web app or website'
@@ -16,7 +16,7 @@ fit:
 notFit: "A five-page brochure site is cheaper and quicker on a website builder. I'm useful when the site needs accounts, a database, a content system, integrations or custom behaviour."
 gets:
   - title: 'Both halves, built together'
-    text: 'The interface, the server, the database, sign-in, forms and deployment, from one person who sees the whole picture.'
+    text: 'The interface, the server, the database, sign-in, forms and deployment. When a button needs a new table, I add the table.'
   - title: 'A site that is quick and findable'
     text: 'Pages that load fast, have proper titles and structure and work on a phone. I check accessibility and search basics before launch.'
   - title: 'Content you can change'
@@ -29,11 +29,11 @@ steps:
   - title: 'The first complete flow, live'
     text: 'The first complete page or flow, live, with its data and forms working.'
 experience:
-  - 'I have built customer-facing and internal apps in Next.js and React since 2022: dealer landing pages with a lead form for German and Swiss markets, a multi-language kitchen configurator on a headless CMS and GraphQL, a chat and task interface for an AI marketing product, and billing and subscription tables for a CMS company.'
+  - 'I have built customer-facing and internal apps in Next.js and React since 2022: dealer landing pages with a lead form for German and Swiss markets, a multi-language kitchen configurator on a headless CMS and GraphQL, a chat and task interface for an AI marketing product, and Stripe billing and subscription tables for a client app built through caisy.'
   - 'The [work page](/work/) lists projects and what I did on each.'
 terms:
   - 'I work in TypeScript, React and Next.js on the front end, Node.js and PostgreSQL on the back end, and Tailwind CSS for styling. I have also built sites on headless CMS platforms.'
-  - 'I scope by pages and features, quote a fixed price for a clear scope or a monthly price for ongoing work, and send the numbers before I start. I work in short cycles with a live preview, so you never wait weeks to see progress.'
+  - 'I scope by pages and features and quote before any work starts: fixed for a clear scope, monthly for ongoing work. You get a live preview link from the first week.'
   - "Send a short description in the form below: what the site or app should do, who uses it and when you'd like it live."
 faq:
   - question: 'Do you build simple websites too?'

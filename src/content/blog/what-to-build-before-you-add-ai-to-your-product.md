@@ -29,11 +29,15 @@ Before building, collect 20 to 50 real examples: the input, and the output you w
 
 Without a test set, every change is a guess, and a fix for one case quietly breaks another.
 
+Use real data where you can. When I built a Google Keyword Planner tool for ScriptBee's agent, Google Ads test accounts returned no real keyword data, which made the tool hard to judge until it ran against a real account.
+
 ## 3. Start with the simplest thing
 
 Often one model call with a clear prompt does the job. Reach for tools and multi-step agents only when a single call can't. Each extra step adds cost, waiting time and a new way to fail.
 
 When you do need an agent, give it a small set of tools with clear names, and limit what each can do. A tool that can read is safer than one that can write, and a tool that can write should ask for confirmation.
+
+Be strict about each tool's inputs. The model reads the tool's description and its parameter list, and when those were loose, the agent called my tools with vague inputs. Tight parameter types and plain descriptions fixed more than prompt changes did.
 
 ## 4. Keep a person in the loop for anything that matters
 
@@ -47,7 +51,7 @@ Model calls can take seconds, and agent tasks can take minutes. Don't make the u
 - Run long tasks in the background, with a progress indicator and a way to come back.
 - Handle failure: a retry, a clear message and a way to continue.
 
-This is ordinary product work, and it is where many AI demos fall apart.
+On ScriptBee, an agent run took two to ten minutes. When the chat ran inside a normal request, a user who refreshed the page lost the answer. I moved chat work into background tasks on Trigger.dev and added a Tasks page, so a run kept going after the tab closed and the user could come back to the result. The hardest part was not the model call. It was getting live progress from the background run back onto the chat screen.
 
 ## 6. Set limits and watch the cost
 
@@ -84,8 +88,6 @@ Say clearly that a feature is AI-generated, and give users a way to correct or r
 6. Improve using their examples, and add them to the test set.
 7. Only then widen the scope.
 
-## Where I fit
+## If you're planning one
 
-I build the product around the AI feature: the interface, the calls to the model, the tools, the background tasks, the data and the deployment. I've done this on ScriptBee, where I built the chat interface and the background tasks, and on caisy, where I added AI translation to an editor. I build with hosted models through their APIs.
-
-If you have a feature in mind, [the AI page](/services/ai-products-and-agents/) explains how I'd approach it, and the contact form is the place to describe the job and the data it needs.
+Most of this list is product work, not model work, and that is the part I build: the interface, the model calls, the tools, the background tasks and the data around them. [The AI page](/services/ai-products-and-agents/) shows how I'd start, and the form below is the place to describe the job and the data it needs.

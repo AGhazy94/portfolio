@@ -3,10 +3,12 @@ import { getCollection } from 'astro:content';
 
 export const getServices = async () => (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 
-export const getPosts = async () =>
-  (await getCollection('blog')).sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
-
 // Drafts exist so the finished site can be previewed in dev; production never builds or lists them.
+export const getPosts = async () =>
+  (await getCollection('blog', ({ data }) => !import.meta.env.PROD || data.status === 'published')).sort(
+    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+  );
+
 export const getWork = async () =>
   (await getCollection('work', ({ data }) => !import.meta.env.PROD || data.status === 'shipped')).sort(
     (a, b) => a.data.order - b.data.order,
