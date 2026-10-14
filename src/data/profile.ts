@@ -284,7 +284,6 @@ export const ui = {
     availability: 'Open to client projects and retainers',
     contact: 'Get in touch',
     work: 'View selected work',
-    resume: 'View résumé',
   },
   experience: { resume: 'Full résumé', details: 'What I built' },
   resume: {
@@ -363,6 +362,7 @@ export const ui = {
   },
   footer: {
     place: 'Egypt',
+    resume: 'Résumé',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },
