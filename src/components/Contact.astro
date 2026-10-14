@@ -41,6 +41,8 @@ const buttonClass =
     >
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="subject" data-remove-prefix value={ui.contact.subject} />
+      {/* Netlify stores it with each message, so every lead shows the page that brought it. */}
+      <input type="hidden" name="page" value={Astro.url.pathname} />
       <p class="hidden">
         <label>
           {ui.contact.honeypot} <input name="bot-field" tabindex="-1" autocomplete="off" />

@@ -121,7 +121,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   hidden `subject`. It must work without JS (posts to `/thanks/`); with JS it submits with
   `fetch`. The CSP allows `form-action 'self'` only. The optional selects (`project-type`,
   `budget`, `timeline`) come from `ui.contact.choices`; the form renders on the home page and at the
-  end of every collection page with identical fields, so Netlify sees one form.
+  end of every collection page with identical fields, so Netlify sees one form. A hidden `page`
+  field carries the path it was sent from; with Netlify's server-side Web Analytics it replaces a
+  tracking script, so there are no cookies and no consent banner.
 - **Deploys cost credits.** Each production deploy (a push to `dev`) costs 15 of 300 monthly Netlify
   credits. Test on a PR Deploy Preview, and say so before any push that deploys production.
 - **External links** get `target="_blank" rel="noreferrer noopener"` and a visually hidden
