@@ -26,36 +26,12 @@ const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '
   nodes={nodes}
   crumbs={[{ label: privacy.title }]}
 >
-  {privacy.sections.map(({ heading, body, table }) => (
+  {privacy.sections.map(({ heading, body }) => (
     <>
       <h2 id={slug(heading)}>{heading}</h2>
       {body.map((paragraph) => (
         <RichText source={paragraph} />
       ))}
-      {table && (
-        <table class="table-auto! wrap-normal">
-          <caption class="sr-only">{privacy.cookies.caption}</caption>
-          <thead>
-            <tr>
-              {privacy.cookies.columns.map((column) => (
-                <th scope="col">{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {privacy.cookies.rows.map(([name, provider, purpose, duration]) => (
-              <tr>
-                <td>
-                  <span class="block font-medium wrap-anywhere text-fg">{name}</span>
-                  <span class="block text-[13px] text-muted">{provider}</span>
-                </td>
-                <td>{purpose}</td>
-                <td>{duration}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
     </>
   ))}
   <p>
