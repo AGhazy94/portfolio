@@ -342,6 +342,9 @@ export const ui = {
       messageShort: 'Add a bit more detail, at least 10 characters.',
     },
     submit: 'Send message',
+    // Information at the point of collection, not a consent checkbox: replying rests on the visitor's own request.
+    privacy:
+      'By submitting this form, you acknowledge that your personal data will be processed in accordance with the [Privacy Notice](/privacy/). Your details are used solely to respond to your enquiry.',
     sending: 'Sending…',
     failure: `Your message didn’t send. Check your connection and try again, or email [${profile.email}](mailto:${profile.email}).`,
     success: {
@@ -362,154 +365,187 @@ export const ui = {
   },
   consent: {
     label: 'Cookie consent',
-    title: 'This site uses cookies',
-    body: 'I use Google Analytics cookies to understand how visitors use the site and which pages and campaigns bring enquiries. They are set only if you accept. [Privacy notice](/privacy/)',
+    title: 'This website uses cookies',
+    body: 'This website uses analytics cookies provided by Google Analytics to understand how visitors use the site and to measure which pages and campaigns lead to enquiries. These cookies are set only with your consent, and you can change your choice at any time under Cookie settings. For more information, please see the [Privacy Notice](/privacy/).',
     allow: 'Accept',
     decline: 'Reject',
   },
   privacy: {
-    title: 'Privacy',
+    title: 'Privacy Notice',
     metaTitle: 'Privacy Notice',
-    heading: 'Privacy notice',
+    heading: 'Privacy Notice',
     description:
-      'How ahmed-ghazy.com collects and uses personal data: the contact form, cookies and Google Analytics, who receives the data, how long it is kept and your rights.',
-    lead: 'How this site collects and uses personal data, and the choices you have.',
-    updated: 'Last updated 21 October 2026.',
-    change: 'Change cookie settings',
+      'Privacy Notice for ahmed-ghazy.com: personal data collected, purposes and legal bases, cookies, recipients, international transfers, retention and your rights.',
+    lead: 'This Privacy Notice explains how personal data is collected and used when you visit ahmed-ghazy.com or contact me through it.',
+    updated: 'Last updated: 21 October 2026.',
+    change: 'Cookie settings',
     sections: [
       {
-        heading: 'Who I am',
+        heading: 'Introduction',
         body: [
-          `This site is run by ${profile.name}, a freelance developer based in Egypt, who is responsible for the personal data it collects. Contact: [${profile.email}](mailto:${profile.email}).`,
+          'This Privacy Notice applies to the website ahmed-ghazy.com (the “Website”). It describes the personal data collected through the Website, the purposes and legal bases for processing it, who receives it, how long it is kept and the rights available to you. In this notice, “I”, “me” and “my” refer to Ahmed Ghazy.',
         ],
       },
       {
-        heading: 'What I collect',
+        heading: 'Data controller',
         body: [
-          '**Contact form.** Your name, email address and message, the optional answers you choose (project type, budget, timeline) and the page you sent the form from.',
-          '**How you found the site.** With the form, the campaign tags of the link you first arrived through (utm_source, utm_medium, utm_campaign, utm_content, utm_term), the first page you opened and the domain of the site that referred you. These are kept between pages only if you accept cookies; otherwise they are sent only when you use the form on the page you arrived on.',
-          '**Analytics, if you accept cookies.** Pages viewed, time on the site, browser, device type, approximate location, the site or campaign that referred you, and a record that a message was sent. Analytics never receives the content of the form.',
-          '**Server logs.** Netlify, the host, records page requests to count visits. This uses no cookies.',
+          `The controller responsible for the processing of personal data on this Website is ${profile.name}, freelance software developer, Egypt. For any question or request relating to your personal data, please contact [${profile.email}](mailto:${profile.email}).`,
         ],
       },
       {
-        heading: 'Why I use it and the legal basis',
+        heading: 'Personal data collected',
         body: [
-          'I use contact form data to reply to your enquiry and to discuss any work that follows, because you asked me to (steps taken at your request before a contract) and because I have a legitimate interest in answering messages.',
-          'I use analytics and first-visit data to understand which pages and campaigns bring enquiries, based on your consent. You can withdraw consent at any time.',
+          '**Contact form.** Your name, email address and message, any optional information you select (project type, budget and timeline), and the page from which the form was submitted.',
+          '**Source of your visit.** Submitted with the contact form: the campaign parameters of the link through which you first arrived (utm_source, utm_medium, utm_campaign, utm_content and utm_term), the first page you visited and the domain of the referring website. These are retained between pages only where you have accepted cookies; otherwise they are submitted only when you use the form on the page on which you arrived.',
+          '**Analytics data, where you have given consent.** Pages viewed, time spent on the Website, browser, device type, approximate location, the referring website or campaign, and the fact that an enquiry was submitted. The content of the contact form is never sent to Google Analytics.',
+          '**Server logs.** Netlify, the hosting provider, records requests made to the Website, including IP addresses, to deliver the Website, keep it secure and count visits. No cookies are used for this purpose.',
+        ],
+      },
+      {
+        heading: 'Purposes and legal bases',
+        body: [
+          '**Responding to enquiries.** Contact form data is processed to respond to your enquiry and to take steps at your request before entering into a contract (Article 6(1)(b) GDPR), and on the basis of my legitimate interest in answering messages sent to me (Article 6(1)(f) GDPR).',
+          '**Analytics and attribution.** Analytics data and the record of your first visit are processed to understand how the Website is used and which pages and campaigns lead to enquiries, on the basis of your consent (Article 6(1)(a) GDPR).',
+          '**Operating the Website.** Server logs are processed on the basis of my legitimate interest in operating a secure and reliable website (Article 6(1)(f) GDPR).',
+          '**Legal obligations.** Where we enter into a contract, certain records are kept to comply with tax and accounting obligations (Article 6(1)(c) GDPR).',
         ],
       },
       {
         heading: 'Cookies and similar technologies',
         body: [
-          'Google Analytics cookies are set only after you click **Accept**. If you click **Reject** or ignore the banner, Google Analytics does not load and nothing is sent to Google. Google signals and ad personalisation are turned off. The site also uses your browser’s local storage for the items below.',
+          'Google Analytics cookies are placed only after you select **Accept** in the cookie banner. If you select **Reject**, or make no choice, Google Analytics is not loaded and no data is sent to Google. Google signals and advertising personalisation are disabled. The Website also uses your browser’s local storage, which is not shared with any third party, for the purposes listed below. Your choice is kept for 12 months, after which you are asked again. You can change it at any time through **Cookie settings** in the footer of every page.',
         ],
         table: true,
       },
       {
-        heading: 'Who receives the data',
+        heading: 'Recipients of personal data',
         body: [
-          '**Netlify, Inc.** hosts the site, stores contact form submissions and keeps server logs.',
-          '**Google LLC** provides Google Analytics, only if you accept cookies.',
-          'Both process data in the United States. Google LLC is certified under the EU-US Data Privacy Framework, and Netlify relies on the EU Standard Contractual Clauses in its Data Processing Agreement. I do not sell your data or share it with anyone else.',
+          '**Netlify, Inc.** (United States) hosts the Website, stores contact form submissions and keeps server logs. Netlify screens form submissions for spam using **Akismet**, a service of Automattic Inc. (United States).',
+          '**Hostinger International Ltd.** provides the email service that receives notifications of new form submissions and any correspondence that follows.',
+          '**Google LLC** (United States) provides Google Analytics, only where you have given consent.',
+          'Personal data is not sold, rented or otherwise disclosed to any other party, except where required by law.',
         ],
       },
       {
-        heading: 'How long I keep it',
+        heading: 'International data transfers',
         body: [
-          'Enquiries that do not lead to work are deleted within 12 months. If we work together, I keep our correspondence for as long as the project needs it and for as long as tax and legal records require. Either way, I delete it sooner if you ask, unless the law requires me to keep it. Google Analytics data is kept for 14 months. The first-visit record in your browser expires after 90 days. Server logs follow Netlify’s retention.',
+          'Netlify, Automattic and Google process personal data in the United States. Such transfers rely on the safeguards these providers offer, including the EU-U.S. Data Privacy Framework, under which Google LLC is certified, and the European Commission’s Standard Contractual Clauses incorporated in Netlify’s Data Processing Agreement.',
         ],
       },
       {
-        heading: 'Security',
+        heading: 'Data retention',
         body: [
-          'The site is served only over HTTPS. Contact form submissions are stored in Netlify and only I can read them.',
+          'Enquiries that do not lead to an engagement are deleted within 12 months of receipt. Where we work together, correspondence is retained for the duration of the engagement and thereafter for as long as required by tax and accounting law. Personal data is deleted earlier on request, unless its retention is required by law.',
+          'Google Analytics data is retained for 14 months. The record of your first visit is deleted from your browser after 90 days. Server logs are retained in accordance with Netlify’s policies.',
+        ],
+      },
+      {
+        heading: 'Data security',
+        body: [
+          'The Website is served exclusively over HTTPS. Contact form submissions are accessible only to me, through my Netlify and email accounts.',
         ],
       },
       {
         heading: 'Your rights',
         body: [
-          'You can ask to access, correct or delete your personal data, to restrict or object to its use, and to receive a copy of it. You can withdraw cookie consent at any time with the button below; this does not affect anything done before you withdrew it. To make a request, email me, and I will reply within one month. You can also complain to the data protection authority where you live.',
-          'I make no automated decisions about you, and I do not use your data for profiling.',
+          'Subject to applicable law, you have the right to access your personal data, to have it rectified or erased, to restrict or object to its processing, and to receive it in a portable format. Where processing is based on consent, you may withdraw your consent at any time without affecting the lawfulness of processing carried out before its withdrawal.',
+          `To exercise any of these rights, please contact [${profile.email}](mailto:${profile.email}). I may ask you to confirm your identity before acting on a request, and I will respond within one month. You also have the right to lodge a complaint with the data protection authority of your country of residence.`,
+          'No decisions are made about you solely by automated means, and your personal data is not used for profiling.',
         ],
       },
       {
         heading: 'Children',
-        body: ['This site is meant for businesses and is not directed at children under 16.'],
+        body: [
+          'The Website is intended for businesses and is not directed at children under the age of 16. I do not knowingly collect personal data from children.',
+        ],
       },
       {
-        heading: 'Changes to this notice',
-        body: ['If this notice changes, the date below is updated.'],
+        heading: 'Changes to this Privacy Notice',
+        body: [
+          'This Privacy Notice may be updated from time to time. The date of the latest revision is shown below. Where a change affects what you have consented to, your consent will be requested again.',
+        ],
       },
     ],
     cookies: {
-      caption: 'Cookies and local storage used on this site',
+      caption: 'Cookies and local storage used on this website',
       columns: ['Name and provider', 'Purpose', 'Duration'],
       rows: [
-        ['_ga', 'Google Analytics', 'Distinguishes visitors (only after you accept)', '2 years'],
-        ['_ga_<ID>', 'Google Analytics', 'Keeps the current session (only after you accept)', '2 years'],
-        ['first-touch (local storage)', 'This site', 'How you first arrived (only after you accept)', '90 days'],
-        ['analytics-consent (local storage)', 'This site', 'Remembers your cookie choice', 'Until you clear it'],
-        ['theme (local storage)', 'This site', 'Remembers light or dark theme', 'Until you clear it'],
+        ['_ga', 'Google Analytics', 'Distinguishes unique visitors. Set only with consent.', '2 years'],
+        ['_ga_<ID>', 'Google Analytics', 'Maintains the session state. Set only with consent.', '2 years'],
+        [
+          'first-touch (local storage)',
+          'This website',
+          'Records the campaign, first page and referring domain of your first visit. Stored only with consent.',
+          '90 days',
+        ],
+        ['analytics-consent (local storage)', 'This website', 'Stores your cookie choice.', '12 months'],
+        ['theme (local storage)', 'This website', 'Stores your preferred colour theme.', 'Until cleared'],
       ],
     },
   },
   legal: {
-    title: 'Legal notice',
+    title: 'Legal Notice',
     metaTitle: 'Legal Notice',
-    heading: 'Legal notice',
+    heading: 'Legal Notice',
     description:
-      'Legal notice for ahmed-ghazy.com: who runs the site, hosting, liability for content and links, and copyright.',
-    lead: 'Who runs this site and the terms that apply to its content.',
-    updated: 'Last updated 21 October 2026.',
+      'Legal Notice for ahmed-ghazy.com: website operator, hosting, disclaimers, third-party links, copyright and governing law.',
+    lead: 'Information about the operator of this website and the terms that apply to its use.',
+    updated: 'Last updated: 21 October 2026.',
     sections: [
       {
-        heading: 'Site operator',
+        heading: 'Website operator',
         body: [
           `${profile.name}, freelance software developer, Egypt.`,
           `Email: [${profile.email}](mailto:${profile.email})`,
         ],
       },
       {
-        heading: 'Hosting',
-        body: ['The site is hosted by Netlify, Inc., United States.'],
+        heading: 'Hosting provider',
+        body: ['This website is hosted by Netlify, Inc., United States.'],
       },
       {
-        heading: 'No offer and no advice',
+        heading: 'No offer or professional advice',
         body: [
-          'Nothing on this site is a binding offer. A project starts only once we agree its scope and terms in writing.',
-          'Articles describe general approaches. They are not legal, financial or other professional advice for your situation.',
+          'The content of this website does not constitute a binding offer. Any engagement is subject to a separate written agreement setting out its scope and terms.',
+          'Articles published on this website describe general approaches and do not constitute legal, financial or other professional advice for any particular situation.',
         ],
       },
       {
-        heading: 'Liability for content',
+        heading: 'Disclaimer of liability for content',
         body: [
-          'I prepare the content of this site with care, but I cannot guarantee that it is complete, correct or up to date.',
+          'The content of this website has been prepared with care. However, no warranty is given that it is complete, accurate or up to date, and no liability is accepted for any loss arising from reliance on it, to the extent permitted by law.',
         ],
       },
       {
-        heading: 'Links to other sites',
+        heading: 'Links to third-party websites',
         body: [
-          'This site links to sites run by others. I have no control over their content and am not responsible for it. If a linked page breaks the law, tell me and I will remove the link.',
+          'This website contains links to websites operated by third parties. I have no control over their content and accept no responsibility for it. Should a linked page contain unlawful content, please notify me and the link will be removed.',
         ],
       },
       {
-        heading: 'Copyright',
+        heading: 'Copyright and trademarks',
         body: [
-          `Text, design and images on this site are © ${profile.name} unless stated otherwise, and may not be reused without permission. Company names, product names and logos belong to their owners and are shown only to describe work I did for or with them. Testimonials are quoted from the public posts named next to them.`,
+          `Unless otherwise stated, the text, design and images on this website are © ${profile.name} and may not be reproduced without prior written permission. Company names, product names and logos are the property of their respective owners and are used solely to describe work carried out for or with them. Testimonials are quoted from the public posts identified alongside them.`,
+        ],
+      },
+      {
+        heading: 'Governing law',
+        body: [
+          'This Legal Notice and the use of this website are governed by the laws of the Arab Republic of Egypt, without prejudice to any mandatory protections available to you under the law of your country of residence.',
         ],
       },
       {
         heading: 'Privacy',
-        body: ['How this site handles personal data is set out in the [privacy notice](/privacy/).'],
+        body: ['The processing of personal data on this website is described in the [Privacy Notice](/privacy/).'],
       },
     ],
   },
   footer: {
     place: 'Egypt',
     resume: 'Résumé',
-    privacy: 'Privacy',
-    legal: 'Legal notice',
+    privacy: 'Privacy Notice',
+    legal: 'Legal Notice',
+    cookies: 'Cookie settings',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },

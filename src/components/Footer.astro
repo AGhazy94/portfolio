@@ -23,6 +23,16 @@ const year = new Date().getFullYear();
         >
           {ui.footer.legal}
         </a>
+        <span class="hidden js:inline">
+          {' · '}
+          <button
+            type="button"
+            data-consent-open
+            class="cursor-pointer underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
+          >
+            {ui.footer.cookies}
+          </button>
+        </span>
       </p>
       <RichText
         source={ui.footer.credit}
