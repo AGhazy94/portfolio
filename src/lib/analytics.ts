@@ -1,4 +1,5 @@
 import { cleanTag, utmKeys } from './attribution';
+import { getConsent } from './consent';
 
 declare global {
   interface Window {
@@ -62,7 +63,9 @@ export function loadAnalytics(measurementId: string, debug: boolean) {
 }
 
 // Fired only after Netlify accepts the message; no form values are sent.
-export const trackLead = () => window.gtag?.('event', 'generate_lead', { form_name: 'contact' });
+export function trackLead() {
+  if (getConsent() === 'granted') window.gtag?.('event', 'generate_lead', { form_name: 'contact' });
+}
 
 export function clearAnalyticsCookies() {
   const names = document.cookie

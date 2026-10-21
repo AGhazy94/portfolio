@@ -34,7 +34,7 @@ const buttonClass =
 </div>
 
 <script>
-  import { getConsent, setConsent, type Consent } from '../lib/consent';
+  import { CONSENT_KEY, forgetCachedConsent, getConsent, setConsent, type Consent } from '../lib/consent';
   import { forgetEntry, rememberEntry } from '../lib/attribution';
   import { clearAnalyticsCookies, loadAnalytics } from '../lib/analytics';
 
@@ -63,6 +63,15 @@ const buttonClass =
       if (withdrawn) location.reload();
     });
   }
+
+  // A choice made in another tab applies here too; a loaded gtag.js only stops when the page goes away.
+  window.addEventListener('storage', (event) => {
+    if (event.key !== CONSENT_KEY && event.key !== null) return;
+    forgetCachedConsent();
+    banner.hidden = getConsent() !== null;
+    if (getConsent() === 'granted') apply();
+    else if (window.gtag) location.reload();
+  });
 
   for (const opener of document.querySelectorAll('[data-consent-open]')) {
     opener.addEventListener('click', () => {

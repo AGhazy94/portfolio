@@ -1,6 +1,6 @@
 export type Consent = 'granted' | 'denied';
 
-const KEY = 'analytics-consent';
+export const CONSENT_KEY = 'analytics-consent';
 // Bump when the privacy notice changes what consent covers, so every visitor is asked again.
 const VERSION = 1;
 const MAX_AGE = 365 * 24 * 60 * 60 * 1000;
@@ -26,7 +26,7 @@ export function writeStore(key: string, value: string | null) {
 export function getConsent(): Consent | null {
   if (current) return current;
   try {
-    const { choice, at, version } = JSON.parse(readStore(KEY) ?? '');
+    const { choice, at, version } = JSON.parse(readStore(CONSENT_KEY) ?? '');
     if ((choice === 'granted' || choice === 'denied') && version === VERSION && Date.now() - at < MAX_AGE) {
       return choice;
     }
@@ -34,8 +34,13 @@ export function getConsent(): Consent | null {
   return null;
 }
 
+// Another tab changed the choice; the next read goes back to storage.
+export function forgetCachedConsent() {
+  current = null;
+}
+
 export function setConsent(choice: Consent) {
   current = choice;
-  writeStore(KEY, JSON.stringify({ choice, at: Date.now(), version: VERSION }));
+  writeStore(CONSENT_KEY, JSON.stringify({ choice, at: Date.now(), version: VERSION }));
   document.dispatchEvent(new CustomEvent('consentchange', { detail: choice }));
 }
