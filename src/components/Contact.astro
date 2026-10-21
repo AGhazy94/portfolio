@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import RichText from './RichText.astro';
 import { ui } from '../data/profile';
+import { attributionFields } from '../lib/attribution';
 
 const section = ui.sections.find(({ id }) => id === 'contact')!;
 const { fields, errors, success } = ui.contact;
@@ -47,6 +48,10 @@ const buttonClass =
       <input type="hidden" name="subject" data-remove-prefix value={ui.contact.subject} />
       {/* Netlify stores it with each message, so every lead shows the page that brought it. */}
       <input type="hidden" name="page" value={Astro.url.pathname} />
+      {/* Filled at submit with how the visitor first arrived; empty without JavaScript. */}
+      {attributionFields.map(([name]) => (
+        <input type="hidden" name={name} value="" />
+      ))}
       <p class="hidden">
         <label>
           {ui.contact.honeypot} <input name="bot-field" tabindex="-1" autocomplete="off" />
@@ -137,6 +142,7 @@ const buttonClass =
         <button type="submit" class={buttonClass}>
           {ui.contact.submit}
         </button>
+        <RichText source={ui.contact.privacy} class="mx-auto mt-4 max-w-[46ch] text-[13px] leading-normal text-muted" />
       </div>
     </form>
 
@@ -158,6 +164,9 @@ const buttonClass =
 </section>
 
 <script>
+  import { attributionFields, firstTouch } from '../lib/attribution';
+  import { trackLead } from '../lib/analytics';
+
   type Field = HTMLInputElement | HTMLTextAreaElement;
 
   const form = document.querySelector<HTMLFormElement>('[data-contact-form]');
@@ -216,6 +225,10 @@ const buttonClass =
       }
 
       setBusy(true);
+      const touch = firstTouch();
+      for (const [name, key] of attributionFields) {
+        (form.elements.namedItem(name) as HTMLInputElement).value = String(touch?.[key] ?? '');
+      }
       try {
         const body = new URLSearchParams([...new FormData(form)] as [string, string][]).toString();
         const response = await fetch('/', {
@@ -225,6 +238,7 @@ const buttonClass =
           signal: AbortSignal.timeout(15000),
         });
         if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
+        trackLead();
 
         success.querySelector('[data-success-email]')!.textContent = String(new FormData(form).get('email'));
         form.hidden = true;

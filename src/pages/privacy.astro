@@ -1,0 +1,71 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import RichText from '../components/RichText.astro';
+import { profile, ui } from '../data/profile';
+
+const { privacy } = ui;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    name: privacy.heading,
+    description: privacy.description,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+  },
+];
+const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+
+<ContentPage
+  title={`${privacy.metaTitle} | ${profile.name}`}
+  description={privacy.description}
+  heading={privacy.heading}
+  lead={privacy.lead}
+  nodes={nodes}
+  crumbs={[{ label: privacy.title }]}
+>
+  {privacy.sections.map(({ heading, body, table }) => (
+    <>
+      <h2 id={slug(heading)}>{heading}</h2>
+      {body.map((paragraph) => (
+        <RichText source={paragraph} />
+      ))}
+      {table && (
+        <table class="table-auto! wrap-normal">
+          <caption class="sr-only">{privacy.cookies.caption}</caption>
+          <thead>
+            <tr>
+              {privacy.cookies.columns.map((column) => (
+                <th scope="col">{column}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {privacy.cookies.rows.map(([name, provider, purpose, duration]) => (
+              <tr>
+                <td>
+                  <span class="block font-medium wrap-anywhere text-fg">{name}</span>
+                  <span class="block text-[13px] text-muted">{provider}</span>
+                </td>
+                <td>{purpose}</td>
+                <td>{duration}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
+  ))}
+  <p>
+    <button
+      type="button"
+      data-consent-open
+      class="hidden min-h-11 js:inline-flex cursor-pointer items-center rounded-pill border border-field-border px-5 text-[15px] font-medium text-fg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+    >
+      {privacy.change}
+    </button>
+  </p>
+  <p>{privacy.updated}</p>
+</ContentPage>
