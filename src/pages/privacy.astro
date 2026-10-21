@@ -1,0 +1,47 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import RichText from '../components/RichText.astro';
+import { profile, ui } from '../data/profile';
+
+const { privacy } = ui;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    name: privacy.heading,
+    description: privacy.description,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+  },
+];
+const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+
+<ContentPage
+  title={`${privacy.metaTitle} | ${profile.name}`}
+  description={privacy.description}
+  heading={privacy.heading}
+  lead={privacy.lead}
+  nodes={nodes}
+  crumbs={[{ label: privacy.title }]}
+>
+  {privacy.sections.map(({ heading, body }) => (
+    <>
+      <h2 id={slug(heading)}>{heading}</h2>
+      {body.map((paragraph) => (
+        <RichText source={paragraph} />
+      ))}
+    </>
+  ))}
+  <p>
+    <button
+      type="button"
+      data-consent-open
+      class="hidden min-h-11 js:inline-flex cursor-pointer items-center rounded-pill border border-field-border px-5 text-[15px] font-medium text-fg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
+    >
+      {privacy.change}
+    </button>
+  </p>
+  <p>{privacy.updated}</p>
+</ContentPage>

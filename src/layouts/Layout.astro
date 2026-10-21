@@ -2,6 +2,7 @@
 import { createHash } from 'node:crypto';
 import type { ImageMetadata } from 'astro';
 import { Font, getImage } from 'astro:assets';
+import Consent from '../components/Consent.astro';
 import ScrollBar from '../components/ScrollBar.astro';
 import { profile, socials } from '../data/profile';
 import { ogCard } from '../lib/graphics';
@@ -158,6 +159,7 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
   </head>
   <body class="bg-bg font-sans text-body antialiased selection:bg-accent selection:text-bg">
     <slot />
+    <Consent />
     <ScrollBar />
   </body>
 </html>

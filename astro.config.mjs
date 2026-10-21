@@ -12,7 +12,8 @@ export default defineConfig({
   site,
   server: { port: Number(process.env.PORT) || 4321 },
   build: { inlineStylesheets: 'always' },
-  security: { csp: true },
+  // gtag.js is injected after consent, so its origin joins the hashed inline scripts.
+  security: { csp: { scriptDirective: { resources: ["'self'", 'https://www.googletagmanager.com'] } } },
   // No Markdown here; Shiki's inline styles would break the CSP if any arrived.
   markdown: { syntaxHighlight: false },
   // The form's thank-you page is noindex, so it stays out of the sitemap too.

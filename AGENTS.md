@@ -125,8 +125,17 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   `fetch`. The CSP allows `form-action 'self'` only. The optional selects (`project-type`,
   `budget`, `timeline`) come from `ui.contact.choices`; the form renders on the home page and at the
   end of every collection page with identical fields, so Netlify sees one form. A hidden `page`
-  field carries the path it was sent from; with Netlify's server-side Web Analytics it replaces a
-  tracking script, so there are no cookies and no consent banner.
+  field carries the path it was sent from, and the hidden `first-*` fields carry first-touch
+  attribution (UTMs, landing path, referring domain) from
+  [src/lib/attribution.ts](src/lib/attribution.ts), filled at submit time.
+- **Analytics is consent-gated.** Netlify's server-side Web Analytics counts traffic with no script.
+  GA4 (`PUBLIC_GA_MEASUREMENT_ID`, production context only in `netlify.toml`) loads through
+  [src/components/Consent.astro](src/components/Consent.astro) only after "Allow analytics"; the
+  first-touch record (localStorage, 90 days, never overwritten by a later campaign) is kept only with
+  that consent. Without it, nothing reaches Google and attribution covers only a form sent from the
+  entry page. `generate_lead` fires only after Netlify accepts the `fetch`, never on click or on
+  `/thanks/`. No form values, and no query string beyond `utm_*`, go to Google. Any change here
+  updates `/privacy/` (copy in `ui.privacy`) in the same commit.
 - **Deploys cost credits.** Each production deploy (a push to `dev`) costs 15 of 300 monthly Netlify
   credits. Test on a PR Deploy Preview, and say so before any push that deploys production.
 - **External links** get `target="_blank" rel="noreferrer noopener"` and a visually hidden
@@ -144,7 +153,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
   Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
-  (all from collections) and `/thanks/`, the no-JS form success page (noindex, not in the sitemap).
+  (all from collections), `/privacy/` and `/thanks/`, the no-JS form success page (noindex, not in
+  the sitemap).
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
   Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps
   and AI products (LLM features, agents), builds MVPs and takes over existing apps, TypeScript

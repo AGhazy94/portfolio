@@ -360,9 +360,64 @@ export const ui = {
     education: 'Education',
     languages: 'Languages',
   },
+  consent: {
+    label: 'Analytics choice',
+    body: 'May I measure this visit with Google Analytics? It sets cookies and remembers how you first found the site for 90 days, so I can see which pages and campaigns bring messages. Nothing loads unless you allow it. [Privacy notice](/privacy/)',
+    allow: 'Allow analytics',
+    decline: 'Decline',
+  },
+  privacy: {
+    title: 'Privacy',
+    metaTitle: 'Privacy Notice',
+    heading: 'Privacy notice',
+    description:
+      'What ahmed-ghazy.com collects through its contact form, Netlify and optional Google Analytics, how long it is kept, and how to change your choice.',
+    lead: 'What this site collects, why, and how to change your choice.',
+    updated: 'Last updated 21 October 2026.',
+    change: 'Change your analytics choice',
+    sections: [
+      {
+        heading: 'Who is responsible',
+        body: [
+          `${profile.name} runs this site. For any question or request about your data, email [${profile.email}](mailto:${profile.email}).`,
+        ],
+      },
+      {
+        heading: 'The contact form',
+        body: [
+          'When you send the form, it stores your name, email, message, the optional answers you pick and the page you sent it from. Netlify, which hosts this site, keeps the message in its Forms service, where I read it. I use it only to reply to you, and I delete it if you ask.',
+          'If you allowed analytics, the form also sends how you first arrived: the campaign tags in that link (utm_source, utm_medium, utm_campaign, utm_content and utm_term), the first page you opened and the domain of the site that sent you. If you did not, it sends these only when you write from the page you arrived on.',
+        ],
+      },
+      {
+        heading: 'Visit counts without cookies',
+        body: ['Netlify counts page views from its server logs. That needs no cookies and no script in your browser.'],
+      },
+      {
+        heading: 'Google Analytics, only if you allow it',
+        body: [
+          'If you choose **Allow analytics**, the site loads Google Analytics 4. It sets the _ga cookies, which last up to two years, and records the pages you view, how long you stay, your browser, device and approximate location, the site or campaign that brought you, and an event when a message is sent. It never receives your name, email, message or form answers. Google signals and ad personalisation are off, and Google keeps the event data for 14 months.',
+          'If you choose **Decline** or ignore the banner, Google Analytics does not load and nothing is sent to Google. Ad blockers and browser tracking protection can also stop it, so its numbers undercount visits.',
+        ],
+      },
+      {
+        heading: 'What your browser keeps',
+        body: [
+          'The site uses your browser’s local storage, not cookies, for your theme, your analytics choice and, only if you allow analytics, a record of how you first arrived: the campaign tags, the first page and the referring domain. That record is deleted after 90 days, and a visit through a later campaign does not replace it.',
+        ],
+      },
+      {
+        heading: 'Changing your choice',
+        body: [
+          'You can change your choice at any time. Declining after you allowed analytics deletes the Google Analytics cookies and the first-visit record from this browser.',
+        ],
+      },
+    ],
+  },
   footer: {
     place: 'Egypt',
     resume: 'Résumé',
+    privacy: 'Privacy',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },

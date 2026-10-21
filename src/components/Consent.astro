@@ -1,0 +1,72 @@
+---
+import RichText from './RichText.astro';
+import { ui } from '../data/profile';
+
+// Set for production only (netlify.toml), so previews and local builds never report to Google.
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const buttonClass =
+  'inline-flex min-h-11 cursor-pointer items-center justify-center rounded-pill px-5 text-[15px] font-medium transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]';
+---
+
+<div
+  data-consent
+  data-measurement-id={measurementId}
+  data-debug={import.meta.env.DEV ? '' : undefined}
+  role="region"
+  aria-label={ui.consent.label}
+  hidden
+  class="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-[560px] rounded-card border border-divider bg-surface p-5 sm:bottom-6 sm:p-6"
+>
+  <RichText source={ui.consent.body} class="text-[15px] leading-normal text-body" />
+  <div class="mt-4 flex flex-wrap gap-3">
+    <button type="button" data-consent-choice="granted" class:list={[buttonClass, 'bg-fg text-surface']}>
+      {ui.consent.allow}
+    </button>
+    <button
+      type="button"
+      data-consent-choice="denied"
+      class:list={[buttonClass, 'border border-field-border bg-transparent text-fg']}
+    >
+      {ui.consent.decline}
+    </button>
+  </div>
+</div>
+
+<script>
+  import { getConsent, setConsent, type Consent } from '../lib/consent';
+  import { forgetEntry, rememberEntry } from '../lib/attribution';
+  import { clearAnalyticsCookies, loadAnalytics } from '../lib/analytics';
+
+  const banner = document.querySelector<HTMLElement>('[data-consent]')!;
+  const { measurementId, debug } = banner.dataset;
+
+  const apply = () => {
+    if (getConsent() !== 'granted') return;
+    rememberEntry();
+    if (measurementId) loadAnalytics(measurementId, debug !== undefined);
+  };
+
+  apply();
+  banner.hidden = getConsent() !== null;
+
+  for (const button of banner.querySelectorAll<HTMLButtonElement>('[data-consent-choice]')) {
+    button.addEventListener('click', () => {
+      const choice = button.dataset.consentChoice as Consent;
+      const withdrawn = getConsent() === 'granted' && choice === 'denied';
+      setConsent(choice);
+      banner.hidden = true;
+      if (choice === 'granted') return apply();
+      forgetEntry();
+      clearAnalyticsCookies();
+      // A loaded gtag.js keeps sending until the page goes away.
+      if (withdrawn) location.reload();
+    });
+  }
+
+  for (const opener of document.querySelectorAll('[data-consent-open]')) {
+    opener.addEventListener('click', () => {
+      banner.hidden = false;
+      banner.querySelector('button')!.focus();
+    });
+  }
+</script>
