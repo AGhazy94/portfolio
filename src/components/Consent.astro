@@ -23,15 +23,19 @@ const buttonClass =
       <RichText source={ui.consent.body} class="mt-0.5 text-[13px] leading-snug text-body" />
     </div>
     <div class="flex shrink-0 gap-2">
-      <button type="button" data-consent-choice="granted" class:list={[buttonClass, 'bg-fg text-surface']}>
-        {ui.consent.allow}
-      </button>
       <button
         type="button"
         data-consent-choice="denied"
         class:list={[buttonClass, 'border border-field-border bg-transparent text-fg']}
       >
         {ui.consent.decline}
+      </button>
+      <button
+        type="button"
+        data-consent-choice="granted"
+        class:list={[buttonClass, 'border border-field-border bg-transparent text-fg']}
+      >
+        {ui.consent.allow}
       </button>
     </div>
   </div>

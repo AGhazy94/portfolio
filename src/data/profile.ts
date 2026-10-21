@@ -343,7 +343,7 @@ export const ui = {
     },
     submit: 'Send message',
     // Information at the point of collection, not a consent checkbox: replying rests on the visitor's own request.
-    privacy: 'Your details are used only to reply to your enquiry. See the [Privacy Notice](/privacy/).',
+    privacy: 'I use your details to respond to your enquiry. See the [Privacy Notice](/privacy/).',
     sending: 'Sending…',
     failure: `Your message didn’t send. Check your connection and try again, or email [${profile.email}](mailto:${profile.email}).`,
     success: {
@@ -365,7 +365,7 @@ export const ui = {
   consent: {
     label: 'Cookie consent',
     title: 'Cookies on this site',
-    body: 'I use optional analytics cookies to understand how visitors use this site. [Privacy Notice](/privacy/)',
+    body: 'I use optional Google Analytics cookies to understand how this site is used. [Privacy Notice](/privacy/)',
     allow: 'Accept',
     decline: 'Reject',
   },
@@ -386,46 +386,89 @@ export const ui = {
         ],
       },
       {
-        heading: 'Information I collect',
+        heading: 'What information I collect',
         body: [
-          '**When you contact me:** your name, email address, message, any optional project details, the page you contacted me from and basic information about how you first reached the site.',
-          '**When you accept analytics cookies:** information such as pages viewed, device and browser type, approximate location and referring website or campaign. Contact-form content is never sent to Google Analytics.',
-          '**When you visit the site:** Netlify records standard server logs, including IP addresses, to deliver and secure the website. This does not require analytics cookies.',
+          '**Contact information:** your name, email address, message, any optional project details and the page where you sent the form.',
+          '**Analytics information:** if you accept analytics cookies, Google Analytics receives information such as pages viewed, device and browser type, approximate location and referring website or campaign. Form contents are never sent to Google Analytics.',
+          '**Technical information:** Netlify records standard server logs, including IP addresses, to deliver and secure the site. If you consent, the site also remembers how you first arrived so that source can accompany a later enquiry.',
         ],
       },
       {
-        heading: 'How I use it',
+        heading: 'How and why I use your information',
         body: [
-          'I use this information to reply to enquiries, discuss possible work, operate and secure the website, understand which pages are useful and meet legal or accounting obligations.',
-          'Contact details are processed because you asked me to respond. Analytics is used only with your consent. Server logs are used to keep the website reliable and secure.',
+          'I use contact information to respond to enquiries and discuss possible work; analytics information to understand which pages are useful; and technical information to operate, protect and improve the site. I may also keep records where required for legal, tax or accounting purposes.',
+          'Where the GDPR or UK GDPR applies, the legal bases are steps you ask me to take before a possible contract, my legitimate interests in managing enquiries and keeping the site secure, your consent for analytics, and compliance with legal obligations. I do not use personal data for automated decisions or profiling.',
         ],
       },
       {
-        heading: 'Cookies and analytics',
+        heading: 'Cookies and local storage',
         body: [
           'Google Analytics loads only after you select **Accept**. If you reject cookies or make no choice, analytics does not load and no analytics data is sent to Google. Advertising personalisation is disabled.',
-          'Google Analytics uses its standard cookies for up to two years. This site remembers your cookie choice for 12 months and, with consent, your first visit source for 90 days. You can change your choice at any time through **Cookie settings** in the footer.',
+          'The site always stores your colour-theme preference and, after you choose, your cookie preference. You can change your analytics choice at any time through **Cookie settings** in the footer.',
+        ],
+        storage: {
+          summary: 'Cookie and storage details',
+          duration: 'Duration',
+          rows: [
+            {
+              name: '_ga',
+              provider: 'Google Analytics',
+              purpose: 'Distinguishes visitors for site analytics. Set only after consent.',
+              duration: 'Up to 2 years',
+            },
+            {
+              name: '_ga_<container-id>',
+              provider: 'Google Analytics',
+              purpose: 'Maintains an analytics session. Set only after consent.',
+              duration: 'Up to 2 years',
+            },
+            {
+              name: 'first-touch',
+              provider: 'This website',
+              purpose: 'Remembers the first campaign, landing page and referring domain. Stored only after consent.',
+              duration: '90 days',
+            },
+            {
+              name: 'analytics-consent',
+              provider: 'This website',
+              purpose: 'Remembers whether analytics was accepted or rejected.',
+              duration: '12 months',
+            },
+            {
+              name: 'theme',
+              provider: 'This website',
+              purpose: 'Remembers the colour theme you selected.',
+              duration: 'Until cleared',
+            },
+          ],
+        },
+      },
+      {
+        heading: 'Who I share information with',
+        body: [
+          'I use Netlify for hosting and form submissions, Akismet for spam checking, Hostinger for email and Google for analytics after consent. They receive only the information needed to provide those services. I do not sell or rent personal data.',
+          `These providers may process information outside Egypt or your country. Where data-protection law requires safeguards, transfers rely on an adequacy decision or approved contractual safeguards. You can ask for more information by emailing [${profile.email}](mailto:${profile.email}). I may also disclose information where the law requires it.`,
         ],
       },
       {
-        heading: 'Who receives information',
+        heading: 'How long I keep information',
         body: [
-          'Netlify hosts the site and stores form submissions; Akismet checks submissions for spam; Hostinger provides email; and Google provides analytics only after consent. Some providers process data in the United States using their published transfer safeguards.',
-          'I do not sell or rent personal data. It is shared only with these service providers or where required by law.',
+          'Enquiries that do not become client work are deleted within 12 months. Work-related correspondence is kept for the engagement and as long as tax or accounting rules require. Google Analytics keeps event data according to the retention setting for this site. Netlify keeps server logs under its own retention policy.',
+          'The site uses HTTPS, and form submissions are available only through protected Netlify and email accounts. No online service can guarantee absolute security.',
         ],
       },
       {
-        heading: 'How long I keep it',
+        heading: 'Your rights',
         body: [
-          'Enquiries that do not become client work are deleted within 12 months. Work-related correspondence is kept for the engagement and as long as tax or accounting rules require. Google Analytics data is retained for 14 months; Netlify keeps server logs under its own retention policy.',
-          'The website uses HTTPS, and form submissions are accessible only through my protected Netlify and email accounts.',
+          `Depending on the law that applies, you may ask to access, correct, delete or receive a copy of your personal data, restrict its use, or object to processing. Email [${profile.email}](mailto:${profile.email}) to make a request.`,
+          'You can withdraw analytics consent at any time without affecting earlier processing. You may also complain to the Egyptian Personal Data Protection Center or the data-protection authority where you live, work or believe an infringement occurred.',
         ],
       },
       {
-        heading: 'Your choices and rights',
+        heading: 'Information you provide',
         body: [
-          `You may ask to access, correct or delete your personal data, object to or restrict its use, or withdraw analytics consent at any time. Email [${profile.email}](mailto:${profile.email}) to make a request. You may also complain to your local data protection authority.`,
-          'This site does not use personal data for automated decisions or profiling and is not directed at children under 16.',
+          'Your name, email address and message are required if you use the contact form; the other fields are optional. Without the required information, I cannot receive or respond to the enquiry. Please do not include sensitive personal information unless it is necessary.',
+          'This site is intended for potential clients, collaborators and employers and is not directed at children under 16.',
         ],
       },
       {
