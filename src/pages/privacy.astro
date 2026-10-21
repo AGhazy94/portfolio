@@ -26,35 +26,31 @@ const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '
   nodes={nodes}
   crumbs={[{ label: privacy.title }]}
 >
-  {privacy.sections.map(({ heading, body, table }) => (
+  {privacy.sections.map(({ heading, body, storage }) => (
     <>
       <h2 id={slug(heading)}>{heading}</h2>
       {body.map((paragraph) => (
         <RichText source={paragraph} />
       ))}
-      {table && (
-        <table class="table-auto! wrap-normal">
-          <caption class="sr-only">{privacy.cookies.caption}</caption>
-          <thead>
-            <tr>
-              {privacy.cookies.columns.map((column) => (
-                <th scope="col">{column}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {privacy.cookies.rows.map(([name, provider, purpose, duration]) => (
-              <tr>
-                <td>
-                  <span class="block font-medium wrap-anywhere text-fg">{name}</span>
-                  <span class="block text-[13px] text-muted">{provider}</span>
-                </td>
-                <td>{purpose}</td>
-                <td>{duration}</td>
-              </tr>
+      {storage && (
+        <details class="rounded-field border border-divider">
+          <summary class="min-h-11 cursor-pointer px-4 py-3 font-medium text-fg">{storage.summary}</summary>
+          <ul class="m-0 list-none divide-y divide-divider border-t border-divider p-0">
+            {storage.rows.map((row) => (
+              <li class="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(9rem,0.8fr)_minmax(0,2fr)_minmax(7rem,0.7fr)] sm:gap-4">
+                <div>
+                  <p class="font-medium text-fg">{row.name}</p>
+                  <p class="text-[14px] text-muted">{row.provider}</p>
+                </div>
+                <p>{row.purpose}</p>
+                <p>
+                  <span class="sr-only">{storage.duration}: </span>
+                  {row.duration}
+                </p>
+              </li>
             ))}
-          </tbody>
-        </table>
+          </ul>
+        </details>
       )}
     </>
   ))}
