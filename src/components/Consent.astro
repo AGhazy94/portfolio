@@ -17,7 +17,8 @@ const buttonClass =
   hidden
   class="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-[560px] rounded-card border border-divider bg-surface p-5 sm:bottom-6 sm:p-6"
 >
-  <RichText source={ui.consent.body} class="text-[15px] leading-normal text-body" />
+  <p class="text-[17px] font-semibold text-fg">{ui.consent.title}</p>
+  <RichText source={ui.consent.body} class="mt-2 text-[15px] leading-normal text-body" />
   <div class="mt-4 flex flex-wrap gap-3">
     <button type="button" data-consent-choice="granted" class:list={[buttonClass, 'bg-fg text-surface']}>
       {ui.consent.allow}

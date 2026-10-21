@@ -361,58 +361,87 @@ export const ui = {
     languages: 'Languages',
   },
   consent: {
-    label: 'Analytics choice',
-    body: 'May I measure this visit with Google Analytics? It sets cookies and remembers how you first found the site for 90 days, so I can see which pages and campaigns bring messages. Nothing loads unless you allow it. [Privacy notice](/privacy/)',
-    allow: 'Allow analytics',
-    decline: 'Decline',
+    label: 'Cookie consent',
+    title: 'This site uses cookies',
+    body: 'I use Google Analytics cookies to understand how visitors use the site and which pages and campaigns bring enquiries. They are set only if you accept. [Privacy notice](/privacy/)',
+    allow: 'Accept',
+    decline: 'Reject',
   },
   privacy: {
     title: 'Privacy',
     metaTitle: 'Privacy Notice',
     heading: 'Privacy notice',
     description:
-      'What ahmed-ghazy.com collects through its contact form, Netlify and optional Google Analytics, how long it is kept, and how to change your choice.',
-    lead: 'What this site collects, why, and how to change your choice.',
+      'How ahmed-ghazy.com collects and uses personal data: the contact form, cookies and Google Analytics, who receives the data, how long it is kept and your rights.',
+    lead: 'How this site collects and uses personal data, and the choices you have.',
     updated: 'Last updated 21 October 2026.',
-    change: 'Change your analytics choice',
+    change: 'Change cookie settings',
     sections: [
       {
-        heading: 'Who is responsible',
+        heading: 'Who I am',
         body: [
-          `${profile.name} runs this site. For any question or request about your data, email [${profile.email}](mailto:${profile.email}).`,
+          `This site is run by ${profile.name}, a freelance developer based in Egypt, who is responsible for the personal data it collects. Contact: [${profile.email}](mailto:${profile.email}).`,
         ],
       },
       {
-        heading: 'The contact form',
+        heading: 'What I collect',
         body: [
-          'When you send the form, it stores your name, email, message, the optional answers you pick and the page you sent it from. Netlify, which hosts this site, keeps the message in its Forms service, where I read it. I use it only to reply to you, and I delete it if you ask.',
-          'If you allowed analytics, the form also sends how you first arrived: the campaign tags in that link (utm_source, utm_medium, utm_campaign, utm_content and utm_term), the first page you opened and the domain of the site that sent you. If you did not, it sends these only when you write from the page you arrived on.',
+          '**Contact form.** Your name, email address and message, the optional answers you choose (project type, budget, timeline) and the page you sent the form from.',
+          '**How you found the site.** With the form, the campaign tags of the link you first arrived through (utm_source, utm_medium, utm_campaign, utm_content, utm_term), the first page you opened and the domain of the site that referred you. These are kept between pages only if you accept cookies; otherwise they are sent only when you use the form on the page you arrived on.',
+          '**Analytics, if you accept cookies.** Pages viewed, time on the site, browser, device type, approximate location, the site or campaign that referred you, and a record that a message was sent. Analytics never receives the content of the form.',
+          '**Server logs.** Netlify, the host, records page requests to count visits. This uses no cookies.',
         ],
       },
       {
-        heading: 'Visit counts without cookies',
-        body: ['Netlify counts page views from its server logs. That needs no cookies and no script in your browser.'],
-      },
-      {
-        heading: 'Google Analytics, only if you allow it',
+        heading: 'Why I use it and the legal basis',
         body: [
-          'If you choose **Allow analytics**, the site loads Google Analytics 4. It sets the _ga cookies, which last up to two years, and records the pages you view, how long you stay, your browser, device and approximate location, the site or campaign that brought you, and an event when a message is sent. It never receives your name, email, message or form answers. Google signals and ad personalisation are off, and Google keeps the event data for 14 months.',
-          'If you choose **Decline** or ignore the banner, Google Analytics does not load and nothing is sent to Google. Ad blockers and browser tracking protection can also stop it, so its numbers undercount visits.',
+          'I use contact form data to reply to your enquiry and to discuss any work that follows, because you asked me to (steps taken at your request before a contract) and because I have a legitimate interest in answering messages.',
+          'I use analytics and first-visit data to understand which pages and campaigns bring enquiries, based on your consent. You can withdraw consent at any time.',
         ],
       },
       {
-        heading: 'What your browser keeps',
+        heading: 'Cookies and similar technologies',
         body: [
-          'The site uses your browser’s local storage, not cookies, for your theme, your analytics choice and, only if you allow analytics, a record of how you first arrived: the campaign tags, the first page and the referring domain. That record is deleted after 90 days, and a visit through a later campaign does not replace it.',
+          'Google Analytics cookies are set only after you click **Accept**. If you click **Reject** or ignore the banner, Google Analytics does not load and nothing is sent to Google. Google signals and ad personalisation are turned off. The site also uses your browser’s local storage for the items below.',
+        ],
+        table: true,
+      },
+      {
+        heading: 'Who receives the data',
+        body: [
+          '**Netlify, Inc.** hosts the site, stores contact form submissions and keeps server logs.',
+          '**Google LLC** provides Google Analytics, only if you accept cookies.',
+          'Both may process data outside your country, including in the United States, under the safeguards in their data processing terms. I do not sell your data or share it with anyone else.',
         ],
       },
       {
-        heading: 'Changing your choice',
+        heading: 'How long I keep it',
         body: [
-          'You can change your choice at any time. Declining after you allowed analytics deletes the Google Analytics cookies and the first-visit record from this browser.',
+          'Contact form messages are kept for as long as needed to handle your enquiry and any work that follows, and deleted sooner if you ask. Google Analytics data is kept for 14 months. The first-visit record in your browser expires after 90 days. Server logs follow Netlify’s retention.',
         ],
+      },
+      {
+        heading: 'Your rights',
+        body: [
+          'You can ask to access, correct or delete your personal data, to restrict or object to its use, and to receive a copy of it. You can withdraw cookie consent at any time with the button below. To make a request, email me. You can also complain to the data protection authority where you live.',
+        ],
+      },
+      {
+        heading: 'Changes to this notice',
+        body: ['If this notice changes, the date below is updated.'],
       },
     ],
+    cookies: {
+      caption: 'Cookies and local storage used on this site',
+      columns: ['Name and provider', 'Purpose', 'Duration'],
+      rows: [
+        ['_ga', 'Google Analytics', 'Distinguishes visitors (only after you accept)', '2 years'],
+        ['_ga_<ID>', 'Google Analytics', 'Keeps the current session (only after you accept)', '2 years'],
+        ['first-touch (local storage)', 'This site', 'How you first arrived (only after you accept)', '90 days'],
+        ['analytics-consent (local storage)', 'This site', 'Remembers your cookie choice', 'Until you clear it'],
+        ['theme (local storage)', 'This site', 'Remembers light or dark theme', 'Until you clear it'],
+      ],
+    },
   },
   footer: {
     place: 'Egypt',

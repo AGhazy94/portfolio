@@ -130,7 +130,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   [src/lib/attribution.ts](src/lib/attribution.ts), filled at submit time.
 - **Analytics is consent-gated.** Netlify's server-side Web Analytics counts traffic with no script.
   GA4 (`PUBLIC_GA_MEASUREMENT_ID`, production context only in `netlify.toml`) loads through
-  [src/components/Consent.astro](src/components/Consent.astro) only after "Allow analytics"; the
+  [src/components/Consent.astro](src/components/Consent.astro) only after "Accept"; the
   first-touch record (localStorage, 90 days, never overwritten by a later campaign) is kept only with
   that consent. Without it, nothing reaches Google and attribution covers only a form sent from the
   entry page. `generate_lead` fires only after Netlify accepts the `fetch`, never on click or on
