@@ -411,20 +411,31 @@ export const ui = {
         body: [
           '**Netlify, Inc.** hosts the site, stores contact form submissions and keeps server logs.',
           '**Google LLC** provides Google Analytics, only if you accept cookies.',
-          'Both may process data outside your country, including in the United States, under the safeguards in their data processing terms. I do not sell your data or share it with anyone else.',
+          'Both process data in the United States. Google LLC is certified under the EU-US Data Privacy Framework, and Netlify relies on the EU Standard Contractual Clauses in its Data Processing Agreement. I do not sell your data or share it with anyone else.',
         ],
       },
       {
         heading: 'How long I keep it',
         body: [
-          'Contact form messages are kept for as long as needed to handle your enquiry and any work that follows, and deleted sooner if you ask. Google Analytics data is kept for 14 months. The first-visit record in your browser expires after 90 days. Server logs follow Netlify’s retention.',
+          'Enquiries that do not lead to work are deleted within 12 months. If we work together, I keep our correspondence for as long as the project needs it and for as long as tax and legal records require. Either way, I delete it sooner if you ask, unless the law requires me to keep it. Google Analytics data is kept for 14 months. The first-visit record in your browser expires after 90 days. Server logs follow Netlify’s retention.',
+        ],
+      },
+      {
+        heading: 'Security',
+        body: [
+          'The site is served only over HTTPS. Contact form submissions are stored in Netlify and only I can read them.',
         ],
       },
       {
         heading: 'Your rights',
         body: [
-          'You can ask to access, correct or delete your personal data, to restrict or object to its use, and to receive a copy of it. You can withdraw cookie consent at any time with the button below. To make a request, email me. You can also complain to the data protection authority where you live.',
+          'You can ask to access, correct or delete your personal data, to restrict or object to its use, and to receive a copy of it. You can withdraw cookie consent at any time with the button below; this does not affect anything done before you withdrew it. To make a request, email me, and I will reply within one month. You can also complain to the data protection authority where you live.',
+          'I make no automated decisions about you, and I do not use your data for profiling.',
         ],
+      },
+      {
+        heading: 'Children',
+        body: ['This site is meant for businesses and is not directed at children under 16.'],
       },
       {
         heading: 'Changes to this notice',
@@ -443,10 +454,62 @@ export const ui = {
       ],
     },
   },
+  legal: {
+    title: 'Legal notice',
+    metaTitle: 'Legal Notice',
+    heading: 'Legal notice',
+    description:
+      'Legal notice for ahmed-ghazy.com: who runs the site, hosting, liability for content and links, and copyright.',
+    lead: 'Who runs this site and the terms that apply to its content.',
+    updated: 'Last updated 21 October 2026.',
+    sections: [
+      {
+        heading: 'Site operator',
+        body: [
+          `${profile.name}, freelance software developer, Egypt.`,
+          `Email: [${profile.email}](mailto:${profile.email})`,
+        ],
+      },
+      {
+        heading: 'Hosting',
+        body: ['The site is hosted by Netlify, Inc., United States.'],
+      },
+      {
+        heading: 'No offer and no advice',
+        body: [
+          'Nothing on this site is a binding offer. A project starts only once we agree its scope and terms in writing.',
+          'Articles describe general approaches. They are not legal, financial or other professional advice for your situation.',
+        ],
+      },
+      {
+        heading: 'Liability for content',
+        body: [
+          'I prepare the content of this site with care, but I cannot guarantee that it is complete, correct or up to date.',
+        ],
+      },
+      {
+        heading: 'Links to other sites',
+        body: [
+          'This site links to sites run by others. I have no control over their content and am not responsible for it. If a linked page breaks the law, tell me and I will remove the link.',
+        ],
+      },
+      {
+        heading: 'Copyright',
+        body: [
+          `Text, design and images on this site are © ${profile.name} unless stated otherwise, and may not be reused without permission. Company names, product names and logos belong to their owners and are shown only to describe work I did for or with them. Testimonials are quoted from the public posts named next to them.`,
+        ],
+      },
+      {
+        heading: 'Privacy',
+        body: ['How this site handles personal data is set out in the [privacy notice](/privacy/).'],
+      },
+    ],
+  },
   footer: {
     place: 'Egypt',
     resume: 'Résumé',
     privacy: 'Privacy',
+    legal: 'Legal notice',
     credit:
       'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
   },

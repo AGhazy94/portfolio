@@ -153,7 +153,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
   Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
-  (all from collections), `/privacy/` and `/thanks/`, the no-JS form success page (noindex, not in
+  (all from collections), `/privacy/`, `/legal/` and `/thanks/`, the no-JS form success page (noindex, not in
   the sitemap).
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
   Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps

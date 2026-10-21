@@ -1,0 +1,38 @@
+---
+import ContentPage from '../layouts/ContentPage.astro';
+import RichText from '../components/RichText.astro';
+import { profile, ui } from '../data/profile';
+
+const { legal } = ui;
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const nodes = [
+  {
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    name: legal.heading,
+    description: legal.description,
+    isPartOf: { '@id': new URL('/#website', Astro.site).href },
+  },
+];
+const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+---
+
+<ContentPage
+  title={`${legal.metaTitle} | ${profile.name}`}
+  description={legal.description}
+  heading={legal.heading}
+  lead={legal.lead}
+  nodes={nodes}
+  crumbs={[{ label: legal.title }]}
+>
+  {legal.sections.map(({ heading, body }) => (
+    <>
+      <h2 id={slug(heading)}>{heading}</h2>
+      {body.map((paragraph) => (
+        <RichText source={paragraph} />
+      ))}
+    </>
+  ))}
+  <p>{legal.updated}</p>
+</ContentPage>
