@@ -29,9 +29,9 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
-  tagline: 'Full-stack developer. I build web apps, MVPs and AI features, and take over existing apps.',
+  tagline: 'Full-stack developer. I take over web apps that are stuck and ship the next release.',
   description:
-    'Freelance full-stack developer in Egypt, working remotely. I build web apps, MVPs and AI products with LLMs and agents, and take over existing apps.',
+    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps and ship the next release, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -41,11 +41,11 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-10-14T00:00:00+03:00',
+  updated: '2026-11-04T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
-    'MVP development',
     'Taking over existing codebases',
+    'MVP development',
     'AI product development',
     'AI agents',
     'TypeScript',
@@ -59,7 +59,7 @@ export const profile = {
     'Web performance',
     'LLM integrations',
   ],
-  ogLine: 'Building web apps and AI products',
+  ogLine: 'Getting stuck web apps shipped',
   languages: [
     { name: 'Arabic', code: 'ar', level: 'Native' },
     { name: 'English', code: 'en', level: 'Fluent' },
@@ -232,10 +232,10 @@ export const ui = {
     more: 'Read more',
     indexTitle: 'Services',
     metaTitle: 'Freelance Full-Stack Development Services',
-    indexHeading: 'Web apps, AI features, and ongoing development',
-    indexLead: 'A first product, a feature your team needs, or an app that needs a new developer.',
+    indexHeading: 'Stuck web apps, MVPs and AI features',
+    indexLead: 'An app that is stuck or needs a new developer, a first product, or a feature your team needs.',
     indexDescription:
-      'Freelance full-stack development services: AI features and agents, taking over an existing web app, MVPs, web apps and Arabic RTL web apps.',
+      'Freelance full-stack development services: taking over a stuck web app, AI features and agents, MVPs, web apps and Arabic RTL web apps.',
     provider: 'Service provider',
   },
   work: {
@@ -312,8 +312,8 @@ export const ui = {
         label: 'What do you need?',
         placeholder: 'Choose one',
         options: [
-          'AI feature, agent or product',
           'Take over an existing web app',
+          'AI feature, agent or product',
           'Build an MVP',
           'Build a web app or website',
           'Arabic or RTL web app',
