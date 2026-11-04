@@ -1,14 +1,15 @@
 ---
 title: 'Take Over an Existing Web App'
-heading: 'I take over existing web apps and keep them moving.'
-description: 'Freelance full-stack developer who takes over an existing web app. I read the code, stabilise it, then keep shipping. For founders whose developer left.'
-cardTitle: 'Take over an existing app'
-cardSummary: "The developer left, or the team can't keep up. I read the code, tell you what is solid and what is risky, then keep shipping."
-order: 2
-updated: 2026-10-14
+heading: 'I take over web apps that are stuck and ship the next release.'
+description: 'Freelance full-stack developer who takes over stuck web apps, from AI-built prototypes to apps a developer left. An audit first, then the next release.'
+cardTitle: 'Take over a stuck app'
+cardSummary: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
+order: 1
+updated: 2026-11-04
 imageAlt: 'A path of connected folders highlighted across a cube representing an existing codebase'
-lead: "The developer left, or the team can't keep up. I read the code, tell you what is solid and what is risky, then keep shipping."
+lead: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
 fit:
+  - 'You built the first version with an AI tool such as Lovable, Bolt or Cursor. It works in the demo, but sign-in, payments or data break once real customers use it.'
   - 'The developer who built your app stopped replying, or left, and nobody else knows how it runs.'
   - 'You have a working product with real users and a backlog that keeps growing.'
   - "An agency handed over a repository and you can't tell whether it is in good shape."
@@ -30,12 +31,16 @@ steps:
     text: "The first fixes and the first small feature, shipped to production if the deployment is safe to use, or to a staging copy if it isn't."
 experience:
   - "Since 2022 most of my work has been in codebases other people set up. The largest was caisy's CMS editor, a repository with more than 5,000 commits. I read the data model first, then traced one feature from the screen through the API to the database before I changed anything. At caisy I also built features on Next.js, tRPC and Drizzle codebases, including schema and migrations for Stripe billing and subscriptions."
-  - "On ScriptBee's Next.js app I joined a team's repository and built the chat interface, background tasks, the Google Ads connection and the onboarding flow. The [case study](/work/scriptbee/) has the details. At Smart Bricks I moved data fetching to the Next.js App Router and built the Storybook component library inside an existing product."
+  - "On ScriptBee's Next.js app I joined a team's repository and built the chat interface, background tasks, the Google Ads connection and the onboarding flow. Agent runs there took two to ten minutes and were lost when a user refreshed the page, so I moved them to background tasks that keep going after the tab closes. The [case study](/work/scriptbee/) has the details. At Smart Bricks I moved data fetching to the Next.js App Router and built the Storybook component library inside an existing product."
 terms:
   - 'Most of the apps I have taken on were TypeScript, React and Next.js, with Node.js and PostgreSQL behind them.'
   - 'The audit is a fixed piece of work with a fixed price. After it, we agree a monthly retainer or a price per task, depending on how much you need me.'
   - "Tell me what the app does, which stack it uses and what has gone wrong, and I'll reply with next steps."
 faq:
+  - question: 'The developer who built our app left with no documentation. Can you take it over?'
+    answer: 'Yes. I start with read access to the repository and the hosting, run the app locally, and write the missing documentation as I go: how it runs, how it deploys and where the risks are. The audit tells you what is solid before anything changes.'
+  - question: 'Can you fix an app built with Lovable, Bolt, Replit or Cursor?'
+    answer: 'Yes, if the code can live in a repository you own. I treat it like any inherited codebase: read it, check sign-in, data access, payments and deployment against what real customers will do, then fix the riskiest parts first. Sometimes keeping the code is right and sometimes a partial rebuild is cheaper; the audit says which before you pay for either.'
   - question: 'How long does the first audit take?'
     answer: 'It depends on the size of the app. I look at the repository and the deployment first, then give you a time estimate for the audit before I start it. A small app is days of reading, not weeks.'
   - question: 'Do I need to give you access to everything on day one?'

@@ -1,8 +1,8 @@
 ---
 title: How to take over a codebase from a developer who left
-description: A practical checklist for founders and new developers, from getting access to shipping a first small change without breaking production.
+description: A checklist for taking over a website or web app from a previous developer, from getting access to shipping a first change without breaking production.
 published: 2026-10-13
-updated: 2026-10-14
+updated: 2026-11-04
 service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app

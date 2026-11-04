@@ -4,7 +4,7 @@ heading: 'I build web apps with AI features and agents in them.'
 description: 'Freelance full-stack developer for AI products. LLM features, chat interfaces, agent tools and background tasks inside a real web app, not a demo.'
 cardTitle: 'Build AI features and agents'
 cardSummary: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
-order: 1
+order: 2
 updated: 2026-10-14
 imageAlt: 'Illustration of a chat interface connected to tools, a database and a background task queue'
 lead: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
