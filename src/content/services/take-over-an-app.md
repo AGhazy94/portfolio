@@ -37,6 +37,10 @@ terms:
   - 'The audit is a fixed piece of work with a fixed price. After it, we agree a monthly retainer or a price per task, depending on how much you need me.'
   - "Tell me what the app does, which stack it uses and what has gone wrong, and I'll reply with next steps."
 faq:
+  - question: 'The developer who built our app left with no documentation. Can you take it over?'
+    answer: 'Yes. I start with read access to the repository and the hosting, run the app locally, and write the missing documentation as I go: how it runs, how it deploys and where the risks are. The audit tells you what is solid before anything changes.'
+  - question: 'Can you fix an app built with Lovable, Bolt, Replit or Cursor?'
+    answer: 'Yes, if the code can live in a repository you own. I treat it like any inherited codebase: read it, check sign-in, data access, payments and deployment against what real customers will do, then fix the riskiest parts first. Sometimes keeping the code is right and sometimes a partial rebuild is cheaper; the audit says which before you pay for either.'
   - question: 'How long does the first audit take?'
     answer: 'It depends on the size of the app. I look at the repository and the deployment first, then give you a time estimate for the audit before I start it. A small app is days of reading, not weeks.'
   - question: 'Do I need to give you access to everything on day one?'
