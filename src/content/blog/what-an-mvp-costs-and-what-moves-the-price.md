@@ -2,8 +2,11 @@
 title: 'MVP cost: what changes the price'
 description: Why MVP quotes differ so much, the eight things that change the price, and how to get a number you can trust before you start.
 published: 2026-10-13
-updated: 2026-10-14
+updated: 2026-11-05
 service: mvp-development
+relatedArticles:
+  - fix-or-rebuild-an-inherited-web-app
+  - what-to-build-before-you-add-ai-to-your-product
 imageAlt: Illustration of a small product built from a few blocks beside a scale weighing features against budget
 faq:
   - question: Why do quotes for the same idea differ so much?
@@ -14,11 +17,11 @@ faq:
     answer: Cut features, not quality. Keep one user role, one main flow and the tools everyone uses. Move everything else to a later list.
 ---
 
-The biggest differences in MVP quotes usually come from scope: how many user roles, integrations and complete workflows are included, and who handles design, testing and deployment. Compare those assumptions before comparing totals. Here is a way to turn an idea into a brief that developers can price consistently.
+The biggest differences in MVP quotes usually come from scope: how many user roles, integrations and complete flows are included, and who handles design, testing and deployment. Compare those assumptions before comparing totals. Here is a way to turn an idea into a brief that developers can price consistently.
 
 ## Eight things that change the price
 
-**1. Complete workflows, not just features.** A report over existing data may take less work than a checkout with refunds and payment retries. Count the full flow, including its failure cases, rather than the number of buttons on a screen.
+**1. Complete flows, not single screens.** A report over existing data may take less work than a checkout with refunds and payment retries. Count the full flow, including its failure cases, rather than the number of buttons on a screen.
 
 **2. The number of user roles.** A product with one kind of user is simpler than one with customers, staff and an admin, each seeing different things.
 
@@ -32,7 +35,7 @@ The biggest differences in MVP quotes usually come from scope: how many user rol
 
 **7. Platforms.** A web app is one build. A web app and an iOS app and an Android app are several.
 
-**8. Quality expectations.** Tests, monitoring, backups, security checks and documentation. These are invisible when they exist and painful when they don't, and they are the first things cut in a cheap quote.
+**8. Quality expectations.** Tests, monitoring, backups, security checks and documentation. They're easy to skip, and a cheap quote often leaves them out.
 
 ## What a quote should list
 
@@ -57,7 +60,9 @@ Write down these answers before asking for an estimate:
 - **What already exists:** designs, content, a codebase or a prototype the developer can inspect.
 - **The release boundary:** what has to work at launch and what can wait.
 
-Send the same brief to each developer. Ask them to identify assumptions and exclusions in the quote so you can compare like for like.
+Send the same brief to each developer. Ask them to list their assumptions and what they left out, so you can compare like for like.
+
+If you already have a prototype, built by hand or with an AI tool, find out whether it can be fixed before you pay for a new build. [Fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) covers how to decide, and [taking over an existing app](/services/take-over-an-app/) is how I'd start on one.
 
 ## Fixed price, hourly or monthly
 

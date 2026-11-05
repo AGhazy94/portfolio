@@ -5,7 +5,7 @@ description: 'Freelance full-stack developer for MVPs, one person from first com
 cardTitle: 'Build an MVP'
 cardSummary: 'One developer from first commit to launch. A small, working first version of your product that real users can try.'
 order: 3
-updated: 2026-10-14
+updated: 2026-11-05
 imageAlt: 'Illustration of a small product taking shape from a sketch to a live app on a laptop'
 lead: 'One developer from first commit to launch. A small, working first version of your product that real people can sign up for and use.'
 fit:
@@ -46,7 +46,7 @@ faq:
   - question: 'Who owns the code?'
     answer: 'You do, from day one. I work in a repository and hosting accounts that you own.'
   - question: 'What happens after launch?'
-    answer: "Real users always find things a plan missed. Many founders keep me on for a set number of days a month to fix and improve. It's your choice, and the code stays readable either way."
+    answer: 'Real users always find things the plan missed. You can keep me on for a set number of days a month to fix and improve it, or take the code and the notes to another developer. The code stays readable either way.'
   - question: 'Can you build something with AI features?'
     answer: "Yes, in the sense of adding LLM-powered features to a product, such as a chat interface or background tasks that call a model. I have built chat and task interfaces on ScriptBee's Next.js app. I don't train models."
 ---

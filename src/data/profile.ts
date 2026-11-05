@@ -161,10 +161,11 @@ export const projects: Project[] = [
   },
   {
     name: 'LEICHT',
-    kind: 'Kitchen configurator and brand site · Through caisy',
+    kind: 'Kitchen brand site · Through caisy',
     href: 'https://leicht.com/',
     caseStudy: '/work/leicht/',
-    summary: 'Built a multilingual kitchen configurator and brand-site features with CMS content and GraphQL.',
+    summary:
+      'Built the multi-language leicht.com site in Qwik with CMS content and GraphQL, plus an internal kitchen configurator.',
     logo: 'leicht',
     tags: ['GraphQL', 'Headless CMS', 'i18n', 'Qwik'],
   },

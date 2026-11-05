@@ -2,7 +2,7 @@
 title: What to build before you add AI to your product
 description: A checklist for adding an LLM feature or an agent to a real product, from the narrow job to limits, logging and a person in the loop.
 published: 2026-10-14
-updated: 2026-10-14
+updated: 2026-11-05
 service: ai-products-and-agents
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -16,13 +16,13 @@ faq:
     answer: Almost never for a first version. Hosted models through an API are enough to find out whether people want the feature. Training is a later decision, with a real reason.
 ---
 
-Adding AI to a product has become easy to start and hard to finish. A demo takes an afternoon. A feature that is reliable, affordable and safe for real users takes planning. This is the list I'd work through before and during the build, whether you hire someone or do it yourself.
+A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I'd work through before and during the build.
 
 I build web apps with AI features, so a lot of this comes from the product side, not the model side.
 
 ## 1. Choose one narrow job
 
-"Add an AI assistant" is not a job. "Draft a reply to a customer email using the order history" is. A narrow job gives you something you can test, price and improve. A broad one gives you something that is sometimes impressive and often wrong.
+"Add an AI assistant" is not a job. "Draft a reply to a customer email using the order history" is. You can test a narrow job, price it and improve it. A broad one is often wrong.
 
 Write the job in one sentence, and write down what the AI should not do.
 
@@ -54,7 +54,7 @@ Model calls can take seconds, and agent tasks can take minutes. Don't make the u
 - Run long tasks in the background, with a progress indicator and a way to come back.
 - Handle failure: a retry, a clear message and a way to continue.
 
-On ScriptBee, an agent run took two to ten minutes. When the chat ran inside a normal request, a user who refreshed the page lost the answer. I moved chat work into background tasks on Trigger.dev and added a Tasks page, so a run kept going after the tab closed and the user could come back to the result. The hardest part was not the model call. It was getting live progress from the background run back onto the chat screen.
+On ScriptBee, an agent run took two to ten minutes. When the chat ran inside a normal request, a user who refreshed the page lost the answer. I moved chat work into background tasks on Trigger.dev and added a Tasks page, so a run kept going after the tab closed and the user could come back to the result. Most of my work there was starting the run, saving its messages and showing each run on the Tasks page.
 
 ## 6. Set limits and watch the cost
 
@@ -62,7 +62,7 @@ Model usage is billed per use, and a bug or a heavy user can run up a large bill
 
 - Cap the size of the input.
 - Limit how often one user can call the feature.
-- Use an enforced spending limit where the provider supports one. A budget alert is not a hard cap; add application-side limits as well.
+- Use an enforced spending limit where the provider supports one. A budget alert is not a hard cap, so add limits in your own app as well.
 - Log how much each call costs, so you can see the cost per user and per feature.
 
 ## 7. Log what was asked and answered
@@ -79,7 +79,7 @@ Put the feature behind a switch. If the provider has an outage, or the feature m
 
 ## 10. Tell users what it is
 
-Say clearly that a feature is AI-generated, and give users a way to correct or report a bad answer. Trust grows when users can see the limits.
+Say clearly that a feature is AI-generated, and give users a way to correct or report a bad answer.
 
 ## A sensible order of work
 
@@ -93,4 +93,4 @@ Say clearly that a feature is AI-generated, and give users a way to correct or r
 
 ## If you're planning one
 
-Most of this list is product work, not model work, and that is the part I build: the interface, the model calls, the tools, the background tasks and the data around them. [The AI page](/services/ai-products-and-agents/) shows how I'd start, and the form below is the place to describe the job and the data it needs.
+Most of this list is product work, and that is the part I build. I build the interface, the model calls, the tools, the background tasks and the data around them. [The AI page](/services/ai-products-and-agents/) shows how I'd start, and the form below is the place to describe the job and the data it needs.

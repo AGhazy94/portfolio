@@ -2,21 +2,22 @@
 title: How to take over a codebase from a developer who left
 description: A checklist for taking over a website or web app from a previous developer, from getting access to shipping a first change without breaking production.
 published: 2026-10-13
-updated: 2026-11-04
+updated: 2026-11-05
 service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
+  - what-an-app-audit-should-tell-you
 imageAlt: A handover checklist and key beside a laptop displaying a code editor
 faq:
   - question: What should I do first when my developer leaves?
     answer: Secure access before anything else. List every account the app depends on, make sure you own the ones that matter, and rotate shared passwords and keys. Only then start reading code.
   - question: Can a new developer take over without the old one's help?
-    answer: Usually yes, if the code, the hosting and the data are all reachable. A short handover call helps a lot, but it is not required. What blocks a takeover is missing access, not missing explanations.
+    answer: Usually yes, if the code, the hosting and the data are all reachable. A short handover call helps a lot, but it is not required. Missing access is what blocks a takeover. The rest can be worked out from the code.
   - question: How do I know whether the code is any good?
     answer: Ask for an audit before you commit to a plan. A short written review of how the app is built, how it is deployed and what is risky will tell you more than a demo. See [fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) for how to read the result.
 ---
 
-A developer who built your product has left, or stopped answering. The app still runs, customers still use it and nobody is sure how. This is a common situation and a recoverable one. The order of the steps matters more than the speed.
+A developer who built your product has left, or stopped answering. The app still runs, customers still use it and nobody is sure how. It happens a lot, and it can be fixed. Do the steps below in order, even when it feels slow.
 
 I take over existing web apps as part of my work, so this is the checklist I would follow. It also works if you are the founder who has to hold the process together.
 
@@ -31,7 +32,7 @@ Before anyone reads code, write a list of everything the product touches:
 - Third-party services: payments, email, analytics, authentication, file storage, error tracking.
 - Any scheduled jobs and where they run.
 
-Many takeovers stall here, because one of these sits under the old developer's personal account. Finding that out early is cheap. Finding it out the day something breaks is not.
+Many takeovers stall here, because one of these sits in the old developer's personal account. It's much easier to sort out now than on the day something breaks.
 
 ## 2. Make sure you own the accounts that matter
 
@@ -41,9 +42,9 @@ Do this in writing, and keep the answers.
 
 ## 3. Secure access
 
-After a developer leaves, remove their access and rotate the secrets they knew: API keys, database passwords, deployment tokens and any shared logins. This is routine hygiene, not an accusation. It also protects you from an old laptop that nobody wiped.
+After a developer leaves, remove their access and rotate the secrets they knew: API keys, database passwords, deployment tokens and any shared logins. It's routine, and a good developer won't take it personally. It also protects you from an old laptop nobody wiped.
 
-For each secret, identify the services that use it. Update those services and verify the replacement before revoking the old credential where a controlled cutover is possible. If a credential is compromised, follow your incident plan and revoke it promptly rather than keeping it active for convenience.
+Before you revoke an old key, find every service that uses it, switch them to the new key and check they still work. If you think a key has leaked, revoke it right away and fix whatever breaks after.
 
 If you can't tell which secrets exist, that is a finding for the audit, not a reason to wait.
 
@@ -86,12 +87,12 @@ Pick a harmless fix and ship it through the full process: branch, review, deploy
 
 ## 10. Write down what you learned
 
-Keep a short document with the account list, how to run the app, how to deploy it and the known risks. A takeover is only complete when the next takeover would be easy.
+Keep a short document with the account list, how to run the app, how to deploy it and the known risks. The next developer should be able to start from that document alone.
 
-For each account, record its owner, purpose, access-transfer status and recovery contact. For each service, record its deployment steps, monitoring link and backup location. Store credentials in a password manager or secrets store, not in the handover document.
+For each account, write down who owns it, what it's for and how to recover it. For each service, write down how it deploys, where its monitoring is and where the backups go. Keep passwords and keys in a password manager, not in this document.
 
 ## When to ask for help
 
 If steps 1 to 5 reveal problems you can't resolve, such as missing access or no way to run the code, that is the moment to hire someone to audit it. A short, fixed-price audit tells you what you have before you decide what to do with it.
 
-That's the first thing I do when I take over an app: [read the code and report what is solid and what is risky](/services/take-over-an-app/). If your situation sounds like this one, you can describe it in the contact form and I'll reply with an honest view of whether I can help.
+That's where I start when I take over an app. I [read the code and tell you what is solid and what is risky](/services/take-over-an-app/), and you can stop after that and keep the note. [What an app audit should tell you](/blog/what-an-app-audit-should-tell-you/) explains what you should get back from one. If your situation sounds like this, describe it in the contact form and I'll tell you honestly whether I can help.
