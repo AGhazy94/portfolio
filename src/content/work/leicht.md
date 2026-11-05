@@ -1,9 +1,9 @@
 ---
-title: LEICHT Kitchen Designer
-description: Case study of the multi-language kitchen configurator and the parts of the LEICHT brand site that I built on a headless CMS and GraphQL.
-kind: Kitchen configurator · Client work through caisy
-order: 2
-updated: 2026-10-14
+title: 'LEICHT: a kitchen brand site in several languages'
+description: Case study of the leicht.com brand site I built in Qwik on a headless CMS and GraphQL, in several languages, plus an internal kitchen configurator.
+kind: Kitchen brand site · Client work through caisy
+order: 3
+updated: 2026-11-05
 href: https://leicht.com/
 imageAlt: Illustration of a kitchen configurator with language options and a catalog order form
 tags:
@@ -19,8 +19,8 @@ LEICHT is a German kitchen maker. I worked on its digital products through caisy
 
 ## What I built
 
-- **The multi-language kitchen configurator,** built on a headless CMS and GraphQL. The configurator is an internal tool, so there is no public page to link to.
-- **Parts of the leicht.com brand site,** built in Qwik with GraphQL content: the navigation, the dealer search, the partner appointment-request flow, the hero and project sliders and the catalog order form.
+- **The leicht.com brand site,** end to end, in Qwik, with content from a headless CMS over GraphQL and pages in several languages. It includes the navigation and its search, the dealer search, the partner appointment-request flow, the hero and project sliders, and the catalog order form.
+- **An internal kitchen configurator,** hosted on AWS. It is an internal tool, so there is no public page to link to.
 
 ## What it shows
 

@@ -2,10 +2,11 @@
 title: Fix or rebuild? How to decide on an inherited web app
 description: A way to decide whether an inherited web app should be repaired or rewritten, with the signs that point each way and a safer middle path.
 published: 2026-10-13
-updated: 2026-10-14
+updated: 2026-11-05
 service: take-over-an-app
 relatedArticles:
   - how-to-take-over-a-codebase-from-a-developer-who-left
+  - what-an-app-audit-should-tell-you
 imageAlt: Illustration of a worn building being repaired on one side and a new one framed on the other
 faq:
   - question: Is a rewrite ever the right call?
@@ -55,9 +56,9 @@ In 2026 I audited the frontend of an AI platform for real-estate investors. The 
 - **A missing setting looked like a backend outage.** The app started without a required setting and then failed on every request. It now checks its settings at startup and refuses to run without them.
 - **One broken section took down the whole page.** Each section of the property page got its own error boundary, so a failure stays inside that section.
 
-Separately, I moved the property pages' data fetching to the server with the Next.js App Router and split them into server-rendered sections. The initial response could include the page content instead of waiting for browser-side requests to fill it in.
+Separately, I moved the property pages' data fetching to the server with the Next.js App Router and split them into server-rendered sections. Before that, the pages loaded empty and filled in from the browser. That was slow, and Google saw an empty page. Now the first response carries the content.
 
-These changes addressed specific failure modes without replacing the whole application.
+Error reports went down, and more property pages got indexed. I fixed all of it inside the existing app. The [full case study](/work/real-estate-platform-audit/) has the details.
 
 ## Signs that point to rebuilding
 
@@ -89,7 +90,7 @@ This keeps a working product in front of customers the whole time, and each step
 - Can we do it in stages?
 - Who gains from the larger project?
 
-A good answer is specific. A weak answer is "the code is bad".
+Ask what exactly is wrong. "The code is bad" doesn't answer that.
 
 ## The cost of each choice
 
@@ -99,8 +100,10 @@ A good answer is specific. A weak answer is "the code is bad".
 | Replace in stages | A useful product with a few weak areas    | Continued delivery, with temporary integration complexity |
 | Rebuild           | Structural blockers confirmed by an audit | Migration risk and a longer wait for the replacement      |
 
-Compare the work and migration plan for your app, not only the quoted development price. A replacement also has to preserve the behavior that existing users rely on.
+Don't compare only the quoted price. A rebuild also has to move your data over and keep everything your users already rely on, and that work is easy to leave out of a quote.
 
 ## What I do
 
-When I take over an app, I start with the audit and give you a short written view: what is solid, what is risky and what I'd do first, with a recommendation between these three options. I don't start a rewrite unasked. If you want that view for your own app, [describe it in the form](/services/take-over-an-app/) and I'll say whether I can help.
+When I take over an app, I start with the audit. You get one page that says what works, what is risky, whether I'd keep, fix or rebuild, and the fixes in order with a price for each. The audit has a fixed price, and you can stop after it and keep the note. I don't start a rewrite unless you ask for one.
+
+If you want that for your own app, [describe it in the form](/services/take-over-an-app/) and I'll tell you whether I can help.

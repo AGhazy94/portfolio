@@ -5,7 +5,7 @@ description: 'Freelance full-stack developer. I build web apps and websites in T
 cardTitle: 'Build your web app or website'
 cardSummary: 'A site or app with a real back end, with accounts, a database, forms, payments and an admin side. Built, deployed and explained.'
 order: 4
-updated: 2026-10-14
+updated: 2026-11-05
 imageAlt: "Illustration of a web app's interface, server and database connected as one system"
 lead: 'A site or app with a real back end: accounts, a database, forms, payments, an admin side. Built, deployed and explained.'
 fit:
@@ -29,7 +29,7 @@ steps:
   - title: 'The first complete flow, live'
     text: 'The first complete page or flow, live, with its data and forms working.'
 experience:
-  - 'I have built customer-facing and internal apps in Next.js and React since 2022: dealer landing pages with a lead form for German and Swiss markets, a multi-language kitchen configurator on a headless CMS and GraphQL, a chat and task interface for an AI marketing product, and Stripe billing and subscription tables for a client app built through caisy.'
+  - 'I have built customer-facing and internal apps in Next.js and React since 2022: dealer landing pages with a lead form for German and Swiss markets, the multi-language LEICHT site on a headless CMS and GraphQL, an internal kitchen configurator, a chat and task interface for an AI marketing product, and Stripe billing and subscription tables for a client app built through caisy.'
   - 'The [work page](/work/) lists projects and what I did on each.'
 terms:
   - 'I work in TypeScript, React and Next.js on the front end, Node.js and PostgreSQL on the back end, and Tailwind CSS for styling. I have also built sites on headless CMS platforms.'
@@ -39,7 +39,7 @@ faq:
   - question: 'Do you build simple websites too?'
     answer: "Yes, though for a five-page brochure site a website builder is cheaper and quicker. I'm useful when the site needs accounts, a database, a content system, integrations or custom behaviour."
   - question: 'Which tools do you use?'
-    answer: 'TypeScript, React and Next.js on the front end; Node.js and PostgreSQL on the back end; Tailwind CSS for styling. I have also built sites on headless CMS platforms.'
+    answer: 'TypeScript, React and Next.js on the front end, Node.js and PostgreSQL on the back end, and Tailwind CSS for styling. I have also built sites on headless CMS platforms.'
   - question: 'Can you work with an existing designer or agency?'
     answer: "Yes. I turn designs into working pages and put the logic behind them. I'm happy to work from Figma files, or alongside an agency that owns the design."
   - question: 'Will I be able to edit content myself?'

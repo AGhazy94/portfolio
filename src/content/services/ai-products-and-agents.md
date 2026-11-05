@@ -5,7 +5,7 @@ description: 'Freelance full-stack developer for AI products. LLM features, chat
 cardTitle: 'Build AI features and agents'
 cardSummary: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
 order: 2
-updated: 2026-10-14
+updated: 2026-11-05
 imageAlt: 'Illustration of a chat interface connected to tools, a database and a background task queue'
 lead: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
 fit:
@@ -34,7 +34,7 @@ experience:
   - "On ScriptBee, an AI marketing platform, an agent run could take two to ten minutes. Inside a normal request, users who refreshed the page lost the answer. I moved chat work into Trigger.dev background tasks and built the Tasks page, so a run kept going and the user could come back to it. I also built two of the agent's tools, a Google Keyword Planner tool and a YouTube video analysis tool, plus the Google Ads connection."
   - 'At caisy, I added AI translation of content fields to a CMS editor. The [ScriptBee case study](/work/scriptbee/) has the details. I also work AI-assisted every day, using Claude Code and other AI coding tools.'
 terms:
-  - 'I build in TypeScript, React, Next.js and Node.js with PostgreSQL, and call models through their APIs. A scoped first version gets a fixed price; ongoing work gets a monthly one. Model usage is billed by the provider to your account, so that cost is never hidden inside my invoice.'
+  - 'I build in TypeScript, React, Next.js and Node.js with PostgreSQL, and call models through their APIs. A scoped first version gets a fixed price, and ongoing work a monthly one. Model usage is billed by the provider to your account, so that cost is never hidden inside my invoice.'
   - 'Use the form below to describe what the AI should do, who will use it and what data it works with.'
 faq:
   - question: 'What kind of AI features do you build?'
@@ -44,5 +44,5 @@ faq:
   - question: 'How do you keep AI features from costing too much or misbehaving?'
     answer: 'Narrow the job, limit the input, log every call, set a spending cap and keep a person in the loop for anything that matters. [What to build before you add AI to your product](/blog/what-to-build-before-you-add-ai-to-your-product/) covers the checklist.'
   - question: 'Do you use AI tools to write code?'
-    answer: 'Yes, every day, with Claude Code and other AI coding tools. I review what they produce before it ships, and the code goes through the same pull requests as any other.'
+    answer: 'Yes, every day, with Claude Code and other AI coding tools. The code still goes in through pull requests like any other change.'
 ---

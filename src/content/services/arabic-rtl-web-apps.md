@@ -5,7 +5,7 @@ description: 'Freelance full-stack developer and native Arabic speaker. I build 
 cardTitle: 'Arabic and bilingual web apps'
 cardSummary: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 order: 5
-updated: 2026-10-14
+updated: 2026-11-05
 imageAlt: 'Illustration of the same app screen shown side by side in English left-to-right and Arabic right-to-left'
 lead: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 fit:
@@ -31,7 +31,7 @@ steps:
     text: 'The shared layout pieces fixed or built, such as the header, forms, buttons and navigation, with Arabic and English running side by side on a preview link.'
 experience:
   - "From 2022 to 2024 I built Stake's marketing emails in Arabic and English. Email apps are strict about right-to-left text: several ignored CSS direction, so direction and alignment had to sit on every table and cell, and two-column layouts had to be reordered for Arabic, not just flipped."
-  - 'I have also built multi-language products since 2022: the interface of a German e-learning app translated into German, dealer landing pages for German and Swiss markets, and a multi-language kitchen configurator on a headless CMS and GraphQL. Arabic is my first language, and I build the logic behind the layout too.'
+  - 'I have also built multi-language products since 2022: the interface of a German e-learning app translated into German, dealer landing pages for German and Swiss markets, and the LEICHT site in several languages on a headless CMS. Arabic is my first language, and I build the logic behind the layout too.'
 terms:
   - 'An audit of your Arabic screens or a scoped build is a fixed price. Ongoing work is monthly.'
   - 'Write below what you are building and which languages and regions it serves.'
