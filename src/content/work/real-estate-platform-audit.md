@@ -4,6 +4,7 @@ description: How I audited the live frontend of an AI platform for real-estate i
 kind: AI platform for real-estate investors · Frontend lead
 order: 2
 updated: 2026-11-05
+imageAlt: Illustration of a page layout with one broken section held inside a glowing blue boundary
 tags:
   - Next.js
   - TypeScript

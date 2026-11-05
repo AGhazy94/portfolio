@@ -7,6 +7,7 @@ service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
   - how-to-take-over-a-codebase-from-a-developer-who-left
+imageAlt: Illustration of an app model with two blocks flagged in blue and linked to a one-page note
 faq:
   - question: How much should an app audit cost?
     answer: It depends on the size of the app, so there is no single number. What matters more is that the price is agreed before it starts, and that you can stop after it and keep the note.
