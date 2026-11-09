@@ -1,15 +1,15 @@
 ---
-title: 'Take Over an Existing Web App'
+title: 'Take Over a Web App From a Previous Developer'
 heading: 'I take over web apps that are stuck and ship the next release.'
-description: 'Freelance full-stack developer who takes over stuck web apps, from AI-built prototypes to apps a developer left. An audit first, then the next release.'
+description: 'Did your developer leave, or does your Lovable or Bolt app break with real users? I audit the code first, then fix it and ship the next release.'
 cardTitle: 'Take over a stuck app'
 cardSummary: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
 order: 1
-updated: 2026-11-05
+updated: 2026-11-09
 imageAlt: 'A path of connected folders highlighted across a cube representing an existing codebase'
 lead: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
 fit:
-  - 'You built the first version with an AI tool such as Lovable, Bolt or Cursor. It works in the demo, but sign-in, payments or data break once real customers use it.'
+  - 'You built the first version with an AI tool such as Lovable, Bolt or Cursor. It works in the demo, but sign-in, payments or data break once real customers use it. I wrote up [how I fix these apps](/blog/how-to-fix-a-vibe-coded-app/) and [the security checks I run first](/blog/vibe-coded-app-security-checklist/).'
   - 'The developer who built your app stopped replying, or left, and nobody else knows how it runs.'
   - 'You have a working product with real users and a backlog that keeps growing.'
   - "An agency handed over a repository and you can't tell whether it is in good shape."

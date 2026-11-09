@@ -19,7 +19,7 @@ faq:
 
 A developer who built your product has left, or stopped answering. The app still runs, customers still use it and nobody is sure how. It happens a lot, and it can be fixed. Do the steps below in order, even when it feels slow.
 
-I take over existing web apps as part of my work, so this is the checklist I would follow. It also works if you are the founder who has to hold the process together.
+I [take over existing web apps](/services/take-over-an-app/) as part of my work, so this is the checklist I would follow. It also works if you are the founder who has to hold the process together.
 
 ## 1. Find out what the app depends on
 

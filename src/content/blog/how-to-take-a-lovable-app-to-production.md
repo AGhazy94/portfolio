@@ -68,7 +68,7 @@ I turn those changes into migration files in the repository. Then the same chang
 
 You can keep publishing from Lovable, or deploy the GitHub code to Vercel, Netlify or your own server.
 
-I usually move hosting out when the app needs a custom server setup, preview links for every change, or when the founder wants everything in accounts they already pay for. If Lovable hosting is doing the job, there's no rush.
+I usually move hosting out when the app needs a custom server setup, preview links for every change, or when the founder wants everything in accounts they already pay for. If Lovable hosting is doing the job, there's no rush. When you do move, [this is how I deploy a Lovable app to Vercel, Netlify or AWS](/blog/how-to-deploy-a-lovable-app-to-vercel-netlify-or-aws/).
 
 ## 8. Set up error tracking and a first look at speed
 

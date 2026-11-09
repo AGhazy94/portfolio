@@ -31,7 +31,7 @@ export const profile = {
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
   tagline: 'Full-stack developer. I take over web apps that are stuck and ship the next release.',
   description:
-    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps and ship the next release, and build MVPs and AI features.',
+    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including ones built with Lovable or Bolt, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -41,7 +41,7 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-04T00:00:00+02:00',
+  updated: '2026-11-09T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
     'Taking over existing codebases',
@@ -75,7 +75,7 @@ export const profile = {
 export const statement = 'Working in quality taught me to look at software from the customer’s side.';
 
 export const about: string[] = [
-  'I didn’t start in engineering. Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account.',
+  'Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account. That’s where I learned to look for what breaks before I change anything, and I still work that way.',
   'I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.',
 ];
