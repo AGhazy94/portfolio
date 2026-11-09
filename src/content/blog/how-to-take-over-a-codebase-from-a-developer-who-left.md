@@ -1,5 +1,5 @@
 ---
-title: How to take over a codebase from a developer who left
+title: 'Taking over a website from a previous developer: a checklist'
 description: A checklist for taking over a website or web app from a previous developer, from getting access to shipping a first change without breaking production.
 published: 2026-10-13
 updated: 2026-11-05
