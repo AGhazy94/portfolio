@@ -5,7 +5,7 @@ import { ui } from '../data/profile';
 import { attributionFields } from '../lib/attribution';
 
 const section = ui.sections.find(({ id }) => id === 'contact')!;
-const { fields, errors, success } = ui.contact;
+const { fields, errors, success, tool } = ui.contact;
 const [successBefore, successAfter] = success.body.split('{email}');
 
 const inputs = [
@@ -42,6 +42,10 @@ const buttonClass =
       data-contact-form
       data-errors={JSON.stringify(errors)}
       data-sending={ui.contact.sending}
+      data-success={success.body}
+      data-failure={ui.contact.failure}
+      toolname={tool.name}
+      tooldescription={tool.description}
       class="mx-auto mt-10 grid max-w-[560px] gap-x-3 gap-y-4 text-left sm:grid-cols-2"
     >
       <input type="hidden" name="form-name" value="contact" />
@@ -54,7 +58,8 @@ const buttonClass =
       ))}
       <p class="hidden">
         <label>
-          {ui.contact.honeypot} <input name="bot-field" tabindex="-1" autocomplete="off" />
+          {ui.contact.honeypot}{' '}
+          <input name="bot-field" tabindex="-1" autocomplete="off" toolparamdescription={tool.params['bot-field']} />
         </label>
       </p>
 
@@ -72,6 +77,7 @@ const buttonClass =
             required
             maxlength="200"
             aria-describedby={`contact-${input.name}-error`}
+            toolparamdescription={tool.params[input.name]}
             data-field
             class={fieldClass}
           />
@@ -92,6 +98,7 @@ const buttonClass =
             <select
               id={`contact-${choice.name}`}
               name={choice.name}
+              toolparamdescription={choice.tool}
               class={`${fieldClass} cursor-pointer appearance-none truncate pr-11`}
             >
               <option value="">{choice.placeholder}</option>
@@ -121,6 +128,7 @@ const buttonClass =
           minlength="10"
           maxlength="5000"
           aria-describedby="contact-message-error"
+          toolparamdescription={tool.params.message}
           data-field
           class:list={[fieldClass, 'resize-y leading-normal']}
         ></textarea>
@@ -215,13 +223,25 @@ const buttonClass =
       for (const field of fields) field.readOnly = busy;
     };
 
-    form.addEventListener('submit', async (event) => {
+    // WebMCP additions to SubmitEvent; not in the DOM typings yet.
+    type AgentSubmitEvent = SubmitEvent & {
+      agentInvoked?: boolean;
+      respondWith?: (result: Promise<string>) => void;
+    };
+
+    form.addEventListener('submit', (event: AgentSubmitEvent) => {
       event.preventDefault();
+      const result = send();
+      if (event.agentInvoked) event.respondWith?.(result);
+    });
+
+    // Resolves to the outcome in words, which is what a browser agent gets back as the tool result.
+    const send = async () => {
       alert.replaceChildren();
       const invalid = fields.filter((field) => !check(field));
       if (invalid.length) {
         invalid[0].focus();
-        return;
+        return invalid.map(messageFor).join(' ');
       }
 
       setBusy(true);
@@ -240,16 +260,19 @@ const buttonClass =
         if (!response.ok) throw new Error(`Form submission failed with ${response.status}`);
         trackLead();
 
-        success.querySelector('[data-success-email]')!.textContent = String(new FormData(form).get('email'));
+        const email = String(new FormData(form).get('email'));
+        success.querySelector('[data-success-email]')!.textContent = email;
         form.hidden = true;
         success.hidden = false;
         success.querySelector<HTMLElement>('h3')!.focus();
+        return form.dataset.success!.replace('{email}', email);
       } catch {
         alert.replaceChildren(failure.content.cloneNode(true));
+        return form.dataset.failure!;
       } finally {
         setBusy(false);
       }
-    });
+    };
 
     success.querySelector('[data-contact-reset]')!.addEventListener('click', () => {
       form.reset();
