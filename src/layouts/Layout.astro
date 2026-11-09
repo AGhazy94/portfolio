@@ -34,6 +34,8 @@ const {
 // Netlify sets PUBLIC_NOINDEX on deploy previews and branch deploys so only production is indexed.
 const noindex = hidden || import.meta.env.PUBLIC_NOINDEX === 'true';
 const siteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+// Chrome's WebMCP origin trial token; without it the contact form's tool works only behind a flag.
+const webmcpTrial = import.meta.env.PUBLIC_WEBMCP_ORIGIN_TRIAL;
 
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
@@ -116,6 +118,7 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     {!noindex && <link rel="canonical" href={canonical} />}
     {siteVerification && <meta name="google-site-verification" content={siteVerification} />}
+    {webmcpTrial && <meta http-equiv="origin-trial" content={webmcpTrial} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content={type} />

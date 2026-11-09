@@ -302,6 +302,18 @@ export const ui = {
     subject: 'New message from %{formName}',
     honeypot: 'Leave this empty if you’re human',
     optional: 'Optional',
+    // WebMCP: lets a visitor's browser agent fill the form; the visitor still reviews it and presses Send.
+    tool: {
+      name: 'send_enquiry_to_ahmed',
+      description:
+        'Fills in the contact form to send Ahmed Ghazy, a freelance full-stack developer, an enquiry about a web app, AI feature, MVP or taking over an existing app. The visitor reviews the form and presses Send; Ahmed replies by email.',
+      params: {
+        name: 'Full name of the person sending the enquiry.',
+        email: 'Email address Ahmed should reply to.',
+        message: 'What the visitor is building or what needs fixing, in their own words. At least 10 characters.',
+        'bot-field': 'Spam trap. Always leave empty.',
+      },
+    },
     fields: {
       name: { label: 'Name', placeholder: 'Jane Smith' },
       email: { label: 'Email', placeholder: 'jane@company.com' },
@@ -313,6 +325,7 @@ export const ui = {
         name: 'project-type',
         label: 'What do you need?',
         placeholder: 'Choose one',
+        tool: 'Kind of help needed. Optional.',
         options: [
           'Take over an existing web app',
           'AI feature, agent or product',
@@ -327,12 +340,14 @@ export const ui = {
         name: 'budget',
         label: 'Budget',
         placeholder: 'Choose a range',
+        tool: 'Budget range in US dollars. Optional.',
         options: ['Under $2,000', '$2,000 to $5,000', '$5,000 to $15,000', '$15,000 or more', 'Not sure yet'],
       },
       {
         name: 'timeline',
         label: 'Timeline',
         placeholder: 'Choose a timeline',
+        tool: 'When the work should start. Optional.',
         options: ['As soon as possible', 'Within a month', 'In 1 to 3 months', 'Just exploring'],
       },
     ],
