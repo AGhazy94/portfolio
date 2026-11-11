@@ -1,8 +1,8 @@
 ---
-title: 'Vibe-coded app security checklist: what I check before real users'
-description: The security checks I run on apps built with Lovable, Bolt, Replit or Cursor, from database rules and leaked keys to payments and sign-in.
+title: 'Vibe coding security checklist: what I check before real users'
+description: The vibe coding security checks I run on Lovable, Bolt, Replit or Cursor apps, from database rules and leaked keys to payments and sign-in.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-11
 service: take-over-an-app
 relatedArticles:
   - how-to-fix-a-vibe-coded-app

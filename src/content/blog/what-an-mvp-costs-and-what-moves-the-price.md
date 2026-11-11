@@ -1,8 +1,8 @@
 ---
-title: 'MVP cost: what changes the price'
-description: Why MVP quotes differ so much, the eight things that change the price, and how to get a number you can trust before you start.
+title: 'MVP development cost: what changes the price'
+description: Why MVP development quotes differ so much, the eight things that change the cost, and how to get a number you can trust before you start.
 published: 2026-10-13
-updated: 2026-11-05
+updated: 2026-11-11
 service: mvp-development
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app

@@ -1,8 +1,8 @@
 ---
 title: How to fix a vibe-coded app that breaks with real users
-description: What I check and fix, in order, when an app built with Lovable, Bolt, Replit or Cursor works in the demo but breaks once real users sign up.
+description: How I fix a vibe-coded app built with Lovable, Bolt, Replit or Cursor that works in the demo but breaks once real users sign up, in order.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-11
 service: take-over-an-app
 relatedArticles:
   - vibe-coded-app-security-checklist

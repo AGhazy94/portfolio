@@ -1,8 +1,8 @@
 ---
-title: What an app audit should tell you before you pay for fixes
-description: What a short audit of a stuck web app should give you. One page in plain words, the risks to your customers, keep, fix or rebuild, and the fixes in order.
+title: 'Software audit: what it should tell you before you pay for fixes'
+description: What a short software or code audit of a stuck web app should give you. One page in plain words, the risks, keep, fix or rebuild, and the fixes in order.
 published: 2026-11-05
-updated: 2026-11-05
+updated: 2026-11-11
 service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
