@@ -2,7 +2,7 @@
 title: What to build before you add AI to your product
 description: A checklist for adding an LLM feature or an agent to a real product, from the narrow job to limits, logging and a person in the loop.
 published: 2026-10-14
-updated: 2026-11-05
+updated: 2026-11-12
 service: ai-products-and-agents
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -16,7 +16,9 @@ faq:
     answer: Almost never for a first version. Hosted models through an API are enough to find out whether people want the feature. Training is a later decision, with a real reason.
 ---
 
-A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I'd work through before and during the build.
+Before you add AI to a product, decide the one narrow job it does, collect examples you can test it against, and put limits, logging and an off switch around it. The model call is the easy part.
+
+A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I work through before and during the build.
 
 I build web apps with AI features, so a lot of this comes from the product side, not the model side.
 
@@ -36,11 +38,11 @@ Use real data where you can. When I built a Google Keyword Planner tool for Scri
 
 ## 3. Start with the simplest thing
 
-Often one model call with a clear prompt does the job. Reach for tools and multi-step agents only when a single call can't. Each extra step adds cost, waiting time and a new way to fail.
+Often one model call with a clear prompt does the job. Reach for tools and multi-step agents only when a single call can't. Anthropic's guide to [building effective agents](https://www.anthropic.com/research/building-effective-agents) gives the same advice. Each extra step adds cost, waiting time and a new way to fail.
 
 When you do need an agent, give it a small set of tools with clear names, and limit what each can do. A tool that can read is safer than one that can write, and a tool that can write should ask for confirmation.
 
-Be strict about each tool's inputs. The model reads the tool's description and its parameter list, and when those were loose, the agent called my tools with vague inputs. Tight parameter types and plain descriptions fixed more than prompt changes did.
+Be strict about each tool's inputs. The model reads the tool's description and its parameter list, and when those were loose, the agent called my tools with vague inputs. Tight parameter types and plain descriptions fixed more than prompt changes did. Anthropic's [tool docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools) call detailed descriptions the most important factor in how well tools work.
 
 ## 4. Keep a person in the loop for anything that matters
 
@@ -54,7 +56,7 @@ Model calls can take seconds, and agent tasks can take minutes. Don't make the u
 - Run long tasks in the background, with a progress indicator and a way to come back.
 - Handle failure: a retry, a clear message and a way to continue.
 
-On ScriptBee, an agent run took two to ten minutes. When the chat ran inside a normal request, a user who refreshed the page lost the answer. I moved chat work into background tasks on Trigger.dev and added a Tasks page, so a run kept going after the tab closed and the user could come back to the result. Most of my work there was starting the run, saving its messages and showing each run on the Tasks page.
+On ScriptBee, an agent run took two to ten minutes. When the chat ran inside a normal request, a user who refreshed the page lost the answer. I moved chat work into background tasks on [Trigger.dev](https://trigger.dev/docs/introduction) and added a Tasks page, so a run kept going after the tab closed and the user could come back to the result. Most of my work there was starting the run, saving its messages and showing each run on the Tasks page.
 
 ## 6. Set limits and watch the cost
 

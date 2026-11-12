@@ -1,8 +1,8 @@
 ---
-title: 'Vibe-coded app security checklist: what I check before real users'
-description: The security checks I run on apps built with Lovable, Bolt, Replit or Cursor, from database rules and leaked keys to payments and sign-in.
+title: 'Vibe coding security checklist: what I check before real users'
+description: The vibe coding security checks I run on Lovable, Bolt, Replit or Cursor apps, from database rules and leaked keys to payments and sign-in.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - how-to-fix-a-vibe-coded-app
@@ -20,11 +20,13 @@ When someone sends me an app built with Lovable, Bolt, Replit or Cursor, securit
 
 These tools are good at building screens. They're less careful about who's allowed to see what. The app looks right and works in the demo, so nobody notices until a curious user opens the developer tools.
 
-This is the list I go through. You can run most of it yourself.
+The short version: check the database rules on every table, keep secret keys out of the browser, make sure only your server can mark someone as paid, and limit who can call your AI features. Those four cover most of the serious problems I find.
+
+This is the full list I go through. You can run most of it yourself.
 
 ## 1. Database rules on every table
 
-Most of these apps use Supabase. In Supabase, the browser talks to the database directly, so the database rules are the only thing standing between one user and another user's data.
+Most of these apps use Supabase. In Supabase, the browser talks to the database directly, so the database rules, called [row level security](https://supabase.com/docs/guides/database/postgres/row-level-security), are the only thing standing between one user and another user's data.
 
 For every table that holds user data, I check:
 
@@ -38,11 +40,11 @@ A quick test: sign in as one user, copy a request from the network tab, and chan
 
 Anything in the front-end code can be read by anyone who visits the site.
 
-I search the code for API keys. The usual ones are OpenAI, Stripe secret keys, the Supabase service role key and email service keys. The Supabase "anon" key is fine to be public. The service role key never is.
+I search the code for API keys. The usual ones are OpenAI, Stripe secret keys, the Supabase secret key and email service keys. The Supabase publishable key (called "anon" on older projects) is fine to be public. The secret key (the older "service_role" key) [never is](https://supabase.com/docs/guides/getting-started/api-keys), because it skips every database rule.
 
-Lovable has a Secrets feature for this. Keys go there, and the calls that need them run on the server, in an edge function, not in the page.
+Lovable has a [Secrets](https://docs.lovable.dev/features/secrets) feature for this. Keys go there, and the calls that need them run on the server, in an edge function, not in the page.
 
-I also check the GitHub history. A key that was committed once and deleted later is still in the history, so it needs to be rotated.
+I also check the GitHub history. A key that was committed once and deleted later is [still in the history](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository), so it needs to be rotated.
 
 ## 3. Sign-in and password reset
 
@@ -51,13 +53,13 @@ I go through sign-up, sign-in, sign-out and password reset as a new user. I'm lo
 - Email confirmation that can be skipped
 - Reset links that don't expire or can be reused
 - Admin pages that only hide the button but let anyone open the URL
-- Leaked-password protection turned off. In Supabase it's a setting, and Lovable's scan flags it
+- Leaked-password protection turned off. In Supabase it's [a setting](https://supabase.com/docs/guides/auth/password-security), and Lovable's scan flags it
 
 ## 4. Payments that can be faked
 
 This one costs money directly.
 
-If the app marks a user as paid because the browser said so, anyone can upgrade themselves for free. The paid status should only change when the payment provider tells your server, through a Stripe webhook for example, and the server should check that the webhook really came from Stripe.
+If the app marks a user as paid because the browser said so, anyone can upgrade themselves for free. The paid status should only change when the payment provider tells your server, through a Stripe webhook for example, and the server should [check the signature](https://docs.stripe.com/webhooks) to make sure the webhook really came from Stripe.
 
 ## 5. AI features that can be abused
 
@@ -67,13 +69,13 @@ I add a sign-in check, a limit per user and a hard spending cap where the provid
 
 ## 6. File uploads
 
-Storage buckets have their own rules, separate from the tables. I check that private files are in a private bucket, that one user can't list or download another user's files, and that there's a size limit.
+Storage buckets have [their own rules](https://supabase.com/docs/guides/storage/security/access-control), separate from the tables. I check that private files are in a private bucket, that one user can't list or download another user's files, and that there's a size limit.
 
 ## 7. Dependencies and the security scan
 
 Lovable runs a quick security scan when you publish, and has a deeper scan you can run yourself. Run both and fix what they find.
 
-Then I run npm audit on the code from GitHub. The scans are useful, but Lovable says itself that they can't promise complete security. They also don't know your business rules. Only someone who knows the app can tell that a sales rep shouldn't see the finance table.
+Then I run [npm audit](https://docs.npmjs.com/cli/commands/npm-audit/) on the code from GitHub. The scans are useful, but [Lovable says itself](https://docs.lovable.dev/features/security) that they can't promise complete security. They also don't know your business rules. Only someone who knows the app can tell that a sales rep shouldn't see the finance table.
 
 ## 8. Logs and a way to find out
 

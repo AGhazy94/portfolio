@@ -2,7 +2,7 @@
 title: 'Taking over a website from a previous developer: a checklist'
 description: A checklist for taking over a website or web app from a previous developer, from getting access to shipping a first change without breaking production.
 published: 2026-10-13
-updated: 2026-11-05
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
@@ -17,9 +17,11 @@ faq:
     answer: Ask for an audit before you commit to a plan. A short written review of how the app is built, how it is deployed and what is risky will tell you more than a demo. See [fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) for how to read the result.
 ---
 
-A developer who built your product has left, or stopped answering. The app still runs, customers still use it and nobody is sure how. It happens a lot, and it can be fixed. Do the steps below in order, even when it feels slow.
+When a developer leaves, secure the accounts first. List everything the app depends on, move the ones that matter into your company's name, and rotate the passwords and keys the old developer knew. Then get a copy running away from production and restore a backup. Only after that should anyone read the code and ship a first change.
 
-I [take over existing web apps](/services/take-over-an-app/) as part of my work, so this is the checklist I would follow. It also works if you are the founder who has to hold the process together.
+The developer who built your product has left, or stopped answering. The app still runs, customers still use it and nobody is sure how. It happens a lot, and it can be fixed if you go in order, even when it feels slow.
+
+I [take over existing web apps](/services/take-over-an-app/) as part of my work, and this is the checklist I follow. It also works if you're the founder who has to hold the process together.
 
 ## 1. Find out what the app depends on
 

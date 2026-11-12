@@ -2,7 +2,7 @@
 title: How to take a Lovable app to production
 description: What I check and set up before a Lovable app gets real users, from GitHub and Supabase ownership to staging, migrations, payments and hosting.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - vibe-coded-app-security-checklist
@@ -16,9 +16,9 @@ faq:
     answer: Many are, after some work. The screens and the basic data model are often fine. What usually needs work is database access rules, server-side logic for payments and AI calls, and a safe way to change the app once people depend on it.
 ---
 
-Lovable is great for getting a product in front of people. I see founders go from an idea to a working app in a weekend.
+Taking a Lovable app to production means owning the code and the database, fixing the database access rules, moving secrets and payment logic to the server, and adding a staging copy so changes get tested before real users see them. Where you host it matters less than people think.
 
-The trouble starts when that app needs to hold real customers and real money. Then the questions change. Who owns the code? What happens if a change breaks sign-up on a Friday night? Is customer data actually private?
+Lovable is great for getting a product in front of people fast. The trouble starts when that app needs to hold real customers and real money. Then the questions change. Who owns the code? What happens if a change breaks sign-up on a Friday night? Is customer data actually private?
 
 I take Lovable apps to production as part of my work. This is what I check and set up, in order.
 
@@ -26,7 +26,7 @@ I take Lovable apps to production as part of my work. This is what I check and s
 
 First thing. Connect the Lovable project to GitHub, under your account or your company's, not a freelancer's.
 
-Lovable syncs both ways with one branch, usually main. Changes you make in Lovable go to GitHub, and changes pushed to that branch come back into Lovable. That means a developer can work in their own editor without breaking your Lovable project.
+[Lovable syncs both ways](https://docs.lovable.dev/integrations/github) with one branch, usually main. Changes you make in Lovable go to GitHub, and changes pushed to that branch come back into Lovable. That means a developer can work in their own editor without breaking your Lovable project.
 
 It also means you have a full history. If something breaks, you can see what changed and roll it back.
 
@@ -34,21 +34,21 @@ It also means you have a full history. If something breaks, you can see what cha
 
 Most Lovable apps keep their data in Supabase, either a project you connected or Lovable Cloud.
 
-I check who owns it and who can log in to it. Then I check the backups. If the database is gone tomorrow, how much do you lose? On a real product the answer has to be "nearly nothing".
+I check who owns it and who can log in to it. Then I check the backups. Lovable Cloud keeps [daily backups](https://docs.lovable.dev/features/database-backups), and a Supabase project has [its own](https://supabase.com/docs/guides/platform/backups). If the database is gone tomorrow, how much do you lose? On a real product the answer has to be "nearly nothing".
 
 ## 3. Fix database access before anything else
 
 This is where I find the most serious problems.
 
-The app shows each user only their own data, but the database rules often allow much more. Every table with user data needs row level security turned on, with rules that match who should see what.
+The app shows each user only their own data, but the database rules often allow much more. Every table with user data needs row level security turned on, with rules that match who should see what. Lovable shows these rules in its [database access view](https://docs.lovable.dev/features/database-access).
 
-I go through this in detail in the [security checklist](/blog/vibe-coded-app-security-checklist/). Lovable's security scan helps here too. Run it, and still check the rules by hand.
+I go through this in detail in the [security checklist](/blog/vibe-coded-app-security-checklist/). Lovable's [security scan](https://docs.lovable.dev/features/security) helps here too. Run it, and still check the rules by hand.
 
 ## 4. Move secrets and important logic to the server
 
 Anything in the browser can be read and changed by the user.
 
-So API keys go in Lovable's Secrets, never in the code. Calls to OpenAI, Stripe or your email service run in a server function. And anything that decides money or access, like marking a user as paid, happens on the server after the payment provider confirms it.
+So API keys go in [Lovable's Secrets](https://docs.lovable.dev/features/secrets), never in the code. Calls to OpenAI, Stripe or your email service run in a server function. And anything that decides money or access, like marking a user as paid, happens on the server after the payment provider confirms it.
 
 ## 5. Add a staging copy
 
@@ -62,7 +62,7 @@ Lovable can work on a separate branch, which makes this easier. The important pa
 
 In a Lovable project, the database often changes through prompts or clicks in the dashboard. Fine for building. Risky once there's real data.
 
-I turn those changes into migration files in the repository. Then the same change runs on staging first and on the live database after, and you can see exactly what changed and when.
+I turn those changes into [migration files](https://supabase.com/docs/guides/deployment/database-migrations) in the repository. Then the same change runs on staging first and on the live database after, and you can see exactly what changed and when.
 
 ## 7. Decide where to host it
 

@@ -1,8 +1,8 @@
 ---
 title: How to fix a vibe-coded app that breaks with real users
-description: What I check and fix, in order, when an app built with Lovable, Bolt, Replit or Cursor works in the demo but breaks once real users sign up.
+description: How I fix a vibe-coded app built with Lovable, Bolt, Replit or Cursor that works in the demo but breaks once real users sign up, in order.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - vibe-coded-app-security-checklist
@@ -16,13 +16,13 @@ faq:
     answer: It depends on what is broken. That's why I start with a short audit. You get the list of problems in order with a cost for each, and you decide how far to go before paying for any fixes.
 ---
 
-A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor.
+To fix a vibe-coded app that breaks with real users, stop prompting the broken parts, make sure you own the code and the database, lock down who can see what, and get the one flow that makes you money working end to end. After that, set up a safe way to make changes and decide what's worth keeping.
 
-The story is nearly always the same. The demo worked. Then real users signed up and things started breaking. Sign-up fails on some phones. A user sees data that isn't theirs. Someone pays and their account doesn't upgrade. And every new prompt fixes one thing and breaks something else.
+A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor, and the story is nearly always the same. The demo worked. Then real users signed up and things started breaking. Sign-up fails on some phones. A user sees data that isn't theirs. Someone pays and their account doesn't upgrade. And every new prompt fixes one thing and breaks something else.
 
-That's normal, and most of these apps can be fixed. The AI got you to a working demo fast. It just didn't do the boring parts that real users hit.
+That's normal, and most of these apps can be fixed. The AI got you to a working demo fast. It just skipped the boring parts that real users hit first.
 
-I review and fix apps like this every week. Here's the order I work in.
+I review and fix apps like this every week. Here's each step the way I do it.
 
 ## 1. Stop prompting the broken parts
 
@@ -41,7 +41,7 @@ Before anyone changes code, check that these are in your name, not the tool's or
 - The hosting and the domain
 - Stripe or whatever takes payments, the email service and any API keys
 
-Lovable and Bolt can push the code to GitHub. If you haven't connected it yet, do it now. Then every change is saved and can be undone.
+[Lovable](https://docs.lovable.dev/integrations/github) and Bolt can push the code to GitHub. If you haven't connected it yet, do it now. Then every change is saved and can be undone.
 
 ## 3. Check who can see what
 
@@ -49,7 +49,7 @@ This is the step I spend the most time on, and the one founders don't expect.
 
 A lot of vibe-coded apps hide other users' data in the screen but not in the database. The page only shows your own orders, but the database will hand every order to any signed-in user who asks. Anyone who opens the browser's developer tools can read it.
 
-In Supabase this comes down to row level security. Every table with user data needs it turned on, with rules that match who should see what. I also check that no secret keys are sitting in the browser code.
+In Supabase this comes down to [row level security](https://supabase.com/docs/guides/database/postgres/row-level-security). Every table with user data needs it turned on, with rules that match who should see what. I also check that no secret keys are sitting in the browser code.
 
 I wrote the full list in the [security checklist for vibe-coded apps](/blog/vibe-coded-app-security-checklist/).
 
@@ -73,7 +73,7 @@ I had exactly this on [ScriptBee](/work/scriptbee/). AI agent runs took minutes,
 
 Most of what breaks after launch breaks during a change, not in the first version.
 
-Before the next round of fixes I set up a staging copy with its own database, so changes get tested before real users see them. Changes go in as pull requests. Database changes go in as migration files, not clicks in the dashboard. And I add error tracking, so you hear about a failure from a tool before a customer emails you.
+Before the next round of fixes I set up a staging copy with its own database, so changes get tested before real users see them. Changes go in as pull requests. Database changes go in as [migration files](https://supabase.com/docs/guides/deployment/database-migrations), not clicks in the dashboard. And I add error tracking, so you hear about a failure from a tool before a customer emails you.
 
 ## 7. Decide what to keep
 

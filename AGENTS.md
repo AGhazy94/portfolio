@@ -59,7 +59,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - No new dependencies without explicit approval. Approved so far: GSAP, and
   `@fontsource/instrument-serif` + `@fontsource/geist` (satori needs their WOFF files for the OG
   image), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
-  configured in [knip.jsonc](knip.jsonc)).
+  configured in [knip.jsonc](knip.jsonc)), and `@astrojs/markdown-satteri` + `satteri`, pinned to
+  the versions Astro installs, for the external-link plugin in
+  [src/lib/external-links.mjs](src/lib/external-links.mjs) (new tab, UTM tags on Markdown links).
 - **Design source is the agreed v2 design,** kept in a local, git-ignored design system; without it,
   the tokens in [src/styles/global.css](src/styles/global.css) are the reference. Reread it before a
   UI change. Where the skill's generic output and the agreed design disagree, the design wins.
