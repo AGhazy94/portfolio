@@ -7,7 +7,7 @@ service: take-over-an-app
 relatedArticles:
   - how-to-take-over-a-codebase-from-a-developer-who-left
   - what-an-app-audit-should-tell-you
-imageAlt: Illustration of a worn building being repaired on one side and a new one framed on the other
+imageAlt: An existing house with a blue replacement wall beside the foundations of a new build
 faq:
   - question: Is a rewrite ever the right call?
     answer: Yes, but less often than developers who dislike the code claim. A rewrite makes sense when the data model is wrong, the platform can't be maintained, or every change breaks something else.

@@ -6,7 +6,7 @@ cardTitle: 'Take over a stuck app'
 cardSummary: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
 order: 1
 updated: 2026-11-09
-imageAlt: 'A path of connected folders highlighted across a cube representing an existing codebase'
+imageAlt: 'An audited app has a broken path repaired in blue, leading to a finished release'
 lead: "The developer left, the prototype won't hold up with real users, or the team can't keep up. I read the code, tell you what is solid and what is risky, then ship the next release."
 fit:
   - 'You built the first version with an AI tool such as Lovable, Bolt or Cursor. It works in the demo, but sign-in, payments or data break once real customers use it. I wrote up [how I fix these apps](/blog/how-to-fix-a-vibe-coded-app/) and [the security checks I run first](/blog/vibe-coded-app-security-checklist/).'

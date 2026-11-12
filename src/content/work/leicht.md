@@ -5,7 +5,7 @@ kind: Kitchen brand site · Client work through caisy
 order: 3
 updated: 2026-11-05
 href: https://leicht.com/
-imageAlt: Illustration of a kitchen configurator with language options and a catalog order form
+imageAlt: A kitchen brand page is paired with an open catalogue and arrows indicating multiple languages
 tags:
   - GraphQL
   - Headless CMS

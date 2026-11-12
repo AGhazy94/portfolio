@@ -6,7 +6,7 @@ updated: 2026-11-12
 service: ai-products-and-agents
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
-imageAlt: Illustration of an AI feature surrounded by safeguards, a test checklist, a spending cap and an off switch
+imageAlt: A blue AI symbol surrounded by an off switch, a limit gauge and test cases
 faq:
   - question: Should I start with an agent or a simple LLM call?
     answer: Start with the simplest thing that does the job, usually one model call with a clear prompt. Add tools and multiple steps only when a single call can't do it, because each step adds cost, delay and ways to fail.

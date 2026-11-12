@@ -6,7 +6,7 @@ cardTitle: 'Arabic and bilingual web apps'
 cardSummary: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 order: 5
 updated: 2026-11-05
-imageAlt: 'Illustration of the same app screen shown side by side in English left-to-right and Arabic right-to-left'
+imageAlt: 'Two mirrored app layouts share a blue language switch and matching content blocks'
 lead: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 fit:
   - 'You are launching in Egypt, the Gulf or the wider Arab world and need Arabic and English together.'

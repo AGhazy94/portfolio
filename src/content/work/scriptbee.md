@@ -5,7 +5,7 @@ kind: AI marketing platform · Client work through caisy
 order: 1
 updated: 2026-11-05
 href: https://www.scriptbee.ai/
-imageAlt: Illustration of an AI marketing assistant chat connected to ad accounts and background tasks
+imageAlt: A background task continues after a browser closes and saves its result to a conversation folder
 tags:
   - Next.js
   - TypeScript

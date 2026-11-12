@@ -7,7 +7,7 @@ service: full-stack-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
 status: draft
-imageAlt: Illustration of a world map with a connection line to a laptop and a hiring checklist
+imageAlt: A blue pin on a map of Egypt connects to a portfolio folder and a checked milestone card
 faq:
   - question: Is it safe to hire a freelance developer in Egypt?
     answer: It is as safe as hiring anywhere if you take the same precautions, namely a written scope, milestones, ownership of the code and accounts in your name, and a platform or contract that protects both sides.

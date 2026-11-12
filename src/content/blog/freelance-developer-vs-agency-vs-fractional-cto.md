@@ -7,7 +7,7 @@ service: mvp-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
 status: draft
-imageAlt: Illustration of three paths leading to one product, taken by a single developer, a team and an advisor
+imageAlt: A single pencil, a bundle of pencils and a blue drafting compass point toward the same product
 faq:
   - question: Is a freelancer cheaper than an agency?
     answer: Often the hourly price is lower, but the comparison that matters is total cost for the same scope. An agency includes project management and a team. A freelancer includes you, meaning your time spent coordinating and checking.

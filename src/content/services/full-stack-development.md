@@ -6,7 +6,7 @@ cardTitle: 'Build your web app or website'
 cardSummary: 'A site or app with a real back end, with accounts, a database, forms, payments and an admin side. Built, deployed and explained.'
 order: 4
 updated: 2026-11-05
-imageAlt: "Illustration of a web app's interface, server and database connected as one system"
+imageAlt: 'A browser interface, server and database are joined by one continuous blue connection'
 lead: 'A site or app with a real back end: accounts, a database, forms, payments, an admin side. Built, deployed and explained.'
 fit:
   - 'Customers or staff need to log in and see their own data.'

@@ -5,7 +5,7 @@ kind: Public project · LLM agent with tools
 order: 4
 status: draft
 updated: 2026-10-14
-imageAlt: Illustration of an LLM agent calling tools and returning results into a web interface
+imageAlt: An unfinished app sketch with a blue AI symbol and separate tools awaiting connection
 tags:
   - TypeScript
   - LLM
