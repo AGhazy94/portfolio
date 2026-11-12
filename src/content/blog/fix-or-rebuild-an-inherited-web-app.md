@@ -23,7 +23,7 @@ Someone hands you a web app they didn't build. It works, mostly, and it looks li
 
 ## Why the question is hard
 
-Reading old code is harder than writing new code, so most developers feel the code is worse than it is. At the same time, a rewrite takes longer than anyone expects, because the old app contains years of small decisions and fixes that nobody wrote down. A rewrite has to rediscover all of them.
+Reading old code is harder than writing new code, so most developers feel the code is worse than it is. At the same time, a rewrite takes longer than anyone expects, because the old app contains years of small decisions and fixes that nobody wrote down. A rewrite has to rediscover all of them. Joel Spolsky made this case in 2000 in [Things You Should Never Do](https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/), and it still holds.
 
 So the decision shouldn't rest on how the code feels. It should rest on evidence.
 
@@ -75,7 +75,7 @@ One of these alone doesn't mean rebuild. Several together do.
 
 ## The middle path: replace one piece at a time
 
-Between fixing and a full rewrite lies a safer route: keep the product running and replace its parts in order.
+Between fixing and a full rewrite lies a safer route: keep the product running and replace its parts in order. Martin Fowler calls it the [strangler fig](https://martinfowler.com/bliki/StranglerFigApplication.html) approach.
 
 1. Pick the part that hurts most, such as the billing flow or the admin screens.
 2. Build its replacement next to the old one.

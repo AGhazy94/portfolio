@@ -41,7 +41,7 @@ Before anyone changes code, check that these are in your name, not the tool's or
 - The hosting and the domain
 - Stripe or whatever takes payments, the email service and any API keys
 
-Lovable and Bolt can push the code to GitHub. If you haven't connected it yet, do it now. Then every change is saved and can be undone.
+[Lovable](https://docs.lovable.dev/integrations/github) and Bolt can push the code to GitHub. If you haven't connected it yet, do it now. Then every change is saved and can be undone.
 
 ## 3. Check who can see what
 
@@ -49,7 +49,7 @@ This is the step I spend the most time on, and the one founders don't expect.
 
 A lot of vibe-coded apps hide other users' data in the screen but not in the database. The page only shows your own orders, but the database will hand every order to any signed-in user who asks. Anyone who opens the browser's developer tools can read it.
 
-In Supabase this comes down to row level security. Every table with user data needs it turned on, with rules that match who should see what. I also check that no secret keys are sitting in the browser code.
+In Supabase this comes down to [row level security](https://supabase.com/docs/guides/database/postgres/row-level-security). Every table with user data needs it turned on, with rules that match who should see what. I also check that no secret keys are sitting in the browser code.
 
 I wrote the full list in the [security checklist for vibe-coded apps](/blog/vibe-coded-app-security-checklist/).
 
@@ -73,7 +73,7 @@ I had exactly this on [ScriptBee](/work/scriptbee/). AI agent runs took minutes,
 
 Most of what breaks after launch breaks during a change, not in the first version.
 
-Before the next round of fixes I set up a staging copy with its own database, so changes get tested before real users see them. Changes go in as pull requests. Database changes go in as migration files, not clicks in the dashboard. And I add error tracking, so you hear about a failure from a tool before a customer emails you.
+Before the next round of fixes I set up a staging copy with its own database, so changes get tested before real users see them. Changes go in as pull requests. Database changes go in as [migration files](https://supabase.com/docs/guides/deployment/database-migrations), not clicks in the dashboard. And I add error tracking, so you hear about a failure from a tool before a customer emails you.
 
 ## 7. Decide what to keep
 

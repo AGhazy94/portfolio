@@ -2,7 +2,7 @@
 title: Mistakes in Arabic RTL web apps, and how to avoid them
 description: The most common problems when a web app is shown in Arabic, from broken mirroring, mixed text, numbers, fonts and forms, with the fix for each.
 published: 2026-10-13
-updated: 2026-10-14
+updated: 2026-11-12
 service: arabic-rtl-web-apps
 imageAlt: Illustration of an app screen mirrored between left-to-right and right-to-left layouts with misplaced icons
 faq:
@@ -22,7 +22,7 @@ Arabic is my first language, and from 2022 to 2024 I built Stake's marketing ema
 
 Setting `dir="rtl"` on the page flips the flow of text and the order of inline items. It doesn't fix the things you built with fixed left and right values.
 
-**The fix:** use logical CSS properties. Write `margin-inline-start` and `padding-inline-end` instead of `margin-left` and `padding-right`, and `text-align: start` instead of `left`. Modern CSS and most frameworks support these, and the layout then mirrors by itself.
+**The fix:** use [logical CSS properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values). Write `margin-inline-start` and `padding-inline-end` instead of `margin-left` and `padding-right`, and `text-align: start` instead of `left`. Modern CSS and most frameworks support these, and the layout then mirrors by itself.
 
 Email is harder. Several email apps ignored the CSS direction in Stake's emails, so `dir` and `align` had to sit on the tables and cells themselves.
 
@@ -43,7 +43,7 @@ Mirroring is also a layout decision, not only a flip. In a two-column email buil
 
 An Arabic sentence with an English product name, a URL or a number inside it is where bidirectional text goes wrong. Punctuation can jump to the wrong side, and an English phrase can reorder itself. As a reader, this is the mistake I run into most in Arabic apps.
 
-**The fix:** wrap embedded fragments with the right direction (the `<bdi>` element, or `dir="auto"` for user-written content), and test strings that mix both languages. Always test with real examples, such as names with numbers and sentences ending in a brand name.
+**The fix:** wrap embedded fragments with the right direction (the [`<bdi>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/bdi), or `dir="auto"` for user-written content), and test strings that mix both languages. The W3C's [guide to inline bidi markup](https://www.w3.org/International/articles/inline-bidi-markup/) explains when to use which. Always test with real examples, such as names with numbers and sentences ending in a brand name.
 
 ## 4. Email, URL and phone fields
 
@@ -55,13 +55,13 @@ Email addresses, URLs and phone numbers read left to right, even inside an Arabi
 
 Arabic readers may expect either Western digits (0 to 9) or Arabic-Indic digits, depending on the country and the product. Browsers and libraries may pick one for you, and different screens can end up showing different digits. I have seen both kinds of digits on the same screen of an app I use.
 
-**The fix:** choose a style on purpose. When you format numbers, dates and currency, set the locale and the numbering system explicitly, and test prices, dates and phone numbers in every place they appear.
+**The fix:** choose a style on purpose. When you format numbers, dates and currency, set the locale and the [numbering system](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) explicitly, and test prices, dates and phone numbers in every place they appear.
 
 ## 6. Letter spacing and fonts that break Arabic
 
 Arabic letters connect to each other. Adding letter spacing, a habit from English headlines, breaks the connections and makes text hard to read. Fonts without proper Arabic support fall back to a different font for each missing letter.
 
-**The fix:** never add letter spacing to Arabic text. Use a font designed for Arabic, such as Noto Sans Arabic, and check that the weights you need exist. Give Arabic text a little more line height than Latin text, because the letterforms need more vertical room.
+**The fix:** never add letter spacing to Arabic text. Use a font designed for Arabic, such as [Noto Sans Arabic](https://fonts.google.com/noto/specimen/Noto+Sans+Arabic), and check that the weights you need exist. Give Arabic text a little more line height than Latin text, because the letterforms need more vertical room.
 
 ## 7. Truncation and text length
 
@@ -73,7 +73,7 @@ Arabic strings are often shorter or longer than English ones, and buttons and la
 
 English has two plural forms. Arabic has more, and a sentence like "3 items" needs the right form for the number. Sorting and searching Arabic also need care: letters have variants, and diacritics can make equal words look different.
 
-**The fix:** use the platform's plural and collation tools (`Intl.PluralRules` and `Intl.Collator` in JavaScript) instead of adding an "s". For search, decide how to treat letter variants and diacritics.
+**The fix:** use the platform's plural and collation tools ([`Intl.PluralRules`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules) and [`Intl.Collator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator) in JavaScript) instead of adding an "s". For search, decide how to treat letter variants and diacritics.
 
 ## 9. Dates, weekends and calendars
 
