@@ -2,7 +2,7 @@
 title: How to deploy a Lovable app to Vercel, Netlify or AWS
 description: How I move a Lovable app's hosting to Vercel, Netlify, Cloudflare or AWS, for both older Vite apps and newer TanStack Start apps, without breaking sign-in.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - how-to-take-a-lovable-app-to-production
@@ -16,11 +16,11 @@ faq:
     answer: No. You can move only the front end and keep the backend where it is, pointed at by environment variables. Moving the database is a separate job, because auth, storage, edge functions and scheduled jobs all have to move with it.
 ---
 
-Most founders I talk to want to move their Lovable app off Lovable hosting for one of a few reasons. They want it in accounts they already pay for. They want a preview link for every change. Or a developer is joining and wants the usual setup.
+To deploy a Lovable app to Vercel, Netlify or AWS, connect the project to GitHub, check whether it's an older Vite app or a newer TanStack Start app, and point the new host at that repository. First deploys usually break on three things: missing environment variables, sign-in redirects that don't know the new domain, and, on Vite apps, a 404 when you refresh any page but the home page.
 
-The good news is that the front end moves easily. The part that catches people is everything around it: environment variables, sign-in redirects and refreshing a page that isn't the home page.
+People move off Lovable hosting for a few reasons. They want the app in accounts they already pay for. They want a preview link for every change. Or a developer is joining and wants the usual setup.
 
-This is how I do it.
+The front end itself moves easily. Here's how I do the whole move, including the parts around it.
 
 ## 1. Connect GitHub first
 

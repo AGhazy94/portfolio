@@ -2,7 +2,7 @@
 title: How to take a Lovable app to production
 description: What I check and set up before a Lovable app gets real users, from GitHub and Supabase ownership to staging, migrations, payments and hosting.
 published: 2026-11-09
-updated: 2026-11-09
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - vibe-coded-app-security-checklist
@@ -16,9 +16,9 @@ faq:
     answer: Many are, after some work. The screens and the basic data model are often fine. What usually needs work is database access rules, server-side logic for payments and AI calls, and a safe way to change the app once people depend on it.
 ---
 
-Lovable is great for getting a product in front of people. I see founders go from an idea to a working app in a weekend.
+Taking a Lovable app to production means owning the code and the database, fixing the database access rules, moving secrets and payment logic to the server, and adding a staging copy so changes get tested before real users see them. Where you host it matters less than people think.
 
-The trouble starts when that app needs to hold real customers and real money. Then the questions change. Who owns the code? What happens if a change breaks sign-up on a Friday night? Is customer data actually private?
+Lovable is great for getting a product in front of people fast. The trouble starts when that app needs to hold real customers and real money. Then the questions change. Who owns the code? What happens if a change breaks sign-up on a Friday night? Is customer data actually private?
 
 I take Lovable apps to production as part of my work. This is what I check and set up, in order.
 

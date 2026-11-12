@@ -2,7 +2,7 @@
 title: 'Vibe coding security checklist: what I check before real users'
 description: The vibe coding security checks I run on Lovable, Bolt, Replit or Cursor apps, from database rules and leaked keys to payments and sign-in.
 published: 2026-11-09
-updated: 2026-11-11
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - how-to-fix-a-vibe-coded-app
@@ -20,7 +20,9 @@ When someone sends me an app built with Lovable, Bolt, Replit or Cursor, securit
 
 These tools are good at building screens. They're less careful about who's allowed to see what. The app looks right and works in the demo, so nobody notices until a curious user opens the developer tools.
 
-This is the list I go through. You can run most of it yourself.
+The short version: check the database rules on every table, keep secret keys out of the browser, make sure only your server can mark someone as paid, and limit who can call your AI features. Those four cover most of the serious problems I find.
+
+This is the full list I go through. You can run most of it yourself.
 
 ## 1. Database rules on every table
 

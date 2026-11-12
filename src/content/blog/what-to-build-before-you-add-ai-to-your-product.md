@@ -2,7 +2,7 @@
 title: What to build before you add AI to your product
 description: A checklist for adding an LLM feature or an agent to a real product, from the narrow job to limits, logging and a person in the loop.
 published: 2026-10-14
-updated: 2026-11-05
+updated: 2026-11-12
 service: ai-products-and-agents
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -16,7 +16,9 @@ faq:
     answer: Almost never for a first version. Hosted models through an API are enough to find out whether people want the feature. Training is a later decision, with a real reason.
 ---
 
-A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I'd work through before and during the build.
+Before you add AI to a product, decide the one narrow job it does, collect examples you can test it against, and put limits, logging and an off switch around it. The model call is the easy part.
+
+A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I work through before and during the build.
 
 I build web apps with AI features, so a lot of this comes from the product side, not the model side.
 

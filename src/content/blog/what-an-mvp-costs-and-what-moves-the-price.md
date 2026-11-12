@@ -29,7 +29,7 @@ The biggest differences in MVP quotes usually come from scope: how many user rol
 
 **4. Authentication and accounts.** Sign-up, login, password reset, email checks and permissions are standard, but they take time and must be done properly.
 
-**5. Data complexity.** Few simple records are cheap. Many connected record types, reports and imports are not.
+**5. Data complexity.** A few simple records are cheap. Many connected record types, reports and imports are not.
 
 **6. Design.** If you have finished designs, the developer builds from them. If you don't, someone has to design, or the product will look plain.
 

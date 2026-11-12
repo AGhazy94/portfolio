@@ -2,7 +2,7 @@
 title: Fix or rebuild? How to decide on an inherited web app
 description: A way to decide whether an inherited web app should be repaired or rewritten, with the signs that point each way and a safer middle path.
 published: 2026-10-13
-updated: 2026-11-05
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - how-to-take-over-a-codebase-from-a-developer-who-left
@@ -17,7 +17,9 @@ faq:
     answer: You, with a written audit from someone who has read the code. The person who would earn more from a rewrite should not be the only voice.
 ---
 
-Someone gives you a web app that they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". Sometimes that's right. Usually it's expensive, and it's almost never the first step. Here is how I decide.
+Fix it, in most cases. Rebuild only when an audit shows the data model is wrong across the app, the platform can't be upgraded, or every change breaks something unrelated. Even then, replacing one part at a time is usually safer than starting over.
+
+Someone hands you a web app they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". Sometimes that's right. Usually it's expensive, and it's almost never the first step. Here's how I decide.
 
 ## Why the question is hard
 

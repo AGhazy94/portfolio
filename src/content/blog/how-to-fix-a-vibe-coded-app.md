@@ -2,7 +2,7 @@
 title: How to fix a vibe-coded app that breaks with real users
 description: How I fix a vibe-coded app built with Lovable, Bolt, Replit or Cursor that works in the demo but breaks once real users sign up, in order.
 published: 2026-11-09
-updated: 2026-11-11
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - vibe-coded-app-security-checklist
@@ -16,13 +16,13 @@ faq:
     answer: It depends on what is broken. That's why I start with a short audit. You get the list of problems in order with a cost for each, and you decide how far to go before paying for any fixes.
 ---
 
-A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor.
+To fix a vibe-coded app that breaks with real users, stop prompting the broken parts, make sure you own the code and the database, lock down who can see what, and get the one flow that makes you money working end to end. After that, set up a safe way to make changes and decide what's worth keeping.
 
-The story is nearly always the same. The demo worked. Then real users signed up and things started breaking. Sign-up fails on some phones. A user sees data that isn't theirs. Someone pays and their account doesn't upgrade. And every new prompt fixes one thing and breaks something else.
+A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor, and the story is nearly always the same. The demo worked. Then real users signed up and things started breaking. Sign-up fails on some phones. A user sees data that isn't theirs. Someone pays and their account doesn't upgrade. And every new prompt fixes one thing and breaks something else.
 
-That's normal, and most of these apps can be fixed. The AI got you to a working demo fast. It just didn't do the boring parts that real users hit.
+That's normal, and most of these apps can be fixed. The AI got you to a working demo fast. It just skipped the boring parts that real users hit first.
 
-I review and fix apps like this every week. Here's the order I work in.
+I review and fix apps like this every week. Here's each step the way I do it.
 
 ## 1. Stop prompting the broken parts
 

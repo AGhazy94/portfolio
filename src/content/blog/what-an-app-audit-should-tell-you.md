@@ -2,7 +2,7 @@
 title: 'Software audit: what it should tell you before you pay for fixes'
 description: What a short software or code audit of a stuck web app should give you. One page in plain words, the risks, keep, fix or rebuild, and the fixes in order.
 published: 2026-11-05
-updated: 2026-11-11
+updated: 2026-11-12
 service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
@@ -17,9 +17,11 @@ faq:
     answer: They can, but you don't have to decide that up front. A good note is clear enough for any developer to pick up the fixes from it.
 ---
 
+A good software audit gives you one page in plain words: what works, what could hurt your customers or your money, whether to keep, fix or rebuild, and the fixes in order with a price on each. If you can't make a decision from it, it isn't finished.
+
 Your app is stuck. Maybe it was built with an AI tool and breaks once real customers use it. Maybe the developer stopped replying. Either way, someone has to look at the code before anyone can tell you what to do next.
 
-That look is the audit. Here is what you should get back from it, whoever does it.
+That look is the audit. Here's what you should get back from it, whoever does it.
 
 ## One page, in plain words
 
