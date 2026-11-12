@@ -4,6 +4,7 @@ description: The vibe coding security checks I run on Lovable, Bolt, Replit or C
 published: 2026-11-09
 updated: 2026-11-12
 service: take-over-an-app
+imageAlt: A magnifying glass inspects separate document drawers, with a blue key and lock beside them
 relatedArticles:
   - how-to-fix-a-vibe-coded-app
   - how-to-take-a-lovable-app-to-production

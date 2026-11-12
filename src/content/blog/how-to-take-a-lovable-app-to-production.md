@@ -4,6 +4,7 @@ description: What I check and set up before a Lovable app gets real users, from 
 published: 2026-11-09
 updated: 2026-11-12
 service: take-over-an-app
+imageAlt: A small product model moves from paper supports onto a solid foundation with a blue safety rail
 relatedArticles:
   - vibe-coded-app-security-checklist
   - how-to-fix-a-vibe-coded-app

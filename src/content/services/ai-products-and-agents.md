@@ -6,7 +6,7 @@ cardTitle: 'Build AI features and agents'
 cardSummary: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
 order: 2
 updated: 2026-11-11
-imageAlt: 'Illustration of a chat interface connected to tools, a database and a background task queue'
+imageAlt: 'A chat panel connects to a processing tool and a background task tray that returns a saved result'
 lead: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
 fit:
   - 'You run a product and want a chat interface, an assistant or an agent that works with your own data.'

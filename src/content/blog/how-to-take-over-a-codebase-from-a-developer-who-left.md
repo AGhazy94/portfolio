@@ -7,7 +7,7 @@ service: take-over-an-app
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
   - what-an-app-audit-should-tell-you
-imageAlt: A handover checklist and key beside a laptop displaying a code editor
+imageAlt: Two hands passing a blue key above a folder containing code, database and hosting symbols
 faq:
   - question: What should I do first when my developer leaves?
     answer: Secure access before anything else. List every account the app depends on, make sure you own the ones that matter, and rotate shared passwords and keys. Only then start reading code.

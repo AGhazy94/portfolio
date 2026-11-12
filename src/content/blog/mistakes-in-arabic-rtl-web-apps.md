@@ -4,7 +4,7 @@ description: The most common problems when a web app is shown in Arabic, from br
 published: 2026-10-13
 updated: 2026-11-12
 service: arabic-rtl-web-apps
-imageAlt: Illustration of an app screen mirrored between left-to-right and right-to-left layouts with misplaced icons
+imageAlt: Paired layouts mirror their navigation and reading direction while play controls keep the same orientation
 faq:
   - question: Is setting dir="rtl" enough to support Arabic?
     answer: No. It flips the text flow, but layout spacing, icons, numbers, mixed English text, fonts and forms still need decisions. The direction attribute is the start of the work.

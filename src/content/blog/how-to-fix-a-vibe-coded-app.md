@@ -4,6 +4,7 @@ description: How I fix a vibe-coded app built with Lovable, Bolt, Replit or Curs
 published: 2026-11-09
 updated: 2026-11-12
 service: take-over-an-app
+imageAlt: A blue replacement piece repairs a bridge of interlocking panels, with a wrench below
 relatedArticles:
   - vibe-coded-app-security-checklist
   - how-to-take-a-lovable-app-to-production

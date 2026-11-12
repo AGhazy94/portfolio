@@ -4,6 +4,7 @@ description: How I move a Lovable app's hosting to Vercel, Netlify, Cloudflare o
 published: 2026-11-09
 updated: 2026-11-12
 service: take-over-an-app
+imageAlt: A blue app package moves from a folder to a server while its database remains connected
 relatedArticles:
   - how-to-take-a-lovable-app-to-production
   - vibe-coded-app-security-checklist

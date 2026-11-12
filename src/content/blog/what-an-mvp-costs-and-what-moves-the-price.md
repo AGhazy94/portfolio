@@ -7,7 +7,7 @@ service: mvp-development
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
   - what-to-build-before-you-add-ai-to-your-product
-imageAlt: Illustration of a small product built from a few blocks beside a scale weighing features against budget
+imageAlt: A balance scale compares a compact blue-centred product with a tall stack of extra features
 faq:
   - question: Why do quotes for the same idea differ so much?
     answer: Because the idea is not the scope. One quote may include design, tests and deployment, and another may not. Always compare what is listed, not the total.

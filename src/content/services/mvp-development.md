@@ -6,7 +6,7 @@ cardTitle: 'Build an MVP'
 cardSummary: 'One developer from first commit to launch. A small, working first version of your product that real users can try.'
 order: 3
 updated: 2026-11-05
-imageAlt: 'Illustration of a small product taking shape from a sketch to a live app on a laptop'
+imageAlt: 'A paper sketch becomes fitted components and then a compact finished app'
 lead: 'One developer from first commit to launch. A small, working first version of your product that real people can sign up for and use.'
 fit:
   - 'You have an idea and no technical co-founder, and want one person you can talk to directly.'
