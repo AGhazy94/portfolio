@@ -5,46 +5,74 @@ import { projects, ui } from '../data/profile';
 const section = ui.sections.find(({ id }) => id === 'projects')!;
 ---
 
-<section id={section.id} aria-labelledby="projects-title" class="gutter border-t border-divider py-12 md:py-16">
+<section id={section.id} aria-labelledby="projects-title" class="gutter border-t border-divider py-16 md:py-20">
   <div class="mx-auto max-w-page">
-    <h2 id="projects-title" class="type-section text-fg">
-      {section.title}
-    </h2>
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 id="projects-title" class="type-section text-fg">
+        {section.title}
+      </h2>
+      <a
+        href="/work/"
+        class="inline-flex min-h-11 items-center text-ui font-medium text-accent underline underline-offset-4 hover:opacity-70"
+      >
+        {ui.work.homeMore}
+      </a>
+    </div>
 
     <ul class="mt-8 grid gap-6 md:grid-cols-2">
       {projects.map((project) => (
-        <li class="group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1">
-          {/* The logo repeats the h3's name, so Icon keeps it hidden from screen readers. */}
-          <Icon name={project.logo} class="h-6 w-auto self-start text-fg" />
-          <p class="mt-6 text-[13px] text-muted">{project.kind}</p>
-          <h3 class="type-project mt-1 text-fg">
-            {/* The stretched ::after makes the whole card the hit area while the link keeps a short name. */}
-            <a
-              href={project.caseStudy}
-              class="after:absolute after:inset-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent"
-            >
-              {project.name}
-            </a>
-          </h3>
-          <p class="mt-3 text-base leading-[1.6] text-body md:text-[15px]">{project.summary}</p>
-          <p class="mt-4 text-[13px] leading-[1.6] text-muted">
-            <span class="sr-only">{ui.tagsLabel}: </span>
-            {project.tags.join(', ')}
-          </p>
-          <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pt-5 text-[15px]">
-            <span aria-hidden="true" class="inline-flex min-h-11 items-center gap-1 font-medium text-accent">
-              {ui.work.more}
-              <Icon name="chevron" class="size-5 -rotate-90" />
-            </span>
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer noopener"
-              class="relative z-10 inline-flex min-h-11 items-center text-muted underline underline-offset-4 hover:text-fg"
-            >
-              {ui.projects.visit}
-              <span class="sr-only">{ui.newTab}</span>
-            </a>
+        <li
+          class:list={[
+            'group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1',
+            project.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:gap-x-12',
+          ]}
+        >
+          <div>
+            {/* The logo repeats the h3's name, so Icon keeps it hidden from screen readers. */}
+            {project.logo && <Icon name={project.logo} class="mb-6 block h-6 w-auto text-fg" />}
+            <p class="text-caption text-pretty text-muted">
+              {project.kind.split(' · ').map((part, index) =>
+                index ? (
+                  <Fragment>
+                    {' '}
+                    <span class="whitespace-nowrap">· {part}</span>
+                  </Fragment>
+                ) : (
+                  part
+                ),
+              )}
+            </p>
+            <h3 class="type-project mt-1 text-balance text-fg">
+              <a href={project.caseStudy} class="card-link">
+                {project.name}
+              </a>
+            </h3>
+          </div>
+          <div class="flex flex-1 flex-col">
+            <p class:list={['mt-3 text-base leading-[1.6] text-body md:text-ui', project.featured && 'md:mt-0']}>
+              {project.summary}
+            </p>
+            <p class="mt-4 text-caption leading-[1.6] text-muted">
+              <span class="sr-only">{ui.tagsLabel}: </span>
+              {project.tags.join(', ')}
+            </p>
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pt-5 text-ui">
+              <span aria-hidden="true" class="inline-flex min-h-11 items-center gap-1 font-medium text-accent">
+                {ui.work.more}
+                <Icon name="chevron" class="size-5 -rotate-90" />
+              </span>
+              {project.href && (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="relative z-10 inline-flex min-h-11 items-center text-muted underline underline-offset-4 hover:text-fg"
+                >
+                  {ui.projects.visit}
+                  <span class="sr-only">{ui.newTab}</span>
+                </a>
+              )}
+            </div>
           </div>
         </li>
       ))}

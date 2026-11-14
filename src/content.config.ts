@@ -58,6 +58,9 @@ const work = defineCollection({
     href: z.url().optional(),
     imageAlt: z.string().optional(),
     tags: z.array(z.string()),
+    // Facts row under the title; each stays empty unless the case study's own text states it.
+    role: z.string().optional(),
+    period: z.string().optional(),
   }),
 });
 

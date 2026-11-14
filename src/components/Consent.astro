@@ -6,7 +6,7 @@ import { ui } from '../data/profile';
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const ahrefsKey = import.meta.env.PUBLIC_AHREFS_ANALYTICS_KEY;
 const buttonClass =
-  'inline-flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded-pill px-5 text-[14px] font-medium transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97] sm:flex-none';
+  'inline-flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded-pill px-5 text-sm font-medium transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97] sm:flex-none';
 ---
 
 <div
@@ -21,8 +21,8 @@ const buttonClass =
 >
   <div class="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
     <div class="min-w-0">
-      <p class="text-[14px] font-semibold text-fg">{ui.consent.title}</p>
-      <RichText source={ui.consent.body} class="mt-0.5 text-[13px] leading-snug text-body" />
+      <p class="text-sm font-semibold text-fg">{ui.consent.title}</p>
+      <RichText source={ui.consent.body} class="mt-0.5 text-caption leading-snug text-body" />
     </div>
     <div class="flex shrink-0 gap-2">
       <button
@@ -62,12 +62,25 @@ const buttonClass =
   apply();
   banner.hidden = getConsent() !== null;
 
+  // Consent that expired or was withdrawn in another tab leaves _ga cookies and the first-touch record behind.
+  if (getConsent() !== 'granted') {
+    try {
+      clearAnalyticsCookies();
+      forgetEntry();
+    } catch {}
+  }
+
+  let opener: HTMLElement | null = null;
+
   for (const button of banner.querySelectorAll<HTMLButtonElement>('[data-consent-choice]')) {
     button.addEventListener('click', () => {
       const choice = button.dataset.consentChoice as Consent;
       const withdrawn = getConsent() === 'granted' && choice === 'denied';
       setConsent(choice);
       banner.hidden = true;
+      // Hiding the focused banner would send the next Tab back to the top of the page.
+      opener?.focus();
+      opener = null;
       if (choice === 'granted') return apply();
       forgetEntry();
       clearAnalyticsCookies();
@@ -85,8 +98,9 @@ const buttonClass =
     else if (window.gtag) location.reload();
   });
 
-  for (const opener of document.querySelectorAll('[data-consent-open]')) {
-    opener.addEventListener('click', () => {
+  for (const control of document.querySelectorAll<HTMLElement>('[data-consent-open]')) {
+    control.addEventListener('click', () => {
+      opener = control;
       banner.hidden = false;
       banner.querySelector('button')!.focus();
     });

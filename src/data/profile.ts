@@ -17,11 +17,13 @@ export type Experience = {
 export type Project = {
   name: string;
   kind: string;
-  href: string;
+  href?: string;
   caseStudy: string;
   summary: string;
   // Names a client logo in src/assets/logos.json, rendered through Icon.astro.
-  logo: 'scriptbee' | 'leicht';
+  logo?: 'scriptbee' | 'leicht';
+  // A third card spans its row, so two columns never leave an empty cell.
+  featured?: boolean;
   tags: string[];
 };
 
@@ -29,7 +31,9 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
-  tagline: 'Full-stack developer. I take over web apps that are stuck and ship the next release.',
+  offer: 'I take over web apps that are stuck and ship the next release.',
+  // Says no more than `description` below.
+  offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
     'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including ones built with Lovable or Bolt, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
@@ -41,7 +45,7 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-09T00:00:00+02:00',
+  updated: '2026-11-14T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
     'Taking over existing codebases',
@@ -170,6 +174,15 @@ export const projects: Project[] = [
     logo: 'leicht',
     tags: ['GraphQL', 'Headless CMS', 'i18n', 'Qwik'],
   },
+  {
+    name: 'AI real-estate platform: an audit, then the fixes in order',
+    kind: 'AI platform for real-estate investors · Frontend lead',
+    caseStudy: '/work/real-estate-platform-audit/',
+    summary:
+      'Audited the live frontend before changing anything, ranked the problems by how much they hurt users and fixed them in that order, inside the existing app with no rewrite. Error reports went down, and more property pages got indexed by Google.',
+    featured: true,
+    tags: ['Next.js', 'TypeScript', 'React', 'App Router'],
+  },
 ];
 
 export type Testimonial = { quote: string; name: string; context: string; source: 'LinkedIn' | 'Upwork' };
@@ -184,6 +197,13 @@ export const testimonials: Testimonial[] = [
     source: 'LinkedIn',
   },
   {
+    quote:
+      'Ahmed is the kind of senior engineer who makes everyone around him better without making a big deal of it. … he hands over challenging work instead of holding onto it, and he makes sure people have the support to grow through it.',
+    name: 'Mohammed Ahmed Abdus',
+    context: 'Full-stack engineer at Smart Bricks · 2026',
+    source: 'LinkedIn',
+  },
+  {
     quote: 'He’s met my expectations and even went beyond. I would definitely hire him again.',
     name: 'Upwork client',
     context: 'Convert two design screens into HTML · 2022',
@@ -195,13 +215,6 @@ export const testimonials: Testimonial[] = [
     name: 'Upwork client',
     context: 'Modify a media player · 2022',
     source: 'Upwork',
-  },
-  {
-    quote:
-      'Ahmed is the kind of senior engineer who makes everyone around him better without making a big deal of it. … he hands over challenging work instead of holding onto it, and he makes sure people have the support to grow through it.',
-    name: 'Mohammed Ahmed Abdus',
-    context: 'Full-stack engineer at Smart Bricks · 2026',
-    source: 'LinkedIn',
   },
 ];
 
@@ -249,6 +262,9 @@ export const ui = {
       'Case studies by Ahmed Ghazy, freelance full-stack developer: what was built, which parts were his and the stack.',
     visit: 'Visit the live site',
     more: 'Read the case study',
+    homeMore: 'All case studies',
+    facts: { role: 'Role', period: 'When', stack: 'Stack' },
+    next: 'Next case study',
   },
   blog: {
     indexTitle: 'Blog',
@@ -283,6 +299,7 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
+    role: 'Full-stack developer',
     availability: 'Open to client projects and retainers',
     contact: 'Get in touch',
     work: 'View selected work',
@@ -332,7 +349,6 @@ export const ui = {
           'Build an MVP',
           'Build a web app or website',
           'Arabic or RTL web app',
-          'A full-time role',
           'Something else',
         ],
       },
@@ -361,6 +377,15 @@ export const ui = {
     submit: 'Send message',
     // Information at the point of collection, not a consent checkbox: replying rests on the visitor's own request.
     privacy: 'I use your details to respond to your enquiry. See the [Privacy Notice](/privacy/).',
+    // Each step is backed by the services' terms; no reply time until Ahmed commits to one.
+    next: {
+      heading: 'What happens next',
+      steps: [
+        'I read it and reply by email.',
+        'If it helps, we have a short call.',
+        'A fixed price for a clear scope, or a monthly one for ongoing work.',
+      ],
+    },
     sending: 'Sending…',
     failure: `Your message didn’t send. Check your connection and try again, or email [${profile.email}](mailto:${profile.email}).`,
     success: {
@@ -431,13 +456,13 @@ export const ui = {
               name: '_ga',
               provider: 'Google Analytics',
               purpose: 'Distinguishes visitors for site analytics. Set only after consent.',
-              duration: 'Up to 2 years',
+              duration: 'Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends',
             },
             {
               name: '_ga_<container-id>',
               provider: 'Google Analytics',
               purpose: 'Maintains an analytics session. Set only after consent.',
-              duration: 'Up to 2 years',
+              duration: 'Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends',
             },
             {
               name: 'first-touch',

@@ -52,6 +52,8 @@ const site = Astro.site!;
 const date = (value: Date) => value.toISOString().slice(0, 10);
 const contents = headings.filter(({ depth }) => depth === 2);
 const showUpdated = updated && (!published || updated.getTime() !== published.getTime());
+// Odd parts are hyphenated words ("vibe-coded"), kept on one line so a display h1 never splits them.
+const headingParts = heading.split(/(\S*\p{L}-\p{L}\S*)/u);
 
 const trail = [{ label: ui.page.home, href: '/' }, ...crumbs];
 const imageUrl = image && new URL((await getImage({ src: image, width: 1200 })).src, site).href;
@@ -89,7 +91,7 @@ const graph = [
 <Layout title={title} description={description} type={type} nodes={graph} image={image} imageAlt={imageAlt}>
   <a
     href="#content"
-    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:px-4! focus:py-3!"
   >
     {ui.skipLink}
   </a>
@@ -97,10 +99,10 @@ const graph = [
   <main id="content">
     <article class="gutter pt-8 pb-16 md:pt-12 md:pb-20">
       <div class="mx-auto max-w-page">
-        <nav aria-label={ui.page.breadcrumbLabel} class="text-[13px] text-muted">
+        <nav aria-label={ui.page.breadcrumbLabel} class="text-caption text-muted">
           <ol class="flex flex-wrap items-center gap-x-2">
             {trail.map((crumb, index) => (
-              <li class="flex items-center gap-x-2">
+              <li class:list={['flex items-center gap-x-2', !crumb.href && 'max-sm:sr-only']}>
                 {index > 0 && <span aria-hidden="true">/</span>}
                 {crumb.href ? (
                   <a
@@ -119,19 +121,19 @@ const graph = [
 
         <header class:list={['mt-10 grid gap-10', image && 'lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14']}>
           <div>
-            {eyebrow && <p class="text-[13px] font-medium text-muted">{eyebrow}</p>}
+            {eyebrow && <p class="text-caption font-medium text-muted">{eyebrow}</p>}
             <h1
               class:list={[
                 'text-fg',
                 eyebrow && 'mt-2',
-                image || wide ? 'type-statement max-w-[20ch]' : 'type-section max-w-[24ch]',
+                image || wide ? 'type-statement max-w-[24ch]' : 'type-section max-w-[24ch]',
               ]}
             >
-              {heading}
+              {headingParts.map((part, index) => (index % 2 ? <span class="whitespace-nowrap">{part}</span> : part))}
             </h1>
             {lead && <p class="type-lead mt-6 max-w-[40ch] text-body">{lead}</p>}
             {(published || updated) && (
-              <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-muted">
+              <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-caption text-muted">
                 {type === 'article' && (
                   <p>
                     {ui.blog.by}{' '}
@@ -153,10 +155,7 @@ const graph = [
               </div>
             )}
             {cta && (
-              <a
-                href="#contact"
-                class="mt-8 inline-flex min-h-12 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
-              >
+              <a href="#contact" class="btn-pill mt-8 min-h-12 bg-fg text-bg">
                 {ui.hero.contact}
               </a>
             )}
@@ -169,11 +168,13 @@ const graph = [
                 widths={[480, 720, 1080]}
                 sizes="(min-width: 1024px) 520px, 100vw"
                 loading="eager"
+                data-art
                 class="aspect-video w-full object-cover"
               />
             </div>
           )}
         </header>
+        <slot name="facts" />
 
         {wide ? (
           <slot />
@@ -182,7 +183,7 @@ const graph = [
             {contents.length > 3 && (
               <nav aria-label={ui.page.onThisPage} class="mt-8 max-w-[68ch]">
                 <details class="border-y border-divider py-3">
-                  <summary class="cursor-pointer py-1 text-[15px] font-medium text-fg">{ui.page.onThisPage}</summary>
+                  <summary class="cursor-pointer py-1 text-ui font-medium text-fg">{ui.page.onThisPage}</summary>
                   <ol class="mt-4 grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
                     {contents.map(({ slug, text }) => (
                       <li>
@@ -212,7 +213,7 @@ const graph = [
             <div class="grid gap-8">
               {faq.map(({ question, answer }) => (
                 <div>
-                  <h3 class="text-[19px] leading-snug font-semibold text-fg">{question}</h3>
+                  <h3 class="text-title-sm font-semibold text-fg">{question}</h3>
                   <RichText source={answer} class="prose-page mt-2" />
                 </div>
               ))}

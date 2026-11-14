@@ -23,17 +23,17 @@ const facts = [
       {words.map((word, index) => [<span data-word>{word}</span>, index < words.length - 1 ? ' ' : ''])}
     </p>
 
-    <div class="mt-8 grid gap-x-12 gap-y-8 border-t border-divider pt-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-      <dl class="space-y-5 text-[15px]">
+    <div class="mt-8 grid gap-y-8 border-t border-divider pt-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
+      <dl class="space-y-5 text-ui">
         {facts.map(({ term, detail }) => (
           <div>
-            <dt class="text-[13px] text-muted">{term}</dt>
+            <dt class="text-caption text-muted">{term}</dt>
             <dd class="mt-1 leading-normal text-fg">{detail}</dd>
           </div>
         ))}
       </dl>
 
-      <div class="max-w-[62ch] space-y-5 text-[17px] leading-[1.6] text-body">
+      <div class="max-w-[62ch] space-y-5 text-reading leading-[1.6] text-body">
         {about.map((paragraph) => (
           <RichText source={paragraph} />
         ))}

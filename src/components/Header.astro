@@ -31,7 +31,10 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
                   href={section === 'contact' ? contactHref : href}
                   data-nav-link={home ? section : undefined}
                   aria-current={!section && path.startsWith(href) ? 'page' : undefined}
-                  class="relative flex min-h-11 items-center px-2 text-[13px] text-muted transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
+                  class:list={[
+                    'relative flex min-h-11 items-center px-2 text-sm transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none',
+                    section === 'contact' ? 'font-medium text-fg' : 'text-muted',
+                  ]}
                 >
                   {label}
                 </a>
@@ -42,7 +45,7 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
 
         <a
           href={contactHref}
-          class="inline-flex min-h-11 items-center px-2 text-[13px] font-medium text-accent sm:hidden"
+          class="inline-flex min-h-11 items-center px-2 text-caption font-medium text-accent sm:hidden"
         >
           {contactLink.label}
         </a>
@@ -79,7 +82,7 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
                   <a
                     href={section === 'contact' ? contactHref : href}
                     aria-current={!section && path.startsWith(href) ? 'page' : undefined}
-                    class="flex min-h-11 items-center rounded-field px-4 text-[15px] text-body hover:bg-surface hover:text-fg aria-[current]:bg-surface aria-[current]:text-fg"
+                    class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface hover:text-fg aria-[current]:bg-surface aria-[current]:text-fg"
                   >
                     {label}
                   </a>
@@ -129,6 +132,10 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
     // Forcing layout applies the new colours to the whole page while transitions are still off.
     void document.body.offsetHeight;
     delete root.dataset.themeSwitching;
+    const background = getComputedStyle(root).backgroundColor;
+    for (const meta of document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')) {
+      meta.content = background;
+    }
     try {
       localStorage.setItem('theme', next);
     } catch {}

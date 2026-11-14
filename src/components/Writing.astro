@@ -1,10 +1,12 @@
 ---
 import Icon from './Icon.astro';
-import { formatDate, getPosts } from '../lib/content';
+import { formatDate, getPosts, getServices } from '../lib/content';
 import { ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'writing')!;
-const posts = (await getPosts()).slice(0, 3);
+const [posts, services] = await Promise.all([getPosts(), getServices()]);
+// One note per service, so a run of posts on one topic never crowds out the others.
+const picks = services.flatMap(({ id }) => posts.find((post) => post.data.service.id === id) ?? []);
 ---
 
 <section id={section.id} aria-labelledby="writing-title" class="gutter border-t border-divider py-16 md:py-20">
@@ -15,30 +17,32 @@ const posts = (await getPosts()).slice(0, 3);
       </h2>
       <a
         href="/blog/"
-        class="inline-flex min-h-11 items-center text-[15px] font-medium text-accent underline underline-offset-4 hover:opacity-70"
+        class="inline-flex min-h-11 items-center text-ui font-medium text-accent underline underline-offset-4 hover:opacity-70"
       >
         {ui.blog.homeMore}
       </a>
     </div>
     <ul class="mt-8 divide-y divide-divider border-t border-divider">
-      {posts.map((post) => (
-        <li>
-          <a
-            href={`/blog/${post.id}/`}
-            aria-labelledby={`home-post-${post.id}`}
-            class="group grid grid-cols-[1fr_auto] items-start gap-5 py-6 md:grid-cols-[140px_1fr_auto] md:gap-8"
-          >
-            <time datetime={post.data.published.toISOString()} class="text-[13px] text-muted max-md:col-span-2">
-              {formatDate(post.data.published)}
-            </time>
+      {picks.map((post) => (
+        <li class="relative grid gap-y-2 py-6 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <time datetime={post.data.published.toISOString()} class="text-caption text-muted lg:pt-1.5">
+            {formatDate(post.data.published)}
+          </time>
+          <div class="grid grid-cols-[1fr_auto] items-start gap-5">
             <div>
-              <h3 id={`home-post-${post.id}`} class="type-project text-fg group-hover:underline underline-offset-4">
-                {post.data.title}
+              <h3 class="type-project text-fg">
+                {/* The stretched ::after makes the whole row the hit area while the link keeps a short name. */}
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="underline-offset-4 after:absolute after:inset-0 hover:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent"
+                >
+                  {post.data.title}
+                </a>
               </h3>
-              <p class="mt-2 max-w-[68ch] text-[15px] leading-relaxed text-body">{post.data.description}</p>
+              <p class="mt-2 max-w-[68ch] text-ui leading-relaxed text-body">{post.data.description}</p>
             </div>
             <Icon name="chevron" class="mt-1 size-5 -rotate-90 text-accent" />
-          </a>
+          </div>
         </li>
       ))}
     </ul>

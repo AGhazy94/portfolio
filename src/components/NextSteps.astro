@@ -1,0 +1,26 @@
+---
+import { ui } from '../data/profile';
+
+interface Props {
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+
+const { headingLevel = 3, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as const;
+const { heading, steps } = ui.contact.next;
+---
+
+<div class={className}>
+  <Heading id="next-steps-title" class="text-caption font-medium text-muted">
+    {heading}
+  </Heading>
+  <ol aria-labelledby="next-steps-title" class="mt-3 border-t border-divider">
+    {steps.map((step, index) => (
+      <li class="flex items-baseline gap-3 border-b border-divider py-3 text-ui text-body">
+        <span class="w-4 shrink-0 text-caption text-muted tabular-nums">{index + 1}</span>
+        <span class="text-pretty">{step}</span>
+      </li>
+    ))}
+  </ol>
+</div>

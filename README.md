@@ -6,19 +6,20 @@ on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
 
 ## Commands
 
-| Command            | Action                                         |
-| :----------------- | :--------------------------------------------- |
-| `npm install`      | Install dependencies                           |
-| `npm run dev`      | Start the dev server at `localhost:4321`       |
-| `npm run build`    | Build the static site to `./dist/`             |
-| `npm run preview`  | Serve the built site locally                   |
-| `npm test`         | Run mocked IndexNow regression tests           |
-| `npm run validate` | Run tests, Astro checks, and formatting checks |
-| `npm run format`   | Format every file with Prettier                |
+| Command             | Action                                              |
+| :------------------ | :-------------------------------------------------- |
+| `npm install`       | Install dependencies                                |
+| `npm run dev`       | Start the dev server at `localhost:4321`            |
+| `npm run build`     | Build the static site to `./dist/`                  |
+| `npm run preview`   | Serve the built site locally                        |
+| `npm test`          | Run IndexNow, external-link and colour-token tests  |
+| `npm run validate`  | Run tests, Astro checks, formatting checks and knip |
+| `npm run test:dist` | Check form, external links and CSP in `./dist/`     |
+| `npm run format`    | Format every file with Prettier                     |
 
 ## Editing content
 
-Home-page and interface copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, tagline, SEO description,
+Home-page and interface copy lives in [`src/data/profile.ts`](src/data/profile.ts): name, hero offer, SEO description,
 experience, projects, the About statement and paragraphs, socials, and the interface strings in `ui` (including every
 contact form label and message). Long-form pages live in the Markdown collections under `src/content/services/`,
 `src/content/blog/`, and `src/content/work/`, validated by [`src/content.config.ts`](src/content.config.ts).
@@ -29,8 +30,8 @@ drive related links on both articles and service pages. Draft articles and case 
 The portrait and content illustrations live in `src/assets/` and are resized at build time. The current case-study
 covers are illustrations, not product screenshots. The résumé is served from `public/ahmed-ghazy-resume.pdf`.
 
-The home page leads with selected work, followed by compact service rows, named recommendations, experience, About,
-writing, and contact. Mobile navigation uses a native disclosure and keeps Contact visible. Articles include a visible
+The home page leads with the offer and selected work, followed by compact service rows, named recommendations,
+experience, About, writing, and contact. Mobile navigation uses a native disclosure and keeps Contact visible. Articles include a visible
 byline and a section list generated from their Markdown headings.
 
 ## Contact form
@@ -46,8 +47,9 @@ contact links stay on that page wherever a form exists. It is not a record of th
 ## Theme and motion
 
 Light and dark follow the system setting until the visitor picks one with the header toggle. The colour tokens are
-pinned hex pairs in `src/styles/global.css`. GSAP drives two effects, the hero portrait zoom and the About statement
-reveal. It loads after the page is idle and is skipped entirely under `prefers-reduced-motion`.
+pinned hex pairs in `src/lib/tokens.mjs`, repeated in `src/styles/global.css`; `npm test` fails if the two drift or a
+text pair drops below 4.5:1. GSAP drives one effect, the About statement reveal. It loads after the page
+is idle and is skipped entirely under `prefers-reduced-motion`.
 
 ## SEO and social cards
 
@@ -65,6 +67,6 @@ reveal. It loads after the page is idle and is skipped entirely under `prefers-r
 ## Deploy
 
 Netlify deploys every push to `dev`, and opens a deploy preview for each pull request. `netlify.toml` sets the build
-command (`validate` runs before `build`, so a failing check blocks the deploy), publish directory, noindex flag for
-previews and the headers; Node comes from `.nvmrc`. The `Validate` GitHub workflow runs the same checks on pushes to
-`dev` and on pull requests, so failures show up in GitHub too.
+command (`validate` runs before `build` and `test:dist` after it, so a failing check blocks the deploy), publish
+directory, noindex flag for previews and the headers; Node comes from `.nvmrc`. The `Validate` GitHub workflow runs the
+same checks on pushes to `dev` and on pull requests, so failures show up in GitHub too.

@@ -18,21 +18,24 @@ const sources = {
       {testimonials.map((item) => (
         <li class="flex">
           <figure class="flex w-full flex-col border-t border-divider pt-6">
-            <blockquote class="text-base leading-[1.6] text-fg md:text-[17px]">
+            <blockquote class="text-base leading-[1.6] text-fg md:text-reading">
               <p>“{item.quote}”</p>
             </blockquote>
-            <figcaption class="mt-auto pt-6 text-[13px] leading-[1.6] text-muted">
+            <figcaption class="mt-auto pt-6 text-caption leading-[1.6] text-pretty text-muted">
               <span class="block font-medium text-body">{item.name}</span>
-              {item.context} · {ui.testimonials.via}{' '}
-              <a
-                href={sources[item.source]}
-                target="_blank"
-                rel="noreferrer noopener"
-                class="underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
-              >
-                {item.source}
-                <span class="sr-only">{ui.newTab}</span>
-              </a>
+              {item.context}{' '}
+              <span class="whitespace-nowrap">
+                · {ui.testimonials.via}{' '}
+                <a
+                  href={sources[item.source]}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
+                >
+                  {item.source}
+                  <span class="sr-only">{ui.newTab}</span>
+                </a>
+              </span>
             </figcaption>
           </figure>
         </li>
