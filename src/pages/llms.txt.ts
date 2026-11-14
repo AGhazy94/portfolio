@@ -51,10 +51,13 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     '## Projects',
     '',
-    ...projects.map(
-      (project) =>
-        `- [${project.name}](${project.href}): ${project.kind}. ${project.summary} Tech: ${project.tags.join(', ')}.`,
-    ),
+    // A project with no live site would only repeat its case study above.
+    ...projects
+      .filter((project) => project.href)
+      .map(
+        (project) =>
+          `- [${project.name}](${project.href}): ${project.kind}. ${project.summary} Tech: ${project.tags.join(', ')}.`,
+      ),
     '',
     '## Links',
     '',

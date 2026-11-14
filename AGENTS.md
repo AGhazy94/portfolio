@@ -104,7 +104,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   files served verbatim (the résumé PDF).
 - **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
   palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
-  (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). Use the tokens; there is no `slate`. Muted
+  (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). The values live in
+  [src/lib/tokens.mjs](src/lib/tokens.mjs) too (satori and the `theme-color` metas read it); change
+  both, or `npm test` fails. Use the tokens; there is no `slate`. Muted
   text is `text-muted` (WCAG AA on every surface). The contact section sits on `surface`, like the
   project cards; never flip the theme inside it. Every text pair must pass 4.5:1 and every field
   border 3:1, in both themes.
@@ -130,14 +132,18 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   field carries the path it was sent from, and the hidden `first-*` fields carry first-touch
   attribution (UTMs, landing path, referring domain) from
   [src/lib/attribution.ts](src/lib/attribution.ts), filled at submit time.
-- **Analytics is consent-gated.** Netlify's server-side Web Analytics counts traffic with no script.
+- **Analytics: cookieless for everyone, cookies only with consent.** Netlify's server-side Web
+  Analytics counts traffic with no script. Ahrefs Web Analytics (`PUBLIC_AHREFS_ANALYTICS_KEY`,
+  production context only) sets no cookies and stores nothing on the device, so
+  [src/components/Consent.astro](src/components/Consent.astro) loads it for every visitor, with no
+  banner choice; anything that stores data on the device stays behind consent.
   GA4 (`PUBLIC_GA_MEASUREMENT_ID`, production context only in `netlify.toml`) loads through
   [src/components/Consent.astro](src/components/Consent.astro) only after "Accept"; the
   choice lasts 12 months and is asked again when `VERSION` in [src/lib/consent.ts](src/lib/consent.ts)
   is bumped; the first-touch record (localStorage, 90 days, never overwritten by a later campaign) is kept only with
   that consent. Without it, nothing reaches Google and attribution covers only a form sent from the
   entry page. `generate_lead` fires only after Netlify accepts the `fetch`, never on click or on
-  `/thanks/`. No form values, and no query string beyond `utm_*`, go to Google. Any change here
+  `/thanks/`, to both. No form values go to Google or Ahrefs, and the page address they get keeps no query string beyond `utm_*`. Any change here
   updates `/privacy/` (copy in `ui.privacy`) in the same commit.
 - **Deploys cost credits.** Each production deploy (a push to `dev`) costs 15 of 300 monthly Netlify
   credits. Test on a PR Deploy Preview, and say so before any push that deploys production.
@@ -152,7 +158,7 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   Instrument Serif (display) + Geist (UI and body) via the Astro Fonts API (Fontsource), GSAP +
   ScrollTrigger, `@astrojs/sitemap`, satori + sharp for generated images. Deployed on Netlify
   ([netlify.toml](netlify.toml)), with Netlify Forms for the contact form.
-- Page order on `/`: Header → Hero (tagline, CTAs) → Projects → Services → Testimonials → Experience
+- Page order on `/`: Header → Hero (offer, CTAs) → Projects → Services → Testimonials → Experience
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
   Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
@@ -184,8 +190,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 ## Execution Workflow
 
-1. `npm run validate` — `npm test`, `astro check` and `prettier --check`. Zero errors.
-2. `npm run build` — must pass; it renders every endpoint (OG image, icons, `llms.txt`).
+1. `npm run validate` — `npm test`, `astro check`, `prettier --check` and `knip`. Zero errors.
+2. `npm run build` — must pass; it renders every endpoint (OG image, icons, `llms.txt`). Then
+   `npm run test:dist` checks the built HTML (form contract, external links, CSP hashes).
 3. Touched the head, structured data, robots or sitemap → re-check the built `dist/index.html`.
 4. Visual change → verify at 1440×900 and 375px.
 

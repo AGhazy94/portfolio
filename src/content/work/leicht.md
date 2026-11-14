@@ -3,9 +3,10 @@ title: 'LEICHT: a kitchen brand site in several languages'
 description: Case study of the leicht.com brand site I built in Qwik on a headless CMS and GraphQL, in several languages, plus an internal kitchen configurator.
 kind: Kitchen brand site · Client work through caisy
 order: 3
-updated: 2026-11-05
+updated: 2026-11-14
 href: https://leicht.com/
 imageAlt: A kitchen brand page is paired with an open catalogue and arrows indicating multiple languages
+role: Client work through caisy
 tags:
   - GraphQL
   - Headless CMS

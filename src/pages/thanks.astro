@@ -1,21 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Icon from '../components/Icon.astro';
+import NextSteps from '../components/NextSteps.astro';
 import { profile, ui } from '../data/profile';
 ---
 
 <Layout title={`${ui.thanks.title} | ${profile.name}`} noindex>
-  <main class="gutter flex min-h-dvh items-center">
-    <div class="mx-auto w-full max-w-page">
-      <Icon name="check" class="size-8 text-accent" />
-      <h1 class="type-section mt-6 max-w-[16ch] text-fg">{ui.thanks.heading}</h1>
-      <p class="mt-5 max-w-[48ch] text-[17px] leading-normal text-body">{ui.thanks.body}</p>
-      <a
-        href="/"
-        class="mt-10 inline-flex min-h-11 items-center rounded-pill bg-fg px-6.5 text-[15px] font-medium text-bg transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97]"
-      >
-        {ui.thanks.back}
-      </a>
-    </div>
-  </main>
+  <a href="#content" class="skip-link">
+    {ui.skipLink}
+  </a>
+  <div class="flex min-h-dvh flex-col">
+    <Header />
+    <main id="content" class="gutter flex-1 py-16 md:py-20">
+      <div class="mx-auto w-full max-w-page">
+        <Icon name="check" class="size-8 text-accent" />
+        <h1 class="type-section mt-6 max-w-[16ch] text-fg">{ui.thanks.heading}</h1>
+        <NextSteps headingLevel={2} class="mt-10 max-w-[30rem]" />
+        <a href="/" class="btn-pill mt-10 min-h-11 bg-fg text-bg">
+          {ui.thanks.back}
+        </a>
+      </div>
+    </main>
+    <Footer />
+  </div>
 </Layout>

@@ -3,9 +3,9 @@ import { createHash } from 'node:crypto';
 import type { ImageMetadata } from 'astro';
 import { Font, getImage } from 'astro:assets';
 import Consent from '../components/Consent.astro';
-import ScrollBar from '../components/ScrollBar.astro';
 import { profile, socials } from '../data/profile';
 import { ogCard } from '../lib/graphics';
+import { dark, light } from '../lib/tokens.mjs';
 import '../styles/global.css';
 
 interface Props {
@@ -105,6 +105,18 @@ const structuredData = {
 };
 // Escaped so copy containing "</script>" cannot end the JSON-LD block early.
 const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+
+// Runs before first paint so a stored theme never flashes the system one; the browser chrome follows it too.
+const themeScript = `try {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'light' || theme === 'dark') {
+    document.documentElement.dataset.theme = theme;
+    const color = ${JSON.stringify({ light: light.bg, dark: dark.bg })}[theme];
+    for (const meta of document.querySelectorAll('meta[name="theme-color"]')) meta.content = color;
+  }
+} catch {}`;
+// Hashed from the exact string rendered below, so a reformat can never leave a stale hash in the CSP.
+Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(themeScript).digest('base64')}`);
 ---
 
 <!doctype html>
@@ -145,17 +157,11 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fbfbfa" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0b0b" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content={light.bg} />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content={dark.bg} />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Runs before first paint so a stored theme never flashes the system one. -->
-    <script is:inline>
-      try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
-      } catch {}
-    </script>
+    <script is:inline set:html={themeScript}></script>
     <Font cssVariable="--font-instrument-serif" preload />
     <Font cssVariable="--font-geist" preload />
     {!hidden && <script is:inline type="application/ld+json" set:html={jsonLd}></script>}
@@ -163,6 +169,5 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
   <body class="bg-bg font-sans text-body antialiased selection:bg-accent selection:text-bg">
     <slot />
     <Consent />
-    <ScrollBar />
   </body>
 </html>

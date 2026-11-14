@@ -30,6 +30,8 @@ const nodes = [
   <PageCards
     slot="after"
     class="mt-10"
+    featured
+    headingLevel={2}
     items={projects.map((project) => ({
       title: project.data.status === 'draft' ? `[Draft] ${project.data.title}` : project.data.title,
       summary: project.data.description,

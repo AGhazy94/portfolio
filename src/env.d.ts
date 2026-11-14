@@ -2,6 +2,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_NOINDEX?: string;
   readonly PUBLIC_GOOGLE_SITE_VERIFICATION?: string;
   readonly PUBLIC_GA_MEASUREMENT_ID?: string;
+  readonly PUBLIC_AHREFS_ANALYTICS_KEY?: string;
   readonly PUBLIC_WEBMCP_ORIGIN_TRIAL?: string;
 }
 

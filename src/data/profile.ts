@@ -17,11 +17,13 @@ export type Experience = {
 export type Project = {
   name: string;
   kind: string;
-  href: string;
+  href?: string;
   caseStudy: string;
   summary: string;
   // Names a client logo in src/assets/logos.json, rendered through Icon.astro.
-  logo: 'scriptbee' | 'leicht';
+  logo?: 'scriptbee' | 'leicht';
+  // A third card spans its row, so two columns never leave an empty cell.
+  featured?: boolean;
   tags: string[];
 };
 
@@ -29,7 +31,9 @@ export const profile = {
   name: 'Ahmed Ghazy',
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
-  tagline: 'Full-stack developer. I take over web apps that are stuck and ship the next release.',
+  offer: 'I take over web apps that are stuck and ship the next release.',
+  // Says no more than `description` below.
+  offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
     'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including ones built with Lovable or Bolt, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
@@ -41,7 +45,7 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-09T00:00:00+02:00',
+  updated: '2026-11-14T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
     'Taking over existing codebases',
@@ -170,6 +174,15 @@ export const projects: Project[] = [
     logo: 'leicht',
     tags: ['GraphQL', 'Headless CMS', 'i18n', 'Qwik'],
   },
+  {
+    name: 'AI real-estate platform: an audit, then the fixes in order',
+    kind: 'AI platform for real-estate investors · Frontend lead',
+    caseStudy: '/work/real-estate-platform-audit/',
+    summary:
+      'Audited the live frontend before changing anything, ranked the problems by how much they hurt users and fixed them in that order, inside the existing app with no rewrite. Error reports went down, and more property pages got indexed by Google.',
+    featured: true,
+    tags: ['Next.js', 'TypeScript', 'React', 'App Router'],
+  },
 ];
 
 export type Testimonial = { quote: string; name: string; context: string; source: 'LinkedIn' | 'Upwork' };
@@ -184,6 +197,13 @@ export const testimonials: Testimonial[] = [
     source: 'LinkedIn',
   },
   {
+    quote:
+      'Ahmed is the kind of senior engineer who makes everyone around him better without making a big deal of it. … he hands over challenging work instead of holding onto it, and he makes sure people have the support to grow through it.',
+    name: 'Mohammed Ahmed Abdus',
+    context: 'Full-stack engineer at Smart Bricks · 2026',
+    source: 'LinkedIn',
+  },
+  {
     quote: 'He’s met my expectations and even went beyond. I would definitely hire him again.',
     name: 'Upwork client',
     context: 'Convert two design screens into HTML · 2022',
@@ -195,13 +215,6 @@ export const testimonials: Testimonial[] = [
     name: 'Upwork client',
     context: 'Modify a media player · 2022',
     source: 'Upwork',
-  },
-  {
-    quote:
-      'Ahmed is the kind of senior engineer who makes everyone around him better without making a big deal of it. … he hands over challenging work instead of holding onto it, and he makes sure people have the support to grow through it.',
-    name: 'Mohammed Ahmed Abdus',
-    context: 'Full-stack engineer at Smart Bricks · 2026',
-    source: 'LinkedIn',
   },
 ];
 
@@ -249,6 +262,9 @@ export const ui = {
       'Case studies by Ahmed Ghazy, freelance full-stack developer: what was built, which parts were his and the stack.',
     visit: 'Visit the live site',
     more: 'Read the case study',
+    homeMore: 'All case studies',
+    facts: { role: 'Role', period: 'When', stack: 'Stack' },
+    next: 'Next case study',
   },
   blog: {
     indexTitle: 'Blog',
@@ -283,6 +299,7 @@ export const ui = {
   theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
+    role: 'Full-stack developer',
     availability: 'Open to client projects and retainers',
     contact: 'Get in touch',
     work: 'View selected work',
@@ -332,7 +349,6 @@ export const ui = {
           'Build an MVP',
           'Build a web app or website',
           'Arabic or RTL web app',
-          'A full-time role',
           'Something else',
         ],
       },
@@ -361,6 +377,15 @@ export const ui = {
     submit: 'Send message',
     // Information at the point of collection, not a consent checkbox: replying rests on the visitor's own request.
     privacy: 'I use your details to respond to your enquiry. See the [Privacy Notice](/privacy/).',
+    // Each step is backed by the services' terms; no reply time until Ahmed commits to one.
+    next: {
+      heading: 'What happens next',
+      steps: [
+        'I read it and reply by email.',
+        'If it helps, we have a short call.',
+        'A fixed price for a clear scope, or a monthly one for ongoing work.',
+      ],
+    },
     sending: 'Sending…',
     failure: `Your message didn’t send. Check your connection and try again, or email [${profile.email}](mailto:${profile.email}).`,
     success: {
@@ -372,7 +397,6 @@ export const ui = {
   thanks: {
     title: 'Message sent',
     heading: 'Thanks, your message is on its way.',
-    body: 'I’ll reply to the email you gave as soon as I can.',
     back: 'Back to the home page',
   },
   about: {
@@ -382,7 +406,7 @@ export const ui = {
   consent: {
     label: 'Cookie consent',
     title: 'Cookies on this site',
-    body: 'I use optional Google Analytics cookies to understand how this site is used. [Privacy Notice](/privacy/)',
+    body: 'I use optional analytics cookies to understand how visitors use this site and improve it. [Privacy Notice](/privacy/)',
     allow: 'Accept',
     decline: 'Reject',
   },
@@ -393,7 +417,7 @@ export const ui = {
     description:
       'How ahmed-ghazy.com collects, uses and protects personal data from contact forms, analytics and essential website services.',
     lead: 'This notice explains what information this website collects, why it is used and the choices available to you.',
-    updated: 'Last updated: 21 October 2026.',
+    updated: 'Last updated: 14 November 2026.',
     change: 'Cookie settings',
     sections: [
       {
@@ -405,23 +429,23 @@ export const ui = {
       {
         heading: 'What information I collect',
         body: [
-          '**Contact information:** your name, email address, message, any optional project details and the page where you sent the form.',
-          '**Analytics information:** if you accept analytics cookies, Google Analytics receives information such as pages viewed, device and browser type, approximate location and referring website or campaign. Form contents are never sent to Google Analytics.',
-          '**Technical information:** Netlify records standard server logs, including IP addresses, to deliver and secure the site. If you consent, the site also remembers how you first arrived so that source can accompany a later enquiry.',
+          '**Information you give me:** your name, email address and message, any optional project details, and the page you sent the form from.',
+          '**Usage information:** like most websites, this site measures how it is used, such as pages visited, the website or campaign that referred you, browser and device type, and approximate location. Basic visit counts are collected without cookies and do not identify you. Analytics cookies are used only if you accept them.',
+          '**Technical information:** standard server logs, including IP addresses, are kept to deliver and secure the site. If you accept cookies, the site also remembers how you first found it, so that source can accompany a later enquiry.',
         ],
       },
       {
         heading: 'How and why I use your information',
         body: [
-          'I use contact information to respond to enquiries and discuss possible work; analytics information to understand which pages are useful; and technical information to operate, protect and improve the site. I may also keep records where required for legal, tax or accounting purposes.',
-          'Where the GDPR or UK GDPR applies, the legal bases are steps you ask me to take before a possible contract, my legitimate interests in managing enquiries and keeping the site secure, your consent for analytics, and compliance with legal obligations. I do not use personal data for automated decisions or profiling.',
+          'I use this information to reply to enquiries and discuss possible work, to understand which pages are useful and improve the site, and to keep it running securely. I may also keep records where the law requires, for example for tax or accounting.',
+          'Where the GDPR or UK GDPR applies, I rely on the steps you ask me to take before a possible contract; my legitimate interests in managing enquiries, measuring site use and keeping the site secure; your consent for analytics cookies; and compliance with legal obligations. I do not use personal data for automated decisions or profiling.',
         ],
       },
       {
-        heading: 'Cookies and local storage',
+        heading: 'Cookies',
         body: [
-          'Google Analytics loads only after you select **Accept**. If you reject cookies or make no choice, analytics does not load and no analytics data is sent to Google. Advertising personalisation is disabled.',
-          'The site always stores your colour-theme preference and, after you choose, your cookie preference. You can change your analytics choice at any time through **Cookie settings** in the footer.',
+          'Cookies are small files that websites store on your device, and this site also uses similar browser storage. It always stores what it needs to work, such as your colour theme and cookie choice. Analytics cookies are optional and set only if you select **Accept**. No advertising cookies are used.',
+          'You can change your choice at any time through **Cookie settings** in the footer, or block and delete cookies in your browser settings.',
         ],
         storage: {
           summary: 'Cookie and storage details',
@@ -431,13 +455,13 @@ export const ui = {
               name: '_ga',
               provider: 'Google Analytics',
               purpose: 'Distinguishes visitors for site analytics. Set only after consent.',
-              duration: 'Up to 2 years',
+              duration: 'Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends',
             },
             {
               name: '_ga_<container-id>',
               provider: 'Google Analytics',
               purpose: 'Maintains an analytics session. Set only after consent.',
-              duration: 'Up to 2 years',
+              duration: 'Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends',
             },
             {
               name: 'first-touch',
@@ -463,35 +487,35 @@ export const ui = {
       {
         heading: 'Who I share information with',
         body: [
-          'I use Netlify for hosting and form submissions, Akismet for spam checking, Hostinger for email and Google for analytics after consent. They receive only the information needed to provide those services. I do not sell or rent personal data.',
-          `These providers may process information outside Egypt or your country. Where data-protection law requires safeguards, transfers rely on an adequacy decision or approved contractual safeguards. You can ask for more information by emailing [${profile.email}](mailto:${profile.email}). I may also disclose information where the law requires it.`,
+          'I use trusted service providers for hosting, form handling, spam filtering, email and analytics. They receive only the information they need to provide their services. I do not sell or rent personal data.',
+          `Some providers may process information outside Egypt or your country. Where the law requires, these transfers are protected by appropriate safeguards; email [${profile.email}](mailto:${profile.email}) for details. I may also disclose information where the law requires it.`,
         ],
       },
       {
         heading: 'How long I keep information',
         body: [
-          'Enquiries that do not become client work are deleted within 12 months. Work-related correspondence is kept for the engagement and as long as tax or accounting rules require. Google Analytics keeps event data according to the retention setting for this site. Netlify keeps server logs under its own retention policy.',
-          'The site uses HTTPS, and form submissions are available only through protected Netlify and email accounts. No online service can guarantee absolute security.',
+          'I delete enquiries that do not lead to work within 12 months, and keep client correspondence for as long as the work and tax or accounting rules require. Analytics data and server logs are kept for limited periods.',
+          'I take reasonable steps to protect your information, but no online service can guarantee complete security.',
         ],
       },
       {
         heading: 'Your rights',
         body: [
           `Depending on the law that applies, you may ask to access, correct, delete or receive a copy of your personal data, restrict its use, or object to processing. Email [${profile.email}](mailto:${profile.email}) to make a request.`,
-          'You can withdraw analytics consent at any time without affecting earlier processing. You may also complain to the Egyptian Personal Data Protection Center or the data-protection authority where you live, work or believe an infringement occurred.',
+          'You can withdraw your consent to analytics cookies at any time; this does not affect earlier processing. You may also complain to the Egyptian Personal Data Protection Center or the data-protection authority where you live or work.',
         ],
       },
       {
         heading: 'Information you provide',
         body: [
-          'Your name, email address and message are required if you use the contact form; the other fields are optional. Without the required information, I cannot receive or respond to the enquiry. Please do not include sensitive personal information unless it is necessary.',
-          'This site is intended for potential clients, collaborators and employers and is not directed at children under 16.',
+          'Your name, email address and message are needed to reply to your enquiry; the other fields are optional. Please do not send sensitive personal information unless it is necessary.',
+          'This site is not intended for children under 16.',
         ],
       },
       {
-        heading: 'Changes to this Privacy Notice',
+        heading: 'Changes to this notice',
         body: [
-          'This notice may be updated from time to time. The latest revision date appears below. If a change affects your consent, the site will ask for it again.',
+          'I may update this notice from time to time. The date below shows the latest version. If a change affects your consent, the site will ask you again.',
         ],
       },
     ],
@@ -501,9 +525,9 @@ export const ui = {
     metaTitle: 'Legal Notice',
     heading: 'Legal Notice',
     description:
-      'Legal Notice for ahmed-ghazy.com: website operator, hosting, disclaimers, third-party links, copyright and governing law.',
+      'Legal Notice for ahmed-ghazy.com: website operator, disclaimers, third-party links, copyright and governing law.',
     lead: 'Information about the operator of this website and the terms that apply to its use.',
-    updated: 'Last updated: 21 October 2026.',
+    updated: 'Last updated: 14 November 2026.',
     sections: [
       {
         heading: 'Website operator',
@@ -513,43 +537,39 @@ export const ui = {
         ],
       },
       {
-        heading: 'Hosting provider',
-        body: ['This website is hosted by Netlify, Inc., United States.'],
-      },
-      {
         heading: 'No offer or professional advice',
         body: [
-          'The content of this website does not constitute a binding offer. Any engagement is subject to a separate written agreement setting out its scope and terms.',
-          'Articles published on this website describe general approaches and do not constitute legal, financial or other professional advice for any particular situation.',
+          'Nothing on this website is a binding offer. Any work is agreed separately in writing.',
+          'Articles on this website are general information, not legal, financial or other professional advice.',
         ],
       },
       {
-        heading: 'Disclaimer of liability for content',
+        heading: 'Liability for content',
         body: [
-          'The content of this website has been prepared with care. However, no warranty is given that it is complete, accurate or up to date, and no liability is accepted for any loss arising from reliance on it, to the extent permitted by law.',
+          'I take care to keep this website accurate and up to date, but I cannot guarantee that its content is complete or correct. To the extent permitted by law, I accept no liability for any loss arising from its use.',
         ],
       },
       {
-        heading: 'Links to third-party websites',
+        heading: 'Links to other websites',
         body: [
-          'This website contains links to websites operated by third parties. I have no control over their content and accept no responsibility for it. Should a linked page contain unlawful content, please notify me and the link will be removed.',
+          'This website links to websites run by others. I am not responsible for their content. If a linked page contains unlawful content, please let me know and I will remove the link.',
         ],
       },
       {
         heading: 'Copyright and trademarks',
         body: [
-          `Unless otherwise stated, the text, design and images on this website are © ${profile.name} and may not be reproduced without prior written permission. Company names, product names and logos are the property of their respective owners and are used solely to describe work carried out for or with them. Testimonials are quoted from the public posts identified alongside them.`,
+          `Unless stated otherwise, the content of this website is © ${profile.name} and may not be reproduced without permission. Other company names and logos belong to their owners and are used only to describe work done for or with them.`,
         ],
       },
       {
         heading: 'Governing law',
         body: [
-          'This Legal Notice and the use of this website are governed by the laws of the Arab Republic of Egypt, without prejudice to any mandatory protections available to you under the law of your country of residence.',
+          'This website and this notice are governed by the laws of Egypt, without affecting any mandatory protections you have under the law of your country.',
         ],
       },
       {
         heading: 'Privacy',
-        body: ['The processing of personal data on this website is described in the [Privacy Notice](/privacy/).'],
+        body: ['How this website handles personal data is described in the [Privacy Notice](/privacy/).'],
       },
     ],
   },

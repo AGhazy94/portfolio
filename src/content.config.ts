@@ -24,7 +24,8 @@ const services = defineCollection({
     gets: z.array(card),
     steps: z.array(card),
     experience: z.array(z.string()),
-    terms: z.array(z.string()),
+    // ServiceBody sets the last line beside the CTA, so the terms need at least one line before it.
+    terms: z.array(z.string()).min(2),
     faq,
   }),
 });
@@ -58,6 +59,9 @@ const work = defineCollection({
     href: z.url().optional(),
     imageAlt: z.string().optional(),
     tags: z.array(z.string()),
+    // Facts row under the title; each stays empty unless the case study's own text states it.
+    role: z.string().optional(),
+    period: z.string().optional(),
   }),
 });
 

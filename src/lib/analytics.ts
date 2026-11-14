@@ -5,6 +5,7 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    AhrefsAnalytics?: { sendEvent: (name: string) => void };
   }
 }
 
@@ -62,8 +63,22 @@ export function loadAnalytics(measurementId: string, debug: boolean) {
   else window.addEventListener('load', inject, { once: true });
 }
 
+// Cookieless, so it needs no consent; the script reads the cleaned page address from its own data-page-location.
+export function loadAhrefs(key: string) {
+  const page = pageLocation();
+  // Ahrefs also sends document.referrer and clicked link hrefs unfiltered, so the address keeps only utm_* first.
+  if (page + location.hash !== location.href) history.replaceState(history.state, '', page + location.hash);
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://analytics.ahrefs.com/analytics.js';
+  script.dataset.key = key;
+  script.dataset.pageLocation = page;
+  document.head.append(script);
+}
+
 // Fired only after Netlify accepts the message; no form values are sent.
 export function trackLead() {
+  window.AhrefsAnalytics?.sendEvent('generate_lead');
   if (getConsent() === 'granted') window.gtag?.('event', 'generate_lead', { form_name: 'contact' });
 }
 

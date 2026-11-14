@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="gutter border-t border-divider">
-  <div class="mx-auto flex max-w-page flex-col gap-6 py-10 text-[13px] leading-[1.6] text-muted md:flex-row md:items-start md:justify-between">
+  <div class="mx-auto flex max-w-page flex-col gap-6 py-10 text-caption leading-[1.6] text-muted md:flex-row md:items-start md:justify-between">
     <div class="max-w-[62ch] space-y-2">
       <p>
         {`© ${year} ${profile.name} · ${ui.footer.place} · `}
@@ -36,11 +36,13 @@ const year = new Date().getFullYear();
       </p>
       <RichText
         source={ui.footer.credit}
+        class="text-pretty"
         linkClass="underline decoration-1 underline-offset-3 transition-colors duration-200 hover:text-fg"
       />
     </div>
 
-    <ul aria-label={ui.socialLabel} class="-mx-2 flex shrink-0 flex-wrap items-center md:-mt-3">
+    {/* Tighter padding under 640px keeps all six links on one 335px row. */}
+    <ul aria-label={ui.socialLabel} class="-mx-1.5 flex shrink-0 flex-wrap items-center sm:-mx-2 md:-mt-3">
       {socials.map(({ label, href }) => {
         const external = href.startsWith('http');
         return (
@@ -49,7 +51,7 @@ const year = new Date().getFullYear();
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noreferrer noopener' : undefined}
-              class="flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-fg"
+              class="flex min-h-11 items-center px-1.5 transition-colors duration-200 hover:text-fg sm:px-2"
             >
               {label}
               {external && <span class="sr-only">{ui.newTab}</span>}
@@ -63,7 +65,7 @@ const year = new Date().getFullYear();
           target="_blank"
           rel="noreferrer noopener"
           data-resume
-          class="flex min-h-11 items-center px-2 transition-colors duration-200 hover:text-fg"
+          class="flex min-h-11 items-center px-1.5 transition-colors duration-200 hover:text-fg sm:px-2"
         >
           {ui.footer.resume}
           <span data-resume-new-tab class="sr-only">

@@ -1,11 +1,8 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { h, img } from './render';
+import { dark, light } from './tokens.mjs';
 import { profile } from '../data/profile';
-
-// Pinned values from global.css; satori can't read CSS variables.
-const light = { bg: '#fbfbfa', fg: '#111111' };
-const dark = { bg: '#0b0b0b', fg: '#f3f3f1', muted: '#98989d', accent: '#4aa3ff' };
 
 let portrait: Promise<string> | undefined;
 

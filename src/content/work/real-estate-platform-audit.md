@@ -3,8 +3,9 @@ title: 'AI real-estate platform: an audit, then the fixes in order'
 description: How I audited the live frontend of an AI platform for real-estate investors, ranked the problems by how much they hurt users and fixed them in that order.
 kind: AI platform for real-estate investors · Frontend lead
 order: 2
-updated: 2026-11-05
+updated: 2026-11-14
 imageAlt: A faulty property-page section stays contained within a blue boundary while neighbouring sections remain intact
+role: Frontend lead
 tags:
   - Next.js
   - TypeScript
@@ -14,7 +15,7 @@ tags:
 
 ## The project
 
-An AI platform for real-estate investors, with property pages and valuation and score views. I led its frontend from 2025 to 2026. The app was live and people were using it.
+An AI platform for real-estate investors, with property pages and valuation and score views. I led its frontend. The app was live and people were using it.
 
 ## Audit first
 

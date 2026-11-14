@@ -1,18 +1,32 @@
 ---
+import type { InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
+import Icon from '../../components/Icon.astro';
 import { contentImage, getWork } from '../../lib/content';
 import { profile, ui } from '../../data/profile';
 
 export async function getStaticPaths() {
   const projects = await getWork();
-  return projects.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  return projects.map((entry, index) => ({
+    params: { id: entry.id },
+    props: { entry, next: projects[(index + 1) % projects.length] },
+  }));
 }
 
-const { entry } = Astro.props;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry, next } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
 const image = contentImage('work', entry.id);
+// The facts row states the role, so the eyebrow keeps only what the product is.
+const kind = data.role ? data.kind.split(' · ')[0] : data.kind;
+const facts = [
+  { label: ui.work.facts.role, value: data.role },
+  { label: ui.work.facts.period, value: data.period },
+  { label: ui.work.facts.stack, value: data.tags.join(', '), wide: true },
+].filter((fact) => fact.value);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
@@ -33,22 +47,44 @@ const nodes = [
   title={`${data.title} | ${profile.name}`}
   description={data.description}
   heading={data.title}
-  eyebrow={data.status === 'draft' ? `Draft, dev only · ${data.kind}` : data.kind}
+  eyebrow={data.status === 'draft' ? `Draft, dev only · ${kind}` : kind}
   nodes={nodes}
   crumbs={[{ label: ui.work.indexTitle, href: '/work/' }, { label: data.title }]}
   image={image}
   imageAlt={data.imageAlt}
 >
-  <Content />
-  {data.href && (
-    <p>
-      <a href={data.href} target="_blank" rel="noreferrer noopener">
+  <div slot="facts" class="mt-10 border-t border-fg pt-6">
+    <dl class="grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4">
+      {facts.map(({ label, value, wide }) => (
+        <div class:list={[wide && 'col-span-2']}>
+          <dt class="text-caption text-muted">{label}</dt>
+          <dd class="mt-1 text-ui text-pretty text-fg">{value}</dd>
+        </div>
+      ))}
+    </dl>
+    {data.href && (
+      <a
+        href={data.href}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="mt-4 inline-flex min-h-11 items-center gap-1 text-ui font-medium text-accent underline-offset-4 hover:underline"
+      >
         {ui.work.visit}
         <span class="sr-only">{ui.newTab}</span>
+        <Icon name="external" class="size-4" />
       </a>
-    </p>
+    )}
+  </div>
+  <Content />
+  {next.id !== entry.id && (
+    <div slot="after" class="mt-16 border-t border-divider pt-8">
+      <a href={`/work/${next.id}/`} class="group inline-flex max-w-[44ch] flex-col gap-2">
+        <span class="text-caption font-medium text-muted">{ui.work.next}</span>
+        <span class="type-project text-balance text-fg transition-colors duration-200 group-hover:text-accent">
+          {next.data.title}
+          <Icon name="chevron" class="inline-block size-6 -rotate-90 align-[-2px]" />
+        </span>
+      </a>
+    </div>
   )}
-  <p>
-    {ui.tagsLabel}: {data.tags.join(', ')}.
-  </p>
 </ContentPage>

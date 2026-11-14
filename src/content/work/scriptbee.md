@@ -3,9 +3,11 @@ title: 'ScriptBee: AI chat that keeps running after the tab closes'
 description: How I moved ScriptBee's long AI agent runs into background tasks, so an answer is no longer lost when the user refreshes the page.
 kind: AI marketing platform · Client work through caisy
 order: 1
-updated: 2026-11-05
+updated: 2026-11-14
 href: https://www.scriptbee.ai/
 imageAlt: A background task continues after a browser closes and saves its result to a conversation folder
+role: Product team, through caisy
+period: May–July 2025
 tags:
   - Next.js
   - TypeScript

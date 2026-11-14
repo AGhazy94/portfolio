@@ -6,7 +6,8 @@ export const getServices = async () => (await getCollection('services')).sort((a
 // Drafts exist so the finished site can be previewed in dev; production never builds or lists them.
 export const getPosts = async () =>
   (await getCollection('blog', ({ data }) => !import.meta.env.PROD || data.status === 'published')).sort(
-    (a, b) => b.data.published.getTime() - a.data.published.getTime(),
+    // getCollection's order is platform-dependent, so the id settles same-day posts the same way on every build.
+    (a, b) => b.data.published.getTime() - a.data.published.getTime() || a.id.localeCompare(b.id),
   );
 
 export const getWork = async () =>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const parts = text.split(' · ');
+---
+
+{/* Each dot is tied to the word before it and every later part stays whole, so a wrap never opens a line with "·". */}
+<p class="text-caption text-pretty text-muted">
+  {parts.map((part, index) => {
+    const label = index < parts.length - 1 ? `${part} ·` : part;
+    return index ? (
+      <Fragment>
+        {' '}
+        <span class="whitespace-nowrap">{label}</span>
+      </Fragment>
+    ) : (
+      label
+    );
+  })}
+</p>
