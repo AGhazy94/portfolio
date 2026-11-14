@@ -65,11 +65,14 @@ export function loadAnalytics(measurementId: string, debug: boolean) {
 
 // Cookieless, so it needs no consent; the script reads the cleaned page address from its own data-page-location.
 export function loadAhrefs(key: string) {
+  const page = pageLocation();
+  // Ahrefs also sends document.referrer and clicked link hrefs unfiltered, so the address keeps only utm_* first.
+  if (page + location.hash !== location.href) history.replaceState(history.state, '', page + location.hash);
   const script = document.createElement('script');
   script.async = true;
   script.src = 'https://analytics.ahrefs.com/analytics.js';
   script.dataset.key = key;
-  script.dataset.pageLocation = pageLocation();
+  script.dataset.pageLocation = page;
   document.head.append(script);
 }
 
