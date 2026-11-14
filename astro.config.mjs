@@ -35,8 +35,14 @@ export default defineConfig({
   site,
   server: { port: Number(process.env.PORT) || 4321 },
   build: { inlineStylesheets: 'always' },
-  // gtag.js is injected after consent, so its origin joins the hashed inline scripts.
-  security: { csp: { scriptDirective: { resources: ["'self'", 'https://www.googletagmanager.com'] } } },
+  // gtag.js (after consent) and Ahrefs' analytics.js are injected, so their origins join the hashed inline scripts.
+  security: {
+    csp: {
+      scriptDirective: {
+        resources: ["'self'", 'https://www.googletagmanager.com', 'https://analytics.ahrefs.com'],
+      },
+    },
+  },
   // No Markdown here; Shiki's inline styles would break the CSP if any arrived.
   markdown: {
     syntaxHighlight: false,

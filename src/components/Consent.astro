@@ -2,8 +2,9 @@
 import RichText from './RichText.astro';
 import { ui } from '../data/profile';
 
-// Set for production only (netlify.toml), so previews and local builds never report to Google.
+// Set for production only (netlify.toml), so previews and local builds never report to Google or Ahrefs.
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const ahrefsKey = import.meta.env.PUBLIC_AHREFS_ANALYTICS_KEY;
 const buttonClass =
   'inline-flex min-h-11 flex-1 cursor-pointer items-center justify-center rounded-pill px-5 text-[14px] font-medium transition-[opacity,scale] duration-200 hover:opacity-85 motion-safe:active:scale-[0.97] sm:flex-none';
 ---
@@ -11,6 +12,7 @@ const buttonClass =
 <div
   data-consent
   data-measurement-id={measurementId}
+  data-ahrefs-key={ahrefsKey}
   data-debug={import.meta.env.DEV ? '' : undefined}
   role="region"
   aria-label={ui.consent.label}
@@ -44,10 +46,12 @@ const buttonClass =
 <script>
   import { CONSENT_KEY, forgetCachedConsent, getConsent, setConsent, type Consent } from '../lib/consent';
   import { forgetEntry, rememberEntry } from '../lib/attribution';
-  import { clearAnalyticsCookies, loadAnalytics } from '../lib/analytics';
+  import { clearAnalyticsCookies, loadAhrefs, loadAnalytics } from '../lib/analytics';
 
   const banner = document.querySelector<HTMLElement>('[data-consent]')!;
-  const { measurementId, debug } = banner.dataset;
+  const { measurementId, ahrefsKey, debug } = banner.dataset;
+
+  if (ahrefsKey) loadAhrefs(ahrefsKey);
 
   const apply = () => {
     if (getConsent() !== 'granted') return;
