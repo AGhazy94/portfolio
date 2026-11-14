@@ -62,6 +62,12 @@ const buttonClass =
   apply();
   banner.hidden = getConsent() !== null;
 
+  // While the banner shows, the page reserves its height so nothing focused or scrolled to ends up under it.
+  new ResizeObserver(() => {
+    const space = banner.hidden ? 0 : innerHeight - banner.getBoundingClientRect().top;
+    document.documentElement.style.setProperty('--consent-space', `${Math.ceil(space)}px`);
+  }).observe(banner);
+
   // Consent that expired or was withdrawn in another tab leaves _ga cookies and the first-touch record behind.
   if (getConsent() !== 'granted') {
     try {

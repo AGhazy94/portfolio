@@ -33,9 +33,6 @@
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3"
   },
-  "allowScripts": {
-    "esbuild": true
-  },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "knip": "^6.38.0",

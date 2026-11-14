@@ -22,10 +22,11 @@ const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
     <h1 id="hero-title">
       <span class="flex min-h-10 items-center pl-13 text-ui">
         <span>
-          <span class="font-medium text-fg">{profile.name}</span>{' '}
-          <span class="text-muted">
-            <span aria-hidden="true">·</span>
-            <span class="sr-only">,</span> {ui.hero.role}
+          <span class="font-medium text-fg">{profile.name}</span>
+          <span class="sr-only">, </span>
+          {/* The dot is drawn, not typed, so crawlers read "name, role" without a stray "·". */}
+          <span class="whitespace-nowrap text-muted before:mx-2 before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-['']">
+            {ui.hero.role}
           </span>
         </span>
       </span>

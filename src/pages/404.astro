@@ -6,10 +6,7 @@ import { profile, ui } from '../data/profile';
 ---
 
 <Layout title={`${ui.notFound.title} | ${profile.name}`} noindex>
-  <a
-    href="#content"
-    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:px-4! focus:py-3!"
-  >
+  <a href="#content" class="skip-link">
     {ui.skipLink}
   </a>
   <div class="flex min-h-dvh flex-col">

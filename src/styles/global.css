@@ -65,6 +65,15 @@
   @apply after:absolute after:inset-0 after:rounded-card focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent;
 }
 
+/* not-sr-only zeroes the padding, so the focused state sets it again after it. */
+@utility skip-link {
+  @apply sr-only z-50 rounded-pill bg-fg text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3;
+
+  &:focus {
+    padding: --spacing(3) --spacing(4);
+  }
+}
+
 @utility type-hero {
   font-family: var(--font-display);
   font-size: 44px;
@@ -252,8 +261,9 @@
     /* body is a size container, so its background never reaches the canvas below short pages. */
     background-color: var(--color-bg);
     scroll-behavior: smooth;
-    /* Keeps anchor targets and keyboard focus clear of the sticky header. */
+    /* Keeps anchor targets and keyboard focus clear of the sticky header, and of the consent banner while it shows. */
     scroll-padding-top: 72px;
+    scroll-padding-bottom: calc(var(--consent-space, 0px) + 16px);
     /* Locking scroll for the résumé dialog never shifts the layout. */
     scrollbar-gutter: stable;
     scrollbar-color: var(--color-muted) transparent;
@@ -271,6 +281,8 @@
   body {
     /* cqi in the type scale resolves against the page width. */
     container-type: inline-size;
+    /* Lets the footer scroll clear of the consent banner. */
+    padding-bottom: var(--consent-space, 0px);
   }
 
   html:has(dialog[open]) {

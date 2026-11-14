@@ -23,9 +23,10 @@ const sources = {
             </blockquote>
             <figcaption class="mt-auto pt-6 text-caption leading-[1.6] text-pretty text-muted">
               <span class="block font-medium text-body">{item.name}</span>
-              {item.context}{' '}
+              {/* The dot ends the line before, so a wrap never opens a line with it. */}
+              {item.context}&nbsp;·{' '}
               <span class="whitespace-nowrap">
-                · {ui.testimonials.via}{' '}
+                {ui.testimonials.via}{' '}
                 <a
                   href={sources[item.source]}
                   target="_blank"

@@ -89,10 +89,7 @@ const graph = [
 ---
 
 <Layout title={title} description={description} type={type} nodes={graph} image={image} imageAlt={imageAlt}>
-  <a
-    href="#content"
-    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:px-4! focus:py-3!"
-  >
+  <a href="#content" class="skip-link">
     {ui.skipLink}
   </a>
   <Header contactHref="#contact" />
@@ -131,7 +128,7 @@ const graph = [
             >
               {headingParts.map((part, index) => (index % 2 ? <span class="whitespace-nowrap">{part}</span> : part))}
             </h1>
-            {lead && <p class="type-lead mt-6 max-w-[40ch] text-body">{lead}</p>}
+            {lead && <p class="type-lead mt-6 max-w-[40ch] text-pretty text-body">{lead}</p>}
             {(published || updated) && (
               <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-caption text-muted">
                 {type === 'article' && (
@@ -168,6 +165,7 @@ const graph = [
                 widths={[480, 720, 1080]}
                 sizes="(min-width: 1024px) 520px, 100vw"
                 loading="eager"
+                fetchpriority="high"
                 data-art
                 class="aspect-video w-full object-cover"
               />

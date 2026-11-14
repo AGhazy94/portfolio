@@ -8,10 +8,7 @@ import { profile, ui } from '../data/profile';
 ---
 
 <Layout title={`${ui.thanks.title} | ${profile.name}`} noindex>
-  <a
-    href="#content"
-    class="sr-only z-50 rounded-pill bg-fg px-4 py-3 text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:px-4! focus:py-3!"
-  >
+  <a href="#content" class="skip-link">
     {ui.skipLink}
   </a>
   <div class="flex min-h-dvh flex-col">
@@ -20,7 +17,6 @@ import { profile, ui } from '../data/profile';
       <div class="mx-auto w-full max-w-page">
         <Icon name="check" class="size-8 text-accent" />
         <h1 class="type-section mt-6 max-w-[16ch] text-fg">{ui.thanks.heading}</h1>
-        <p class="mt-5 max-w-[48ch] text-reading leading-normal text-balance text-body">{ui.thanks.body}</p>
         <NextSteps headingLevel={2} class="mt-10 max-w-[30rem]" />
         <a href="/" class="btn-pill mt-10 min-h-11 bg-fg text-bg">
           {ui.thanks.back}

@@ -10,6 +10,26 @@ const dist = fileURLToPath(new URL('../dist/', import.meta.url));
 const NEW_TAB = '(opens in a new tab)';
 // JSON data blocks never execute, so the CSP has nothing to allow.
 const DATA_TYPES = new Set(['application/ld+json', 'application/json']);
+// Netlify keys stored submissions by field name, so a rename made on every page still orphans the old column.
+const FORM_FIELDS = [
+  'input[hidden] form-name',
+  'input[hidden] subject',
+  'input[hidden] page',
+  'input[hidden] first-utm-source',
+  'input[hidden] first-utm-medium',
+  'input[hidden] first-utm-campaign',
+  'input[hidden] first-utm-content',
+  'input[hidden] first-utm-term',
+  'input[hidden] first-landing-page',
+  'input[hidden] first-referrer',
+  'input[] bot-field',
+  'input[text] name',
+  'input[email] email',
+  'select[] project-type',
+  'select[] budget',
+  'select[] timeline',
+  'textarea[] message',
+];
 
 function loadPages() {
   let files;
@@ -71,15 +91,15 @@ function contactForm(html) {
 
 test('the contact form keeps the Netlify contract, with the same fields on every page', () => {
   const found = pages.map((page) => ({ page, form: contactForm(page.html) })).filter(({ form }) => form);
-  assert.ok(
-    found.some(({ page }) => page.path === '/'),
-    'the home page has no contact form',
+  const withForm = new Set(found.map(({ page }) => page.path));
+  const exempt = new Set(['/404', '/thanks/']);
+  assert.deepEqual(
+    pages.filter(({ path }) => !exempt.has(path) && !withForm.has(path)).map(({ file }) => file),
+    [],
+    'every page but /404 and /thanks/ ends with the contact form',
   );
 
   const signature = ({ fields }) => fields.map(({ name, attrs }) => `${name}[${attrs.type ?? ''}] ${attrs.name}`);
-  const count = (list) => found.filter(({ form }) => `${signature(form)}` === `${list}`).length;
-  // The field set most pages share is the reference, so one broken page doesn't flag every other one.
-  const expected = found.map(({ form }) => signature(form)).sort((a, b) => count(b) - count(a))[0];
   const problems = [];
   for (const { page, form } of found) {
     const field = (name) => form.fields.find(({ attrs }) => attrs.name === name)?.attrs;
@@ -93,14 +113,19 @@ test('the contact form keeps the Netlify contract, with the same fields on every
     expect(field('email')?.type === 'email', 'no email input');
     expect(field('subject')?.type === 'hidden', 'no hidden subject');
     expect(field('page')?.type === 'hidden' && field('page').value === page.path, `page field is not ${page.path}`);
+    // Every select matches :read-only, so a read-only: style there applies all the time.
+    expect(
+      form.fields.every(({ name, attrs }) => name !== 'select' || !/(^|\s)read-only:/.test(attrs.class ?? '')),
+      'a select carries a read-only: style',
+    );
     const firstTouch = form.fields.filter(({ attrs }) => attrs.name.startsWith('first-'));
     expect(firstTouch.length && firstTouch.every(({ attrs }) => attrs.type === 'hidden'), 'no hidden first-* fields');
     const fields = signature(form);
-    const missing = expected.filter((field) => !fields.includes(field));
-    const extra = fields.filter((field) => !expected.includes(field));
+    const missing = FORM_FIELDS.filter((field) => !fields.includes(field));
+    const extra = fields.filter((field) => !FORM_FIELDS.includes(field));
     expect(
-      `${fields}` === `${expected}`,
-      `fields differ from the other pages (missing: ${missing.join(', ') || 'none'}; extra: ${extra.join(', ') || 'none'})`,
+      `${fields}` === `${FORM_FIELDS}`,
+      `fields differ from the Netlify field list (missing: ${missing.join(', ') || 'none'}; extra: ${extra.join(', ') || 'none'})`,
     );
   }
   assert.deepEqual(problems, []);

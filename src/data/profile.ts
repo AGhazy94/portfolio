@@ -397,7 +397,6 @@ export const ui = {
   thanks: {
     title: 'Message sent',
     heading: 'Thanks, your message is on its way.',
-    body: 'I’ll reply to the email you gave as soon as I can.',
     back: 'Back to the home page',
   },
   about: {

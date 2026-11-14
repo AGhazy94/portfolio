@@ -37,7 +37,7 @@ const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '
           <summary class="min-h-11 cursor-pointer px-4 py-3 font-medium text-fg">{storage.summary}</summary>
           <ul class="m-0 list-none divide-y divide-divider border-t border-divider p-0">
             {storage.rows.map((row) => (
-              <li class="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(9rem,0.8fr)_minmax(0,2fr)_minmax(7rem,0.7fr)] sm:gap-4">
+              <li class="grid gap-1 px-4 py-3 sm:grid-cols-[minmax(9rem,0.8fr)_minmax(0,1.4fr)_minmax(0,1.2fr)] sm:gap-4">
                 <div>
                   <p class="font-medium text-fg">{row.name}</p>
                   <p class="text-sm text-muted">{row.provider}</p>

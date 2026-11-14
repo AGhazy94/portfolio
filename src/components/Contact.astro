@@ -15,7 +15,9 @@ const inputs = [
 ] as const;
 
 const fieldClass =
-  'w-full rounded-field border border-field-border bg-field px-4 py-3 text-base text-fg placeholder:text-muted aria-invalid:border-error read-only:opacity-70';
+  'w-full rounded-field border border-field-border bg-field px-4 py-3 text-base text-fg placeholder:text-muted aria-invalid:border-error';
+// Every select matches :read-only, so only the fields setBusy() locks get dimmed.
+const typedClass = `${fieldClass} read-only:opacity-70`;
 const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disabled:cursor-wait disabled:opacity-60';
 ---
 
@@ -83,7 +85,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disable
               aria-describedby={`contact-${input.name}-error`}
               toolparamdescription={tool.params[input.name]}
               data-field
-              class={fieldClass}
+              class={typedClass}
             />
             <p id={`contact-${input.name}-error`} hidden class="flex items-start gap-1.5 text-caption text-error">
               <Icon name="error" class="mt-0.5 size-3.5 shrink-0" />
@@ -134,7 +136,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disable
             aria-describedby="contact-message-error"
             toolparamdescription={tool.params.message}
             data-field
-            class:list={[fieldClass, 'resize-y leading-normal']}
+            class:list={[typedClass, 'resize-y leading-normal']}
           ></textarea>
           <p id="contact-message-error" hidden class="flex items-start gap-1.5 text-caption text-error">
             <Icon name="error" class="mt-0.5 size-3.5 shrink-0" />
@@ -165,7 +167,8 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disable
       <div data-contact-success role="status"></div>
       <template data-contact-success-view>
         <Icon name="check" class="size-8 text-success" />
-        <h3 tabindex="-1" class="type-project mt-4 text-fg focus:outline-none">
+        {/* Focus scrolls to this heading; the margin keeps the check icon above it clear of the sticky header. */}
+        <h3 tabindex="-1" class="type-project mt-4 scroll-mt-12 text-fg focus:outline-none">
           {success.title}
         </h3>
         <p class="mt-3 text-reading leading-normal text-body">

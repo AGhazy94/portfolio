@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import MetaLine from './MetaLine.astro';
 import { projects, ui } from '../data/profile';
 
 const section = ui.sections.find(({ id }) => id === 'projects')!;
@@ -24,24 +25,14 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
         <li
           class:list={[
             'group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1',
-            project.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:gap-x-12',
+            // The grid gap plus both card paddings, so the right column starts where the second card's text does.
+            project.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:gap-x-[calc(1.5rem+2*clamp(20px,3cqi,28px))]',
           ]}
         >
           <div>
             {/* The logo repeats the h3's name, so Icon keeps it hidden from screen readers. */}
             {project.logo && <Icon name={project.logo} class="mb-6 block h-6 w-auto text-fg" />}
-            <p class="text-caption text-pretty text-muted">
-              {project.kind.split(' · ').map((part, index) =>
-                index ? (
-                  <Fragment>
-                    {' '}
-                    <span class="whitespace-nowrap">· {part}</span>
-                  </Fragment>
-                ) : (
-                  part
-                ),
-              )}
-            </p>
+            <MetaLine text={project.kind} />
             <h3 class="type-project mt-1 text-balance text-fg">
               <a href={project.caseStudy} class="card-link">
                 {project.name}
