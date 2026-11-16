@@ -2,7 +2,7 @@
 title: How to fix a vibe-coded app that breaks with real users
 description: How I fix a vibe-coded app built with Lovable, Bolt, Replit or Cursor that works in the demo but breaks once real users sign up, in order.
 published: 2026-11-09
-updated: 2026-11-12
+updated: 2026-11-16
 service: take-over-an-app
 imageAlt: A blue replacement piece repairs a bridge of interlocking panels, with a wrench below
 relatedArticles:
@@ -19,11 +19,11 @@ faq:
 
 To fix a vibe-coded app that breaks with real users, stop prompting the broken parts, make sure you own the code and the database, lock down who can see what, and get the one flow that makes you money working end to end. After that, set up a safe way to make changes and decide what's worth keeping.
 
-A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor, and the story is nearly always the same. The demo worked. Then real users signed up and things started breaking. Sign-up fails on some phones. A user sees data that isn't theirs. Someone pays and their account doesn't upgrade. And every new prompt fixes one thing and breaks something else.
+A lot of the apps I'm asked to look at now were built with Lovable, Bolt, Replit or Cursor, and the story is nearly always the same. The demo worked, then real users signed up and things started breaking: sign-up fails on some phones, or someone pays and their account doesn't upgrade. Every new prompt fixes one thing and breaks something else.
 
 That's normal, and most of these apps can be fixed. The AI got you to a working demo fast. It just skipped the boring parts that real users hit first.
 
-I review and fix apps like this every week. Here's each step the way I do it.
+These are the steps I take, in the order I take them.
 
 ## 1. Stop prompting the broken parts
 
@@ -58,21 +58,19 @@ I wrote the full list in the [security checklist for vibe-coded apps](/blog/vibe
 
 Pick the one path that makes you money. For most apps that's sign up, do the main thing, pay.
 
-I go through it as a brand new user, on a phone and on a laptop, and on a slow connection. I write down every failure and fix those first.
-
-A chart that looks a bit off can wait. A sign-up that fails can't.
+I go through it as a brand new user on a phone, then again on a laptop with a slow connection. I write down every failure and fix those first. A chart that looks a bit off can wait until sign-up works.
 
 ## 5. Move long work out of the page
 
-AI tools like to do everything in the browser. Calling an AI model, processing an upload, sending emails. It works in the demo. With real users, someone refreshes or closes the tab and the work stops halfway.
+AI tools like to do everything in the browser, even calling an AI model or sending emails. That's fine in the demo. With real users, someone refreshes or closes the tab and the work stops halfway.
 
 Anything long or important should run on the server, and the app should save whether it finished.
 
-I had exactly this on [ScriptBee](/work/scriptbee/). AI agent runs took minutes, and a refresh lost the answer. I moved them into background tasks so they kept running after the tab closed.
+I had exactly this on [ScriptBee](/work/scriptbee/). AI agent runs took 2 to 10 minutes, and a refresh lost the answer. In June 2025 I moved them into Trigger.dev background tasks, so they kept running after the tab closed.
 
 ## 6. Set up a safe way to make changes
 
-Most of what breaks after launch breaks during a change, not in the first version.
+After launch, most things break when someone changes the code.
 
 Before the next round of fixes I set up a staging copy with its own database, so changes get tested before real users see them. Changes go in as pull requests. Database changes go in as [migration files](https://supabase.com/docs/guides/deployment/database-migrations), not clicks in the dashboard. And I add error tracking, so you hear about a failure from a tool before a customer emails you.
 
@@ -86,6 +84,6 @@ If you're not sure which way to go, [fix or rebuild](/blog/fix-or-rebuild-an-inh
 
 ## If your app is stuck right now
 
-I start with a short audit for a fixed price. I read the code, the database rules and the hosting setup, and I use the app myself. Then I send you a one-page note with what works, what could hurt the business, and the fixes in order with a cost for each.
+I start with a short audit for a fixed price. I read the code and the database rules, check how it's hosted, and use the app myself. Then I send you a one-page note with what works, what could hurt the business, and the fixes in order with a cost for each.
 
 You can stop there and keep the note. [Taking over an app](/services/take-over-an-app/) has the rest, or tell me what's breaking in the form below.

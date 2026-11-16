@@ -84,6 +84,6 @@ Last, I make sure there's error tracking and a log of sign-ins and admin actions
 
 ## If you want me to check yours
 
-This list is a big part of my audit. I go through it on your real app, plus the code, the hosting and the main user flows, and send you a one-page note with what's risky and what to fix first, with a cost for each.
+I run this list on your real app as part of my audit. You get back the holes I found, ranked by how much damage each could do, with a cost to fix each one.
 
 [Taking over an app](/services/take-over-an-app/) has the details, and [how to fix a vibe-coded app](/blog/how-to-fix-a-vibe-coded-app/) covers what comes after security. If you think something's already leaking, tell me in the form below and I'll look at that first.

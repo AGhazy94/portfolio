@@ -20,11 +20,11 @@ Before you add AI to a product, decide the one narrow job it does, collect examp
 
 A demo of an AI feature takes an afternoon. A feature that real users can rely on takes a lot longer. This is the list I work through before and during the build.
 
-I build web apps with AI features, so a lot of this comes from the product side, not the model side.
+I build web apps with AI features, so most of this is about the product around the model.
 
 ## 1. Choose one narrow job
 
-"Add an AI assistant" is not a job. "Draft a reply to a customer email using the order history" is. You can test a narrow job, price it and improve it. A broad one is often wrong.
+A job is something like "draft a reply to a customer email using the order history". "Add an AI assistant" is too broad to test. You can test a narrow job, price it and improve it. A broad one is often wrong.
 
 Write the job in one sentence, and write down what the AI should not do.
 
@@ -32,7 +32,7 @@ Write the job in one sentence, and write down what the AI should not do.
 
 Before building, start with 20 to 50 representative examples: the input, and the output you would accept. Include ambiguous requests and failures as well as the easy cases. This is a starting test set, not a reliability guarantee. Run it each time you change the prompt, the model or the code, and expand it using real failures.
 
-Without a test set, every change is a guess, and a fix for one case quietly breaks another.
+Without a test set, every change is a guess, and a fix for one case can break another without anyone noticing.
 
 Use real data where you can. When I built a Google Keyword Planner tool for ScriptBee's agent, Google Ads test accounts returned no real keyword data, which made the tool hard to judge until it ran against a real account.
 

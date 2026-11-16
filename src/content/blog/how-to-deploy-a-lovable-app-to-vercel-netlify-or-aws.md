@@ -21,7 +21,7 @@ To deploy a Lovable app to Vercel, Netlify or AWS, connect the project to GitHub
 
 People move off Lovable hosting for a few reasons. They want the app in accounts they already pay for. They want a preview link for every change. Or a developer is joining and wants the usual setup.
 
-The front end itself moves easily. Here's how I do the whole move, including the parts around it.
+The front end itself moves easily. This is how I do the whole move, including the parts around it.
 
 ## 1. Connect GitHub first
 
@@ -59,7 +59,7 @@ Two things to know. The VITE_ values [get baked in when the app builds](https://
 
 ## 5. Make refresh work on every page (Vite apps)
 
-Classic first-deploy bug. The home page loads fine, but open /dashboard and press refresh, and you get a 404.
+This one catches a lot of first deploys. The home page loads fine, but open /dashboard and press refresh, and you get a 404.
 
 A Vite app needs the host to send every unknown path back to index.html. On Netlify that's a [_redirects file](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/). On Vercel it's a [rewrite in vercel.json](https://vercel.com/docs/project-configuration). [Cloudflare Pages does it by itself](https://developers.cloudflare.com/pages/configuration/serving-pages/), as long as the build has no 404.html at the top level. On AWS CloudFront it's a [custom error response](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GeneratingCustomErrorResponses.html) that returns 200. Don't use an S3 error page for this, because it still sends a 404 status.
 
@@ -98,4 +98,4 @@ Lovable can't monitor or debug hosting it doesn't control, so this part is on yo
 
 Moving hosting is often the first step when a Lovable app becomes a real product. I usually do it together with [the other production checks](/blog/how-to-take-a-lovable-app-to-production/) and [a security pass](/blog/vibe-coded-app-security-checklist/).
 
-I start with a short audit of the project, the backend and the hosting. [Taking over an app](/services/take-over-an-app/) explains how that works, or tell me about your app in the form below.
+If you want me to do the move, tell me in the form below where you want to host it and whether the backend moves too. [Taking over an app](/services/take-over-an-app/) explains how I start.
