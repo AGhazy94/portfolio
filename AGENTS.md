@@ -34,21 +34,6 @@ On conflict: security and correctness > this file > existing patterns in the tou
 - Shell is still right for moves, git, running commands and processing binary assets (screenshots
   through `sharp`).
 
-## Response Style — Rundown (always on)
-
-<!-- always-on -->
-
-On from turn 1 for every agent, never announced — [Attention Span](https://github.com/alexgreensh/attention-span)'s
-Rundown style, body verbatim between the markers at the end of this file. Claude Code loads it as an
-output style and Cursor and Copilot inline it, so only Codex needs the block. Also installed as
-`/rundown`. Do not edit between the markers.
-
-**Subagents inherit nothing.** Open every Agent-tool prompt with:
-
-> Answer in Rundown style: open with a standalone **TL;DR:** line, show state as a ✅/🟡/⬜/❔
-> checklist, put choices under **Your move:** as a numbered list, flag any blocker on its own 🔴
-> line, and never invent a status. Deliverables ship bare.
-
 ## Code Comments — one line, and only the why
 
 Comment only when the code cannot speak for itself: one short line stating the why, never the what.
@@ -206,29 +191,3 @@ Astro docs: [routing](https://docs.astro.build/en/guides/routing/),
 [components](https://docs.astro.build/en/basics/astro-components/),
 [content collections](https://docs.astro.build/en/guides/content-collections/),
 [styling and Tailwind](https://docs.astro.build/en/guides/styling/).
-
-Rundown body — skip it if your surface already loaded the style.
-
-<!-- prettier-ignore-start -->
-<!-- attention-span:start -->
-<!-- attention-span v0.8 · check for updates: https://github.com/alexgreensh/attention-span -->
-The reader is a human skimming for what changed and what's blocked, not an LLM reading every line. Their attention runs out fast; a blocker buried in a wall of text is a blocker they miss, same as if you never reported it. Two failures, both real: drop a live status or risk, or bury it where they won't reach it. Lead with the takeaway, show state at a glance, make the choices obvious.
-
-## Rules
-
-- Open with **TL;DR:** one line carrying the whole answer.
-- **The TL;DR must stand alone.** A reader who reads only the TL;DR gets the outcome and any blocker. If the one line misses the point, rewrite it, don't rely on the rows below.
-- Show state as a checklist: ✅ done, 🟡 in progress, ⬜ not started, ❔ unknown. One item per line, bold the subject, then a short clause.
-- Group next choices under **Your move:** as a numbered list (**1.**, **2.**, **3.**), each on its own line with one leading emoji and a short label, so the reader can pick by number.
-- **Deliverable: give it clean.** Asked to write the actual message, email, or note? Output only it, no framing before or after.
-- **Keep every load-bearing item; cut only filler.** Brevity trims detail, never a real status, risk, or blocker. If a reader needs it to act, it stays on the board.
-- **Asked to go deep ("really explain", "why did this happen")? Brevity is off for that reply.** Drop the board format if it doesn't fit, give the full reasoning, every number and condition. A depth request wants the whole picture, not a status line.
-- **Numbers, thresholds, and scoped conditions are load-bearing.** State them exact. Never widen "only under X" to "all", never drop the number that makes a status actionable, never flatten a two-sided fact to one side. A rounded-off status is a wrong status.
-- Short lines, one idea each. No walls of text, no padding, no repetition. Any prose block is blank-line-separated, never one unbroken paragraph.
-- Plain words. Tag an unavoidable term in five words or fewer.
-- Never invent status. Report only items and details you were given; if a state is unknown, mark it ❔ and say what would resolve it. A made-up checklist row is worse than a missing one.
-- One emoji per line at most. Emoji marks structure, never decorates.
-- Flag a blocker or risk in its own 🔴 line.
-- End with a clear next action or a pick-one.
-<!-- attention-span:end -->
-<!-- prettier-ignore-end -->
