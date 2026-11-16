@@ -19,13 +19,13 @@ faq:
 
 Taking a Lovable app to production means owning the code and the database, fixing the database access rules, moving secrets and payment logic to the server, and adding a staging copy so changes get tested before real users see them. Where you host it matters less than people think.
 
-Lovable is great for getting a product in front of people fast. The trouble starts when that app needs to hold real customers and real money. Then the questions change. Who owns the code? What happens if a change breaks sign-up on a Friday night? Is customer data actually private?
+Lovable is great for getting a product in front of people fast. The trouble starts when that app needs to hold real customers and real money. Then you need to know who owns the code, whether customer data is actually private, and what happens if a change breaks sign-up on a Friday night.
 
 I take Lovable apps to production as part of my work. This is what I check and set up, in order.
 
 ## 1. Connect GitHub and own the repository
 
-First thing. Connect the Lovable project to GitHub, under your account or your company's, not a freelancer's.
+Connect the Lovable project to GitHub first, under your account or your company's, not a freelancer's.
 
 [Lovable syncs both ways](https://docs.lovable.dev/integrations/github) with one branch, usually main. Changes you make in Lovable go to GitHub, and changes pushed to that branch come back into Lovable. That means a developer can work in their own editor without breaking your Lovable project.
 
@@ -53,7 +53,7 @@ So API keys go in [Lovable's Secrets](https://docs.lovable.dev/features/secrets)
 
 ## 5. Add a staging copy
 
-Right now, if you're like most founders I talk to, every change goes straight to the live app.
+In most Lovable apps I see, every change goes straight to the live app.
 
 Before real users depend on it, I set up a second copy for testing with its own database. Changes go there first. Only after they work there do they go live.
 
@@ -61,7 +61,7 @@ Lovable can work on a separate branch, which makes this easier. The important pa
 
 ## 6. Turn database changes into migration files
 
-In a Lovable project, the database often changes through prompts or clicks in the dashboard. Fine for building. Risky once there's real data.
+In a Lovable project, the database often changes through prompts or clicks in the dashboard. That's fine while you build, and risky once there's real data.
 
 I turn those changes into [migration files](https://supabase.com/docs/guides/deployment/database-migrations) in the repository. Then the same change runs on staging first and on the live database after, and you can see exactly what changed and when.
 
@@ -77,10 +77,10 @@ Before launch I add error tracking, so you see a failure before a user reports i
 
 ## 9. Write down how to make changes
 
-Last, a short page in the repository: how to run the app, how to deploy, where the secrets live, how to change the database. It sounds boring. It's the thing that lets the next developer, or you in six months, change the app without fear.
+Last, a short page in the repository: how to run the app, how to deploy, where the secrets live, how to change the database. It sounds boring, but it's what lets the next developer, or you in six months, change the app without fear.
 
 ## If you're about to launch
 
-I can do this with you. I start with a short audit of the Lovable project, the database and the hosting, and send you a one-page note with what's ready, what's risky and what to fix first, with a cost for each.
+I can do this with you. Before launch, I go through the nine steps above on your project and tell you which ones it still needs, with a cost for each. That first look is a short audit for a fixed price.
 
 [Taking over an app](/services/take-over-an-app/) explains how it works. If something is already breaking, [how to fix a vibe-coded app](/blog/how-to-fix-a-vibe-coded-app/) is the place to start. Or tell me about your app in the form below.

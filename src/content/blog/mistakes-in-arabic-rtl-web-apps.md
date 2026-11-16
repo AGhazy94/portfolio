@@ -37,7 +37,7 @@ Mirror the layout, navigation, progress bars and arrows that point in a directio
 
 **The fix:** decide the rule once per icon, and keep a short list. Test arrows, chevrons and sliders by clicking through them.
 
-Mirroring is also a layout decision, not only a flip. In a two-column email built from tables, the columns had to be reordered for the Arabic version so the reading order made sense, not just swapped by a setting.
+Mirroring is also a layout decision, not only a flip. In a two-column email built from tables, the columns had to be reordered for the Arabic version so the reading order made sense. A direction setting alone didn't do that.
 
 ## 3. Mixed Arabic and English text
 

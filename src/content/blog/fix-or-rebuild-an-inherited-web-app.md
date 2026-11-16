@@ -19,7 +19,7 @@ faq:
 
 Fix it, in most cases. Rebuild only when an audit shows the data model is wrong across the app, the platform can't be upgraded, or every change breaks something unrelated. Even then, replacing one part at a time is usually safer than starting over.
 
-Someone hands you a web app they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". Sometimes that's right. Usually it's expensive, and it's almost never the first step. Here's how I decide.
+Someone hands you a web app they didn't build. It works, mostly, and it looks like a mess. The first instinct of many developers is to say "we should rewrite this". Sometimes that's right, but it's usually expensive and almost never the first step. This is how I decide.
 
 ## Why the question is hard
 
@@ -71,7 +71,7 @@ Error reports went down, and more property pages got indexed. I fixed all of it 
 - Serious security problems are baked into the design.
 - The product has changed so much that the old structure fights every new feature.
 
-One of these alone doesn't mean rebuild. Several together do.
+One of these alone doesn't mean you should rebuild. Several together usually do.
 
 ## The middle path: replace one piece at a time
 
@@ -106,6 +106,6 @@ Don't compare only the quoted price. A rebuild also has to move your data over a
 
 ## What I do
 
-When I take over an app, I start with the audit. You get one page that says what works, what is risky, whether I'd keep, fix or rebuild, and the fixes in order with a price for each. The audit has a fixed price, and you can stop after it and keep the note. I don't start a rewrite unless you ask for one.
+When I take over an app, the audit is where I answer this question for your app: keep, fix or rebuild, and why, with the fixes priced. It has a fixed price, and you can stop after it and keep the note. I don't start a rewrite unless you ask for one.
 
 If you want that for your own app, [describe it in the form](/services/take-over-an-app/) and I'll tell you whether I can help.

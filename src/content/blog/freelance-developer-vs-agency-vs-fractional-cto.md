@@ -2,7 +2,7 @@
 title: Freelance developer, agency or fractional CTO for your MVP?
 description: How to choose between a freelance developer, an agency and a fractional CTO for a first product, by what each one is good at and where each one breaks down.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-11-16
 service: mvp-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -19,7 +19,7 @@ faq:
 
 You have an idea, some budget and no technical co-founder. Three kinds of help come up in every conversation: a freelance developer, an agency, and a fractional CTO. They solve different problems, and picking the wrong one is the usual source of regret.
 
-I'm a freelance developer, so I'm not neutral. I'll try to be honest about where I'm the wrong choice.
+I'm a freelance developer, so I'm not neutral. The last section says where I'm the wrong choice.
 
 ## The short version
 
@@ -41,15 +41,17 @@ I'm a freelance developer, so I'm not neutral. I'll try to be honest about where
 
 **Breaks down when:** the project is small, the scope keeps changing, or you want to talk to the person writing the code. You pay for coordination, and the people in the sales meeting are often not the people building.
 
+I've been on the agency side. Through caisy in 2023 I was one of four developers on Constellatio, a learning platform for law students in Germany. Badges, interface work, the learning games and payments moved at the same time, and we reviewed each other's pull requests. I merged 71 of the 151. One freelancer can't run four streams of work at once.
+
 **Ask for:** the names of the people who will do the work, how changes are priced, and what happens to the code and accounts at the end.
 
 ## Fractional CTO
 
-**Good at:** decisions. Which technology, which vendor, how to estimate fairly, whether to hire an engineer, how to check someone else's code. A fractional CTO works part-time, usually a few days a month, and acts as your technical lead.
+A fractional CTO works part-time, usually a few days a month, and acts as your technical lead. They're there for decisions: which technology or vendor to pick, whether to hire an engineer, how to check someone else's code.
 
-**Breaks down when:** you expect them to build everything. Many fractional CTOs manage the technical side, not write the code, and the build still needs hands.
+It breaks down when you expect them to build everything. Many fractional CTOs manage the technical side and don't write the code, so the build still needs someone else.
 
-**Ask for:** what they will personally do each month, how they handle a developer who disagrees with them, and how they leave things when the engagement ends.
+Before you sign, ask what they will personally do each month, and how they handle a developer who disagrees with them.
 
 ## How to choose
 

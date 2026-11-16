@@ -19,9 +19,9 @@ faq:
 
 A good software audit gives you one page in plain words: what works, what could hurt your customers or your money, whether to keep, fix or rebuild, and the fixes in order with a price on each. If you can't make a decision from it, it isn't finished.
 
-Your app is stuck. Maybe it was built with an AI tool and breaks once real customers use it. Maybe the developer stopped replying. Either way, someone has to look at the code before anyone can tell you what to do next.
+Your app is stuck. Maybe it was built with an AI tool and breaks once real customers use it, or the developer stopped replying. Either way, someone has to look at the code before anyone can tell you what to do next.
 
-That look is the audit. Here's what you should get back from it, whoever does it.
+That look is the audit. This is what you should get back from it, whoever does it.
 
 ## One page, in plain words
 

@@ -77,15 +77,15 @@ The largest codebase I joined was caisy's CMS editor, a repository with more tha
 
 ## 7. Understand how a change reaches production
 
-Answer one question in writing: if I change one line, what are the exact steps until users see it? Who or what builds it, where does it go and how do I undo it? A team that can't answer that is one bad deploy from an outage.
+Answer one question in writing: if I change one line, what are the exact steps until users see it? Who or what builds it, where does it go and how do I undo it? If nobody can answer that, the first bad deploy will be hard to undo.
 
 ## 8. Add basic visibility
 
-You can't fix what you can't see. Make sure there is some form of error reporting and uptime checking, even a simple one. After a takeover, the first weeks are when hidden problems show up.
+Make sure there is some form of error reporting and uptime checking, even a simple one. After a takeover, the first weeks are when hidden problems show up.
 
 ## 9. Ship one small change
 
-Pick a harmless fix and ship it through the full process: branch, review, deploy, check, done. This proves the whole path works, and it builds trust between you and the new developer.
+Pick a harmless fix and ship it through the full process, from a branch and a review to a deploy you check afterwards. This proves the whole path works, and it builds trust between you and the new developer.
 
 ## 10. Write down what you learned
 
@@ -95,6 +95,6 @@ For each account, write down who owns it, what it's for and how to recover it. F
 
 ## When to ask for help
 
-If steps 1 to 5 reveal problems you can't resolve, such as missing access or no way to run the code, that is the moment to hire someone to audit it. A short, fixed-price audit tells you what you have before you decide what to do with it.
+If steps 1 to 5 reveal problems you can't resolve, such as missing access or no way to run the code, that is the moment to bring someone in.
 
-That's where I start when I take over an app. I [read the code and tell you what is solid and what is risky](/services/take-over-an-app/), and you can stop after that and keep the note. [What an app audit should tell you](/blog/what-an-app-audit-should-tell-you/) explains what you should get back from one. If your situation sounds like this, describe it in the contact form and I'll tell you honestly whether I can help.
+I can pick it up from the account list with you, then [read the code and tell you what is solid and what is risky](/services/take-over-an-app/) for a fixed price. You can stop after that and keep the note. [What an app audit should tell you](/blog/what-an-app-audit-should-tell-you/) explains what you should get back from one. If your situation sounds like this, describe it in the contact form and I'll tell you whether I can help.

@@ -1,8 +1,8 @@
 ---
 title: 'MVP development cost: what changes the price'
-description: Why MVP development quotes differ so much, the eight things that change the cost, and how to get a number you can trust before you start.
+description: Why MVP development quotes differ so much, the nine things that change the cost, and how to get a number you can trust before you start.
 published: 2026-10-13
-updated: 2026-11-11
+updated: 2026-11-16
 service: mvp-development
 relatedArticles:
   - fix-or-rebuild-an-inherited-web-app
@@ -19,9 +19,11 @@ faq:
 
 The biggest differences in MVP quotes usually come from scope: how many user roles, integrations and complete flows are included, and who handles design, testing and deployment. Compare those assumptions before comparing totals. Here is a way to turn an idea into a brief that developers can price consistently.
 
-## Eight things that change the price
+## Nine things that change the price
 
 **1. Complete flows, not single screens.** A report over existing data may take less work than a checkout with refunds and payment retries. Count the full flow, including its failure cases, rather than the number of buttons on a screen.
+
+In 2023, through caisy, I built a fill-in-the-gaps game for [Constellatio](https://www.constellatio.de), a learning platform for law students in Germany. It looked like a row of input boxes. Each answer had to match one of several accepted answers while ignoring capital letters and extra spaces, bold and italic text inside the gaps broke the first version, and someone still had to decide whether a spelling mistake counts as wrong.
 
 **2. The number of user roles.** A product with one kind of user is simpler than one with customers, staff and an admin, each seeing different things.
 
@@ -36,6 +38,8 @@ The biggest differences in MVP quotes usually come from scope: how many user rol
 **7. Platforms.** A web app is one build. A web app and an iOS app and an Android app are several.
 
 **8. Quality expectations.** Tests, monitoring, backups, security checks and documentation. They're easy to skip, and a cheap quote often leaves them out.
+
+**9. The deadline.** A landing page built in one day, one week or one month is still a landing page, but it isn't the same work. A shorter deadline leaves less room for design options, testing and changes, so ask each developer what their timeline leaves out.
 
 ## What a quote should list
 
@@ -76,7 +80,7 @@ A common pattern is a small paid scoping step first, then a fixed price for vers
 
 ## How to get a number you can trust
 
-1. **Write down the one thing the MVP must prove.** A sentence, not a document.
+1. **Write down the one thing the MVP must prove.** One sentence is enough.
 2. **List features and rank them.** Mark which are essential for that one thing.
 3. **Cut the list in half.** Then ask whether the product still proves its point.
 4. **Ask two or three people for a quote on the same list.** Compare what is included.

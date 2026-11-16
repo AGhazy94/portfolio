@@ -2,7 +2,7 @@
 title: How to hire a freelance developer in Egypt
 description: What to check before hiring a freelance developer in Egypt, from where to look, how to judge the work, time zones, payment, contracts and who owns the code.
 published: 2026-10-13
-updated: 2026-10-13
+updated: 2026-11-16
 service: full-stack-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -44,6 +44,8 @@ Most developers in Egypt work in English, and many speak Arabic as well. Check t
 ## Time zone
 
 Egypt uses Cairo time, and it can shift with daylight saving. Agree a few hours of overlap with your working day, and say what happens outside them: whether messages can wait, and how urgent problems are raised. Confirm again around clock changes.
+
+My longest engagement from Egypt was two years with Stake's marketing team, through Upwork, from 2022 to 2024. My last month there went on an email template their team could edit themselves, and it came with a lot of last-minute calls and changes. That worked because I was reachable when they needed me, not only during my working day. Agree how reachable you need your developer to be before you start.
 
 ## Contract, scope and ownership
 
