@@ -1,12 +1,11 @@
 ---
 title: Freelance developer, agency or fractional CTO for your MVP?
 description: How to choose between a freelance developer, an agency and a fractional CTO for a first product, by what each one is good at and where each one breaks down.
-published: 2026-10-13
+published: 2026-11-16
 updated: 2026-11-16
 service: mvp-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
-status: draft
 imageAlt: A single pencil, a bundle of pencils and a blue drafting compass point toward the same product
 faq:
   - question: Is a freelancer cheaper than an agency?
@@ -17,7 +16,7 @@ faq:
     answer: Yes, if the code and accounts are yours and the choices are common. Plain tools, a clean repository and written notes make any later handover easier.
 ---
 
-You have an idea, some budget and no technical co-founder. Three kinds of help come up in every conversation: a freelance developer, an agency, and a fractional CTO. They solve different problems, and picking the wrong one is the usual source of regret.
+You have an idea, some budget and no technical co-founder. Three kinds of help come up in every conversation: a freelance developer, an agency, and a fractional CTO. They solve different problems, and the wrong one is expensive to undo once the work has started.
 
 I'm a freelance developer, so I'm not neutral. The last section says where I'm the wrong choice.
 
@@ -29,21 +28,19 @@ I'm a freelance developer, so I'm not neutral. The last section says where I'm t
 
 ## Freelance developer
 
-**Good at:** building a defined thing quickly, with one person who knows the whole code. Few meetings, direct communication and usually a lower overhead than a team.
+A freelancer is good at building a defined thing quickly. One person knows the whole code, you talk to them directly, and there's less overhead than with a team.
 
-**Breaks down when:** the work needs several specialities at once, the person is the only one who knows the system, or you can't judge their work. If they get ill or leave, progress stops.
-
-**Ask for:** a repository and hosting that you own, regular deployments you can see, and written notes. Those protect you from the main risk.
+The weak spot is that the same person is often the only one who knows the system. If they get ill or leave, progress stops, and if you can't judge their work, you won't know there's a problem until late. So ask for a repository and hosting in your name, deployments you can see each week, and written notes on how to run the app.
 
 ## Agency
 
-**Good at:** bigger scopes, fixed deadlines, and work that needs design, development and testing together. You get a team, a process and someone to hold accountable.
+An agency suits bigger scopes and fixed deadlines, where design, development and testing have to happen together and you want one company to answer for it.
 
-**Breaks down when:** the project is small, the scope keeps changing, or you want to talk to the person writing the code. You pay for coordination, and the people in the sales meeting are often not the people building.
+It's a poor fit for a small project or one whose scope keeps changing. You pay for coordination, and the people in the sales meeting are often not the people building.
 
 I've been on the agency side. Through caisy in 2023 I was one of four developers on Constellatio, a learning platform for law students in Germany. Badges, interface work, the learning games and payments moved at the same time, and we reviewed each other's pull requests. I merged 71 of the 151. One freelancer can't run four streams of work at once.
 
-**Ask for:** the names of the people who will do the work, how changes are priced, and what happens to the code and accounts at the end.
+Before you sign with an agency, ask for the names of the people who will do the work and what happens to the code and accounts at the end.
 
 ## Fractional CTO
 
@@ -69,6 +66,6 @@ Ask yourself three questions:
 
 ## Where I fit
 
-I work well on a first product or an existing app when one person can hold the whole picture: [building an MVP](/services/mvp-development/) or [taking over an existing app](/services/take-over-an-app/). I'm not the right choice if you need a team of six, a mobile app and a design system by the end of the quarter. In that case, look for an agency, and ask them the three questions above.
+I work well on a first product or an existing app when one person can hold the whole picture: [building an MVP](/services/mvp-development/) or [taking over an existing app](/services/take-over-an-app/). I'm not the right choice if you need a team of six and a mobile app by the end of the quarter. In that case, look for an agency, and ask them the three questions above.
 
 If you're not sure which one you need, the contact form is a fine place to describe the situation. I'll tell you what I would do, even if it isn't hiring me.
