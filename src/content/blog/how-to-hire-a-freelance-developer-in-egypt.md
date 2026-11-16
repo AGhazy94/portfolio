@@ -1,12 +1,11 @@
 ---
 title: How to hire a freelance developer in Egypt
 description: What to check before hiring a freelance developer in Egypt, from where to look, how to judge the work, time zones, payment, contracts and who owns the code.
-published: 2026-10-13
+published: 2026-11-16
 updated: 2026-11-16
 service: full-stack-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
-status: draft
 imageAlt: A blue pin on a map of Egypt connects to a portfolio folder and a checked milestone card
 faq:
   - question: Is it safe to hire a freelance developer in Egypt?
@@ -39,7 +38,7 @@ Watch how they answer. A good developer asks questions about your users and your
 
 ## Language and communication
 
-Most developers in Egypt work in English, and many speak Arabic as well. Check that you understand each other on a call, not only in writing. Agree how you'll communicate: a chat tool, a weekly call, a written update.
+Most developers in Egypt work in English, and many speak Arabic as well. Check that you understand each other on a call, not only in writing. Agree how you'll communicate, for example a chat tool for daily questions and a short written update each week.
 
 ## Time zone
 
@@ -62,6 +61,8 @@ Whatever the platform, write down:
 
 Pay by milestone. Never pay everything upfront, and don't hold everything back until the end. Use a method that leaves a record, such as a platform with escrow, a bank transfer or a payment service that both sides can use. Check what fees apply, and who pays them, before you start.
 
+Stake paid me hourly through Upwork for the whole two years, 467 hours in all. Every week's hours sat on record for both sides.
+
 ## Pricing
 
 Rates vary widely with experience and with the type of work. Don't choose the lowest quote. Compare what is included, and ask for a fixed scope and price for a first small piece, then continue if it goes well. [What an MVP costs](/blog/what-an-mvp-costs-and-what-moves-the-price/) explains how to compare quotes.
@@ -74,6 +75,6 @@ Rates vary widely with experience and with the type of work. Don't choose the lo
 - A request for full payment before any work.
 - Vague answers about who did the work in their portfolio.
 
-## Where I fit
+## Working with me
 
 I'm a full-stack developer in Egypt working with clients remotely, in English and Arabic. I [build MVPs](/services/mvp-development/), [build web apps](/services/full-stack-development/) and [take over existing apps](/services/take-over-an-app/). The code and accounts stay in your name from the first day. If you'd like to talk, describe the project in the contact form.

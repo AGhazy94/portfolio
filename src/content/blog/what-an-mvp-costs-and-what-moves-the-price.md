@@ -64,7 +64,7 @@ Write down these answers before asking for an estimate:
 - **What already exists:** designs, content, a codebase or a prototype the developer can inspect.
 - **The release boundary:** what has to work at launch and what can wait.
 
-Send the same brief to each developer. Ask them to list their assumptions and what they left out, so you can compare like for like.
+Send the same brief to each developer. Ask them to list their assumptions and what they left out, so you can compare like for like. If you're still deciding who to ask, [freelancer, agency or fractional CTO](/blog/freelance-developer-vs-agency-vs-fractional-cto/) compares the three.
 
 If you already have a prototype, built by hand or with an AI tool, find out whether it can be fixed before you pay for a new build. [Fix or rebuild](/blog/fix-or-rebuild-an-inherited-web-app/) covers how to decide, and [taking over an existing app](/services/take-over-an-app/) is how I'd start on one.
 
