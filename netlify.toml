@@ -44,6 +44,8 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'self'"
     Cross-Origin-Opener-Policy = "same-origin"
+    # The meta tag only covers HTML; this keeps the résumé PDF, llms.txt and images of the archive out of search too.
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/_astro/*"

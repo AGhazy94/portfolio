@@ -60,7 +60,8 @@ const buttonClass =
   };
 
   apply();
-  banner.hidden = getConsent() !== null;
+  // The v2 archive runs no analytics, so the banner opens only from the cookie-settings links.
+  banner.hidden = !measurementId || getConsent() !== null;
 
   // While the banner shows, the page reserves its height so nothing focused or scrolled to ends up under it.
   new ResizeObserver(() => {
@@ -99,7 +100,7 @@ const buttonClass =
   window.addEventListener('storage', (event) => {
     if (event.key !== CONSENT_KEY && event.key !== null) return;
     forgetCachedConsent();
-    banner.hidden = getConsent() !== null;
+    banner.hidden = !measurementId || getConsent() !== null;
     if (getConsent() === 'granted') apply();
     else if (window.gtag) location.reload();
   });
