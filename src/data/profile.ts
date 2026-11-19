@@ -20,10 +20,8 @@ export type Project = {
   href?: string;
   caseStudy: string;
   summary: string;
-  // Names a client logo in src/assets/logos.json, rendered through Icon.astro.
-  logo?: 'scriptbee' | 'leicht';
-  // A third card spans its row, so two columns never leave an empty cell.
-  featured?: boolean;
+  // A client logo from src/assets/logos.json, or a neutral icon where the client stays unnamed; rendered through Icon.astro.
+  logo?: 'scriptbee' | 'leicht' | 'building';
   tags: string[];
 };
 
@@ -32,6 +30,8 @@ export const profile = {
   title: 'Full-Stack Developer',
   seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
   offer: 'I take over web apps that are stuck and ship the next release.',
+  // One word of `offer`, set in the italic brand blue.
+  offerAccent: 'ship',
   // Says no more than `description` below.
   offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
@@ -45,7 +45,7 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-14T00:00:00+02:00',
+  updated: '2026-11-19T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
     'Taking over existing codebases',
@@ -180,7 +180,7 @@ export const projects: Project[] = [
     caseStudy: '/work/real-estate-platform-audit/',
     summary:
       'Audited the live frontend before changing anything, ranked the problems by how much they hurt users and fixed them in that order, inside the existing app with no rewrite. Error reports went down, and more property pages got indexed by Google.',
-    featured: true,
+    logo: 'building',
     tags: ['Next.js', 'TypeScript', 'React', 'App Router'],
   },
 ];
@@ -296,11 +296,12 @@ export const ui = {
     home: 'Home',
     onThisPage: 'On this page',
   },
-  theme: 'Dark theme',
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
     role: 'Full-stack developer',
+    badge: 'Available',
     availability: 'Open to client projects and retainers',
+    availabilityShort: 'Open to client projects',
     contact: 'Get in touch',
     work: 'View selected work',
   },
@@ -417,7 +418,7 @@ export const ui = {
     description:
       'How ahmed-ghazy.com collects, uses and protects personal data from contact forms, analytics and essential website services.',
     lead: 'This notice explains what information this website collects, why it is used and the choices available to you.',
-    updated: 'Last updated: 14 November 2026.',
+    updated: 'Last updated: 19 November 2026.',
     change: 'Cookie settings',
     sections: [
       {
@@ -444,7 +445,7 @@ export const ui = {
       {
         heading: 'Cookies',
         body: [
-          'Cookies are small files that websites store on your device, and this site also uses similar browser storage. It always stores what it needs to work, such as your colour theme and cookie choice. Analytics cookies are optional and set only if you select **Accept**. No advertising cookies are used.',
+          'Cookies are small files that websites store on your device, and this site also uses similar browser storage. It always stores what it needs to work, such as your cookie choice. Analytics cookies are optional and set only if you select **Accept**. No advertising cookies are used.',
           'You can change your choice at any time through **Cookie settings** in the footer, or block and delete cookies in your browser settings.',
         ],
         storage: {
@@ -474,12 +475,6 @@ export const ui = {
               provider: 'This website',
               purpose: 'Remembers whether analytics was accepted or rejected.',
               duration: '12 months',
-            },
-            {
-              name: 'theme',
-              provider: 'This website',
-              purpose: 'Remembers the colour theme you selected.',
-              duration: 'Until cleared',
             },
           ],
         },
@@ -580,7 +575,7 @@ export const ui = {
     legal: 'Legal Notice',
     cookies: 'Cookie settings',
     credit:
-      'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) and [Geist](https://vercel.com/font), and hosted on [Netlify](https://www.netlify.com).',
+      'Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk), [Geist](https://vercel.com/font) and [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif), and hosted on [Netlify](https://www.netlify.com).',
   },
   notFound: {
     code: '404',

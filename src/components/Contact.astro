@@ -18,15 +18,11 @@ const fieldClass =
   'w-full rounded-field border border-field-border bg-field px-4 py-3 text-base text-fg placeholder:text-muted aria-invalid:border-error';
 // Every select matches :read-only, so only the fields setBusy() locks get dimmed.
 const typedClass = `${fieldClass} read-only:opacity-70`;
-const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disabled:cursor-wait disabled:opacity-60';
+const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:cursor-wait disabled:opacity-60';
 ---
 
-<section
-  id={section.id}
-  aria-labelledby="contact-title"
-  class="gutter border-t border-divider bg-surface py-16 md:py-20"
->
-  <div class="mx-auto grid max-w-page gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-14">
+<section id={section.id} aria-labelledby="contact-title" class="gutter band-section py-20 md:py-28">
+  <div class="mx-auto grid max-w-page gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-14">
     <div class="max-w-[30rem]">
       <h2 id="contact-title" class="type-section text-fg">
         {section.title}
@@ -38,7 +34,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disable
       <NextSteps class="mt-10" />
     </div>
 
-    <div class="max-w-[600px]">
+    <div class="rounded-panel border border-divider bg-surface-2 p-[clamp(20px,4cqi,36px)] lg:max-w-[600px]">
       <form
         name="contact"
         method="POST"
@@ -153,7 +149,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-fg text-surface disable
         </template>
 
         <div class="mt-2 sm:col-span-2">
-          <button type="submit" class:list={[buttonClass, 'w-full sm:w-auto']}>
+          <button type="submit" data-primary-cta class:list={[buttonClass, 'w-full sm:w-auto']}>
             {ui.contact.submit}
           </button>
           <RichText

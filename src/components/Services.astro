@@ -7,11 +7,7 @@ const section = ui.sections.find(({ id }) => id === 'services')!;
 const services = await getServices();
 ---
 
-<section
-  id={section.id}
-  aria-labelledby="services-title"
-  class="gutter border-t border-divider bg-surface py-16 md:py-20"
->
+<section id={section.id} aria-labelledby="services-title" class="gutter band-section py-20 md:py-28">
   <div class="mx-auto grid max-w-page gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
     <div>
       <h2 id="services-title" class="type-section text-fg">

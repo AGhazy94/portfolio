@@ -1,43 +1,24 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { iconSvg } from './mark';
 import { h, img } from './render';
-import { dark, light } from './tokens.mjs';
+import { brand, colors } from './tokens.mjs';
 import { profile } from '../data/profile';
 
 let portrait: Promise<string> | undefined;
+let background: Promise<string> | undefined;
 
-// satori needs the photo inline and astro:assets only hands out URLs, so this reads the source file.
-async function loadPortrait() {
-  const jpeg = await readFile(join(process.cwd(), 'src/assets/portrait.jpg'));
-  return `data:image/jpeg;base64,${jpeg.toString('base64')}`;
-}
-
-export function monogram({ rounded }: { rounded: boolean }) {
-  return h(
-    'div',
-    {
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: light.bg,
-      borderRadius: rounded ? '22%' : 0,
-      color: light.fg,
-      fontFamily: 'Instrument Serif',
-      fontSize: 300,
-      letterSpacing: -6,
-      paddingBottom: 24,
-    },
-    profile.name
-      .split(' ')
-      .map((part) => part[0])
-      .join(''),
-  );
+// satori needs pictures inline and astro:assets only hands out URLs, so this reads the source files.
+async function inline(file: string, type: string) {
+  const data = await readFile(join(process.cwd(), 'src/assets', file));
+  return `data:${type};base64,${data.toString('base64')}`;
 }
 
 export async function ogCard() {
-  portrait ??= loadPortrait();
+  portrait ??= inline('portrait.jpg', 'image/jpeg');
+  // The glow and app panels; it leaves the left side empty and a circle free where the portrait goes.
+  background ??= inline('brand/og-background.png', 'image/png');
+  const mark = `data:image/svg+xml;base64,${Buffer.from(iconSvg(true, 84)).toString('base64')}`;
   return h(
     'div',
     {
@@ -46,20 +27,35 @@ export async function ogCard() {
       display: 'flex',
       alignItems: 'center',
       padding: '0 88px',
-      backgroundColor: dark.bg,
+      backgroundColor: colors.bg,
       fontFamily: 'Geist',
     },
     [
+      img(await background, 1200, { position: 'absolute', top: 0, left: 0 }, 630),
       h('div', { display: 'flex', flexDirection: 'column', flexGrow: 1 }, [
+        img(mark, 84, {}),
         h(
           'div',
-          { fontFamily: 'Instrument Serif', fontSize: 128, lineHeight: 0.92, letterSpacing: -2.5, color: dark.fg },
+          {
+            marginTop: 40,
+            fontFamily: 'Space Grotesk',
+            fontWeight: 700,
+            fontSize: 104,
+            lineHeight: 0.98,
+            letterSpacing: -4,
+            color: colors.fg,
+          },
           profile.name,
         ),
-        h('div', { marginTop: 30, fontSize: 40, fontWeight: 500, color: dark.accent }, profile.title),
-        h('div', { marginTop: 14, fontSize: 30, color: dark.muted }, profile.ogLine),
+        h('div', { marginTop: 26, fontSize: 40, fontWeight: 500, color: colors.accent }, profile.title),
+        h('div', { marginTop: 12, fontSize: 30, color: colors.body }, profile.ogLine),
       ]),
-      img(await portrait, 300, { marginLeft: 48, borderRadius: '50%', objectFit: 'cover' }),
+      img(await portrait, 300, {
+        marginLeft: 48,
+        borderRadius: '50%',
+        border: `8px solid ${brand.electric}`,
+        objectFit: 'cover',
+      }),
     ],
   );
 }

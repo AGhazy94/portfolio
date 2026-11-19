@@ -22,11 +22,11 @@ const { services, idPrefix, class: className } = Astro.props;
         <div>
           <h3
             id={`${idPrefix}-${id}`}
-            class="text-xl leading-snug font-medium text-fg group-hover:underline underline-offset-4"
+            class="font-display text-xl leading-snug font-semibold tracking-tight text-fg group-hover:underline underline-offset-4"
           >
             {data.cardTitle}
           </h3>
-          <p class="mt-2 text-ui leading-relaxed text-body">{data.cardSummary}</p>
+          <p class="mt-2 text-base leading-relaxed text-body">{data.cardSummary}</p>
         </div>
         <Icon name="chevron" class="mt-0.5 size-5 -rotate-90 text-accent" />
       </a>

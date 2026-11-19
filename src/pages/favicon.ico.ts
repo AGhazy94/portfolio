@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
-import { monogram } from '../lib/graphics';
-import { renderPng } from '../lib/render';
+import { iconSvg } from '../lib/mark';
+import { rasterise } from '../lib/render';
 
 // A single-image ICO container wrapping a 32x32 PNG, which every modern browser accepts.
 export const GET: APIRoute = async () => {
-  const png = await renderPng(monogram({ rounded: true }), 512, 512, 32);
+  const png = await rasterise(iconSvg(true), 32);
   const header = new DataView(new ArrayBuffer(22));
   header.setUint16(2, 1, true);
   header.setUint16(4, 1, true);

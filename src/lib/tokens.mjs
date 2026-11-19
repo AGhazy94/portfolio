@@ -1,37 +1,31 @@
 // For code that can't read CSS variables (satori, theme-color); tokens.test.mjs holds global.css to these values.
-export const light = {
-  bg: '#efede8',
-  header: 'rgb(239 237 232 / 0.82)',
-  surface: '#e3e1dd',
-  'surface-2': '#dedcd8',
-  fg: '#23211e',
-  body: '#3d3b38',
-  muted: '#5f5d59',
-  accent: '#0b5cbf',
-  divider: '#d4d1cc',
-  hairline: 'rgb(31 30 27 / 0.08)',
-  field: '#f6f4f2',
-  'field-border': '#787571',
-  error: '#a8291c',
-  success: '#186a33',
+
+// The brand split: midnight fills 60% of the page, electric blue 30%, sunset orange 10%.
+export const brand = {
+  midnight: '#090a10',
+  electric: '#2f6bff',
+  sunset: '#ff7a1a',
 };
 
-export const dark = {
-  bg: '#1b1a18',
-  header: 'rgb(27 26 24 / 0.82)',
-  surface: '#262422',
-  'surface-2': '#2e2c29',
-  fg: '#e6e4df',
-  body: '#c6c3bd',
-  muted: '#9d9992',
-  accent: '#6aa7f8',
-  divider: '#3b3936',
-  hairline: 'rgb(255 250 240 / 0.08)',
-  field: '#151513',
-  'field-border': '#807d76',
-  error: '#ff8a7e',
-  success: '#6fd39a',
+export const colors = {
+  bg: brand.midnight,
+  header: 'rgb(9 10 16 / 0.82)',
+  surface: '#101b3b',
+  'surface-2': '#13234e',
+  fg: '#f5f7fc',
+  body: '#c5ccdc',
+  muted: '#9ea7bd',
+  accent: '#6d97ff',
+  divider: '#212c4c',
+  hairline: 'rgb(255 255 255 / 0.08)',
+  field: '#0b0f1f',
+  'field-border': '#6b79a1',
+  error: '#ff8593',
+  success: '#5fd39a',
+  brand: brand.electric,
+  // Services and Contact sit on deep navy, not the bright blue: only white passed on that, and it flattened the text.
+  band: '#0f1a3a',
+  loud: brand.sunset,
 };
 
-// One value for both themes: ::backdrop doesn't reliably inherit color-scheme.
-export const scrim = 'rgb(20 19 17 / 0.6)';
+export const scrim = 'rgb(4 5 10 / 0.72)';

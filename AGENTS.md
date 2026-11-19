@@ -22,8 +22,8 @@ On conflict: security and correctness > this file > existing patterns in the tou
   for them and say so before claiming "nothing else references this".
 - **Load the semantic tools before the session's first symbol lookup, and wait for them.** "Still
   connecting" is the normal start state, never a reason to fall back to `rg`.
-- **Fine as-is, not blocked:** `… | rg foo`, `git log --grep=`, `find -type d`. Enforced in Claude
-  Code by a `PreToolUse` hook; other agents are on the honour system. **A missing `rg` makes the hook stop blocking.**
+- **Fine as-is:** `… | rg foo`, `git log --grep=`, `find -type d`. Nothing enforces this rule;
+  every agent is on the honour system.
 
 ## Editing Files — Edit/Write by default
 
@@ -42,8 +42,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 ## Non-Negotiable Rules
 
 - No new dependencies without explicit approval. Approved so far: GSAP, and
-  `@fontsource/instrument-serif` + `@fontsource/geist` (satori needs their WOFF files for the OG
-  image), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
+  `@fontsource/space-grotesk` + `@fontsource/geist` + `@fontsource/instrument-serif` (satori needs
+  their WOFF files for the OG image and icons), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
   configured in [knip.jsonc](knip.jsonc)), and `@astrojs/markdown-satteri` + `satteri`, pinned to
   the versions Astro installs, for the external-link plugin in
   [src/lib/external-links.mjs](src/lib/external-links.mjs) (new tab, UTM tags on Markdown links).
@@ -85,20 +85,32 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - Static output only — no adapter, no SSR, no UI-framework islands. Interactivity is a small
   `<script>` in the component that needs it.
 - Icons go through [src/components/Icon.astro](src/components/Icon.astro) (Iconify JSON sets);
-  never ship a raw `.svg`. Images go through `astro:assets` from `src/assets/`; `public/` is for
+  never ship a raw `.svg`. The one exception is the logo: [src/lib/mark.ts](src/lib/mark.ts) draws
+  the "AG." mark for the header, favicons, touch icons and OG card from one path. Images go through `astro:assets` from `src/assets/`; `public/` is for
   files served verbatim (the résumé PDF).
+- **Brand colours split 60/30/10** (decided 2026-11-19): midnight black `#090A10` is the page (60%),
+  electric blue `#2F6BFF` the second colour (30%, as tone and accent: the deep navy Services and
+  Contact bands with their blue edge and glow, navy cards, rules, large accent words), sunset orange `#FF7A1A` the loud one (10%: primary buttons, the header
+  Contact pill, the hero badge, the active nav line). Orange never carries text or a button on blue
+  (1.72:1; the logo's full stop is the one exception), and orange buttons carry midnight text (white
+  on orange fails AA).
 - **Colours are pinned.** [src/styles/global.css](src/styles/global.css) clears Tailwind's OKLCH
-  palettes (`--color-*: initial`) and defines semantic tokens as sRGB hex `light-dark()` pairs
-  (`bg`, `surface`, `fg`, `body`, `muted`, `accent`, …). The values live in
-  [src/lib/tokens.mjs](src/lib/tokens.mjs) too (satori and the `theme-color` metas read it); change
-  both, or `npm test` fails. Use the tokens; there is no `slate`. Muted
-  text is `text-muted` (WCAG AA on every surface). The contact section sits on `surface`, like the
-  project cards; never flip the theme inside it. Every text pair must pass 4.5:1 and every field
-  border 3:1, in both themes.
-- **Theme** follows `prefers-color-scheme` until the visitor picks one; the toggle stores it and
-  sets `data-theme` on `<html>`, and an inline head script applies it before first paint.
-- **Fonts** load through the Astro Fonts API (Fontsource provider). Use Google Fonts directly only
-  when a font isn't on Fontsource, and add its origin to the CSP.
+  palettes (`--color-*: initial`) and defines semantic sRGB hex tokens (`bg`, `surface`, `fg`,
+  `body`, `muted`, `accent`, `brand`, `band`, `loud`, …). The values live in
+  [src/lib/tokens.mjs](src/lib/tokens.mjs) too (satori and the `theme-color` meta read it); change
+  both, or `npm test` fails. Use the tokens; there is no `slate`. Muted text is `text-muted` (WCAG
+  AA on every surface). Bands use the `band-section` utility (navy `#0F1A3A`, a 2px brand-blue top
+  edge, a faint glow): never a bright blue fill behind text, because only pure white passes on it
+  and the text loses its hierarchy (2026-11-19 feedback). The contact form sits in a `surface-2`
+  panel on the band. Small links use `accent` (`#6D97FF`); the exact brand blue only carries large
+  text, rules and fills. Every text pair must pass 4.5:1 and every field border 3:1.
+- **One dark scheme, no theme toggle.** `color-scheme: dark` on `<html>`; the old `theme` storage
+  key is removed on load. Content illustrations are drawn in the brand palette (midnight, navy
+  panels, blue outlines, one orange accent); new ones follow the prompt in the design system.
+- **Fonts** load through the Astro Fonts API (Fontsource provider): Space Grotesk for display
+  headings, Geist for body and UI, Instrument Serif italic only for the one blue accent word
+  (`type-accent`, `profile.offerAccent`). Use Google Fonts directly only when a font isn't on
+  Fontsource, and add its origin to the CSP.
 - **Motion is GSAP, loaded through [src/lib/with-motion.ts](src/lib/with-motion.ts)**, which skips
   the download under `prefers-reduced-motion` and waits for load and idle so it never delays LCP.
   Animate only `transform` and `opacity`, at most 2 elements per view, and never set a dimmed
@@ -106,7 +118,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   The one exception is the phone Experience disclosure, which transitions `grid-template-rows`
   (0fr ↔ 1fr). Never animate `height` itself.
 - **Tailwind v4 renamed the bare utilities.** v3 `rounded` is v4 `rounded-sm`, v3 `backdrop-blur`
-  is v4 `backdrop-blur-sm`. v2 is flat: no shadows. The important modifier is a suffix:
+  is v4 `backdrop-blur-sm`. The design is flat: no shadows; the only gradients are the hero's
+  `hero-glow` and the bands' faint top glow.
+  The important modifier is a suffix:
   `opacity-100!`.
 - **Contact form is Netlify Forms.** Keep `name="contact"`, `data-netlify="true"`, the hidden
   `form-name`, the `netlify-honeypot` field, the `email` input name (it sets Reply-to) and the
@@ -139,29 +153,24 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 ## Project Context
 
-- Stack: Astro 7 static output, Tailwind CSS v4 via `@tailwindcss/vite`, TypeScript strict,
-  Instrument Serif (display) + Geist (UI and body) via the Astro Fonts API (Fontsource), GSAP +
-  ScrollTrigger, `@astrojs/sitemap`, satori + sharp for generated images. Deployed on Netlify
-  ([netlify.toml](netlify.toml)), with Netlify Forms for the contact form.
 - Page order on `/`: Header → Hero (offer, CTAs) → Projects → Services → Testimonials → Experience
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
-  Other routes: `/services/`, `/services/<id>/`, `/work/`, `/work/<id>/`, `/blog/`, `/blog/<id>/`
-  (all from collections), `/privacy/`, `/legal/` and `/thanks/`, the no-JS form success page (noindex, not in
-  the sitemap).
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
   Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps
   and AI products (LLM features, agents), builds MVPs and takes over existing apps, TypeScript
   front to back. Arabic/RTL is one service page, not the headline. The hero carries no employer or
   location line. The Senior Frontend résumé variants carry the recruiter positioning; the site does
   not. Python and retrieval (RAG) are not claimed anywhere until a shipped project backs them.
-- Node comes from [.nvmrc](.nvmrc); `engines` sets the `>=22.12.0` floor.
-- **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill.
-  The shared design is the reference; nothing is carried over
-  from v1 unless the user asks.
+- **This is the 2026-11-19 brand** (midnight, electric blue, sunset orange), built with the
+  `ui-ux-pro-max` skill. The design system is the reference; nothing is carried over from earlier
+  versions unless the user asks.
 - **v1 is frozen** on the `v1` branch and served at `v1.ahmed-ghazy.com` (noindex). Its
   Brittany Chiang-inspired layout, geometry and footer credit are v1 rules only. Do not port them
-  here, and never commit v2 work to `v1`.
+  here, and never commit later work to `v1`.
+- **v2 is frozen** on the `v2` branch (the Paper and graphite design, live 2026-09-24 to
+  2026-11-19) and served at `v2.ahmed-ghazy.com` as a noindex archive without analytics. Never
+  commit new work to `v2`.
 - `dev` → production at `ahmed-ghazy.com`.
 
 ## Dev Server
@@ -184,10 +193,3 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 ## Review Bias
 
 Prioritize correctness, regressions, accessibility, SEO and performance over style.
-
-## References
-
-Astro docs: [routing](https://docs.astro.build/en/guides/routing/),
-[components](https://docs.astro.build/en/basics/astro-components/),
-[content collections](https://docs.astro.build/en/guides/content-collections/),
-[styling and Tailwind](https://docs.astro.build/en/guides/styling/).

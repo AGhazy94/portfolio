@@ -39,7 +39,7 @@ const lastWide = columns === 2 && (items.length - (featured ? 1 : 0)) % 2 === 1;
     return (
       <li
         class:list={[
-          'group relative flex flex-col rounded-card bg-surface transition-transform duration-300 motion-safe:hover:-translate-y-1',
+          'group relative flex flex-col rounded-card border border-divider bg-surface transition-[translate,border-color] duration-300 hover:border-brand motion-safe:hover:-translate-y-1',
           wide && 'md:col-span-2',
           split && 'lg:grid lg:grid-cols-[1.1fr_1fr]',
         ]}
@@ -52,21 +52,20 @@ const lastWide = columns === 2 && (items.length - (featured ? 1 : 0)) % 2 === 1;
             sizes={sizes(wide)}
             loading={index < firstRow ? 'eager' : 'lazy'}
             fetchpriority={index === 0 ? 'high' : undefined}
-            data-art
             class:list={[
               'aspect-video w-full rounded-t-card object-cover',
               wide && (split ? 'lg:aspect-auto lg:h-full lg:rounded-tr-none lg:rounded-bl-card' : 'lg:aspect-[2/1]'),
             ]}
           />
         )}
-        <div class:list={['flex flex-1 flex-col p-[clamp(20px,3cqi,28px)]', split && 'lg:justify-center']}>
+        <div class:list={['flex flex-1 flex-col p-[clamp(24px,3.5cqi,32px)]', split && 'lg:justify-center']}>
           {item.meta && <MetaLine text={item.meta} />}
           <Heading class:list={['type-project text-balance text-fg', item.meta && 'mt-1']}>
             <a href={item.href} class="card-link">
               {item.title}
             </a>
           </Heading>
-          <p class="mt-3 max-w-[62ch] text-base leading-[1.6] text-body md:text-ui">{item.summary}</p>
+          <p class="mt-3 max-w-[62ch] text-base leading-[1.65] text-body">{item.summary}</p>
           <p aria-hidden="true" class:list={['mt-auto pt-6 text-ui font-medium text-accent', split && 'lg:mt-0']}>
             {item.cta}{' '}
             <span class="inline-block transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]">

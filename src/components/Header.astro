@@ -1,72 +1,72 @@
 ---
 import Icon from './Icon.astro';
 import { profile, ui } from '../data/profile';
+import { markSvg } from '../lib/mark';
+import { brand } from '../lib/tokens.mjs';
 
 interface Props {
   contactHref?: string;
+  // The page shows its own orange button in the first screen, so the pill starts outlined.
+  primaryCta?: boolean;
 }
 
 const path = Astro.url.pathname;
 const home = path === '/';
-const { contactHref = home ? '#contact' : '/#contact' } = Astro.props;
+const { contactHref = home ? '#contact' : '/#contact', primaryCta = home } = Astro.props;
 const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
+const pages = ui.nav.filter(({ section }) => section !== 'contact');
+const logo = markSvg({ ink: brand.electric, className: 'h-5 w-auto shrink-0' });
+const contactPill =
+  'rounded-pill border border-loud bg-loud px-4 py-2 text-sm leading-none font-medium text-bg transition-[opacity,background-color,color] duration-200 group-hover:opacity-85 group-data-[cta-in-view]/header:bg-transparent group-data-[cta-in-view]/header:text-loud';
 ---
 
-<header class="sticky top-0 z-40 border-b border-hairline bg-header backdrop-blur-lg backdrop-saturate-180">
+<header
+  data-header
+  data-cta-in-view={primaryCta ? '' : undefined}
+  class="group/header sticky top-0 z-40 border-b border-hairline bg-header backdrop-blur-lg backdrop-saturate-180"
+>
   <div class="gutter">
-    <div class="mx-auto flex h-13 max-w-page items-center justify-between gap-4">
+    <div class="mx-auto flex h-14 max-w-page items-center justify-between gap-4">
       <a
         href={home ? '#top' : '/'}
-        class="-ml-2 flex min-h-11 items-center px-2 text-sm font-semibold whitespace-nowrap text-fg"
+        class="-ml-2 flex min-h-11 items-center gap-2.5 px-2 font-display text-ui font-bold tracking-tight whitespace-nowrap text-fg"
       >
+        <Fragment set:html={logo} />
         {profile.name}
       </a>
 
       <div class="flex items-center">
         <nav aria-label={ui.navLabel} class="max-sm:hidden">
           <ul class="flex items-center">
-            {ui.nav.map(({ label, href, section }) => (
+            {pages.map(({ label, href, section }) => (
               <li>
                 <a
-                  href={section === 'contact' ? contactHref : href}
+                  href={href}
                   data-nav-link={home ? section : undefined}
                   aria-current={!section && path.startsWith(href) ? 'page' : undefined}
-                  class:list={[
-                    'relative flex min-h-11 items-center px-2 text-sm transition-colors duration-200 after:absolute after:inset-x-2 after:bottom-2.5 after:h-px after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none',
-                    section === 'contact' ? 'font-medium text-fg' : 'text-muted',
-                  ]}
+                  class="relative flex min-h-11 items-center px-2.5 text-sm text-muted transition-colors duration-200 after:absolute after:inset-x-2.5 after:bottom-2.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-loud after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
                 >
                   {label}
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href={contactHref}
+                data-nav-link={home ? contactLink.section : undefined}
+                class="group ml-2 -mr-1 flex min-h-11 items-center px-1"
+              >
+                <span class={contactPill}>{contactLink.label}</span>
+              </a>
+            </li>
           </ul>
         </nav>
 
-        <a
-          href={contactHref}
-          class="inline-flex min-h-11 items-center px-2 text-caption font-medium text-accent sm:hidden"
-        >
-          {contactLink.label}
+        <a href={contactHref} class="group flex min-h-11 items-center px-1 sm:hidden">
+          <span class={contactPill}>{contactLink.label}</span>
         </a>
 
-        <button
-          type="button"
-          data-theme-toggle
-          aria-pressed="false"
-          hidden
-          class="group ml-1 grid size-11 cursor-pointer place-items-center text-fg sm:-mr-2"
-        >
-          <span class="sr-only">{ui.theme}</span>
-          <span class="grid size-7 place-items-center rounded-full bg-surface-2 transition-opacity duration-200 hover:opacity-80">
-            <Icon
-              name="contrast"
-              class="size-4 transition-[rotate] duration-500 ease-out group-aria-pressed:rotate-180 motion-reduce:transition-none"
-            />
-          </span>
-        </button>
-
-        <details data-mobile-menu class="group relative -mr-2 sm:hidden">
+        <details data-mobile-menu class="group relative -mr-2 ml-1 sm:hidden">
           <summary class="grid size-11 cursor-pointer list-none place-items-center text-fg [&::-webkit-details-marker]:hidden">
             <span class="sr-only">{ui.menu}</span>
             <Icon name="menu" class="size-5 group-open:hidden" />
@@ -74,7 +74,7 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
           </summary>
           <nav
             aria-label={ui.navLabel}
-            class="absolute top-full right-0 mt-2 w-56 rounded-field border border-divider bg-bg p-2"
+            class="absolute top-full right-0 mt-2 w-56 rounded-field border border-divider bg-surface p-2"
           >
             <ul>
               {ui.nav.map(({ label, href, section }) => (
@@ -82,7 +82,7 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
                   <a
                     href={section === 'contact' ? contactHref : href}
                     aria-current={!section && path.startsWith(href) ? 'page' : undefined}
-                    class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface hover:text-fg aria-[current]:bg-surface aria-[current]:text-fg"
+                    class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface-2 hover:text-fg aria-[current]:bg-surface-2 aria-[current]:text-fg"
                   >
                     {label}
                   </a>
@@ -97,6 +97,11 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
 </header>
 
 <script>
+  // The site no longer has a light theme; this drops the choice older versions stored.
+  try {
+    localStorage.removeItem('theme');
+  } catch {}
+
   const menu = document.querySelector<HTMLDetailsElement>('[data-mobile-menu]')!;
   const menuToggle = menu.querySelector('summary')!;
   for (const link of menu.querySelectorAll('a')) {
@@ -118,33 +123,22 @@ const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
     if (matches) menu.open = false;
   });
 
-  const root = document.documentElement;
-  const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]')!;
-  const system = matchMedia('(prefers-color-scheme: dark)');
-  const isDark = () => (root.dataset.theme ?? (system.matches ? 'dark' : 'light')) === 'dark';
-  const sync = () => toggle.setAttribute('aria-pressed', String(isDark()));
-
-  toggle.addEventListener('click', () => {
-    const next = isDark() ? 'light' : 'dark';
-    // Hover transitions would fade a few elements while the rest of the page snaps to the new theme.
-    root.dataset.themeSwitching = '';
-    root.dataset.theme = next;
-    // Forcing layout applies the new colours to the whole page while transitions are still off.
-    void document.body.offsetHeight;
-    delete root.dataset.themeSwitching;
-    const background = getComputedStyle(root).backgroundColor;
-    for (const meta of document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')) {
-      meta.content = background;
-    }
-    try {
-      localStorage.setItem('theme', next);
-    } catch {}
-    sync();
-  });
-  system.addEventListener('change', sync);
-  // Without JS the button could not do anything, so it only appears once it works.
-  toggle.hidden = false;
-  sync();
+  // One orange button per screen: while the page's own one is visible, the Contact pill steps back to an outline.
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const visibleCtas = new Set<Element>();
+  const ctaObserver = new IntersectionObserver(
+    (entries) => {
+      for (const { target, isIntersecting } of entries) {
+        if (isIntersecting) visibleCtas.add(target);
+        else visibleCtas.delete(target);
+      }
+      header.toggleAttribute('data-cta-in-view', visibleCtas.size > 0);
+    },
+    { rootMargin: `-${header.offsetHeight}px 0px 0px 0px` },
+  );
+  const ctas = document.querySelectorAll('[data-primary-cta]');
+  for (const cta of ctas) ctaObserver.observe(cta);
+  if (!ctas.length) header.removeAttribute('data-cta-in-view');
 
   const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')];
   const sections = links

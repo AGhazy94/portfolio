@@ -19,7 +19,7 @@ const cta = terms.at(-1)!;
 
 const section = 'mt-[clamp(56px,8cqi,96px)] grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-14';
 const heading = 'type-project text-fg lg:sticky lg:top-24 lg:self-start';
-const cardBase = 'rounded-card bg-surface p-[clamp(20px,3cqi,28px)]';
+const cardBase = 'rounded-card border border-divider bg-surface p-[clamp(24px,3.5cqi,32px)]';
 const prose = 'prose-page max-w-none';
 const getsInThree = gets.length % 3 === 0;
 // A card left alone on the last row of 2 columns fills it, so the grid never ends on an empty cell.
@@ -51,7 +51,7 @@ const wideLast = (count: number, index: number) => count % 2 === 1 && index === 
     {gets.map((item, index) => (
       <li class:list={[cardBase, wideLast(gets.length, index), getsInThree && 'lg:col-span-1']}>
         <h3 class="text-title-sm font-semibold text-fg">{item.title}</h3>
-        <RichText source={item.text} class="mt-3 max-w-[62ch] text-base leading-[1.6] text-body md:text-ui" />
+        <RichText source={item.text} class="mt-3 max-w-[62ch] text-base leading-[1.65] text-body" />
       </li>
     ))}
   </ul>
@@ -66,7 +66,7 @@ const wideLast = (count: number, index: number) => count % 2 === 1 && index === 
       <li class:list={[cardBase, wideLast(steps.length, index)]}>
         <p class="text-caption font-medium text-muted">{`${copy.week} ${index + 1}`}</p>
         <h3 class="mt-1 text-title-sm font-semibold text-fg">{item.title}</h3>
-        <RichText source={item.text} class="mt-3 max-w-[62ch] text-base leading-[1.6] text-body md:text-ui" />
+        <RichText source={item.text} class="mt-3 max-w-[62ch] text-base leading-[1.65] text-body" />
       </li>
     ))}
   </ol>
@@ -91,9 +91,9 @@ const wideLast = (count: number, index: number) => count % 2 === 1 && index === 
     {terms.slice(0, -1).map((paragraph) => (
       <RichText source={paragraph} class={prose} />
     ))}
-    <div class="mt-4 flex flex-col gap-5 border-t border-fg pt-6 md:flex-row md:items-center md:justify-between md:gap-10">
+    <div class="mt-4 flex flex-col gap-5 border-t-2 border-brand pt-6 md:flex-row md:items-center md:justify-between md:gap-10">
       <RichText source={cta} class="max-w-[46ch] text-reading text-fg" />
-      <a href="#contact" class="btn-pill min-h-12 w-full shrink-0 bg-fg text-bg md:w-auto">
+      <a href="#contact" data-primary-cta class="btn-pill min-h-12 w-full shrink-0 bg-loud text-bg md:w-auto">
         {ui.hero.contact}
       </a>
     </div>

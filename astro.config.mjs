@@ -62,11 +62,20 @@ export default defineConfig({
   ],
   fonts: [
     {
+      name: 'Space Grotesk',
+      cssVariable: '--font-space-grotesk',
+      provider: fontProviders.fontsource(),
+      weights: ['300 700'],
+      styles: ['normal'],
+      subsets: ['latin'],
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+    {
       name: 'Instrument Serif',
       cssVariable: '--font-instrument-serif',
       provider: fontProviders.fontsource(),
       weights: [400],
-      styles: ['normal'],
+      styles: ['italic'],
       subsets: ['latin'],
       fallbacks: ['Georgia', 'serif'],
     },

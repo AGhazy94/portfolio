@@ -5,7 +5,7 @@ import { Font, getImage } from 'astro:assets';
 import Consent from '../components/Consent.astro';
 import { profile, socials } from '../data/profile';
 import { ogCard } from '../lib/graphics';
-import { dark, light } from '../lib/tokens.mjs';
+import { colors } from '../lib/tokens.mjs';
 import '../styles/global.css';
 
 interface Props {
@@ -105,18 +105,6 @@ const structuredData = {
 };
 // Escaped so copy containing "</script>" cannot end the JSON-LD block early.
 const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
-
-// Runs before first paint so a stored theme never flashes the system one; the browser chrome follows it too.
-const themeScript = `try {
-  const theme = localStorage.getItem('theme');
-  if (theme === 'light' || theme === 'dark') {
-    document.documentElement.dataset.theme = theme;
-    const color = ${JSON.stringify({ light: light.bg, dark: dark.bg })}[theme];
-    for (const meta of document.querySelectorAll('meta[name="theme-color"]')) meta.content = color;
-  }
-} catch {}`;
-// Hashed from the exact string rendered below, so a reformat can never leave a stale hash in the CSP.
-Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(themeScript).digest('base64')}`);
 ---
 
 <!doctype html>
@@ -157,16 +145,16 @@ Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(themeScript).d
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content={light.bg} />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content={dark.bg} />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content={colors.bg} />
+    <meta name="color-scheme" content="dark" />
 
-    <script is:inline set:html={themeScript}></script>
-    <Font cssVariable="--font-instrument-serif" preload />
+    <Font cssVariable="--font-space-grotesk" preload />
     <Font cssVariable="--font-geist" preload />
+    {/* Only the home page sets anything in the serif (the hero's accent word, the quote marks). */}
+    <Font cssVariable="--font-instrument-serif" preload={home} />
     {!hidden && <script is:inline type="application/ld+json" set:html={jsonLd}></script>}
   </head>
-  <body class="bg-bg font-sans text-body antialiased selection:bg-accent selection:text-bg">
+  <body class="bg-bg font-sans text-body antialiased selection:bg-loud selection:text-bg">
     <slot />
     <Consent />
   </body>
