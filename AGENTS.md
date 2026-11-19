@@ -161,12 +161,15 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   front to back. Arabic/RTL is one service page, not the headline. The hero carries no employer or
   location line. The Senior Frontend résumé variants carry the recruiter positioning; the site does
   not. Python and retrieval (RAG) are not claimed anywhere until a shipped project backs them.
-- **This is v2 — a fresh start.** New design and new layout, built with the `ui-ux-pro-max` skill.
-  The shared design is the reference; nothing is carried over
-  from v1 unless the user asks.
+- **This is the 2026-11-19 brand** (midnight, electric blue, sunset orange), built with the
+  `ui-ux-pro-max` skill. The design system is the reference; nothing is carried over from earlier
+  versions unless the user asks.
 - **v1 is frozen** on the `v1` branch and served at `v1.ahmed-ghazy.com` (noindex). Its
   Brittany Chiang-inspired layout, geometry and footer credit are v1 rules only. Do not port them
-  here, and never commit v2 work to `v1`.
+  here, and never commit later work to `v1`.
+- **v2 is frozen** on the `v2` branch (the Paper and graphite design, live 2026-09-24 to
+  2026-11-19) and served at `v2.ahmed-ghazy.com` as a noindex archive without analytics. Never
+  commit new work to `v2`.
 - `dev` → production at `ahmed-ghazy.com`.
 
 ## Dev Server
