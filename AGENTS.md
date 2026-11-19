@@ -6,6 +6,10 @@ directions; the code holds the specifics. When a rule names a file, read that fi
 **This file is always on.** Everything in it applies from turn 1, to every task, without being
 asked for.
 
+> **Frozen.** The `v2` branch keeps the Paper and graphite design that was live from 2026-09-24 to
+> 2026-11-19, served at `v2.ahmed-ghazy.com` with noindex and no analytics. Do not develop here;
+> new work goes to `dev`, which serves `ahmed-ghazy.com`.
+
 ## Rule Priority
 
 On conflict: security and correctness > this file > existing patterns in the touched area.
