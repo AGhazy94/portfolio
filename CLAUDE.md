@@ -10,10 +10,11 @@ context from turn 1:
 
 The rules below are always on and non-negotiable — follow the links and read them in full.
 
-- Searching — [ripgrep, never `grep -r`](AGENTS.md#searching--ripgrep-never-grep--r), enforced by a
-  `PreToolUse` hook.
+- Searching — [ripgrep, never `grep -r`](AGENTS.md#searching--ripgrep-never-grep--r).
 - Editing — [Edit/Write by default](AGENTS.md#editing-files--editwrite-by-default), and never edit
-  source through the Bash tool. Nothing enforces this one, so it is on you.
+  source through the Bash tool.
+
+Nothing enforces either rule, so both are on you.
 
 Claude Code specifics: symbol _navigation_ goes through the **serena MCP (LSP) server** for `.ts`
 files; `.astro` components are text search. Load serena with
@@ -22,12 +23,8 @@ Serena 2.x from git so the repo does not depend on whichever `serena` a machine 
 1.x cannot read `.serena/project.yml` (`KeyError: 'languages'`). Approve the project server when
 prompted.
 
-## Dev Server and Runtime Verification
+## Runtime Verification
 
-- Start the dev server with `npx astro dev --background` (port 4321) and open it in the browser pane
-  with `preview_start` `{url: "http://localhost:4321"}` — see [AGENTS.md](AGENTS.md#dev-server) for
-  why the named `portfolio` launch entry may not resolve.
-- `npx astro dev logs` shows server output; `npx astro dev stop` ends it.
 - SEO and accessibility checks: build, then read `dist/index.html`; Lighthouse against the dev
   server reports one false failure (the dev toolbar's "Learn more" link) that production does not
   have.
