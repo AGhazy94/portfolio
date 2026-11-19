@@ -3,5 +3,5 @@
   // Netlify loads local build plugins by path from netlify.toml.
   "entry": ["netlify/plugins/*/index.js"],
   // src/lib/render.ts reads these WOFF files by path for satori; knip can't see a path string.
-  "ignoreDependencies": ["@fontsource/geist", "@fontsource/instrument-serif"],
+  "ignoreDependencies": ["@fontsource/geist", "@fontsource/instrument-serif", "@fontsource/space-grotesk"],
 }

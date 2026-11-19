@@ -14,12 +14,15 @@ const sources = {
       {section.title}
     </h2>
 
-    <ul class="mt-8 grid gap-8 md:grid-cols-2 md:gap-12">
+    <ul class="mt-8 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
       {testimonials.map((item) => (
         <li class="flex">
-          <figure class="flex w-full flex-col border-t border-divider pt-6">
-            <blockquote class="text-base leading-[1.6] text-fg md:text-reading">
-              <p>“{item.quote}”</p>
+          <figure class="flex w-full flex-col rounded-card border border-divider bg-surface p-[clamp(20px,3cqi,28px)]">
+            <span aria-hidden="true" class="font-accent text-6xl leading-[0.6] text-brand italic">
+              “
+            </span>
+            <blockquote class="mt-3 text-base leading-[1.6] text-fg md:text-reading">
+              <p>{item.quote}</p>
             </blockquote>
             <figcaption class="mt-auto pt-6 text-caption leading-[1.6] text-pretty text-muted">
               <span class="block font-medium text-body">{item.name}</span>

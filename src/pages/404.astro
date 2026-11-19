@@ -10,13 +10,13 @@ import { profile, ui } from '../data/profile';
     {ui.skipLink}
   </a>
   <div class="flex min-h-dvh flex-col">
-    <Header />
+    <Header primaryCta />
     <main id="content" class="gutter flex-1 py-16 md:py-20">
       <div class="mx-auto w-full max-w-page">
         <p class="font-display text-[34px] leading-none text-muted">{ui.notFound.code}</p>
         <h1 class="type-section mt-4 text-fg">{ui.notFound.title}</h1>
         <p class="mt-5 max-w-[48ch] text-reading leading-normal text-body">{ui.notFound.body}</p>
-        <a href="/" class="btn-pill mt-10 min-h-11 bg-fg text-bg">
+        <a href="/" data-primary-cta class="btn-pill mt-10 min-h-11 bg-loud text-bg">
           {ui.notFound.back}
         </a>
       </div>

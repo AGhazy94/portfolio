@@ -92,7 +92,7 @@ const graph = [
   <a href="#content" class="skip-link">
     {ui.skipLink}
   </a>
-  <Header contactHref="#contact" />
+  <Header contactHref="#contact" primaryCta={cta} />
   <main id="content">
     <article class="gutter pt-8 pb-16 md:pt-12 md:pb-20">
       <div class="mx-auto max-w-page">
@@ -152,13 +152,13 @@ const graph = [
               </div>
             )}
             {cta && (
-              <a href="#contact" class="btn-pill mt-8 min-h-12 bg-fg text-bg">
+              <a href="#contact" data-primary-cta class="btn-pill mt-8 min-h-12 bg-loud text-bg">
                 {ui.hero.contact}
               </a>
             )}
           </div>
           {image && (
-            <div class="overflow-hidden rounded-media bg-surface">
+            <div class="overflow-hidden rounded-media border border-divider bg-surface">
               <Image
                 src={image}
                 alt={imageAlt}
@@ -166,7 +166,6 @@ const graph = [
                 sizes="(min-width: 1024px) 520px, 100vw"
                 loading="eager"
                 fetchpriority="high"
-                data-art
                 class="aspect-video w-full object-cover"
               />
             </div>

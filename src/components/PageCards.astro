@@ -39,7 +39,7 @@ const lastWide = columns === 2 && (items.length - (featured ? 1 : 0)) % 2 === 1;
     return (
       <li
         class:list={[
-          'group relative flex flex-col rounded-card bg-surface transition-transform duration-300 motion-safe:hover:-translate-y-1',
+          'group relative flex flex-col rounded-card border border-divider bg-surface transition-[translate,border-color] duration-300 hover:border-brand motion-safe:hover:-translate-y-1',
           wide && 'md:col-span-2',
           split && 'lg:grid lg:grid-cols-[1.1fr_1fr]',
         ]}
@@ -52,7 +52,6 @@ const lastWide = columns === 2 && (items.length - (featured ? 1 : 0)) % 2 === 1;
             sizes={sizes(wide)}
             loading={index < firstRow ? 'eager' : 'lazy'}
             fetchpriority={index === 0 ? 'high' : undefined}
-            data-art
             class:list={[
               'aspect-video w-full rounded-t-card object-cover',
               wide && (split ? 'lg:aspect-auto lg:h-full lg:rounded-tr-none lg:rounded-bl-card' : 'lg:aspect-[2/1]'),

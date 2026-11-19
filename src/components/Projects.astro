@@ -24,7 +24,7 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
       {projects.map((project) => (
         <li
           class:list={[
-            'group relative flex flex-col rounded-card bg-surface p-[clamp(20px,3cqi,28px)] transition-transform duration-300 motion-safe:hover:-translate-y-1',
+            'group relative flex flex-col rounded-card border border-divider bg-surface p-[clamp(20px,3cqi,28px)] transition-[translate,border-color] duration-300 hover:border-brand motion-safe:hover:-translate-y-1',
             // The grid gap plus both card paddings, so the right column starts where the second card's text does.
             project.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:gap-x-[calc(1.5rem+2*clamp(20px,3cqi,28px))]',
           ]}
