@@ -47,9 +47,10 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   configured in [knip.jsonc](knip.jsonc)), and `@astrojs/markdown-satteri` + `satteri`, pinned to
   the versions Astro installs, for the external-link plugin in
   [src/lib/external-links.mjs](src/lib/external-links.mjs) (new tab, UTM tags on Markdown links).
-- **Design source is the agreed v2 design,** kept in a local, git-ignored design system; without it,
-  the tokens in [src/styles/global.css](src/styles/global.css) are the reference. Reread it before a
-  UI change. Where the skill's generic output and the agreed design disagree, the design wins.
+- **Design source is the 2026-11-19 brand,** written up in the local, git-ignored
+  `design-system/portfolio/MASTER.md`; without it, the tokens in
+  [src/styles/global.css](src/styles/global.css) are the reference. Reread it before a UI change.
+  Where the skill's generic output and the brand design disagree, the design wins.
 - **Content lives in two places.** [src/data/profile.ts](src/data/profile.ts) holds the home page
   and every interface string: copy, experience, projects, About, the statement, and `ui` (form
   labels, choices, errors, nav, section and card labels). Components render it; never hard-code copy
@@ -168,9 +169,10 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 - **v1 is frozen** on the `v1` branch and served at `v1.ahmed-ghazy.com` (noindex). Its
   Brittany Chiang-inspired layout, geometry and footer credit are v1 rules only. Do not port them
   here, and never commit later work to `v1`.
-- **v2 is frozen** on the `v2` branch (the Paper and graphite design, live 2026-09-24 to
-  2026-11-19) and served at `v2.ahmed-ghazy.com` as a noindex archive without analytics. Never
-  commit new work to `v2`.
+- **v2 is frozen** on the `v2` branch (the layout launched 2026-09-24, in its Paper and graphite
+  colours from 2026-11-14, live until 2026-11-19) and served at `v2.ahmed-ghazy.com` as a noindex
+  archive without analytics. Never commit new work to `v2`.
+- "v1" and "v2" name those two archives only, never the current design.
 - `dev` → production at `ahmed-ghazy.com`.
 
 ## Dev Server
