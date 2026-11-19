@@ -29,6 +29,7 @@ const facts = [
 ].filter((fact) => fact.value);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
+const personId = new URL('/#person', Astro.site).href;
 const nodes = [
   {
     '@type': 'WebPage',
@@ -38,7 +39,8 @@ const nodes = [
     description: data.description,
     isPartOf: { '@id': new URL('/#website', Astro.site).href },
     dateModified: data.updated.toISOString(),
-    about: { '@id': new URL('/#person', Astro.site).href },
+    about: { '@id': personId },
+    author: { '@id': personId, name: profile.name, url: new URL('/', Astro.site).href },
   },
 ];
 ---

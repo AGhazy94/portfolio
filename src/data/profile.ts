@@ -35,7 +35,7 @@ export const profile = {
   // Says no more than `description` below.
   offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
-    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including ones built with Lovable or Bolt, and build MVPs and AI features.',
+    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -45,7 +45,7 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-19T00:00:00+02:00',
+  updated: '2026-11-20T00:00:00+02:00',
   knowsAbout: [
     'Full-stack development',
     'Taking over existing codebases',

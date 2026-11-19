@@ -2,7 +2,7 @@
 title: Mistakes in Arabic RTL web apps, and how to avoid them
 description: The most common problems when a web app is shown in Arabic, from broken mirroring, mixed text, numbers, fonts and forms, with the fix for each.
 published: 2026-10-13
-updated: 2026-11-12
+updated: 2026-11-20
 service: arabic-rtl-web-apps
 imageAlt: Paired layouts mirror their navigation and reading direction while play controls keep the same orientation
 faq:
@@ -13,6 +13,8 @@ faq:
   - question: Do I need a separate design for Arabic?
     answer: Usually not a separate design, but you do need a design review in Arabic. Text length, line height and the position of some elements change.
 ---
+
+The most common mistakes in Arabic RTL web apps are treating right-to-left as a direction switch, mirroring icons that should stay put, mixed Arabic and English text that reorders itself, email and phone fields that look scrambled, and numbers in whichever digits the browser picks. Each one has a fix, listed below with five more.
 
 Many products add Arabic by translating the text and setting the page direction to right-to-left. The result looks almost right, which is the problem: the small errors are the ones a native reader notices at once and a team without an Arabic reader never sees.
 
