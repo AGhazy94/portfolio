@@ -1,8 +1,10 @@
 # Ahmed Ghazy — Portfolio
 
-Personal site, v2. Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and
-[GSAP](https://gsap.com), set in Instrument Serif and Geist, and deployed on [Netlify](https://www.netlify.com). v1 is frozen
-on the `v1` branch at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com).
+Personal site at [ahmed-ghazy.com](https://ahmed-ghazy.com), built from the `dev` branch with
+[Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in Space Grotesk,
+Geist and Instrument Serif, and deployed on [Netlify](https://www.netlify.com). Earlier versions are frozen, noindex
+archives without analytics: `v1` at [v1.ahmed-ghazy.com](https://v1.ahmed-ghazy.com) and `v2` at
+[v2.ahmed-ghazy.com](https://v2.ahmed-ghazy.com).
 
 ## Commands
 
@@ -44,11 +46,11 @@ a Deploy Preview, not on production.
 The optional project details are labeled as optional. The hidden `page` field records the submission page, and header
 contact links stay on that page wherever a form exists. It is not a record of the visitor's original acquisition source.
 
-## Theme and motion
+## Colour and motion
 
-Light and dark follow the system setting until the visitor picks one with the header toggle. The colour tokens are
-pinned hex pairs in `src/lib/tokens.mjs`, repeated in `src/styles/global.css`; `npm test` fails if the two drift or a
-text pair drops below 4.5:1. GSAP drives one effect, the About statement reveal. It loads after the page
+One dark scheme, with no theme toggle: midnight, electric blue and sunset orange in a 60/30/10 split. The colour tokens
+are pinned hex values in `src/lib/tokens.mjs`, repeated in `src/styles/global.css`; `npm test` fails if the two drift
+or a text pair drops below 4.5:1. GSAP drives one effect, the About statement reveal. It loads after the page
 is idle and is skipped entirely under `prefers-reduced-motion`.
 
 ## SEO and social cards
