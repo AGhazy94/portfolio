@@ -20,10 +20,8 @@ export type Project = {
   href?: string;
   caseStudy: string;
   summary: string;
-  // Names a client logo in src/assets/logos.json, rendered through Icon.astro.
-  logo?: 'scriptbee' | 'leicht';
-  // A third card spans its row, so two columns never leave an empty cell.
-  featured?: boolean;
+  // A client logo from src/assets/logos.json, or a neutral icon where the client stays unnamed; rendered through Icon.astro.
+  logo?: 'scriptbee' | 'leicht' | 'building';
   tags: string[];
 };
 
@@ -182,7 +180,7 @@ export const projects: Project[] = [
     caseStudy: '/work/real-estate-platform-audit/',
     summary:
       'Audited the live frontend before changing anything, ranked the problems by how much they hurt users and fixed them in that order, inside the existing app with no rewrite. Error reports went down, and more property pages got indexed by Google.',
-    featured: true,
+    logo: 'building',
     tags: ['Next.js', 'TypeScript', 'React', 'App Router'],
   },
 ];

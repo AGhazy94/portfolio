@@ -21,10 +21,9 @@ const typedClass = `${fieldClass} read-only:opacity-70`;
 const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:cursor-wait disabled:opacity-60';
 ---
 
-<section id={section.id} aria-labelledby="contact-title" class="gutter bg-band py-16 md:py-20">
+<section id={section.id} aria-labelledby="contact-title" class="gutter band-section py-20 md:py-28">
   <div class="mx-auto grid max-w-page gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-14">
-    {/* Only the copy on the blue turns white; the form keeps the navy panel and its own tokens. */}
-    <div class="scheme-band max-w-[30rem] text-body">
+    <div class="max-w-[30rem]">
       <h2 id="contact-title" class="type-section text-fg">
         {section.title}
       </h2>
@@ -35,7 +34,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:c
       <NextSteps class="mt-10" />
     </div>
 
-    <div class="rounded-panel bg-surface p-[clamp(20px,4cqi,36px)] lg:max-w-[600px]">
+    <div class="rounded-panel border border-divider bg-surface-2 p-[clamp(20px,4cqi,36px)] lg:max-w-[600px]">
       <form
         name="contact"
         method="POST"

@@ -89,8 +89,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   the "AG." mark for the header, favicons, touch icons and OG card from one path. Images go through `astro:assets` from `src/assets/`; `public/` is for
   files served verbatim (the résumé PDF).
 - **Brand colours split 60/30/10** (decided 2026-11-19): midnight black `#090A10` is the page (60%),
-  electric blue `#2F6BFF` the second colour (30%: the Services and Contact bands, navy cards, rules,
-  large accent words), sunset orange `#FF7A1A` the loud one (10%: primary buttons, the header
+  electric blue `#2F6BFF` the second colour (30%, as tone and accent: the deep navy Services and
+  Contact bands with their blue edge and glow, navy cards, rules, large accent words), sunset orange `#FF7A1A` the loud one (10%: primary buttons, the header
   Contact pill, the hero badge, the active nav line). Orange never carries text or a button on blue
   (1.72:1; the logo's full stop is the one exception), and orange buttons carry midnight text (white
   on orange fails AA).
@@ -99,11 +99,11 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   `body`, `muted`, `accent`, `brand`, `band`, `loud`, …). The values live in
   [src/lib/tokens.mjs](src/lib/tokens.mjs) too (satori and the `theme-color` meta read it); change
   both, or `npm test` fails. Use the tokens; there is no `slate`. Muted text is `text-muted` (WCAG
-  AA on every surface). Small text on blue sits on `bg-band` (`#2C67F8`), because white on the exact
-  `#2F6BFF` is 4.499:1; `scheme-band` turns every text token white inside it. The contact form keeps
-  its navy `surface` panel inside the band. Small links on midnight use `accent` (`#6D97FF`); the
-  exact brand blue only carries large text, rules and fills. Every text pair must pass 4.5:1 and
-  every field border 3:1.
+  AA on every surface). Bands use the `band-section` utility (navy `#0F1A3A`, a 2px brand-blue top
+  edge, a faint glow): never a bright blue fill behind text, because only pure white passes on it
+  and the text loses its hierarchy (2026-11-19 feedback). The contact form sits in a `surface-2`
+  panel on the band. Small links use `accent` (`#6D97FF`); the exact brand blue only carries large
+  text, rules and fills. Every text pair must pass 4.5:1 and every field border 3:1.
 - **One dark scheme, no theme toggle.** `color-scheme: dark` on `<html>`; the old `theme` storage
   key is removed on load. Content illustrations are drawn in the brand palette (midnight, navy
   panels, blue outlines, one orange accent); new ones follow the prompt in the design system.
@@ -118,7 +118,8 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   The one exception is the phone Experience disclosure, which transitions `grid-template-rows`
   (0fr ↔ 1fr). Never animate `height` itself.
 - **Tailwind v4 renamed the bare utilities.** v3 `rounded` is v4 `rounded-sm`, v3 `backdrop-blur`
-  is v4 `backdrop-blur-sm`. v2 is flat: no shadows, and the hero's `hero-glow` is the only gradient.
+  is v4 `backdrop-blur-sm`. The design is flat: no shadows; the only gradients are the hero's
+  `hero-glow` and the bands' faint top glow.
   The important modifier is a suffix:
   `opacity-100!`.
 - **Contact form is Netlify Forms.** Keep `name="contact"`, `data-netlify="true"`, the hidden

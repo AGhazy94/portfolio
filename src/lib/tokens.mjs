@@ -14,7 +14,7 @@ export const colors = {
   'surface-2': '#13234e',
   fg: '#f5f7fc',
   body: '#c5ccdc',
-  muted: '#8f99b3',
+  muted: '#9ea7bd',
   accent: '#6d97ff',
   divider: '#212c4c',
   hairline: 'rgb(255 255 255 / 0.08)',
@@ -23,18 +23,9 @@ export const colors = {
   error: '#ff8593',
   success: '#5fd39a',
   brand: brand.electric,
-  // White on the exact electric blue is 4.499:1, a hair under AA, so bands that carry small text use this shade.
-  band: '#2c67f8',
+  // Services and Contact sit on deep navy, not the bright blue: only white passed on that, and it flattened the text.
+  band: '#0f1a3a',
   loud: brand.sunset,
-};
-
-// Inside a blue band only white text passes, so every text token turns white there.
-export const onBand = {
-  fg: '#ffffff',
-  body: '#ffffff',
-  muted: '#ffffff',
-  accent: '#ffffff',
-  divider: 'rgb(255 255 255 / 0.32)',
 };
 
 export const scrim = 'rgb(4 5 10 / 0.72)';

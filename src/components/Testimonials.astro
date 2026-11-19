@@ -8,16 +8,16 @@ const sources = {
 };
 ---
 
-<section id={section.id} aria-labelledby="testimonials-title" class="gutter border-t border-divider py-16 md:py-20">
+<section id={section.id} aria-labelledby="testimonials-title" class="gutter border-t border-divider py-20 md:py-28">
   <div class="mx-auto max-w-page">
     <h2 id="testimonials-title" class="type-section text-fg">
       {section.title}
     </h2>
 
-    <ul class="mt-8 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
+    <ul class="mt-10 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
       {testimonials.map((item) => (
         <li class="flex">
-          <figure class="flex w-full flex-col rounded-card border border-divider bg-surface p-[clamp(20px,3cqi,28px)]">
+          <figure class="flex w-full flex-col rounded-card border border-divider bg-surface p-[clamp(24px,3.5cqi,32px)]">
             <span aria-hidden="true" class="font-accent text-6xl leading-[0.6] text-brand italic">
               “
             </span>

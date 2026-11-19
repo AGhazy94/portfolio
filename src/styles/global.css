@@ -22,7 +22,7 @@
   --color-surface-2: #13234e;
   --color-fg: #f5f7fc;
   --color-body: #c5ccdc;
-  --color-muted: #8f99b3;
+  --color-muted: #9ea7bd;
   --color-accent: #6d97ff;
   --color-divider: #212c4c;
   --color-hairline: rgb(255 255 255 / 0.08);
@@ -34,7 +34,7 @@
   --color-success: #5fd39a;
 
   --color-brand: #2f6bff;
-  --color-band: #2c67f8;
+  --color-band: #0f1a3a;
   --color-loud: #ff7a1a;
 
   --text-caption: 13px;
@@ -78,13 +78,15 @@
   }
 }
 
-/* Inside a blue band only white passes 4.5:1, so the text tokens turn white; tokens.test.mjs checks these. */
-@utility scheme-band {
-  --color-fg: #ffffff;
-  --color-body: #ffffff;
-  --color-muted: #ffffff;
-  --color-accent: #ffffff;
-  --color-divider: rgb(255 255 255 / 0.32);
+/* Services and Contact: deep navy with an electric-blue edge; the glow peaks at 20% in the padding, so text keeps 4.5:1. */
+@utility band-section {
+  border-top: 2px solid var(--color-brand);
+  background-color: var(--color-band);
+  background-image: radial-gradient(
+    ellipse 60% 55% at 50% 0%,
+    color-mix(in srgb, var(--color-brand) 20%, transparent),
+    transparent 70%
+  );
 }
 
 /* The hero's one glow; it peaks below the text, where nothing would fall under 4.5:1. */

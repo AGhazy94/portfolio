@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { test } from 'node:test';
-import { brand, colors, onBand, scrim } from './tokens.mjs';
+import { brand, colors, scrim } from './tokens.mjs';
 
 const css = await readFile(new URL('../styles/global.css', import.meta.url), 'utf8');
 
@@ -29,7 +29,6 @@ const blockOf = (opening) => {
 
 test('global.css declares exactly the colours in tokens.mjs', () => {
   assert.deepEqual(declarations(blockOf('@theme {')), { ...colors, scrim });
-  assert.deepEqual(declarations(blockOf('@utility scheme-band {')), onBand);
 });
 
 test('the brand colours keep their 60/30/10 roles', () => {
@@ -39,12 +38,15 @@ test('the brand colours keep their 60/30/10 roles', () => {
 });
 
 const pairs = [
-  ...['fg', 'body', 'muted', 'accent'].flatMap((text) => ['bg', 'surface', 'surface-2'].map((bg) => [text, bg, 4.5])),
-  ...['error', 'success'].flatMap((text) => ['surface', 'field'].map((bg) => [text, bg, 4.5])),
+  ...['fg', 'body', 'muted', 'accent'].flatMap((text) =>
+    ['bg', 'surface', 'surface-2', 'band'].map((bg) => [text, bg, 4.5]),
+  ),
+  // The contact form panel is surface-2 on the band.
+  ...['error', 'success'].flatMap((text) => ['surface', 'surface-2', 'field'].map((bg) => [text, bg, 4.5])),
   // Field text and placeholders.
   ['fg', 'field', 4.5],
   ['muted', 'field', 4.5],
-  ...['field', 'surface', 'surface-2'].map((bg) => ['field-border', bg, 3]),
+  ...['field', 'surface', 'surface-2', 'band'].map((bg) => ['field-border', bg, 3]),
   // Primary buttons and ::selection: midnight text on sunset orange.
   ['bg', 'loud', 4.5],
   // The electric blue only ever carries large text on the page (3:1).
@@ -59,12 +61,5 @@ test('text keeps 4.5:1, large text and field borders 3:1', () => {
   const failures = pairs
     .map(([text, bg, min]) => ({ pair: `${text} on ${bg}`, ratio: contrast(colors[text], colors[bg]), min }))
     .filter(({ ratio, min }) => ratio < min);
-  assert.deepEqual(failures, []);
-});
-
-test('every text token inside a blue band keeps 4.5:1 on it', () => {
-  const failures = ['fg', 'body', 'muted', 'accent']
-    .map((name) => ({ name, ratio: contrast(onBand[name], colors.band) }))
-    .filter(({ ratio }) => ratio < 4.5);
   assert.deepEqual(failures, []);
 });

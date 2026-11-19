@@ -6,7 +6,7 @@ import { projects, ui } from '../data/profile';
 const section = ui.sections.find(({ id }) => id === 'projects')!;
 ---
 
-<section id={section.id} aria-labelledby="projects-title" class="gutter border-t border-divider py-16 md:py-20">
+<section id={section.id} aria-labelledby="projects-title" class="gutter border-t border-divider py-20 md:py-28">
   <div class="mx-auto max-w-page">
     <div class="flex flex-wrap items-end justify-between gap-4">
       <h2 id="projects-title" class="type-section text-fg">
@@ -20,13 +20,13 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
       </a>
     </div>
 
-    <ul class="mt-8 grid gap-6 md:grid-cols-2">
-      {projects.map((project) => (
+    <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {projects.map((project, index) => (
         <li
           class:list={[
-            'group relative flex flex-col rounded-card border border-divider bg-surface p-[clamp(20px,3cqi,28px)] transition-[translate,border-color] duration-300 hover:border-brand motion-safe:hover:-translate-y-1',
-            // The grid gap plus both card paddings, so the right column starts where the second card's text does.
-            project.featured && 'md:col-span-2 md:grid md:grid-cols-2 md:gap-x-[calc(1.5rem+2*clamp(20px,3cqi,28px))]',
+            'group relative flex flex-col rounded-card border border-divider bg-surface p-[clamp(24px,3.5cqi,32px)] transition-[translate,border-color] duration-300 hover:border-brand motion-safe:hover:-translate-y-1',
+            // In two columns a last card on its own fills the row, so the grid never ends on an empty cell.
+            projects.length % 2 === 1 && index === projects.length - 1 && 'md:col-span-2 lg:col-span-1',
           ]}
         >
           <div>
@@ -40,9 +40,7 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
             </h3>
           </div>
           <div class="flex flex-1 flex-col">
-            <p class:list={['mt-3 text-base leading-[1.6] text-body md:text-ui', project.featured && 'md:mt-0']}>
-              {project.summary}
-            </p>
+            <p class="mt-3 text-base leading-[1.65] text-body">{project.summary}</p>
             <p class="mt-4 text-caption leading-[1.6] text-muted">
               <span class="sr-only">{ui.tagsLabel}: </span>
               {project.tags.join(', ')}
