@@ -5,9 +5,9 @@ description: 'Freelance AI developer for hire. LLM features, chat interfaces, ag
 cardTitle: 'Build AI features and agents'
 cardSummary: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
 order: 2
-updated: 2026-11-11
+updated: 2026-11-20
 imageAlt: 'A chat panel connects to a processing tool and a background task tray that returns a saved result'
-lead: 'Chat interfaces, agent tools and background tasks that call a model, built into a real product with accounts, data and deployment.'
+lead: 'The AI features I build are chat interfaces, agent tools and background tasks that call a model, inside a real product with accounts, data and deployment.'
 fit:
   - 'You run a product and want a chat interface, an assistant or an agent that works with your own data.'
   - 'You have an idea for an AI product and need a first version that real users can try.'

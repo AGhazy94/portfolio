@@ -1,8 +1,8 @@
 ---
-title: 'Vibe coding security checklist: what I check before real users'
+title: 'Vibe coding security checklist before launch'
 description: The vibe coding security checks I run on Lovable, Bolt, Replit or Cursor apps, from database rules and leaked keys to payments and sign-in.
 published: 2026-11-09
-updated: 2026-11-12
+updated: 2026-11-20
 service: take-over-an-app
 imageAlt: A magnifying glass inspects separate document drawers, with a blue key and lock beside them
 relatedArticles:

@@ -1,8 +1,8 @@
 ---
-title: Freelance developer, agency or fractional CTO for your MVP?
+title: Freelance developer, agency or fractional CTO?
 description: How to choose between a freelance developer, an agency and a fractional CTO for a first product, by what each one is good at and where each one breaks down.
 published: 2026-11-16
-updated: 2026-11-16
+updated: 2026-11-20
 service: mvp-development
 relatedArticles:
   - what-an-mvp-costs-and-what-moves-the-price
@@ -16,15 +16,13 @@ faq:
     answer: Yes, if the code and accounts are yours and the choices are common. Plain tools, a clean repository and written notes make any later handover easier.
 ---
 
-You have an idea, some budget and no technical co-founder. Three kinds of help come up in every conversation: a freelance developer, an agency, and a fractional CTO. They solve different problems, and the wrong one is expensive to undo once the work has started.
-
-I'm a freelance developer, so I'm not neutral. The last section says where I'm the wrong choice.
-
-## The short version
+A freelance developer, an agency and a fractional CTO solve different problems for a first product:
 
 - **Freelance developer:** best when the scope is clear and small, and you can make product decisions yourself.
 - **Agency:** best when you need several skills at once, such as design, development, testing and project management, and you want one team to be accountable.
 - **Fractional CTO:** best when you need technical judgement more than hands on the keyboard.
+
+If you have an idea, some budget and no technical co-founder, all three come up in every conversation, and the wrong one is expensive to undo once the work has started. I'm a freelance developer, so I'm not neutral. The last section says where I'm the wrong choice.
 
 ## Freelance developer
 

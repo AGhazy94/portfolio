@@ -36,7 +36,7 @@ const nodes = [
     datePublished: data.published.toISOString(),
     dateModified: data.updated.toISOString(),
     inLanguage: 'en',
-    author: { '@id': personId },
+    author: { '@id': personId, name: profile.name, url: new URL('/', Astro.site).href },
     publisher: { '@id': personId },
     isPartOf: { '@id': new URL('/#website', Astro.site).href },
   },

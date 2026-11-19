@@ -59,7 +59,7 @@ const trail = [{ label: ui.page.home, href: '/' }, ...crumbs];
 const imageUrl = image && new URL((await getImage({ src: image, width: 1200 })).src, site).href;
 const graph = [
   ...nodes.map((node) =>
-    imageUrl && ['Article', 'Service'].includes(String(node['@type'])) ? { ...node, image: imageUrl } : node,
+    imageUrl && ['Article', 'Service', 'WebPage'].includes(String(node['@type'])) ? { ...node, image: imageUrl } : node,
   ),
   {
     '@type': 'BreadcrumbList',
