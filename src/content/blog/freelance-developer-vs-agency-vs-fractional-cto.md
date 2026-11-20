@@ -22,7 +22,7 @@ A freelance developer, an agency and a fractional CTO solve different problems f
 - **Agency:** best when you need several skills at once, such as design, development, testing and project management, and you want one team to be accountable.
 - **Fractional CTO:** best when you need technical judgement more than hands on the keyboard.
 
-If you have an idea, some budget and no technical co-founder, all three come up in every conversation, and the wrong one is expensive to undo once the work has started. I'm a freelance developer, so I'm not neutral. The last section says where I'm the wrong choice.
+If you have an idea, some budget and no technical co-founder, all three come up in every conversation, and the wrong one is expensive to undo once the work has started. I'm a freelance product engineer, so I'm not neutral. The last section says where I'm the wrong choice.
 
 ## Freelance developer
 
@@ -61,6 +61,12 @@ Ask yourself three questions:
 - **Freelancer plus a reviewer.** A freelance developer builds, and a technical advisor reviews the plan and the pull requests once or twice a month.
 - **Agency for design, freelancer for the product.** The agency makes the design system, and a developer builds the product from it.
 - **Fractional CTO, then a hire.** The CTO shapes the plan and the first hire, and the engineer takes it from there.
+
+## What a product engineer adds
+
+A product engineer is a developer who also takes on the product questions: what the first version has to prove, which feature can wait, and whether a release made things better for the people using it. One person still writes the code front to back, as with a freelance developer, but you get help with the decisions as well as the typing.
+
+That suits a first product where you know the problem but not yet every feature. It doesn't replace an agency when you need a full team, or a fractional CTO when the questions are about hiring, vendors and long-term architecture.
 
 ## Where I fit
 
