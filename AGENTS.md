@@ -158,11 +158,14 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
-  Positioning (decided 2026-10-14): a generalist freelance full-stack developer who builds web apps
-  and AI products (LLM features, agents), builds MVPs and takes over existing apps, TypeScript
-  front to back. Arabic/RTL is one service page, not the headline. The hero carries no employer or
-  location line. The Senior Frontend résumé variants carry the recruiter positioning; the site does
-  not. Python and retrieval (RAG) are not claimed anywhere until a shipped project backs them.
+  Positioning (decided 2026-11-20): a freelance product engineer who takes over stuck web apps and
+  ships the next release, builds MVPs and AI products (LLM features, agents), TypeScript front to
+  back. "Full-stack" stays a supporting search word, never the title: the full-stack service page
+  keeps "Full-Stack Next.js Developer for Hire" (about 480 US searches a month for "hire full stack
+  developer", against about 10 for "hire product engineer"). Arabic/RTL is one service page, not the
+  headline. The hero carries no employer or location line. The site's résumé is the Product
+  Engineer variant; the other variants are for job applications. Python and retrieval (RAG) are not
+  claimed anywhere until a shipped project backs them.
 - **This is the 2026-11-19 brand** (midnight, electric blue, sunset orange), built with the
   `ui-ux-pro-max` skill. The design system is the reference; nothing is carried over from earlier
   versions unless the user asks.

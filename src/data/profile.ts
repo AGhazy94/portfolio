@@ -27,15 +27,15 @@ export type Project = {
 
 export const profile = {
   name: 'Ahmed Ghazy',
-  title: 'Full-Stack Developer',
-  seoTitle: 'Freelance Full-Stack Developer for Hire | Ahmed Ghazy',
+  title: 'Product Engineer',
+  seoTitle: 'Freelance Product Engineer for Hire | Ahmed Ghazy',
   offer: 'I take over web apps that are stuck and ship the next release.',
   // One word of `offer`, set in the italic brand blue.
   offerAccent: 'ship',
   // Says no more than `description` below.
   offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
-    'Freelance full-stack developer in Egypt, working remotely. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.',
+    'Freelance product engineer in Egypt, working remotely. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -47,6 +47,7 @@ export const profile = {
   created: '2026-09-23T00:00:00+03:00',
   updated: '2026-11-20T00:00:00+02:00',
   knowsAbout: [
+    'Product engineering',
     'Full-stack development',
     'Taking over existing codebases',
     'MVP development',
@@ -80,7 +81,7 @@ export const statement = 'Working in quality taught me to look at software from 
 
 export const about: string[] = [
   'Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account. That’s where I learned to look for what breaks before I change anything, and I still work that way.',
-  'I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
+  'As a product engineer, I start with the problem a feature solves for the people using it, then build it front to back. I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.',
 ];
 
@@ -250,7 +251,7 @@ export const ui = {
     indexHeading: 'Stuck web apps, MVPs and AI features',
     indexLead: 'An app that is stuck or needs a new developer, a first product, or a feature your team needs.',
     indexDescription:
-      'Freelance full-stack development services: taking over a stuck web app, AI features and agents, MVPs, web apps and Arabic RTL web apps.',
+      'Services from a freelance product engineer: taking over a stuck web app, AI features and agents, MVPs, full-stack web apps and Arabic RTL web apps.',
     provider: 'Service provider',
   },
   work: {
@@ -259,7 +260,7 @@ export const ui = {
     indexHeading: 'Selected work',
     indexLead: 'Projects, my role, and the decisions behind the work.',
     indexDescription:
-      'Case studies by Ahmed Ghazy, freelance full-stack developer: what was built, which parts were his and the stack.',
+      'Case studies by Ahmed Ghazy, freelance product engineer: what was built, which parts were his and the stack.',
     visit: 'Visit the live site',
     more: 'Read the case study',
     homeMore: 'All case studies',
@@ -298,7 +299,7 @@ export const ui = {
   },
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    role: 'Full-stack developer',
+    role: 'Product engineer',
     badge: 'Available',
     availability: 'Open to client projects and retainers',
     availabilityShort: 'Open to client projects',
@@ -324,7 +325,7 @@ export const ui = {
     tool: {
       name: 'send_enquiry_to_ahmed',
       description:
-        'Fills in the contact form to send Ahmed Ghazy, a freelance full-stack developer, an enquiry about a web app, AI feature, MVP or taking over an existing app. The visitor reviews the form and presses Send; Ahmed replies by email.',
+        'Fills in the contact form to send Ahmed Ghazy, a freelance product engineer, an enquiry about a web app, AI feature, MVP or taking over an existing app. The visitor reviews the form and presses Send; Ahmed replies by email.',
       params: {
         name: 'Full name of the person sending the enquiry.',
         email: 'Email address Ahmed should reply to.',

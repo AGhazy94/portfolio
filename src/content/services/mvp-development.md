@@ -1,11 +1,11 @@
 ---
 title: 'MVP Development Services for Startups'
 heading: 'I build the first version of your product, start to launch.'
-description: 'Freelance full-stack developer for MVPs, one person from first commit to launch, TypeScript front to back, built so the next developer can take it on.'
+description: 'Freelance product engineer for MVPs, one person from first commit to launch, TypeScript front to back, built so the next developer can take it on.'
 cardTitle: 'Build an MVP'
 cardSummary: 'One developer from first commit to launch. A small, working first version of your product that real users can try.'
 order: 3
-updated: 2026-11-05
+updated: 2026-11-20
 imageAlt: 'A paper sketch becomes fitted components and then a compact finished app'
 lead: 'One developer from first commit to launch. A small, working first version of your product that real people can sign up for and use.'
 fit:
@@ -49,4 +49,6 @@ faq:
     answer: 'Real users always find things the plan missed. You can keep me on for a set number of days a month to fix and improve it, or take the code and the notes to another developer. The code stays readable either way.'
   - question: 'Can you build something with AI features?'
     answer: "Yes, in the sense of adding LLM-powered features to a product, such as a chat interface or background tasks that call a model. I have built chat and task interfaces on ScriptBee's Next.js app. I don't train models."
+  - question: 'What does "product engineer" mean for my project?'
+    answer: "I build the whole thing, front to back, like a full-stack developer. I also start from the problem your first version has to solve for its users, so I suggest cutting what doesn't serve it and ship in small releases you can try. You decide what goes in."
 ---
