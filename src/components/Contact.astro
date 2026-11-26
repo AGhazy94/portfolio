@@ -2,8 +2,10 @@
 import Icon from './Icon.astro';
 import NextSteps from './NextSteps.astro';
 import RichText from './RichText.astro';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 import { attributionFields } from '../lib/attribution';
+
+const { ui, href, english } = await useCopy(Astro.currentLocale);
 
 const section = ui.sections.find(({ id }) => id === 'contact')!;
 const { fields, errors, success, tool } = ui.contact;
@@ -38,7 +40,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:c
       <form
         name="contact"
         method="POST"
-        action="/thanks/"
+        action={href('/thanks/')}
         data-netlify="true"
         netlify-honeypot="bot-field"
         data-contact-form
@@ -75,6 +77,7 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:c
               name={input.name}
               type={input.type}
               autocomplete={input.autocomplete}
+              dir={input.name === 'email' ? 'ltr' : undefined}
               placeholder={input.placeholder}
               required
               maxlength="200"
@@ -94,24 +97,25 @@ const buttonClass = 'btn-pill min-h-12 cursor-pointer bg-loud text-bg disabled:c
           <div class:list={['grid content-start gap-2', index === 0 && 'sm:col-span-2']}>
             <label for={`contact-${choice.name}`} class="text-caption font-medium text-body">
               {choice.label}
-              <span class="ml-1 font-normal text-muted">({ui.contact.optional})</span>
+              <span class="ms-1 font-normal text-muted">({ui.contact.optional})</span>
             </label>
             <div class="relative">
               <select
                 id={`contact-${choice.name}`}
                 name={choice.name}
                 toolparamdescription={choice.tool}
-                class={`${fieldClass} cursor-pointer appearance-none truncate pr-11`}
+                class={`${fieldClass} cursor-pointer appearance-none truncate pe-11`}
               >
                 <option value="">{choice.placeholder}</option>
-                {choice.options.map((option) => (
-                  <option value={option}>{option}</option>
+                {/* Netlify stores the value, so every language submits the English one and lists stay comparable. */}
+                {choice.options.map((option, optionIndex) => (
+                  <option value={english.ui.contact.choices[index]!.options[optionIndex]}>{option}</option>
                 ))}
               </select>
               {/* The native arrow sits on the border, so the select is drawn flat and the arrow gets its own inset. */}
               <Icon
                 name="chevron"
-                class="pointer-events-none absolute top-1/2 right-3.5 size-5 -translate-y-1/2 text-muted"
+                class="pointer-events-none absolute end-3.5 top-1/2 size-5 -translate-y-1/2 text-muted"
               />
             </div>
           </div>

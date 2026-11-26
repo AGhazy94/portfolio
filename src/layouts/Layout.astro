@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import type { ImageMetadata } from 'astro';
 import { Font, getImage } from 'astro:assets';
 import Consent from '../components/Consent.astro';
-import { profile, socials } from '../data/profile';
+import { alternates, locales, useCopy } from '../i18n';
 import { ogCard } from '../lib/graphics';
 import { colors } from '../lib/tokens.mjs';
 import '../styles/global.css';
@@ -21,6 +21,7 @@ interface Props {
   imageAlt?: string;
 }
 
+const { profile, socials, locale, meta } = await useCopy(Astro.currentLocale);
 const {
   title = profile.seoTitle,
   description = profile.description,
@@ -39,6 +40,9 @@ const webmcpTrial = import.meta.env.PUBLIC_WEBMCP_ORIGIN_TRIAL;
 
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site);
+// Only pages that exist in both languages get hreflang; x-default is the English page.
+const versions = Object.entries(await alternates(Astro.url.pathname)) as [keyof typeof locales, string][];
+const hreflang = versions.length > 1 ? versions : [];
 // LinkedIn and chat apps cache the card by URL, so a hash of its content makes them refetch when it changes.
 const cardHash = createHash('sha256')
   .update(JSON.stringify(await ogCard()))
@@ -61,7 +65,9 @@ const structuredData = {
       url: site.href,
       name: profile.name,
       description: profile.description,
-      inLanguage: 'en',
+      inLanguage: Object.values(locales)
+        .filter((entry) => entry.published)
+        .map((entry) => entry.lang),
       publisher: { '@id': personId },
     },
     ...(home
@@ -71,6 +77,7 @@ const structuredData = {
             '@id': canonical.href,
             url: canonical.href,
             name: title,
+            inLanguage: meta.lang,
             isPartOf: { '@id': websiteId },
             mainEntity: { '@id': personId },
             dateCreated: profile.created,
@@ -83,7 +90,7 @@ const structuredData = {
       '@type': 'Person',
       '@id': personId,
       name: profile.name,
-      jobTitle: profile.title,
+      jobTitle: locale === 'en' ? profile.roles : profile.title,
       description: profile.description,
       url: site.href,
       image: new URL(headshot.src, site).href,
@@ -108,7 +115,7 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={meta.lang} dir={meta.dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -117,12 +124,22 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <meta name="author" content={profile.name} />
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     {!noindex && <link rel="canonical" href={canonical} />}
+    {!noindex &&
+      hreflang.map(([code, path]) => <link rel="alternate" hreflang={locales[code].lang} href={new URL(path, site)} />)}
+    {!noindex && hreflang.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={new URL(hreflang[0][1], site)} />
+    )}
     {siteVerification && <meta name="google-site-verification" content={siteVerification} />}
     {webmcpTrial && <meta http-equiv="origin-trial" content={webmcpTrial} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content={type} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {hreflang
+      .filter(([code]) => code !== locale)
+      .map(([code]) => (
+        <meta property="og:locale:alternate" content={locales[code].ogLocale} />
+      ))}
     <meta property="og:site_name" content={profile.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -151,7 +168,9 @@ const jsonLd = JSON.stringify(structuredData).replace(/</g, '\\u003c');
     <Font cssVariable="--font-space-grotesk" preload />
     <Font cssVariable="--font-geist" preload />
     {/* Only the home page sets anything in the serif (the hero's accent word, the quote marks). */}
-    <Font cssVariable="--font-instrument-serif" preload={home} />
+    <Font cssVariable="--font-instrument-serif" preload={home && locale === 'en'} />
+    {/* English pages only need it for the "العربية" switch label, which the browser fetches on demand. */}
+    <Font cssVariable="--font-readex-pro" preload={meta.dir === 'rtl'} />
     {!hidden && <script is:inline type="application/ld+json" set:html={jsonLd}></script>}
   </head>
   <body class="bg-bg font-sans text-body antialiased selection:bg-loud selection:text-bg">

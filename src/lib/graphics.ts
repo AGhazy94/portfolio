@@ -47,7 +47,19 @@ export async function ogCard() {
           },
           profile.name,
         ),
-        h('div', { marginTop: 26, fontSize: 40, fontWeight: 500, color: colors.accent }, profile.title),
+        // One line would push the portrait off the card, so each part of the title gets its own.
+        h(
+          'div',
+          {
+            marginTop: 26,
+            display: 'flex',
+            flexDirection: 'column',
+            fontSize: 40,
+            fontWeight: 500,
+            color: colors.accent,
+          },
+          profile.title.split(' · ').map((part) => h('div', {}, part)),
+        ),
         h('div', { marginTop: 12, fontSize: 30, color: colors.body }, profile.ogLine),
       ]),
       img(await portrait, 300, {

@@ -1,6 +1,8 @@
 ---
 import RichText from './RichText.astro';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { ui } = await useCopy(Astro.currentLocale);
 
 // Set for production only (netlify.toml), so previews and local builds never report to Google or Ahrefs.
 const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;

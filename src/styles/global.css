@@ -7,13 +7,20 @@
 /* Collapsed content only stays collapsed where a script can open it again. */
 @custom-variant js (@media (scripting: enabled));
 
+/* :dir() follows the nearest dir attribute, so English cards marked dir="ltr" inside Arabic pages keep LTR styles. */
+@custom-variant rtl (&:where(:dir(rtl)));
+@custom-variant ltr (&:where(:dir(ltr)));
+
 /* Tailwind v4 ships OKLCH palettes; drop them and pin the brand's sRGB hex values (one dark scheme). */
 /* src/lib/tokens.test.mjs fails if these drift from src/lib/tokens.mjs or drop below 4.5:1 and 3:1. */
 @theme {
   --color-*: initial;
 
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  /* Readex Pro holds Arabic glyphs only (unicode-range), so it goes first and Latin falls through to the brand faces. */
+  --font-sans:
+    var(--font-readex-pro), var(--font-geist), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display:
+    var(--font-readex-pro), var(--font-space-grotesk), var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-accent: var(--font-instrument-serif), Georgia, serif;
 
   --color-bg: #090a10;
@@ -71,7 +78,7 @@
 
 /* not-sr-only zeroes the padding, so the focused state sets it again after it. */
 @utility skip-link {
-  @apply sr-only z-50 rounded-pill bg-fg text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3;
+  @apply sr-only z-50 rounded-pill bg-fg text-sm font-medium text-bg focus:not-sr-only focus:fixed focus:start-3 focus:top-3;
 
   &:focus {
     padding: --spacing(3) --spacing(4);
@@ -259,7 +266,7 @@
 
   .prose-page ul:not([class]),
   .prose-page ol:not([class]) {
-    padding-left: 1.4em;
+    padding-inline-start: 1.4em;
   }
 
   .prose-page ul:not([class]) {
@@ -279,8 +286,8 @@
   }
 
   .prose-page blockquote {
-    border-left: 2px solid var(--color-divider);
-    padding-left: 1.1em;
+    border-inline-start: 2px solid var(--color-divider);
+    padding-inline-start: 1.1em;
     color: var(--color-fg);
   }
 
@@ -333,4 +340,27 @@
       scroll-behavior: auto;
     }
   }
+}
+
+/* Arabic letters join up, so tracking pulls words apart; unlayered so it beats the type utilities. */
+:lang(ar) {
+  letter-spacing: 0;
+}
+
+/* Arabic ascenders, descenders and dots need more room than the Latin display scale leaves. */
+:is(.type-hero, .type-section, .type-statement):lang(ar) {
+  line-height: 1.3;
+}
+
+:is(.type-company, .type-project, .prose-page h2):lang(ar) {
+  line-height: 1.4;
+}
+
+/* Instrument Serif has no Arabic and a slanted Arabic face reads as an error: the accent word keeps only its blue. */
+.type-accent:lang(ar) {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: inherit;
+  font-size: 1em;
+  line-height: inherit;
 }

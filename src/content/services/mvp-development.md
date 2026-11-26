@@ -1,11 +1,11 @@
 ---
 title: 'MVP Development Services for Startups'
 heading: 'I build the first version of your product, start to launch.'
-description: 'Freelance product engineer for MVPs, one person from first commit to launch, TypeScript front to back, built so the next developer can take it on.'
+description: 'Freelance product engineer and full-stack developer for MVPs: one person from first commit to launch, TypeScript front to back, built to hand over.'
 cardTitle: 'Build an MVP'
 cardSummary: 'One developer from first commit to launch. A small, working first version of your product that real users can try.'
 order: 3
-updated: 2026-11-20
+updated: 2026-11-26
 imageAlt: 'A paper sketch becomes fitted components and then a compact finished app'
 lead: 'One developer from first commit to launch. A small, working first version of your product that real people can sign up for and use.'
 fit:

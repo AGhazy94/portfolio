@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import RichText from './RichText.astro';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
 interface Props {
   fit: string[];
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const { fit, notFit, gets, steps, experience, terms } = Astro.props;
+const { ui } = await useCopy(Astro.currentLocale);
 const copy = ui.service;
 // Every service ends its terms by asking for the brief, so that line sits beside the button.
 const cta = terms.at(-1)!;

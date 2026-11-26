@@ -100,4 +100,4 @@ Before you launch:
 5. Switch language on every page and check that you land on the same page in the other language. On one multi-language site I fixed a language switch that sent people to a 404.
 6. Read each screen aloud as a customer would.
 
-I build [bilingual and Arabic web apps](/services/arabic-rtl-web-apps/) as a product engineer. If you have a product that looks almost right in Arabic, send it through the form below.
+I build [bilingual and Arabic web apps](/services/arabic-rtl-web-apps/) as a full-stack product engineer. If you have a product that looks almost right in Arabic, send it through the form below.

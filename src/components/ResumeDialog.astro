@@ -1,6 +1,8 @@
 ---
 import Icon from './Icon.astro';
-import { profile, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { profile, ui } = await useCopy(Astro.currentLocale);
 ---
 
 <dialog
@@ -40,7 +42,7 @@ import { profile, ui } from '../data/profile';
         <span class="sr-only">{ui.newTab}</span>
         <span
           aria-hidden="true"
-          class="ml-1 transition-transform duration-200 motion-safe:group-hover:translate-x-[3px]"
+          class="ms-1 transition-transform duration-200 motion-safe:group-hover:translate-x-[3px] rtl:motion-safe:group-hover:-translate-x-[3px]"
         >
           ›
         </span>

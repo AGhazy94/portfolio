@@ -1,24 +1,23 @@
 ---
-import type { InferGetStaticPropsType } from 'astro';
 import { render } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
 import Icon from '../../components/Icon.astro';
 import { contentImage, getWork } from '../../lib/content';
-import { profile, ui } from '../../data/profile';
+import { useCopy } from '../../i18n';
 
+// src/pages/ar/work/[id].astro renders this page with an Arabic entry.
 export async function getStaticPaths() {
-  const projects = await getWork();
-  return projects.map((entry, index) => ({
-    params: { id: entry.id },
-    props: { entry, next: projects[(index + 1) % projects.length] },
-  }));
+  return (await getWork()).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
 
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+type Props = { entry: Awaited<ReturnType<typeof getWork>>[number] };
 
-const { entry, next } = Astro.props;
+const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { data } = entry;
+const { profile, ui, locale, href, langOf } = await useCopy(Astro.currentLocale);
+const projects = await getWork(locale);
+const next = projects[(projects.findIndex(({ id }) => id === entry.id) + 1) % projects.length]!;
 const image = contentImage('work', entry.id);
 // The facts row states the role, so the eyebrow keeps only what the product is.
 const kind = data.role ? data.kind.split(' · ')[0] : data.kind;
@@ -51,7 +50,7 @@ const nodes = [
   heading={data.title}
   eyebrow={data.status === 'draft' ? `Draft, dev only · ${kind}` : kind}
   nodes={nodes}
-  crumbs={[{ label: ui.work.indexTitle, href: '/work/' }, { label: data.title }]}
+  crumbs={[{ label: ui.work.indexTitle, href: href('/work/') }, { label: data.title }]}
   image={image}
   imageAlt={data.imageAlt}
 >
@@ -73,18 +72,21 @@ const nodes = [
       >
         {ui.work.visit}
         <span class="sr-only">{ui.newTab}</span>
-        <Icon name="external" class="size-4" />
+        <Icon name="external" class="size-4 rtl:-scale-x-100" />
       </a>
     )}
   </div>
   <Content />
   {next.id !== entry.id && (
     <div slot="after" class="mt-16 border-t border-divider pt-8">
-      <a href={`/work/${next.id}/`} class="group inline-flex max-w-[44ch] flex-col gap-2">
+      <a href={href(`/work/${next.id}/`)} class="group inline-flex max-w-[44ch] flex-col gap-2">
         <span class="text-caption font-medium text-muted">{ui.work.next}</span>
-        <span class="type-project text-balance text-fg transition-colors duration-200 group-hover:text-accent">
+        <span
+          class="type-project text-balance text-fg transition-colors duration-200 group-hover:text-accent"
+          {...langOf(next.locale)}
+        >
           {next.data.title}
-          <Icon name="chevron" class="inline-block size-6 -rotate-90 align-[-2px]" />
+          <Icon name="chevron" class="inline-block size-6 -rotate-90 align-[-2px] rtl:rotate-90" />
         </span>
       </a>
     </div>

@@ -1,6 +1,6 @@
 ---
 import { parseInline } from '../lib/inline';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
 interface Props {
   source: string;
@@ -13,6 +13,7 @@ const {
   class: className,
   linkClass = 'text-accent underline decoration-1 underline-offset-3 transition-opacity duration-200 hover:opacity-70',
 } = Astro.props;
+const { ui, href } = await useCopy(Astro.currentLocale);
 ---
 
 <p class={className}>
@@ -23,7 +24,7 @@ const {
     return (
       <a
         class={linkClass}
-        href={segment.href}
+        href={segment.href.startsWith('/') ? href(segment.href) : segment.href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noreferrer noopener' : undefined}
       >

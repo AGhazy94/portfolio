@@ -1,8 +1,9 @@
 ---
 import Icon from './Icon.astro';
 import MetaLine from './MetaLine.astro';
-import { projects, ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
+const { projects, ui, href } = await useCopy(Astro.currentLocale);
 const section = ui.sections.find(({ id }) => id === 'projects')!;
 ---
 
@@ -13,7 +14,7 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
         {section.title}
       </h2>
       <a
-        href="/work/"
+        href={href('/work/')}
         class="inline-flex min-h-11 items-center text-ui font-medium text-accent underline underline-offset-4 hover:opacity-70"
       >
         {ui.work.homeMore}
@@ -34,7 +35,7 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
             {project.logo && <Icon name={project.logo} class="mb-6 block h-6 w-auto text-fg" />}
             <MetaLine text={project.kind} />
             <h3 class="type-project mt-1 text-balance text-fg">
-              <a href={project.caseStudy} class="card-link">
+              <a href={href(project.caseStudy)} class="card-link">
                 {project.name}
               </a>
             </h3>
@@ -48,7 +49,7 @@ const section = ui.sections.find(({ id }) => id === 'projects')!;
             <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-1 pt-5 text-ui">
               <span aria-hidden="true" class="inline-flex min-h-11 items-center gap-1 font-medium text-accent">
                 {ui.work.more}
-                <Icon name="chevron" class="size-5 -rotate-90" />
+                <Icon name="chevron" class="size-5 -rotate-90 rtl:rotate-90" />
               </span>
               {project.href && (
                 <a

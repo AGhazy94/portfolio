@@ -1,6 +1,8 @@
 ---
 import RichText from './RichText.astro';
-import { about, profile, statement, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { about, profile, statement, ui } = await useCopy(Astro.currentLocale);
 
 const section = ui.sections.find(({ id }) => id === 'about')!;
 const words = statement.split(' ');

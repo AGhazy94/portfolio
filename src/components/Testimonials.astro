@@ -1,5 +1,7 @@
 ---
-import { profile, testimonials, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { profile, testimonials, ui, locale, langOf } = await useCopy(Astro.currentLocale);
 
 const section = ui.sections.find(({ id }) => id === 'testimonials')!;
 const sources = {
@@ -13,6 +15,7 @@ const sources = {
     <h2 id="testimonials-title" class="type-section text-fg">
       {section.title}
     </h2>
+    {locale !== 'en' && <p class="mt-3 text-caption text-muted">{ui.testimonials.original}</p>}
 
     <ul class="mt-10 grid gap-[clamp(14px,3cqi,28px)] md:grid-cols-2">
       {testimonials.map((item) => (
@@ -21,7 +24,7 @@ const sources = {
             <span aria-hidden="true" class="font-accent text-6xl leading-[0.6] text-brand italic">
               “
             </span>
-            <blockquote class="mt-3 text-base leading-[1.6] text-fg md:text-reading">
+            <blockquote {...langOf('en')} class="mt-3 text-base leading-[1.6] text-fg md:text-reading">
               <p>{item.quote}</p>
             </blockquote>
             <figcaption class="mt-auto pt-6 text-caption leading-[1.6] text-pretty text-muted">

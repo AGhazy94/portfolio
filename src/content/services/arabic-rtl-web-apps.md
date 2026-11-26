@@ -1,11 +1,11 @@
 ---
 title: 'Arabic RTL Web App Developer'
 heading: 'Web apps that work properly in Arabic and English.'
-description: 'Freelance product engineer and native Arabic speaker. I build web apps with real right-to-left layouts, bilingual content and Arabic-friendly forms.'
+description: 'Full-stack developer, product engineer and native Arabic speaker. I build web apps with real right-to-left layouts, bilingual content and Arabic-friendly forms.'
 cardTitle: 'Arabic and bilingual web apps'
 cardSummary: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 order: 5
-updated: 2026-11-05
+updated: 2026-11-26
 imageAlt: 'Two mirrored app layouts share a blue language switch and matching content blocks'
 lead: 'Real right-to-left layouts, Arabic and English together, forms and numbers that behave. Built by a native Arabic speaker.'
 fit:

@@ -2,9 +2,10 @@
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
 import { contentImage, getServices } from '../../lib/content';
-import { profile, ui } from '../../data/profile';
+import { useCopy } from '../../i18n';
 
-const services = await getServices();
+const { profile, ui, locale, href, langOf } = await useCopy(Astro.currentLocale);
+const services = await getServices(locale);
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
   {
@@ -32,12 +33,13 @@ const nodes = [
     class="mt-10"
     featured
     headingLevel={2}
-    items={services.map(({ id, data }) => ({
+    items={services.map(({ id, data, locale: entryLocale }) => ({
       title: data.cardTitle,
       summary: data.cardSummary,
-      href: `/services/${id}/`,
+      href: href(`/services/${id}/`),
       cta: ui.services.more,
       image: contentImage('services', id),
+      ...langOf(entryLocale),
     }))}
   />
 </ContentPage>

@@ -1,28 +1,27 @@
 ---
-import { getEntry, render, type CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 import ContentPage from '../../layouts/ContentPage.astro';
-import { contentImage, getPosts } from '../../lib/content';
-import { profile, ui } from '../../data/profile';
+import { contentImage, getPosts, getServices } from '../../lib/content';
+import { useCopy } from '../../i18n';
 
-interface Props {
-  entry: CollectionEntry<'blog'>;
-}
-
+// src/pages/ar/blog/[id].astro renders this page with an Arabic entry.
 export async function getStaticPaths() {
-  const posts = await getPosts();
-  return posts.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  return (await getPosts()).map((entry) => ({ params: { id: entry.id }, props: { entry } }));
 }
+
+type Props = { entry: Awaited<ReturnType<typeof getPosts>>[number] };
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const { data } = entry;
+const { profile, ui, locale, href, langOf } = await useCopy(Astro.currentLocale);
 const image = contentImage('blog', entry.id);
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const personId = new URL('/#person', Astro.site).href;
-const service = await getEntry(data.service);
+const service = (await getServices(locale)).find(({ id }) => id === data.service.id);
 if (!service) throw new Error(`Missing service for article ${entry.id}`);
-const relatedArticles = (await getPosts()).filter((post) =>
+const relatedArticles = (await getPosts(locale)).filter((post) =>
   data.relatedArticles.some((reference) => reference.id === post.id),
 );
 const nodes = [
@@ -35,7 +34,6 @@ const nodes = [
     description: data.description,
     datePublished: data.published.toISOString(),
     dateModified: data.updated.toISOString(),
-    inLanguage: 'en',
     author: { '@id': personId, name: profile.name, url: new URL('/', Astro.site).href },
     publisher: { '@id': personId },
     isPartOf: { '@id': new URL('/#website', Astro.site).href },
@@ -49,7 +47,7 @@ const nodes = [
   heading={data.title}
   type="article"
   nodes={nodes}
-  crumbs={[{ label: ui.blog.indexTitle, href: '/blog/' }, { label: data.title }]}
+  crumbs={[{ label: ui.blog.indexTitle, href: href('/blog/') }, { label: data.title }]}
   published={data.published}
   updated={data.updated}
   faq={data.faq}
@@ -63,12 +61,14 @@ const nodes = [
       <h2 id="related-service-title" class="text-sm font-medium text-muted">
         {ui.page.relatedServices}
       </h2>
-      <h3 class="type-project mt-3 text-fg">
-        <a href={`/services/${service.id}/`} class="underline underline-offset-4 hover:text-accent">
-          {service.data.cardTitle}
-        </a>
-      </h3>
-      <p class="mt-3 text-ui leading-relaxed text-body">{service.data.cardSummary}</p>
+      <div {...langOf(service.locale)}>
+        <h3 class="type-project mt-3 text-fg">
+          <a href={href(`/services/${service.id}/`)} class="underline underline-offset-4 hover:text-accent">
+            {service.data.cardTitle}
+          </a>
+        </h3>
+        <p class="mt-3 text-ui leading-relaxed text-body">{service.data.cardSummary}</p>
+      </div>
     </section>
     {relatedArticles.length > 0 && (
       <section aria-labelledby="related-articles-title">
@@ -77,9 +77,9 @@ const nodes = [
         </h2>
         <ul class="mt-3 space-y-4">
           {relatedArticles.map((article) => (
-            <li>
+            <li {...langOf(article.locale)}>
               <a
-                href={`/blog/${article.id}/`}
+                href={href(`/blog/${article.id}/`)}
                 class="text-lg leading-snug text-fg underline underline-offset-4 hover:text-accent"
               >
                 {article.data.title}

@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { readdirSync, readFileSync } from 'node:fs';
 import { satteri } from '@astrojs/markdown-satteri';
-import { hastExternalLinks } from './src/lib/external-links.mjs';
+import { hastExternalLinks, hastLocalizedLinks } from './src/lib/external-links.mjs';
+import { defaultLocale, locales, sharedPaths } from './src/i18n/locales.mjs';
 
 // Netlify sets URL to the primary domain and DEPLOY_PRIME_URL to each preview's own address; previews use
 // theirs so a shared preview link shows its own OG card. The fallback covers local builds.
@@ -30,6 +31,28 @@ for (const collection of ['services', 'blog', 'work']) {
 }
 const profileSource = readFileSync('./src/data/profile.ts', 'utf8');
 lastmod.set('/', [updatedIn(profileSource) ?? '', ...lastmod.values()].sort().at(-1) ?? '');
+// English paths with a live Arabic page; each takes the newer of its English and translation dates.
+const arabicPaths = new Set(sharedPaths);
+for (const collection of ['services', 'blog', 'work']) {
+  const dir = `./src/content/ar/${collection}`;
+  const dates = [];
+  for (const file of readdirSync(dir).filter((name) => name.endsWith('.md'))) {
+    const path = `/${collection}/${file.slice(0, -3)}/`;
+    const source = readFileSync(`${dir}/${file}`, 'utf8');
+    // A draft on either side is never built in production, so nothing may link to it.
+    if (!lastmod.has(path) || /^status: draft$/m.test(source)) continue;
+    const date = [lastmod.get(path) ?? '', updatedIn(source) ?? ''].sort().at(-1) ?? '';
+    lastmod.set(`/ar${path}`, date);
+    arabicPaths.add(path);
+    dates.push(date);
+  }
+  if (dates.length) {
+    arabicPaths.add(`/${collection}/`);
+    lastmod.set(`/ar/${collection}/`, [lastmod.get(`/${collection}/`) ?? '', ...dates].sort().at(-1) ?? '');
+  }
+}
+const arabicDates = [...lastmod].filter(([path]) => path.startsWith('/ar/')).map(([, date]) => date);
+lastmod.set('/ar/', [lastmod.get('/') ?? '', ...arabicDates].sort().at(-1) ?? '');
 
 export default defineConfig({
   site,
@@ -47,13 +70,33 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     processor: satteri({
-      hastPlugins: [hastExternalLinks({ site, newTab: profileSource.match(/newTab: '([^']+)'/)?.[1] ?? '' })],
+      hastPlugins: [
+        hastExternalLinks({
+          site,
+          newTab: {
+            en: profileSource.match(/newTab: '([^']+)'/)?.[1] ?? '',
+            ar: JSON.parse(readFileSync('./src/i18n/ar.json', 'utf8'))['ui.newTab']?.ar ?? '',
+          },
+        }),
+        hastLocalizedLinks({ locale: 'ar', paths: arabicPaths }),
+      ],
     }),
+  },
+  // English stays at the root; Arabic lives under /ar/ (see src/i18n/).
+  i18n: {
+    defaultLocale,
+    locales: Object.keys(locales),
+    routing: { prefixDefaultLocale: false },
   },
   // The form's thank-you page is noindex, so it stays out of the sitemap too.
   integrations: [
     sitemap({
       filter: (page) => !page.endsWith('/thanks/'),
+      // Adds the hreflang alternates for pages that exist in both languages.
+      i18n: {
+        defaultLocale,
+        locales: Object.fromEntries(Object.entries(locales).map(([key, { lang }]) => [key, lang])),
+      },
       serialize: (item) => {
         const date = lastmod.get(new URL(item.url).pathname);
         return date ? { ...item, lastmod: date } : item;
@@ -87,6 +130,17 @@ export default defineConfig({
       styles: ['normal'],
       subsets: ['latin'],
       fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+    },
+    // Arabic glyphs only: Latin words inside Arabic text keep Space Grotesk and Geist.
+    {
+      name: 'Readex Pro',
+      cssVariable: '--font-readex-pro',
+      provider: fontProviders.fontsource(),
+      weights: ['300 700'],
+      styles: ['normal'],
+      subsets: ['arabic'],
+      // No fallbacks: a generated metric fallback has no unicode-range and would catch Latin text first.
+      fallbacks: [],
     },
   ],
   vite: {

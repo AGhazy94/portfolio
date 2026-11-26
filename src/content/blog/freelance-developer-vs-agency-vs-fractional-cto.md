@@ -22,7 +22,7 @@ A freelance developer, an agency and a fractional CTO solve different problems f
 - **Agency:** best when you need several skills at once, such as design, development, testing and project management, and you want one team to be accountable.
 - **Fractional CTO:** best when you need technical judgement more than hands on the keyboard.
 
-If you have an idea, some budget and no technical co-founder, all three come up in every conversation, and the wrong one is expensive to undo once the work has started. I'm a freelance product engineer, so I'm not neutral. The last section says where I'm the wrong choice.
+If you have an idea, some budget and no technical co-founder, all three come up in every conversation, and the wrong one is expensive to undo once the work has started. I'm a freelance product engineer and full-stack developer, so I'm not neutral. The last section says where I'm the wrong choice.
 
 ## Freelance developer
 

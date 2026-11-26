@@ -2,7 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { profile, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { profile, ui } = await useCopy(Astro.currentLocale);
 ---
 
 <Layout title={`${ui.notFound.title} | ${profile.name}`} noindex>
