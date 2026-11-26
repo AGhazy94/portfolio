@@ -44,12 +44,14 @@ const canonical = new URL(Astro.url.pathname, site);
 const versions = Object.entries(await alternates(Astro.url.pathname)) as [keyof typeof locales, string][];
 const hreflang = versions.length > 1 ? versions : [];
 // LinkedIn and chat apps cache the card by URL, so a hash of its content makes them refetch when it changes.
+const card = locale === 'en' ? undefined : { profile, dir: meta.dir };
 const cardHash = createHash('sha256')
-  .update(JSON.stringify(await ogCard()))
+  .update(JSON.stringify(await ogCard(card)))
   .digest('hex')
   .slice(0, 8);
+const cardPath = locale === 'en' ? '/og.png' : `/${locale}/og.png`;
 const pageImage = image && (await getImage({ src: image, width: 1200, height: 630, format: 'jpg', fit: 'cover' }));
-const ogImage = pageImage ? new URL(pageImage.src, site) : new URL(`/og.png?v=${cardHash}`, site);
+const ogImage = pageImage ? new URL(pageImage.src, site) : new URL(`${cardPath}?v=${cardHash}`, site);
 const ogImageType = pageImage ? 'image/jpeg' : 'image/png';
 const ogImageAlt = (pageImage && imageAlt) || `${profile.name} — ${profile.title}`;
 const headshot = await getImage({ src: profile.portrait, width: 400, height: 400, format: 'jpg' });

@@ -43,7 +43,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 - No new dependencies without explicit approval. Approved so far: GSAP, and
   `@fontsource/space-grotesk` + `@fontsource/geist` + `@fontsource/instrument-serif` (satori needs
-  their WOFF files for the OG image and icons), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
+  their WOFF files for the OG image and icons), `@fontsource/readex-pro` (2026-11-26, Arabic WOFF for the
+  `/ar/og.png` card; satori has no bidi, so `rtlLine()` in [src/lib/graphics.ts](src/lib/graphics.ts) lays
+  Arabic out word by word), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
   configured in [knip.jsonc](knip.jsonc)), and `@astrojs/markdown-satteri` + `satteri`, pinned to
   the versions Astro installs, for the external-link plugin in
   [src/lib/external-links.mjs](src/lib/external-links.mjs) (new tab, UTM tags on Markdown links).
