@@ -1,25 +1,27 @@
 ---
-import type { CollectionEntry } from 'astro:content';
 import Icon from './Icon.astro';
+import { useCopy } from '../i18n';
+import type { ServiceEntry } from '../lib/content';
 
 interface Props {
-  services: CollectionEntry<'services'>[];
+  services: ServiceEntry[];
   idPrefix: string;
   class?: string;
 }
 
 const { services, idPrefix, class: className } = Astro.props;
+const { href, langOf } = await useCopy(Astro.currentLocale);
 ---
 
 <ul class:list={['divide-y divide-divider', className]}>
-  {services.map(({ id, data }) => (
+  {services.map(({ id, data, locale }) => (
     <li>
       <a
-        href={`/services/${id}/`}
+        href={href(`/services/${id}/`)}
         aria-labelledby={`${idPrefix}-${id}`}
         class="group grid grid-cols-[1fr_auto] items-start gap-4 py-5"
       >
-        <div>
+        <div {...langOf(locale)}>
           <h3
             id={`${idPrefix}-${id}`}
             class="font-display text-xl leading-snug font-semibold tracking-tight text-fg group-hover:underline underline-offset-4"
@@ -28,7 +30,7 @@ const { services, idPrefix, class: className } = Astro.props;
           </h3>
           <p class="mt-2 text-base leading-relaxed text-body">{data.cardSummary}</p>
         </div>
-        <Icon name="chevron" class="mt-0.5 size-5 -rotate-90 text-accent" />
+        <Icon name="chevron" class="mt-0.5 size-5 -rotate-90 text-accent rtl:rotate-90" />
       </a>
     </li>
   ))}

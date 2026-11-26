@@ -27,15 +27,17 @@ export type Project = {
 
 export const profile = {
   name: 'Ahmed Ghazy',
-  title: 'Product Engineer',
-  seoTitle: 'Freelance Product Engineer for Hire | Ahmed Ghazy',
+  // Each one a phrase buyers search: "hire ai developer" ~590 and "hire full stack developer" ~480 US searches a month.
+  roles: ['Product Engineer', 'Full-Stack Developer', 'AI Developer'],
+  title: 'Product Engineer · Full-Stack & AI Developer',
+  seoTitle: 'Product Engineer, Full-Stack & AI Developer | Ahmed Ghazy',
   offer: 'I take over web apps that are stuck and ship the next release.',
   // One word of `offer`, set in the italic brand blue.
   offerAccent: 'ship',
   // Says no more than `description` below.
   offerLead: 'Including apps built with Lovable or Bolt. I also build MVPs and AI features.',
   description:
-    'Freelance product engineer in Egypt, working remotely. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.',
+    'Freelance product engineer, full-stack and AI developer in Egypt. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.',
   location: { country: 'EG', label: 'Egypt, and open to remote work' },
   email: 'info@ahmed-ghazy.com',
   linkedin: 'https://www.linkedin.com/in/ahmedhg94',
@@ -45,14 +47,15 @@ export const profile = {
   portrait,
   // JSON-LD ProfilePage dates as full ISO 8601 date-times (Google rejects date-only); bump `updated` whenever the copy changes.
   created: '2026-09-23T00:00:00+03:00',
-  updated: '2026-11-20T00:00:00+02:00',
+  updated: '2026-11-26T00:00:00+02:00',
   knowsAbout: [
     'Product engineering',
     'Full-stack development',
+    'AI development',
+    'AI agents',
     'Taking over existing codebases',
     'MVP development',
     'AI product development',
-    'AI agents',
     'TypeScript',
     'React',
     'Next.js',
@@ -81,7 +84,7 @@ export const statement = 'Working in quality taught me to look at software from 
 
 export const about: string[] = [
   'Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account. That’s where I learned to look for what breaks before I change anything, and I still work that way.',
-  'As a product engineer, I start with the problem a feature solves for the people using it, then build it front to back. I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
+  'As a product engineer, I start with the problem a feature solves for the people using it, then build it front to back as a full-stack developer, AI features included. I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.',
   'Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.',
 ];
 
@@ -247,11 +250,11 @@ export const ui = {
   services: {
     more: 'Read more',
     indexTitle: 'Services',
-    metaTitle: 'Freelance Full-Stack Development Services',
+    metaTitle: 'Full-Stack and AI Development Services',
     indexHeading: 'Stuck web apps, MVPs and AI features',
     indexLead: 'An app that is stuck or needs a new developer, a first product, or a feature your team needs.',
     indexDescription:
-      'Services from a freelance product engineer: taking over a stuck web app, AI features and agents, MVPs, full-stack web apps and Arabic RTL web apps.',
+      'Full-stack and AI development services from a freelance product engineer: taking over stuck web apps, AI features and agents, MVPs and Arabic RTL apps.',
     provider: 'Service provider',
   },
   work: {
@@ -260,7 +263,7 @@ export const ui = {
     indexHeading: 'Selected work',
     indexLead: 'Projects, my role, and the decisions behind the work.',
     indexDescription:
-      'Case studies by Ahmed Ghazy, freelance product engineer: what was built, which parts were his and the stack.',
+      'Case studies by Ahmed Ghazy, product engineer, full-stack and AI developer: what was built, which parts were his and the stack.',
     visit: 'Visit the live site',
     more: 'Read the case study',
     homeMore: 'All case studies',
@@ -299,7 +302,7 @@ export const ui = {
   },
   hero: {
     portraitAlt: 'Portrait of Ahmed Ghazy',
-    role: 'Product engineer',
+    role: 'Product engineer, full-stack and AI developer',
     badge: 'Available',
     availability: 'Open to client projects and retainers',
     availabilityShort: 'Open to client projects',
@@ -315,7 +318,8 @@ export const ui = {
     frameTitle: 'Résumé PDF preview',
   },
   projects: { visit: 'Visit site' },
-  testimonials: { via: 'Posted on' },
+  // `original` shows only on translated pages, where the quotes stay in English.
+  testimonials: { via: 'Posted on', original: 'Quoted in the original English.' },
   contact: {
     intro: `Tell me what you are building or what needs fixing. You can also email [${profile.email}](mailto:${profile.email}) or find me on [LinkedIn](${profile.linkedin}).`,
     subject: 'New message from %{formName}',
@@ -325,7 +329,7 @@ export const ui = {
     tool: {
       name: 'send_enquiry_to_ahmed',
       description:
-        'Fills in the contact form to send Ahmed Ghazy, a freelance product engineer, an enquiry about a web app, AI feature, MVP or taking over an existing app. The visitor reviews the form and presses Send; Ahmed replies by email.',
+        'Fills in the contact form to send Ahmed Ghazy, a freelance product engineer, full-stack and AI developer, an enquiry about a web app, AI feature, MVP or taking over an existing app. The visitor reviews the form and presses Send; Ahmed replies by email.',
       params: {
         name: 'Full name of the person sending the enquiry.',
         email: 'Email address Ahmed should reply to.',
@@ -404,6 +408,7 @@ export const ui = {
   about: {
     education: 'Education',
     languages: 'Languages',
+    separator: ', ',
   },
   consent: {
     label: 'Cookie consent',
@@ -571,6 +576,7 @@ export const ui = {
   },
   footer: {
     place: 'Egypt',
+    email: 'Email',
     resume: 'Résumé',
     privacy: 'Privacy Notice',
     legal: 'Legal Notice',

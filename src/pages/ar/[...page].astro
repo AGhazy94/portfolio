@@ -1,0 +1,33 @@
+---
+import Home from '../index.astro';
+import Privacy from '../privacy.astro';
+import Legal from '../legal.astro';
+import Thanks from '../thanks.astro';
+import Services from '../services/index.astro';
+import Blog from '../blog/index.astro';
+import Work from '../work/index.astro';
+import { isBuilt, translatedPaths } from '../../i18n';
+
+// The English pages render in Arabic here; Astro.currentLocale ('ar') switches their copy.
+const pages = {
+  '/': Home,
+  '/privacy/': Privacy,
+  '/legal/': Legal,
+  '/thanks/': Thanks,
+  '/services/': Services,
+  '/blog/': Blog,
+  '/work/': Work,
+};
+
+export async function getStaticPaths() {
+  if (!isBuilt('ar')) return [];
+  const translated = await translatedPaths();
+  return [...translated]
+    .filter((path) => path === '/' || /^\/[a-z]+\/$/.test(path))
+    .map((path) => ({ params: { page: path === '/' ? undefined : path.slice(1, -1) }, props: { path } }));
+}
+
+const Page = pages[Astro.props.path as keyof typeof pages];
+---
+
+<Page />

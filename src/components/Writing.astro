@@ -1,10 +1,11 @@
 ---
 import Icon from './Icon.astro';
-import { formatDate, getPosts, getServices } from '../lib/content';
-import { ui } from '../data/profile';
+import { getPosts, getServices } from '../lib/content';
+import { useCopy } from '../i18n';
 
+const { ui, locale, href, formatDate, langOf } = await useCopy(Astro.currentLocale);
 const section = ui.sections.find(({ id }) => id === 'writing')!;
-const [posts, services] = await Promise.all([getPosts(), getServices()]);
+const [posts, services] = await Promise.all([getPosts(locale), getServices(locale)]);
 // One note per service, so a run of posts on one topic never crowds out the others.
 const picks = services.flatMap(({ id }) => posts.find((post) => post.data.service.id === id) ?? []);
 ---
@@ -16,7 +17,7 @@ const picks = services.flatMap(({ id }) => posts.find((post) => post.data.servic
         {section.title}
       </h2>
       <a
-        href="/blog/"
+        href={href('/blog/')}
         class="inline-flex min-h-11 items-center text-ui font-medium text-accent underline underline-offset-4 hover:opacity-70"
       >
         {ui.blog.homeMore}
@@ -29,11 +30,11 @@ const picks = services.flatMap(({ id }) => posts.find((post) => post.data.servic
             {formatDate(post.data.published)}
           </time>
           <div class="grid grid-cols-[1fr_auto] items-start gap-5">
-            <div>
+            <div {...langOf(post.locale)}>
               <h3 class="type-project text-fg">
                 {/* The stretched ::after makes the whole row the hit area while the link keeps a short name. */}
                 <a
-                  href={`/blog/${post.id}/`}
+                  href={href(`/blog/${post.id}/`)}
                   class="underline-offset-4 after:absolute after:inset-0 hover:underline focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-3 focus-visible:after:outline-accent"
                 >
                   {post.data.title}
@@ -41,7 +42,7 @@ const picks = services.flatMap(({ id }) => posts.find((post) => post.data.servic
               </h3>
               <p class="mt-2 max-w-[68ch] text-base leading-relaxed text-body">{post.data.description}</p>
             </div>
-            <Icon name="chevron" class="mt-1 size-5 -rotate-90 text-accent" />
+            <Icon name="chevron" class="mt-1 size-5 -rotate-90 text-accent rtl:rotate-90" />
           </div>
         </li>
       ))}

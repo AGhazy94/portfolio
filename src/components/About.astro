@@ -1,16 +1,12 @@
 ---
 import RichText from './RichText.astro';
-import { about, profile, statement, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { about, profile, statement, ui } = await useCopy(Astro.currentLocale);
 
 const section = ui.sections.find(({ id }) => id === 'about')!;
 const words = statement.split(' ');
-const facts = [
-  { term: ui.about.education, detail: `${profile.education.degree}, ${profile.education.years}` },
-  {
-    term: ui.about.languages,
-    detail: profile.languages.map(({ name, level }) => `${name} (${level})`).join(', '),
-  },
-];
+const languages = profile.languages.map(({ name, level }) => `${name} (${level})`).join(ui.about.separator);
 ---
 
 <section id={section.id} aria-labelledby="about-title" class="gutter border-t border-divider py-20 md:py-28">
@@ -25,12 +21,19 @@ const facts = [
 
     <div class="mt-8 grid gap-y-8 border-t border-divider pt-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
       <dl class="space-y-5 text-ui">
-        {facts.map(({ term, detail }) => (
-          <div>
-            <dt class="text-caption text-muted">{term}</dt>
-            <dd class="mt-1 leading-normal text-fg">{detail}</dd>
-          </div>
-        ))}
+        <div>
+          <dt class="text-caption text-muted">{ui.about.education}</dt>
+          <dd class="mt-1 leading-normal text-fg">
+            {`${profile.education.degree}${ui.about.separator}`}
+            <bdi dir="ltr" class="whitespace-nowrap">
+              {profile.education.years}
+            </bdi>
+          </dd>
+        </div>
+        <div>
+          <dt class="text-caption text-muted">{ui.about.languages}</dt>
+          <dd class="mt-1 leading-normal text-fg">{languages}</dd>
+        </div>
       </dl>
 
       <div class="max-w-[62ch] space-y-5 text-reading leading-[1.6] text-body">

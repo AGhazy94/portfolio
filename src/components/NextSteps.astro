@@ -1,5 +1,5 @@
 ---
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
 interface Props {
   headingLevel?: 2 | 3;
@@ -8,6 +8,7 @@ interface Props {
 
 const { headingLevel = 3, class: className } = Astro.props;
 const Heading = `h${headingLevel}` as const;
+const { ui } = await useCopy(Astro.currentLocale);
 const { heading, steps } = ui.contact.next;
 ---
 

@@ -2,9 +2,10 @@
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
 import { contentImage, getWork } from '../../lib/content';
-import { profile, ui } from '../../data/profile';
+import { useCopy } from '../../i18n';
 
-const projects = await getWork();
+const { profile, ui, locale, href, langOf } = await useCopy(Astro.currentLocale);
+const projects = await getWork(locale);
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
   {
@@ -35,10 +36,11 @@ const nodes = [
     items={projects.map((project) => ({
       title: project.data.status === 'draft' ? `[Draft] ${project.data.title}` : project.data.title,
       summary: project.data.description,
-      href: `/work/${project.id}/`,
+      href: href(`/work/${project.id}/`),
       meta: project.data.kind,
       cta: ui.work.more,
       image: contentImage('work', project.id),
+      ...langOf(project.locale),
     }))}
   />
 </ContentPage>

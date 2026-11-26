@@ -1,6 +1,6 @@
 ---
 import { parseInline } from '../lib/inline';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
 interface Props {
   source: string;
@@ -13,6 +13,7 @@ const {
   class: className,
   linkClass = 'text-accent underline decoration-1 underline-offset-3 transition-opacity duration-200 hover:opacity-70',
 } = Astro.props;
+const { ui, href, meta } = await useCopy(Astro.currentLocale);
 ---
 
 <p class={className}>
@@ -20,10 +21,13 @@ const {
     if (segment.kind === 'text') return segment.text;
     if (segment.kind === 'strong') return <strong class="font-semibold text-fg">{segment.text}</strong>;
     const external = /^https?:/.test(segment.href);
+    // In an Arabic line an address that wraps at its hyphen swaps its halves, so it stays whole and LTR.
+    const address = meta.dir === 'rtl' && segment.href.startsWith('mailto:');
     return (
       <a
-        class={linkClass}
-        href={segment.href}
+        class:list={[linkClass, address && 'whitespace-nowrap']}
+        dir={address ? 'ltr' : undefined}
+        href={segment.href.startsWith('/') ? href(segment.href) : segment.href}
         target={external ? '_blank' : undefined}
         rel={external ? 'noreferrer noopener' : undefined}
       >

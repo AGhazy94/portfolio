@@ -1,0 +1,14 @@
+---
+import Page from '../../blog/[id].astro';
+import { getPosts } from '../../../lib/content';
+import { isBuilt } from '../../../i18n';
+
+export async function getStaticPaths() {
+  if (!isBuilt('ar')) return [];
+  return (await getPosts('ar'))
+    .filter((entry) => entry.locale === 'ar')
+    .map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+---
+
+<Page {...Astro.props} />

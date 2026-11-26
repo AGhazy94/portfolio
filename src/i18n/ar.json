@@ -1,0 +1,1122 @@
+{
+  "profile.title": {
+    "en": "Product Engineer · Full-Stack & AI Developer",
+    "ar": "مهندس منتجات · مطوّر Full-Stack وذكاء اصطناعي"
+  },
+  "profile.seoTitle": {
+    "en": "Product Engineer, Full-Stack & AI Developer | Ahmed Ghazy",
+    "ar": "مهندس منتجات ومطوّر Full-Stack وذكاء اصطناعي | Ahmed Ghazy"
+  },
+  "profile.offer": {
+    "en": "I take over web apps that are stuck and ship the next release.",
+    "ar": "أتسلّم تطبيقات ويب متعثّرة وأطلق إصدارها التالي."
+  },
+  "profile.offerAccent": {
+    "en": "ship",
+    "ar": "أطلق"
+  },
+  "profile.offerLead": {
+    "en": "Including apps built with Lovable or Bolt. I also build MVPs and AI features.",
+    "ar": "ومنها تطبيقات مبنية بـ Lovable أو Bolt. وأبني النسخ الأولى (MVP) وميزات الذكاء الاصطناعي."
+  },
+  "profile.description": {
+    "en": "Freelance product engineer, full-stack and AI developer in Egypt. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.",
+    "ar": "مهندس منتجات مستقل من مصر ومطوّر Full-Stack وذكاء اصطناعي. أتسلّم تطبيقات الويب المتعثّرة، ومنها تطبيقات Lovable وBolt، وأبني نسخًا أولى وميزات ذكاء اصطناعي."
+  },
+  "profile.location.label": {
+    "en": "Egypt, and open to remote work",
+    "ar": "مصر، ومتاح للعمل عن بُعد"
+  },
+  "profile.ogLine": {
+    "en": "Getting stuck web apps shipped",
+    "ar": "إطلاق تطبيقات الويب المتعثّرة"
+  },
+  "profile.languages.0.name": {
+    "en": "Arabic",
+    "ar": "العربية"
+  },
+  "profile.languages.0.level": {
+    "en": "Native",
+    "ar": "اللغة الأم"
+  },
+  "profile.languages.1.name": {
+    "en": "English",
+    "ar": "الإنجليزية"
+  },
+  "profile.languages.1.level": {
+    "en": "Fluent",
+    "ar": "بطلاقة"
+  },
+  "profile.education.degree": {
+    "en": "BSc Computer & Information Systems (MIS)",
+    "ar": "بكالوريوس الحاسب ونظم المعلومات (MIS)"
+  },
+  "profile.education.school": {
+    "en": "Higher Institute of Computer and Information Systems, Abu Qir",
+    "ar": "المعهد العالي للحاسب الآلي ونظم المعلومات بأبي قير"
+  },
+  "statement": {
+    "en": "Working in quality taught me to look at software from the customer’s side.",
+    "ar": "علّمني العمل في الجودة أن أنظر إلى البرمجيات بعين العميل."
+  },
+  "about.0": {
+    "en": "Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account. That’s where I learned to look for what breaks before I change anything, and I still work that way.",
+    "ar": "قبل أول وظيفة لي في تطوير الواجهات، أمضيت نحو 3 سنوات محلّل جودة في \u2066_VOIS (Vodafone)\u2069 ضمن حساب اتصالات في المملكة المتحدة. هناك تعلّمت أن أبحث عمّا يتعطّل قبل أن أغيّر أي شيء، وما زلت أعمل بهذه الطريقة."
+  },
+  "about.1": {
+    "en": "As a product engineer, I start with the problem a feature solves for the people using it, then build it front to back as a full-stack developer, AI features included. I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.",
+    "ar": "بصفتي مهندس منتجات، أبدأ بالمشكلة التي تحلّها الميزة لمن يستخدمها، ثم أبنيها من الواجهة إلى الخادم بصفتي مطوّر Full-Stack، بما فيها ميزات الذكاء الاصطناعي. بدأت بتطوير الواجهات، ثم توسّعت إلى بقية أجزاء التطبيق. عندما تحتاج الميزة إلى واجهة API أو تعديل في قاعدة البيانات أو خطوة تعتمد على الذكاء الاصطناعي، أنفّذ ذلك أيضًا باستخدام Node.js وPostgreSQL وPrisma."
+  },
+  "about.2": {
+    "en": "Away from the keyboard, I’m into **perfumery** and keep adding to my collection. Now and then a good video game takes the whole weekend.",
+    "ar": "بعيدًا عن لوحة المفاتيح، أهتم **بالعطور** وأضيف إلى مجموعتي باستمرار. ومن وقت لآخر تستحوذ لعبة فيديو جيدة على عطلة نهاية الأسبوع بأكملها."
+  },
+  "experience.0.end": {
+    "en": "Present",
+    "ar": "الآن"
+  },
+  "experience.0.role": {
+    "en": "Senior Full-Stack Engineer",
+    "ar": "مهندس Full-Stack أول"
+  },
+  "experience.0.company": {
+    "en": "Smart Bricks",
+    "ar": "Smart Bricks"
+  },
+  "experience.0.summary": {
+    "en": "AI platform for real-estate investing, backed by a16z speedrun.",
+    "ar": "منصة للاستثمار العقاري بالذكاء الاصطناعي، بدعم من a16z speedrun."
+  },
+  "experience.0.highlights.0": {
+    "en": "Lead the frontend team: I own the architecture and build it hands-on, review the team’s pull requests and mentor newer engineers.",
+    "ar": "أقود فريق تطوير الواجهة. أتولّى مسؤولية بنيتها وأشارك في تطويرها مباشرةً، وأراجع طلبات الدمج وأوجّه المهندسين الأقل خبرة."
+  },
+  "experience.0.highlights.1": {
+    "en": "Moved data fetching to the server with the Next.js App Router and split the property pages into server-rendered sections.",
+    "ar": "نقلت جلب البيانات إلى الخادم باستخدام Next.js App Router، وقسّمت صفحات العقارات إلى أقسام تُعرض من جهة الخادم."
+  },
+  "experience.0.highlights.2": {
+    "en": "Rebuilt the valuation and score modals so investors can see why a property got its price and score.",
+    "ar": "أعدت بناء نوافذ التقييم والدرجات ليعرف المستثمرون كيف تحدّد سعر العقار ودرجته."
+  },
+  "experience.0.highlights.3": {
+    "en": "On the backend, built Next.js API routes such as the Clerk sign-up webhook and the health check, and cut the API’s Docker image from about 9 GB to about 2 GB.",
+    "ar": "في الواجهة الخلفية، بنيت مسارات API باستخدام Next.js، منها Webhook التسجيل في Clerk ومسار التحقّق من سلامة الخدمة، وقلّصت حجم صورة Docker الخاصة بالواجهة البرمجية من نحو 9 GB إلى نحو 2 GB."
+  },
+  "experience.0.highlights.4": {
+    "en": "Set up observability with OpenTelemetry, Prometheus, Loki, Tempo and Grafana, plus PostHog feature flags, and built the Storybook component library.",
+    "ar": "أعددت مراقبة النظام باستخدام OpenTelemetry وPrometheus وLoki وTempo وGrafana، إلى جانب مفاتيح تفعيل الميزات في PostHog، وبنيت مكتبة المكوّنات في Storybook."
+  },
+  "experience.1.end": {
+    "en": "2025",
+    "ar": "2025"
+  },
+  "experience.1.role": {
+    "en": "Frontend Engineer",
+    "ar": "مهندس واجهات أمامية"
+  },
+  "experience.1.company": {
+    "en": "caisy",
+    "ar": "caisy"
+  },
+  "experience.1.summary": {
+    "en": "Headless CMS.",
+    "ar": "نظام Headless CMS لإدارة المحتوى بمعزل عن الواجهة."
+  },
+  "experience.1.highlights.0": {
+    "en": "Rebuilt the blog category and article pages of caisy’s marketing site from styled-components to Tailwind CSS, and rewrote a class-based photo-gallery slider as a hooks component.",
+    "ar": "أعدت بناء صفحات تصنيفات المدونة والمقالات في موقع caisy التسويقي باستخدام Tailwind CSS بدلًا من styled-components، وأعدت كتابة عارض الصور من مكوّن قائم على الفئات إلى مكوّن يستخدم Hooks."
+  },
+  "experience.1.highlights.1": {
+    "en": "Built features on Next.js, tRPC and Drizzle codebases: schema and migrations for Stripe billing and subscriptions, users, workspaces and chat.",
+    "ar": "بنيت ميزات في مشاريع تستخدم Next.js وtRPC وDrizzle، منها مخطط قاعدة البيانات وترحيلاتها لفوترة Stripe واشتراكاتها، وميزات المستخدمين ومساحات العمل والمحادثة."
+  },
+  "experience.1.highlights.2": {
+    "en": "Added AI translation of content fields to the editor.",
+    "ar": "أضفت ترجمة حقول المحتوى بالذكاء الاصطناعي إلى المحرّر."
+  },
+  "experience.2.end": {
+    "en": "2024",
+    "ar": "2024"
+  },
+  "experience.2.role": {
+    "en": "Frontend Engineer",
+    "ar": "مهندس واجهات أمامية"
+  },
+  "experience.2.company": {
+    "en": "Stake",
+    "ar": "Stake"
+  },
+  "experience.2.note": {
+    "en": "Part-time",
+    "ar": "دوام جزئي"
+  },
+  "experience.2.summary": {
+    "en": "Fractional real-estate investment platform.",
+    "ar": "منصة للاستثمار العقاري الجزئي."
+  },
+  "experience.2.highlights.0": {
+    "en": "Built features and shared components for the investor-facing web app. The product details are confidential.",
+    "ar": "بنيت ميزات ومكوّنات مشتركة لتطبيق الويب المخصّص للمستثمرين. تفاصيل المنتج سرّية."
+  },
+  "experience.2.highlights.1": {
+    "en": "Built the marketing team’s emails in Arabic and English, with right-to-left layouts that held up across email apps.",
+    "ar": "بنيت رسائل فريق التسويق بالعربية والإنجليزية، بتخطيطات من اليمين إلى اليسار تعمل على تطبيقات بريد إلكتروني مختلفة."
+  },
+  "experience.3.end": {
+    "en": "2023",
+    "ar": "2023"
+  },
+  "experience.3.role": {
+    "en": "Frontend Engineer",
+    "ar": "مهندس واجهات أمامية"
+  },
+  "experience.3.company": {
+    "en": "Independent",
+    "ar": "عمل مستقل"
+  },
+  "experience.3.note": {
+    "en": "Freelance on Upwork",
+    "ar": "عمل مستقل على Upwork"
+  },
+  "experience.3.summary": {
+    "en": "This is where I started as an engineer.",
+    "ar": "هنا بدأت عملي مهندسًا."
+  },
+  "experience.3.highlights.0": {
+    "en": "Built React apps and marketing sites for e-commerce and SaaS clients.",
+    "ar": "بنيت تطبيقات React ومواقع تسويقية لعملاء في التجارة الإلكترونية والبرمجيات كخدمة (SaaS)."
+  },
+  "experience.3.highlights.1": {
+    "en": "Built component libraries with styled-components and BEM.",
+    "ar": "بنيت مكتبات مكوّنات باستخدام styled-components وBEM."
+  },
+  "experience.3.highlights.2": {
+    "en": "Fixed cross-browser bugs and turned designs into HTML and CSS.",
+    "ar": "أصلحت مشكلات التوافق بين المتصفحات وحوّلت التصاميم إلى HTML وCSS."
+  },
+  "projects.0.name": {
+    "en": "ScriptBee",
+    "ar": "ScriptBee"
+  },
+  "projects.0.kind": {
+    "en": "AI marketing platform · Client work through caisy",
+    "ar": "منصة تسويق بالذكاء الاصطناعي · عمل لعميل عبر caisy"
+  },
+  "projects.0.summary": {
+    "en": "Built the chat experience, agent tools and background tasks that let users return to long-running work, plus Google Ads connections and onboarding.",
+    "ar": "بنيت واجهة المحادثة وأدوات الوكيل والمهام الخلفية التي تتيح للمستخدمين العودة إلى المهام الطويلة، إلى جانب ربط Google Ads وتهيئة المستخدمين الجدد."
+  },
+  "projects.1.name": {
+    "en": "LEICHT",
+    "ar": "LEICHT"
+  },
+  "projects.1.kind": {
+    "en": "Kitchen brand site · Through caisy",
+    "ar": "موقع علامة تجارية للمطابخ · عبر caisy"
+  },
+  "projects.1.summary": {
+    "en": "Built the multi-language leicht.com site in Qwik with CMS content and GraphQL, plus an internal kitchen configurator.",
+    "ar": "بنيت موقع leicht.com متعدد اللغات باستخدام Qwik، وربطت محتواه بنظام إدارة المحتوى عبر GraphQL، وبنيت أيضًا أداة داخلية لتكوين المطابخ."
+  },
+  "projects.2.name": {
+    "en": "AI real-estate platform: an audit, then the fixes in order",
+    "ar": "منصة عقارية بالذكاء الاصطناعي: مراجعة ثم إصلاح حسب الأولوية"
+  },
+  "projects.2.kind": {
+    "en": "AI platform for real-estate investors · Frontend lead",
+    "ar": "منصة للمستثمرين العقاريين بالذكاء الاصطناعي · قيادة الواجهة الأمامية"
+  },
+  "projects.2.summary": {
+    "en": "Audited the live frontend before changing anything, ranked the problems by how much they hurt users and fixed them in that order, inside the existing app with no rewrite. Error reports went down, and more property pages got indexed by Google.",
+    "ar": "راجعت الواجهة التي يستخدمها العملاء قبل تغيير أي شيء، ورتّبت المشكلات حسب أثرها على المستخدمين، ثم أصلحتها بهذا الترتيب داخل التطبيق القائم دون إعادة كتابته. قلّت بلاغات الأخطاء وفهرس Google مزيدًا من صفحات العقارات."
+  },
+  "testimonials.0.name": {
+    "en": "Haya Doughan",
+    "ar": "Haya Doughan"
+  },
+  "testimonials.0.context": {
+    "en": "Stake marketing team · 2022 to 2024",
+    "ar": "فريق التسويق في Stake · من 2022 إلى 2024"
+  },
+  "testimonials.1.name": {
+    "en": "Mohammed Ahmed Abdus",
+    "ar": "Mohammed Ahmed Abdus"
+  },
+  "testimonials.1.context": {
+    "en": "Full-stack engineer at Smart Bricks · 2026",
+    "ar": "مهندس Full-Stack في Smart Bricks · 2026"
+  },
+  "testimonials.2.name": {
+    "en": "Upwork client",
+    "ar": "عميل على Upwork"
+  },
+  "testimonials.2.context": {
+    "en": "Convert two design screens into HTML · 2022",
+    "ar": "تحويل تصميم شاشتين إلى HTML · 2022"
+  },
+  "testimonials.3.name": {
+    "en": "Upwork client",
+    "ar": "عميل على Upwork"
+  },
+  "testimonials.3.context": {
+    "en": "Modify a media player · 2022",
+    "ar": "تعديل مشغّل وسائط · 2022"
+  },
+  "ui.skipLink": {
+    "en": "Skip to Content",
+    "ar": "انتقل إلى المحتوى"
+  },
+  "ui.newTab": {
+    "en": " (opens in a new tab)",
+    "ar": " (يفتح في تبويب جديد)"
+  },
+  "ui.dateTo": {
+    "en": "to",
+    "ar": "إلى"
+  },
+  "ui.navLabel": {
+    "en": "Main navigation",
+    "ar": "التنقّل الرئيسي"
+  },
+  "ui.menu": {
+    "en": "Navigation menu",
+    "ar": "قائمة التنقّل"
+  },
+  "ui.socialLabel": {
+    "en": "Social media",
+    "ar": "وسائل التواصل الاجتماعي"
+  },
+  "ui.tagsLabel": {
+    "en": "Technologies used",
+    "ar": "التقنيات المستخدمة"
+  },
+  "ui.sections.0.title": {
+    "en": "How I can help",
+    "ar": "كيف يمكنني مساعدتك"
+  },
+  "ui.sections.1.title": {
+    "en": "Selected work",
+    "ar": "أعمال مختارة"
+  },
+  "ui.sections.2.title": {
+    "en": "Clients and colleagues",
+    "ar": "عملاء وزملاء"
+  },
+  "ui.sections.3.title": {
+    "en": "Experience",
+    "ar": "الخبرة"
+  },
+  "ui.sections.4.title": {
+    "en": "Notes for founders",
+    "ar": "ملاحظات للمؤسسين"
+  },
+  "ui.sections.5.title": {
+    "en": "About",
+    "ar": "نبذة عنّي"
+  },
+  "ui.sections.6.title": {
+    "en": "Let’s work together.",
+    "ar": "لنعمل معًا"
+  },
+  "ui.nav.0.label": {
+    "en": "Services",
+    "ar": "الخدمات"
+  },
+  "ui.nav.1.label": {
+    "en": "Work",
+    "ar": "الأعمال"
+  },
+  "ui.nav.2.label": {
+    "en": "Blog",
+    "ar": "المدونة"
+  },
+  "ui.nav.3.label": {
+    "en": "About",
+    "ar": "نبذة عنّي"
+  },
+  "ui.nav.4.label": {
+    "en": "Contact",
+    "ar": "تواصل"
+  },
+  "ui.services.more": {
+    "en": "Read more",
+    "ar": "اقرأ المزيد"
+  },
+  "ui.services.indexTitle": {
+    "en": "Services",
+    "ar": "الخدمات"
+  },
+  "ui.services.metaTitle": {
+    "en": "Full-Stack and AI Development Services",
+    "ar": "خدمات تطوير Full-Stack والذكاء الاصطناعي"
+  },
+  "ui.services.indexHeading": {
+    "en": "Stuck web apps, MVPs and AI features",
+    "ar": "تطبيقات ويب متعثّرة ونسخ أولى وميزات ذكاء اصطناعي"
+  },
+  "ui.services.indexLead": {
+    "en": "An app that is stuck or needs a new developer, a first product, or a feature your team needs.",
+    "ar": "لديك تطبيق متعثّر أو يحتاج إلى مطوّر جديد، أو تريد بناء نسخة أولى من منتجك أو إضافة ميزة يحتاجها فريقك."
+  },
+  "ui.services.indexDescription": {
+    "en": "Full-stack and AI development services from a freelance product engineer: taking over stuck web apps, AI features and agents, MVPs and Arabic RTL apps.",
+    "ar": "خدمات Full-Stack والذكاء الاصطناعي من مهندس منتجات مستقل: تسلّم تطبيقات ويب متعثّرة، وبناء ميزات ووكلاء ذكاء اصطناعي ونسخ أولى وتطبيقات عربية."
+  },
+  "ui.services.provider": {
+    "en": "Service provider",
+    "ar": "مقدّم الخدمة"
+  },
+  "ui.work.indexTitle": {
+    "en": "Work",
+    "ar": "الأعمال"
+  },
+  "ui.work.metaTitle": {
+    "en": "Case Studies: Next.js and AI Projects",
+    "ar": "دراسات حالة في Next.js والذكاء الاصطناعي"
+  },
+  "ui.work.indexHeading": {
+    "en": "Selected work",
+    "ar": "أعمال مختارة"
+  },
+  "ui.work.indexLead": {
+    "en": "Projects, my role, and the decisions behind the work.",
+    "ar": "المشاريع، ودوري فيها، والقرارات التي اتخذتها خلال العمل."
+  },
+  "ui.work.indexDescription": {
+    "en": "Case studies by Ahmed Ghazy, product engineer, full-stack and AI developer: what was built, which parts were his and the stack.",
+    "ar": "دراسات حالة من Ahmed Ghazy، مهندس منتجات ومطوّر Full-Stack وذكاء اصطناعي. ما بُني، وما تولّيتُه في كل مشروع، والتقنيات المستخدمة."
+  },
+  "ui.work.visit": {
+    "en": "Visit the live site",
+    "ar": "افتح الموقع"
+  },
+  "ui.work.more": {
+    "en": "Read the case study",
+    "ar": "اقرأ دراسة الحالة"
+  },
+  "ui.work.homeMore": {
+    "en": "All case studies",
+    "ar": "كل دراسات الحالة"
+  },
+  "ui.work.facts.role": {
+    "en": "Role",
+    "ar": "الدور"
+  },
+  "ui.work.facts.period": {
+    "en": "When",
+    "ar": "الفترة"
+  },
+  "ui.work.facts.stack": {
+    "en": "Stack",
+    "ar": "التقنيات"
+  },
+  "ui.work.next": {
+    "en": "Next case study",
+    "ar": "دراسة الحالة التالية"
+  },
+  "ui.blog.indexTitle": {
+    "en": "Blog",
+    "ar": "المدونة"
+  },
+  "ui.blog.metaTitle": {
+    "en": "Articles on Hiring a Developer",
+    "ar": "مقالات عن الاستعانة بمطوّر"
+  },
+  "ui.blog.indexHeading": {
+    "en": "Practical notes for founders",
+    "ar": "ملاحظات عملية للمؤسسين"
+  },
+  "ui.blog.indexLead": {
+    "en": "Guides to scoping a product, taking over an app, and choosing a developer.",
+    "ar": "أدلة لتحديد نطاق منتج، وتسلّم تطبيق قائم، واختيار مطوّر."
+  },
+  "ui.blog.indexDescription": {
+    "en": "Articles for founders and teams hiring a developer: adding AI to a product, taking over a codebase, MVP costs, fix or rebuild, and Arabic RTL.",
+    "ar": "مقالات للمؤسسين والفرق التي تبحث عن مطوّر: إضافة الذكاء الاصطناعي، وتسلّم الكود، وتكلفة النسخة الأولى، والإصلاح أو إعادة البناء، ودعم العربية."
+  },
+  "ui.blog.published": {
+    "en": "Published",
+    "ar": "تاريخ النشر"
+  },
+  "ui.blog.updated": {
+    "en": "Updated",
+    "ar": "آخر تحديث"
+  },
+  "ui.blog.by": {
+    "en": "By",
+    "ar": "بقلم"
+  },
+  "ui.blog.more": {
+    "en": "Read the article",
+    "ar": "اقرأ المقال"
+  },
+  "ui.blog.homeMore": {
+    "en": "All articles",
+    "ar": "كل المقالات"
+  },
+  "ui.service.fit": {
+    "en": "Is this for you?",
+    "ar": "هل تناسبك هذه الخدمة؟"
+  },
+  "ui.service.gets": {
+    "en": "What you get",
+    "ar": "ما تحصل عليه"
+  },
+  "ui.service.steps": {
+    "en": "What the first two weeks look like",
+    "ar": "ما الذي يجري في أول أسبوعين؟"
+  },
+  "ui.service.week": {
+    "en": "Week",
+    "ar": "الأسبوع"
+  },
+  "ui.service.experience": {
+    "en": "Relevant experience",
+    "ar": "خبرة ذات صلة"
+  },
+  "ui.service.terms": {
+    "en": "How we work and what it costs",
+    "ar": "كيف نعمل وما التكلفة؟"
+  },
+  "ui.page.faq": {
+    "en": "Questions people ask",
+    "ar": "الأسئلة الشائعة"
+  },
+  "ui.page.relatedServices": {
+    "en": "Related services",
+    "ar": "خدمات ذات صلة"
+  },
+  "ui.page.otherServices": {
+    "en": "Other services",
+    "ar": "خدمات أخرى"
+  },
+  "ui.page.relatedArticles": {
+    "en": "Related articles",
+    "ar": "مقالات ذات صلة"
+  },
+  "ui.page.breadcrumbLabel": {
+    "en": "Breadcrumb",
+    "ar": "مسار التنقّل"
+  },
+  "ui.page.home": {
+    "en": "Home",
+    "ar": "الرئيسية"
+  },
+  "ui.page.onThisPage": {
+    "en": "On this page",
+    "ar": "في هذه الصفحة"
+  },
+  "ui.hero.portraitAlt": {
+    "en": "Portrait of Ahmed Ghazy",
+    "ar": "صورة شخصية لـ Ahmed Ghazy"
+  },
+  "ui.hero.role": {
+    "en": "Product engineer, full-stack and AI developer",
+    "ar": "مهندس منتجات ومطوّر Full-Stack ومطوّر ذكاء اصطناعي"
+  },
+  "ui.hero.badge": {
+    "en": "Available",
+    "ar": "متاح"
+  },
+  "ui.hero.availability": {
+    "en": "Open to client projects and retainers",
+    "ar": "لمشاريع العملاء والعقود الشهرية"
+  },
+  "ui.hero.availabilityShort": {
+    "en": "Open to client projects",
+    "ar": "لمشاريع العملاء"
+  },
+  "ui.hero.contact": {
+    "en": "Get in touch",
+    "ar": "تواصل معي"
+  },
+  "ui.hero.work": {
+    "en": "View selected work",
+    "ar": "شاهد بعض أعمالي"
+  },
+  "ui.experience.resume": {
+    "en": "Full résumé",
+    "ar": "السيرة الذاتية كاملة"
+  },
+  "ui.experience.details": {
+    "en": "What I built",
+    "ar": "ما بنيتُه"
+  },
+  "ui.resume.eyebrow": {
+    "en": "Résumé",
+    "ar": "السيرة الذاتية"
+  },
+  "ui.resume.download": {
+    "en": "Download PDF",
+    "ar": "نزّل ملف PDF"
+  },
+  "ui.resume.open": {
+    "en": "Open in a new tab",
+    "ar": "افتح في تبويب جديد"
+  },
+  "ui.resume.close": {
+    "en": "Close résumé",
+    "ar": "أغلق السيرة الذاتية"
+  },
+  "ui.resume.frameTitle": {
+    "en": "Résumé PDF preview",
+    "ar": "معاينة السيرة الذاتية بصيغة PDF"
+  },
+  "ui.projects.visit": {
+    "en": "Visit site",
+    "ar": "افتح الموقع"
+  },
+  "ui.testimonials.via": {
+    "en": "Posted on",
+    "ar": "نُشر على"
+  },
+  "ui.testimonials.original": {
+    "en": "Quoted in the original English.",
+    "ar": "الاقتباس بالإنجليزية كما ورد في الأصل."
+  },
+  "ui.contact.intro": {
+    "en": "Tell me what you are building or what needs fixing. You can also email [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com) or find me on [LinkedIn](https://www.linkedin.com/in/ahmedhg94).",
+    "ar": "أخبرني بما تبنيه أو بما يحتاج إلى إصلاح. يمكنك أيضًا مراسلتي على [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com) أو التواصل معي على [LinkedIn](https://www.linkedin.com/in/ahmedhg94)."
+  },
+  "ui.contact.honeypot": {
+    "en": "Leave this empty if you’re human",
+    "ar": "اترك هذا الحقل فارغًا إذا كنت إنسانًا"
+  },
+  "ui.contact.optional": {
+    "en": "Optional",
+    "ar": "اختياري"
+  },
+  "ui.contact.fields.name.label": {
+    "en": "Name",
+    "ar": "الاسم"
+  },
+  "ui.contact.fields.name.placeholder": {
+    "en": "Jane Smith",
+    "ar": "سارة أحمد"
+  },
+  "ui.contact.fields.email.label": {
+    "en": "Email",
+    "ar": "البريد الإلكتروني"
+  },
+  "ui.contact.fields.email.placeholder": {
+    "en": "jane@company.com",
+    "ar": "jane@company.com"
+  },
+  "ui.contact.fields.message.label": {
+    "en": "Message",
+    "ar": "الرسالة"
+  },
+  "ui.contact.fields.message.placeholder": {
+    "en": "What are you building, or what needs fixing?",
+    "ar": "ما الذي تبنيه، أو ما الذي يحتاج إلى إصلاح؟"
+  },
+  "ui.contact.choices.0.label": {
+    "en": "What do you need?",
+    "ar": "ما الذي تحتاج إليه؟"
+  },
+  "ui.contact.choices.0.placeholder": {
+    "en": "Choose one",
+    "ar": "اختر خيارًا"
+  },
+  "ui.contact.choices.0.options.0": {
+    "en": "Take over an existing web app",
+    "ar": "تسلّم تطبيق ويب قائم"
+  },
+  "ui.contact.choices.0.options.1": {
+    "en": "AI feature, agent or product",
+    "ar": "ميزة أو وكيل أو منتج ذكاء اصطناعي"
+  },
+  "ui.contact.choices.0.options.2": {
+    "en": "Build an MVP",
+    "ar": "بناء النسخة الأولى (MVP)"
+  },
+  "ui.contact.choices.0.options.3": {
+    "en": "Build a web app or website",
+    "ar": "بناء تطبيق ويب أو موقع"
+  },
+  "ui.contact.choices.0.options.4": {
+    "en": "Arabic or RTL web app",
+    "ar": "تطبيق ويب بالعربية أو باتجاه RTL"
+  },
+  "ui.contact.choices.0.options.5": {
+    "en": "Something else",
+    "ar": "شيء آخر"
+  },
+  "ui.contact.choices.1.label": {
+    "en": "Budget",
+    "ar": "الميزانية"
+  },
+  "ui.contact.choices.1.placeholder": {
+    "en": "Choose a range",
+    "ar": "اختر نطاقًا"
+  },
+  "ui.contact.choices.1.options.0": {
+    "en": "Under $2,000",
+    "ar": "أقل من $2,000"
+  },
+  "ui.contact.choices.1.options.1": {
+    "en": "$2,000 to $5,000",
+    "ar": "من $2,000 إلى $5,000"
+  },
+  "ui.contact.choices.1.options.2": {
+    "en": "$5,000 to $15,000",
+    "ar": "من $5,000 إلى $15,000"
+  },
+  "ui.contact.choices.1.options.3": {
+    "en": "$15,000 or more",
+    "ar": "$15,000 أو أكثر"
+  },
+  "ui.contact.choices.1.options.4": {
+    "en": "Not sure yet",
+    "ar": "لم أحدّد بعد"
+  },
+  "ui.contact.choices.2.label": {
+    "en": "Timeline",
+    "ar": "المدة"
+  },
+  "ui.contact.choices.2.placeholder": {
+    "en": "Choose a timeline",
+    "ar": "اختر المدة"
+  },
+  "ui.contact.choices.2.options.0": {
+    "en": "As soon as possible",
+    "ar": "في أقرب وقت ممكن"
+  },
+  "ui.contact.choices.2.options.1": {
+    "en": "Within a month",
+    "ar": "خلال شهر"
+  },
+  "ui.contact.choices.2.options.2": {
+    "en": "In 1 to 3 months",
+    "ar": "خلال 1 إلى 3 أشهر"
+  },
+  "ui.contact.choices.2.options.3": {
+    "en": "Just exploring",
+    "ar": "أستكشف الخيارات"
+  },
+  "ui.contact.errors.nameRequired": {
+    "en": "Enter your name.",
+    "ar": "أدخل اسمك."
+  },
+  "ui.contact.errors.emailRequired": {
+    "en": "Enter your email address.",
+    "ar": "أدخل عنوان بريدك الإلكتروني."
+  },
+  "ui.contact.errors.emailInvalid": {
+    "en": "Enter an email address like name@company.com.",
+    "ar": "أدخل عنوان بريد إلكتروني مثل name@company.com."
+  },
+  "ui.contact.errors.messageRequired": {
+    "en": "Write a message.",
+    "ar": "اكتب رسالة."
+  },
+  "ui.contact.errors.messageShort": {
+    "en": "Add a bit more detail, at least 10 characters.",
+    "ar": "أضف بعض التفاصيل، بما لا يقل عن 10 أحرف."
+  },
+  "ui.contact.submit": {
+    "en": "Send message",
+    "ar": "أرسل الرسالة"
+  },
+  "ui.contact.privacy": {
+    "en": "I use your details to respond to your enquiry. See the [Privacy Notice](/privacy/).",
+    "ar": "أستخدم بياناتك للردّ على استفسارك. راجع [إشعار الخصوصية](/privacy/)."
+  },
+  "ui.contact.next.heading": {
+    "en": "What happens next",
+    "ar": "ماذا يحدث بعد الإرسال؟"
+  },
+  "ui.contact.next.steps.0": {
+    "en": "I read it and reply by email.",
+    "ar": "أقرأ رسالتك وأردّ عليك بالبريد الإلكتروني."
+  },
+  "ui.contact.next.steps.1": {
+    "en": "If it helps, we have a short call.",
+    "ar": "نجري مكالمة قصيرة إذا كانت مفيدة."
+  },
+  "ui.contact.next.steps.2": {
+    "en": "A fixed price for a clear scope, or a monthly one for ongoing work.",
+    "ar": "سعر ثابت لنطاق واضح، أو سعر شهري للعمل المستمر."
+  },
+  "ui.contact.sending": {
+    "en": "Sending…",
+    "ar": "جارٍ الإرسال…"
+  },
+  "ui.contact.failure": {
+    "en": "Your message didn’t send. Check your connection and try again, or email [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com).",
+    "ar": "تعذّر إرسال رسالتك. تحقّق من اتصالك وحاول مرة أخرى، أو راسلني على [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com)."
+  },
+  "ui.contact.success.title": {
+    "en": "Thanks, your message is on its way.",
+    "ar": "شكرًا، رسالتك في الطريق."
+  },
+  "ui.contact.success.body": {
+    "en": "I’ll reply to {email} as soon as I can.",
+    "ar": "سأردّ على {email} في أقرب وقت ممكن."
+  },
+  "ui.contact.success.again": {
+    "en": "Send another message",
+    "ar": "أرسل رسالة أخرى"
+  },
+  "ui.thanks.title": {
+    "en": "Message sent",
+    "ar": "تم إرسال الرسالة"
+  },
+  "ui.thanks.heading": {
+    "en": "Thanks, your message is on its way.",
+    "ar": "شكرًا، رسالتك في الطريق."
+  },
+  "ui.thanks.back": {
+    "en": "Back to the home page",
+    "ar": "العودة إلى الصفحة الرئيسية"
+  },
+  "ui.about.education": {
+    "en": "Education",
+    "ar": "التعليم"
+  },
+  "ui.about.languages": {
+    "en": "Languages",
+    "ar": "اللغات"
+  },
+  "ui.about.separator": {
+    "en": ", ",
+    "ar": "، "
+  },
+  "ui.consent.label": {
+    "en": "Cookie consent",
+    "ar": "الموافقة على ملفات تعريف الارتباط"
+  },
+  "ui.consent.title": {
+    "en": "Cookies on this site",
+    "ar": "ملفات تعريف الارتباط على هذا الموقع"
+  },
+  "ui.consent.body": {
+    "en": "I use optional analytics cookies to understand how visitors use this site and improve it. [Privacy Notice](/privacy/)",
+    "ar": "أستخدم ملفات تعريف ارتباط اختيارية للتحليلات لفهم كيفية استخدام الزوّار للموقع وتحسينه. [إشعار الخصوصية](/privacy/)"
+  },
+  "ui.consent.allow": {
+    "en": "Accept",
+    "ar": "قبول"
+  },
+  "ui.consent.decline": {
+    "en": "Reject",
+    "ar": "رفض"
+  },
+  "ui.privacy.title": {
+    "en": "Privacy Notice",
+    "ar": "إشعار الخصوصية"
+  },
+  "ui.privacy.metaTitle": {
+    "en": "Privacy Notice",
+    "ar": "إشعار الخصوصية"
+  },
+  "ui.privacy.heading": {
+    "en": "Privacy Notice",
+    "ar": "إشعار الخصوصية"
+  },
+  "ui.privacy.description": {
+    "en": "How ahmed-ghazy.com collects, uses and protects personal data from contact forms, analytics and essential website services.",
+    "ar": "كيف يجمع ahmed-ghazy.com البيانات الشخصية من نماذج التواصل والتحليلات وخدمات الموقع الأساسية، وكيف يستخدمها ويحميها."
+  },
+  "ui.privacy.lead": {
+    "en": "This notice explains what information this website collects, why it is used and the choices available to you.",
+    "ar": "يوضّح هذا الإشعار المعلومات التي يجمعها الموقع وأسباب استخدامها والخيارات المتاحة لك."
+  },
+  "ui.privacy.updated": {
+    "en": "Last updated: 19 November 2026.",
+    "ar": "آخر تحديث في 19 نوفمبر 2026."
+  },
+  "ui.privacy.change": {
+    "en": "Cookie settings",
+    "ar": "إعدادات ملفات تعريف الارتباط"
+  },
+  "ui.privacy.sections.0.heading": {
+    "en": "Who I am",
+    "ar": "من أنا"
+  },
+  "ui.privacy.sections.0.body.0": {
+    "en": "This website is operated by Ahmed Ghazy, a freelance software developer in Egypt. For privacy questions or requests, email [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com).",
+    "ar": "يدير هذا الموقع Ahmed Ghazy، مطوّر برمجيات مستقل في مصر. للاستفسارات أو الطلبات المتعلقة بالخصوصية، راسلني على [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com)."
+  },
+  "ui.privacy.sections.1.heading": {
+    "en": "What information I collect",
+    "ar": "ما المعلومات التي أجمعها؟"
+  },
+  "ui.privacy.sections.1.body.0": {
+    "en": "**Information you give me:** your name, email address and message, any optional project details, and the page you sent the form from.",
+    "ar": "**المعلومات التي تقدّمها لي:** اسمك وعنوان بريدك الإلكتروني ورسالتك، وأي تفاصيل اختيارية عن المشروع، والصفحة التي أرسلت النموذج منها."
+  },
+  "ui.privacy.sections.1.body.1": {
+    "en": "**Usage information:** like most websites, this site measures how it is used, such as pages visited, the website or campaign that referred you, browser and device type, and approximate location. Basic visit counts are collected without cookies and do not identify you. Analytics cookies are used only if you accept them.",
+    "ar": "**معلومات الاستخدام:** يقيس هذا الموقع، مثل معظم المواقع، كيفية استخدامه، مثل الصفحات التي زرتها، والموقع أو الحملة التي أحالتك إليه، ونوع المتصفّح والجهاز، وموقعك التقريبي. تُجمع الأعداد الأساسية للزيارات دون ملفات تعريف ارتباط ولا تكشف هويتك. تُستخدم ملفات تعريف الارتباط للتحليلات فقط إذا وافقت عليها."
+  },
+  "ui.privacy.sections.1.body.2": {
+    "en": "**Technical information:** standard server logs, including IP addresses, are kept to deliver and secure the site. If you accept cookies, the site also remembers how you first found it, so that source can accompany a later enquiry.",
+    "ar": "**المعلومات التقنية:** يحتفظ الموقع بسجلّات الخادم المعتادة، بما فيها عناوين IP، لتشغيل الموقع وتأمينه. إذا وافقت على ملفات تعريف الارتباط، يتذكّر الموقع أيضًا كيف وصلت إليه أول مرة حتى يمكن إرفاق هذا المصدر باستفسار لاحق."
+  },
+  "ui.privacy.sections.2.heading": {
+    "en": "How and why I use your information",
+    "ar": "كيف أستخدم معلوماتك ولماذا؟"
+  },
+  "ui.privacy.sections.2.body.0": {
+    "en": "I use this information to reply to enquiries and discuss possible work, to understand which pages are useful and improve the site, and to keep it running securely. I may also keep records where the law requires, for example for tax or accounting.",
+    "ar": "أستخدم هذه المعلومات للردّ على الاستفسارات ومناقشة فرص العمل، وفهم الصفحات المفيدة وتحسين الموقع، والحفاظ على تشغيله بأمان. وقد أحتفظ أيضًا بسجلّات عندما يقتضي القانون ذلك، مثل الأغراض الضريبية أو المحاسبية."
+  },
+  "ui.privacy.sections.2.body.1": {
+    "en": "Where the GDPR or UK GDPR applies, I rely on the steps you ask me to take before a possible contract; my legitimate interests in managing enquiries, measuring site use and keeping the site secure; your consent for analytics cookies; and compliance with legal obligations. I do not use personal data for automated decisions or profiling.",
+    "ar": "عند انطباق GDPR أو UK GDPR، أستند إلى الخطوات التي تطلب مني اتخاذها قبل إبرام عقد محتمل، وإلى مصالحي المشروعة في إدارة الاستفسارات وقياس استخدام الموقع وتأمينه، وإلى موافقتك على ملفات تعريف الارتباط للتحليلات، وإلى الامتثال للالتزامات القانونية. لا أستخدم البيانات الشخصية لاتخاذ قرارات آلية أو للتنميط."
+  },
+  "ui.privacy.sections.3.heading": {
+    "en": "Cookies",
+    "ar": "ملفات تعريف الارتباط"
+  },
+  "ui.privacy.sections.3.body.0": {
+    "en": "Cookies are small files that websites store on your device, and this site also uses similar browser storage. It always stores what it needs to work, such as your cookie choice. Analytics cookies are optional and set only if you select **Accept**. No advertising cookies are used.",
+    "ar": "ملفات تعريف الارتباط ملفات صغيرة تخزّنها المواقع على جهازك. ويستخدم هذا الموقع أيضًا وسائل تخزين مشابهة في المتصفّح. يخزّن الموقع دائمًا ما يلزم لتشغيله، مثل اختيارك بشأن ملفات تعريف الارتباط. ملفات التحليلات اختيارية ولا تُضبط إلا إذا اخترت **قبول**. لا يستخدم الموقع ملفات تعريف ارتباط إعلانية."
+  },
+  "ui.privacy.sections.3.body.1": {
+    "en": "You can change your choice at any time through **Cookie settings** in the footer, or block and delete cookies in your browser settings.",
+    "ar": "يمكنك تغيير اختيارك في أي وقت عبر **إعدادات ملفات تعريف الارتباط** في أسفل الصفحة، أو حظر هذه الملفات وحذفها من إعدادات المتصفّح."
+  },
+  "ui.privacy.sections.3.storage.summary": {
+    "en": "Cookie and storage details",
+    "ar": "تفاصيل ملفات تعريف الارتباط والتخزين"
+  },
+  "ui.privacy.sections.3.storage.duration": {
+    "en": "Duration",
+    "ar": "المدة"
+  },
+  "ui.privacy.sections.3.storage.rows.0.provider": {
+    "en": "Google Analytics",
+    "ar": "Google Analytics"
+  },
+  "ui.privacy.sections.3.storage.rows.0.purpose": {
+    "en": "Distinguishes visitors for site analytics. Set only after consent.",
+    "ar": "يميّز بين الزوّار لأغراض تحليل استخدام الموقع. يُضبط بعد الموافقة فقط."
+  },
+  "ui.privacy.sections.3.storage.rows.0.duration": {
+    "en": "Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends",
+    "ar": "حتى سنتين. يُحذف عند سحب موافقتك، أو عند زيارتك التالية بعد انتهائها"
+  },
+  "ui.privacy.sections.3.storage.rows.1.provider": {
+    "en": "Google Analytics",
+    "ar": "Google Analytics"
+  },
+  "ui.privacy.sections.3.storage.rows.1.purpose": {
+    "en": "Maintains an analytics session. Set only after consent.",
+    "ar": "يحافظ على جلسة التحليلات. يُضبط بعد الموافقة فقط."
+  },
+  "ui.privacy.sections.3.storage.rows.1.duration": {
+    "en": "Up to 2 years; deleted when you withdraw consent, or on your next visit after it ends",
+    "ar": "حتى سنتين. يُحذف عند سحب موافقتك، أو عند زيارتك التالية بعد انتهائها"
+  },
+  "ui.privacy.sections.3.storage.rows.2.provider": {
+    "en": "This website",
+    "ar": "هذا الموقع"
+  },
+  "ui.privacy.sections.3.storage.rows.2.purpose": {
+    "en": "Remembers the first campaign, landing page and referring domain. Stored only after consent.",
+    "ar": "يتذكّر الحملة الأولى وصفحة الوصول والنطاق الذي أحالك إلى الموقع. يُخزّن بعد الموافقة فقط."
+  },
+  "ui.privacy.sections.3.storage.rows.2.duration": {
+    "en": "90 days",
+    "ar": "90 يومًا"
+  },
+  "ui.privacy.sections.3.storage.rows.3.provider": {
+    "en": "This website",
+    "ar": "هذا الموقع"
+  },
+  "ui.privacy.sections.3.storage.rows.3.purpose": {
+    "en": "Remembers whether analytics was accepted or rejected.",
+    "ar": "يتذكّر ما إذا كنت قد قبلت التحليلات أو رفضتها."
+  },
+  "ui.privacy.sections.3.storage.rows.3.duration": {
+    "en": "12 months",
+    "ar": "12 شهرًا"
+  },
+  "ui.privacy.sections.4.heading": {
+    "en": "Who I share information with",
+    "ar": "مع من أشارك المعلومات؟"
+  },
+  "ui.privacy.sections.4.body.0": {
+    "en": "I use trusted service providers for hosting, form handling, spam filtering, email and analytics. They receive only the information they need to provide their services. I do not sell or rent personal data.",
+    "ar": "أستعين بمقدّمي خدمات موثوقين للاستضافة ومعالجة النماذج وتصفية الرسائل المزعجة والبريد الإلكتروني والتحليلات. لا يتلقّون سوى المعلومات التي يحتاجون إليها لتقديم خدماتهم. لا أبيع البيانات الشخصية ولا أؤجّرها."
+  },
+  "ui.privacy.sections.4.body.1": {
+    "en": "Some providers may process information outside Egypt or your country. Where the law requires, these transfers are protected by appropriate safeguards; email [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com) for details. I may also disclose information where the law requires it.",
+    "ar": "قد يعالج بعض مقدّمي الخدمات المعلومات خارج مصر أو بلدك. عندما يقتضي القانون ذلك، تُحمى عمليات نقل المعلومات بضمانات مناسبة. راسلني على [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com) للتفاصيل. وقد أفصح أيضًا عن المعلومات عندما يقتضي القانون ذلك."
+  },
+  "ui.privacy.sections.5.heading": {
+    "en": "How long I keep information",
+    "ar": "كم أحتفظ بالمعلومات؟"
+  },
+  "ui.privacy.sections.5.body.0": {
+    "en": "I delete enquiries that do not lead to work within 12 months, and keep client correspondence for as long as the work and tax or accounting rules require. Analytics data and server logs are kept for limited periods.",
+    "ar": "أحذف الاستفسارات التي لا تؤدّي إلى عمل خلال 12 شهرًا، وأحتفظ بمراسلات العملاء للمدة التي يقتضيها العمل والقواعد الضريبية أو المحاسبية. أحتفظ ببيانات التحليلات وسجلّات الخادم لفترات محدودة."
+  },
+  "ui.privacy.sections.5.body.1": {
+    "en": "I take reasonable steps to protect your information, but no online service can guarantee complete security.",
+    "ar": "أتّخذ خطوات معقولة لحماية معلوماتك، لكن لا يمكن لأي خدمة عبر الإنترنت ضمان الأمان الكامل."
+  },
+  "ui.privacy.sections.6.heading": {
+    "en": "Your rights",
+    "ar": "حقوقك"
+  },
+  "ui.privacy.sections.6.body.0": {
+    "en": "Depending on the law that applies, you may ask to access, correct, delete or receive a copy of your personal data, restrict its use, or object to processing. Email [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com) to make a request.",
+    "ar": "بحسب القانون المنطبق، يمكنك طلب الاطّلاع على بياناتك الشخصية أو تصحيحها أو حذفها أو الحصول على نسخة منها، أو تقييد استخدامها، أو الاعتراض على معالجتها. لتقديم طلب، راسلني على [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com)."
+  },
+  "ui.privacy.sections.6.body.1": {
+    "en": "You can withdraw your consent to analytics cookies at any time; this does not affect earlier processing. You may also complain to the Egyptian Personal Data Protection Center or the data-protection authority where you live or work.",
+    "ar": "يمكنك سحب موافقتك على ملفات تعريف الارتباط للتحليلات في أي وقت، دون أن يؤثّر ذلك في المعالجة السابقة. ويمكنك أيضًا تقديم شكوى إلى مركز حماية البيانات الشخصية في مصر أو إلى جهة حماية البيانات في مكان إقامتك أو عملك."
+  },
+  "ui.privacy.sections.7.heading": {
+    "en": "Information you provide",
+    "ar": "المعلومات التي تقدّمها"
+  },
+  "ui.privacy.sections.7.body.0": {
+    "en": "Your name, email address and message are needed to reply to your enquiry; the other fields are optional. Please do not send sensitive personal information unless it is necessary.",
+    "ar": "يلزم اسمك وعنوان بريدك الإلكتروني ورسالتك للردّ على استفسارك. الحقول الأخرى اختيارية. يُرجى عدم إرسال معلومات شخصية حسّاسة إلا عند الضرورة."
+  },
+  "ui.privacy.sections.7.body.1": {
+    "en": "This site is not intended for children under 16.",
+    "ar": "هذا الموقع غير موجّه للأطفال دون 16 عامًا."
+  },
+  "ui.privacy.sections.8.heading": {
+    "en": "Changes to this notice",
+    "ar": "التغييرات على هذا الإشعار"
+  },
+  "ui.privacy.sections.8.body.0": {
+    "en": "I may update this notice from time to time. The date below shows the latest version. If a change affects your consent, the site will ask you again.",
+    "ar": "قد أحدّث هذا الإشعار من وقت إلى آخر. يبيّن التاريخ أدناه أحدث نسخة. إذا أثّر تغيير في موافقتك، سيطلبها الموقع مجددًا."
+  },
+  "ui.legal.title": {
+    "en": "Legal Notice",
+    "ar": "إشعار قانوني"
+  },
+  "ui.legal.metaTitle": {
+    "en": "Legal Notice",
+    "ar": "إشعار قانوني"
+  },
+  "ui.legal.heading": {
+    "en": "Legal Notice",
+    "ar": "إشعار قانوني"
+  },
+  "ui.legal.description": {
+    "en": "Legal Notice for ahmed-ghazy.com: website operator, disclaimers, third-party links, copyright and governing law.",
+    "ar": "الإشعار القانوني لموقع ahmed-ghazy.com: مدير الموقع، وإخلاء المسؤولية، وروابط الجهات الخارجية، وحقوق النشر، والقانون الحاكم."
+  },
+  "ui.legal.lead": {
+    "en": "Information about the operator of this website and the terms that apply to its use.",
+    "ar": "معلومات عن مدير هذا الموقع والشروط التي تنطبق على استخدامه."
+  },
+  "ui.legal.updated": {
+    "en": "Last updated: 14 November 2026.",
+    "ar": "آخر تحديث في 14 نوفمبر 2026."
+  },
+  "ui.legal.sections.0.heading": {
+    "en": "Website operator",
+    "ar": "مدير الموقع"
+  },
+  "ui.legal.sections.0.body.0": {
+    "en": "Ahmed Ghazy, freelance software developer, Egypt.",
+    "ar": "Ahmed Ghazy، مطوّر برمجيات مستقل، مصر."
+  },
+  "ui.legal.sections.0.body.1": {
+    "en": "Email: [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com)",
+    "ar": "البريد الإلكتروني: [info@ahmed-ghazy.com](mailto:info@ahmed-ghazy.com)"
+  },
+  "ui.legal.sections.1.heading": {
+    "en": "No offer or professional advice",
+    "ar": "لا عرض ملزم ولا مشورة مهنية"
+  },
+  "ui.legal.sections.1.body.0": {
+    "en": "Nothing on this website is a binding offer. Any work is agreed separately in writing.",
+    "ar": "لا يشكّل أي محتوى على هذا الموقع عرضًا ملزمًا. يُتّفق على أي عمل كتابةً وبشكل منفصل."
+  },
+  "ui.legal.sections.1.body.1": {
+    "en": "Articles on this website are general information, not legal, financial or other professional advice.",
+    "ar": "تقدّم مقالات هذا الموقع معلومات عامة، ولا تشكّل مشورة قانونية أو مالية أو أي مشورة مهنية أخرى."
+  },
+  "ui.legal.sections.2.heading": {
+    "en": "Liability for content",
+    "ar": "المسؤولية عن المحتوى"
+  },
+  "ui.legal.sections.2.body.0": {
+    "en": "I take care to keep this website accurate and up to date, but I cannot guarantee that its content is complete or correct. To the extent permitted by law, I accept no liability for any loss arising from its use.",
+    "ar": "أحرص على دقّة معلومات الموقع وتحديثها، لكن لا يمكنني ضمان اكتمال المحتوى أو صحّته. وفي الحدود التي يسمح بها القانون، لا أتحمّل أي مسؤولية عن أي خسارة تنشأ من استخدامه."
+  },
+  "ui.legal.sections.3.heading": {
+    "en": "Links to other websites",
+    "ar": "روابط إلى مواقع أخرى"
+  },
+  "ui.legal.sections.3.body.0": {
+    "en": "This website links to websites run by others. I am not responsible for their content. If a linked page contains unlawful content, please let me know and I will remove the link.",
+    "ar": "يتضمّن الموقع روابط إلى مواقع يديرها آخرون. لا أتحمّل مسؤولية محتواها. إذا تضمّنت صفحة مرتبطة محتوى غير قانوني، يُرجى إبلاغي وسأزيل الرابط."
+  },
+  "ui.legal.sections.4.heading": {
+    "en": "Copyright and trademarks",
+    "ar": "حقوق النشر والعلامات التجارية"
+  },
+  "ui.legal.sections.4.body.0": {
+    "en": "Unless stated otherwise, the content of this website is © Ahmed Ghazy and may not be reproduced without permission. Other company names and logos belong to their owners and are used only to describe work done for or with them.",
+    "ar": "ما لم يُذكر خلاف ذلك، فإن حقوق نشر محتوى هذا الموقع محفوظة لـ © Ahmed Ghazy، ولا يجوز إعادة إنتاجه دون إذن. تعود أسماء الشركات الأخرى وشعاراتها إلى أصحابها، وتُستخدم فقط لوصف العمل المنفّذ لصالحهم أو بالتعاون معهم."
+  },
+  "ui.legal.sections.5.heading": {
+    "en": "Governing law",
+    "ar": "القانون الحاكم"
+  },
+  "ui.legal.sections.5.body.0": {
+    "en": "This website and this notice are governed by the laws of Egypt, without affecting any mandatory protections you have under the law of your country.",
+    "ar": "يخضع هذا الموقع وهذا الإشعار لقوانين مصر، دون المساس بأي حماية إلزامية يوفّرها لك قانون بلدك."
+  },
+  "ui.legal.sections.6.heading": {
+    "en": "Privacy",
+    "ar": "الخصوصية"
+  },
+  "ui.legal.sections.6.body.0": {
+    "en": "How this website handles personal data is described in the [Privacy Notice](/privacy/).",
+    "ar": "يوضّح [إشعار الخصوصية](/privacy/) كيف يتعامل هذا الموقع مع البيانات الشخصية."
+  },
+  "ui.footer.place": {
+    "en": "Egypt",
+    "ar": "مصر"
+  },
+  "ui.footer.email": {
+    "en": "Email",
+    "ar": "البريد"
+  },
+  "ui.footer.resume": {
+    "en": "Résumé",
+    "ar": "السيرة الذاتية"
+  },
+  "ui.footer.privacy": {
+    "en": "Privacy Notice",
+    "ar": "إشعار الخصوصية"
+  },
+  "ui.footer.legal": {
+    "en": "Legal Notice",
+    "ar": "إشعار قانوني"
+  },
+  "ui.footer.cookies": {
+    "en": "Cookie settings",
+    "ar": "إعدادات ملفات تعريف الارتباط"
+  },
+  "ui.footer.credit": {
+    "en": "Built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com) and [GSAP](https://gsap.com), set in [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk), [Geist](https://vercel.com/font) and [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif), and hosted on [Netlify](https://www.netlify.com).",
+    "ar": "بُني باستخدام [Astro](https://astro.build) و[Tailwind CSS](https://tailwindcss.com) و[GSAP](https://gsap.com)، وبخطوط [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk) و[Geist](https://vercel.com/font) و[Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif)، واستُضيف على [Netlify](https://www.netlify.com)."
+  },
+  "ui.notFound.title": {
+    "en": "Page not found",
+    "ar": "الصفحة غير موجودة"
+  },
+  "ui.notFound.body": {
+    "en": "The page you’re looking for doesn’t exist or has moved.",
+    "ar": "الصفحة التي تبحث عنها غير موجودة أو انتقلت إلى عنوان آخر."
+  },
+  "ui.notFound.back": {
+    "en": "Back to the home page",
+    "ar": "العودة إلى الصفحة الرئيسية"
+  }
+}

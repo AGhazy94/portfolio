@@ -1,10 +1,11 @@
 ---
 import ServiceRows from './ServiceRows.astro';
 import { getServices } from '../lib/content';
-import { ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
+const { ui, locale } = await useCopy(Astro.currentLocale);
 const section = ui.sections.find(({ id }) => id === 'services')!;
-const services = await getServices();
+const services = await getServices(locale);
 ---
 
 <section id={section.id} aria-labelledby="services-title" class="gutter band-section py-20 md:py-28">

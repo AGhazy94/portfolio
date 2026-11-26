@@ -1,8 +1,9 @@
 ---
 import ContentPage from '../layouts/ContentPage.astro';
 import RichText from '../components/RichText.astro';
-import { profile, ui } from '../data/profile';
+import { useCopy } from '../i18n';
 
+const { profile, ui } = await useCopy(Astro.currentLocale);
 const { privacy } = ui;
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
@@ -15,7 +16,8 @@ const nodes = [
     isPartOf: { '@id': new URL('/#website', Astro.site).href },
   },
 ];
-const slug = (heading: string) => heading.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+// Any script's letters, so Arabic headings get anchors too.
+const slug = (heading: string) => heading.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-');
 ---
 
 <ContentPage

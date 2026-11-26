@@ -1,10 +1,11 @@
 ---
 import ContentPage from '../../layouts/ContentPage.astro';
 import PageCards from '../../components/PageCards.astro';
-import { contentImage, formatDate, getPosts } from '../../lib/content';
-import { profile, ui } from '../../data/profile';
+import { contentImage, getPosts } from '../../lib/content';
+import { useCopy } from '../../i18n';
 
-const posts = await getPosts();
+const { profile, ui, locale, href, langOf, formatDate } = await useCopy(Astro.currentLocale);
+const posts = await getPosts(locale);
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const nodes = [
   {
@@ -35,10 +36,11 @@ const nodes = [
     items={posts.map((post) => ({
       title: post.data.title,
       summary: post.data.description,
-      href: `/blog/${post.id}/`,
+      href: href(`/blog/${post.id}/`),
       meta: formatDate(post.data.published),
       cta: ui.blog.more,
       image: contentImage('blog', post.id),
+      ...langOf(post.locale),
     }))}
   />
 </ContentPage>

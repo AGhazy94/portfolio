@@ -1,23 +1,32 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import { profile, socials, ui } from '../data/profile';
+import { useCopy } from '../i18n';
+
+const { profile, socials, ui } = await useCopy(Astro.currentLocale);
 
 const profiles = socials.filter(({ href }) => !href.startsWith('mailto:'));
-const [offerStart, offerEnd] = profile.offer.split(profile.offerAccent);
-if (offerEnd === undefined) throw new Error(`profile.offerAccent "${profile.offerAccent}" is not in profile.offer`);
+const accentAt = profile.offer.indexOf(profile.offerAccent);
+if (accentAt < 0) throw new Error(`profile.offerAccent "${profile.offerAccent}" is not in profile.offer`);
+const offerStart = profile.offer.slice(0, accentAt);
+const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
+// A wrap at the hyphen of "Full-Stack" strands the hyphen on the far side of an Arabic line.
+const roleParts = ui.hero.role.split(/(\S+-\S+)/);
 ---
 
 <section
   id="top"
   aria-labelledby="hero-title"
-  class="gutter relative isolate overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28"
+  class="gutter relative isolate overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 max-sm:rtl:pt-8"
 >
   <div aria-hidden="true" class="hero-glow pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-3/4"></div>
 
   <div class="mx-auto flex max-w-page flex-col items-center text-center">
-    <p class="inline-flex items-center gap-2 rounded-pill border border-divider bg-surface py-1 pr-3.5 pl-1 text-caption whitespace-nowrap text-body">
-      <span class="rounded-pill bg-loud px-2.5 py-0.5 font-medium text-bg">{ui.hero.badge}</span>
+    <p class="inline-flex items-center gap-2 rounded-pill border border-divider bg-surface py-1 pe-3.5 ps-1 text-caption whitespace-nowrap text-body">
+      {/* Arabic descends past the Latin line box, so its label needs the extra room below. */}
+      <span class="rounded-pill bg-loud px-2.5 py-0.5 font-medium text-bg [&:lang(ar)]:pt-px [&:lang(ar)]:pb-1">
+        {ui.hero.badge}
+      </span>
       {/* The full line needs 320px, so narrower phones get the short one rather than a pill that wraps. */}
       <span class="max-[379px]:hidden">{ui.hero.availability}</span>
       <span class="min-[380px]:hidden">{ui.hero.availabilityShort}</span>
@@ -31,7 +40,7 @@ if (offerEnd === undefined) throw new Error(`profile.offerAccent "${profile.offe
       height={56}
       densities={[1, 2]}
       loading="eager"
-      class="mt-8 size-14 rounded-full bg-surface object-cover ring-2 ring-brand"
+      class="mt-8 size-14 rounded-full bg-surface object-cover ring-2 ring-brand max-sm:rtl:mt-5"
     />
 
     <h1 id="hero-title" class="mt-4">
@@ -39,29 +48,27 @@ if (offerEnd === undefined) throw new Error(`profile.offerAccent "${profile.offe
         <span class="font-medium text-fg">{profile.name}</span>
         <span class="sr-only">, </span>
         {/* The dot is drawn, not typed, so crawlers read "name, role" without a stray "·". */}
-        <span class="whitespace-nowrap text-body before:mx-2 before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-['']">
-          {ui.hero.role}
+        <span class="text-body before:mx-2 max-sm:mt-1 max-sm:block max-sm:before:hidden sm:whitespace-nowrap before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-[''] max-sm:rtl:text-balance">
+          {roleParts.map((part, index) => (index % 2 ? <span class="whitespace-nowrap">{part}</span> : part))}
         </span>
       </span>
       <span class="sr-only">. </span>
-      <span class="type-hero mx-auto mt-6 block max-w-[18ch] text-fg">
-        {offerStart}
-        <span class="type-accent">{profile.offerAccent}</span>
-        {offerEnd}
+      <span class="type-hero mx-auto mt-6 block max-w-[18ch] text-fg max-sm:rtl:text-[clamp(2rem,9.6vw,2.625rem)]">
+        {[offerStart, <span class="type-accent">{profile.offerAccent}</span>, offerEnd]}
       </span>
     </h1>
-    <p class="type-lead mt-6 max-w-[44ch] text-pretty text-body">{profile.offerLead}</p>
+    <p class="type-lead mt-6 max-w-[44ch] text-pretty text-body max-sm:rtl:mt-4">{profile.offerLead}</p>
 
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-      <a href="#contact" data-primary-cta class="btn-pill min-h-12 bg-loud text-bg">
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3 max-sm:rtl:mt-6">
+      <a href="#contact" data-primary-cta class="btn-pill min-h-12 bg-loud text-bg max-sm:rtl:px-5">
         {ui.hero.contact}
       </a>
       <a
         href="#projects"
-        class="btn-pill min-h-12 gap-1 border border-field-border bg-bg/40 pr-5 text-fg hover:border-fg hover:opacity-100"
+        class="btn-pill min-h-12 gap-1 border border-field-border bg-bg/40 pe-5 text-fg hover:border-fg hover:opacity-100"
       >
         {ui.hero.work}
-        <Icon name="chevron" class="size-5 -rotate-90" />
+        <Icon name="chevron" class="size-5 -rotate-90 rtl:rotate-90" />
       </a>
     </div>
 

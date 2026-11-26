@@ -40,6 +40,18 @@ const faces = [
   },
   { name: 'Geist', weight: 400, style: 'normal', file: '@fontsource/geist/files/geist-latin-400-normal.woff' },
   { name: 'Geist', weight: 500, style: 'normal', file: '@fontsource/geist/files/geist-latin-500-normal.woff' },
+  {
+    name: 'Readex Pro',
+    weight: 400,
+    style: 'normal',
+    file: '@fontsource/readex-pro/files/readex-pro-arabic-400-normal.woff',
+  },
+  {
+    name: 'Readex Pro',
+    weight: 500,
+    style: 'normal',
+    file: '@fontsource/readex-pro/files/readex-pro-arabic-500-normal.woff',
+  },
 ] as const;
 let fonts: ReturnType<typeof loadFonts> | undefined;
 

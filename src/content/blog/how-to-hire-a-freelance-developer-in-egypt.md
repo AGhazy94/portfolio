@@ -79,4 +79,4 @@ Rates vary widely with experience and with the type of work. Don't choose the lo
 
 ## Working with me
 
-I'm a product engineer in Egypt working with clients remotely, in English and Arabic. I [build MVPs](/services/mvp-development/), [build web apps](/services/full-stack-development/) and [take over existing apps](/services/take-over-an-app/). The code and accounts stay in your name from the first day. If you'd like to talk, describe the project in the contact form.
+I'm a product engineer, full-stack and AI developer in Egypt, working with clients remotely, in English and Arabic. I [build MVPs](/services/mvp-development/), [build web apps](/services/full-stack-development/) and [take over existing apps](/services/take-over-an-app/). The code and accounts stay in your name from the first day. If you'd like to talk, describe the project in the contact form.

@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { profile, ui } from '../data/profile';
+import { alternates, basePath, isBuilt, locales, useCopy } from '../i18n';
 import { markSvg } from '../lib/mark';
 import { brand } from '../lib/tokens.mjs';
 
@@ -10,9 +10,17 @@ interface Props {
   primaryCta?: boolean;
 }
 
+const { profile, ui, locale, href: localHref } = await useCopy(Astro.currentLocale);
 const path = Astro.url.pathname;
-const home = path === '/';
-const { contactHref = home ? '#contact' : '/#contact', primaryCta = home } = Astro.props;
+const current = basePath(path);
+const home = current === '/';
+const { contactHref = home ? '#contact' : localHref('/#contact'), primaryCta = home } = Astro.props;
+const target = locale === 'en' ? 'ar' : 'en';
+const switchHref = isBuilt('ar')
+  ? ((await alternates(path))[target] ?? (target === 'ar' ? '/ar/' : undefined))
+  : undefined;
+const switchLang = locales[target].lang;
+const switchLinkClass = 'flex min-h-11 items-center text-sm text-muted transition-colors duration-200 hover:text-fg';
 const contactLink = ui.nav.find(({ section }) => section === 'contact')!;
 const pages = ui.nav.filter(({ section }) => section !== 'contact');
 const logo = markSvg({ ink: brand.electric, className: 'h-5 w-auto shrink-0' });
@@ -28,8 +36,8 @@ const contactPill =
   <div class="gutter">
     <div class="mx-auto flex h-14 max-w-page items-center justify-between gap-4">
       <a
-        href={home ? '#top' : '/'}
-        class="-ml-2 flex min-h-11 items-center gap-2.5 px-2 font-display text-ui font-bold tracking-tight whitespace-nowrap text-fg"
+        href={home ? '#top' : localHref('/')}
+        class="-ms-2 flex min-h-11 items-center gap-2.5 px-2 font-display text-ui font-bold tracking-tight whitespace-nowrap text-fg"
       >
         <Fragment set:html={logo} />
         {profile.name}
@@ -41,20 +49,27 @@ const contactPill =
             {pages.map(({ label, href, section }) => (
               <li>
                 <a
-                  href={href}
+                  href={localHref(href)}
                   data-nav-link={home ? section : undefined}
-                  aria-current={!section && path.startsWith(href) ? 'page' : undefined}
-                  class="relative flex min-h-11 items-center px-2.5 text-sm text-muted transition-colors duration-200 after:absolute after:inset-x-2.5 after:bottom-2.5 after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-loud after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
+                  aria-current={!section && current.startsWith(href) ? 'page' : undefined}
+                  class="relative flex min-h-11 items-center px-2.5 text-sm text-muted transition-colors duration-200 after:absolute after:inset-x-2.5 after:bottom-2.5 after:h-0.5 after:origin-left rtl:after:origin-right after:scale-x-0 after:rounded-full after:bg-loud after:transition-transform after:duration-300 after:ease-out hover:text-fg hover:after:scale-x-100 aria-[current]:text-fg aria-[current]:after:scale-x-100 motion-reduce:after:transition-none"
                 >
                   {label}
                 </a>
               </li>
             ))}
+            {switchHref && (
+              <li>
+                <a href={switchHref} hreflang={switchLang} lang={switchLang} class:list={[switchLinkClass, 'px-2.5']}>
+                  {locales[target].name}
+                </a>
+              </li>
+            )}
             <li>
               <a
                 href={contactHref}
                 data-nav-link={home ? contactLink.section : undefined}
-                class="group ml-2 -mr-1 flex min-h-11 items-center px-1"
+                class="group ms-2 -me-1 flex min-h-11 items-center px-1"
               >
                 <span class={contactPill}>{contactLink.label}</span>
               </a>
@@ -66,7 +81,7 @@ const contactPill =
           <span class={contactPill}>{contactLink.label}</span>
         </a>
 
-        <details data-mobile-menu class="group relative -mr-2 ml-1 sm:hidden">
+        <details data-mobile-menu class="group relative -me-2 ms-1 sm:hidden">
           <summary class="grid size-11 cursor-pointer list-none place-items-center text-fg [&::-webkit-details-marker]:hidden">
             <span class="sr-only">{ui.menu}</span>
             <Icon name="menu" class="size-5 group-open:hidden" />
@@ -74,20 +89,32 @@ const contactPill =
           </summary>
           <nav
             aria-label={ui.navLabel}
-            class="absolute top-full right-0 mt-2 w-56 rounded-field border border-divider bg-surface p-2"
+            class="absolute top-full end-0 mt-2 w-56 rounded-field border border-divider bg-surface p-2"
           >
             <ul>
               {ui.nav.map(({ label, href, section }) => (
                 <li>
                   <a
-                    href={section === 'contact' ? contactHref : href}
-                    aria-current={!section && path.startsWith(href) ? 'page' : undefined}
+                    href={section === 'contact' ? contactHref : localHref(href)}
+                    aria-current={!section && current.startsWith(href) ? 'page' : undefined}
                     class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface-2 hover:text-fg aria-[current]:bg-surface-2 aria-[current]:text-fg"
                   >
                     {label}
                   </a>
                 </li>
               ))}
+              {switchHref && (
+                <li>
+                  <a
+                    href={switchHref}
+                    hreflang={switchLang}
+                    lang={switchLang}
+                    class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface-2 hover:text-fg"
+                  >
+                    {locales[target].name}
+                  </a>
+                </li>
+              )}
             </ul>
           </nav>
         </details>
@@ -121,6 +148,10 @@ const contactPill =
   });
   matchMedia('(min-width: 640px)').addEventListener('change', ({ matches }) => {
     if (matches) menu.open = false;
+  });
+  // Tabbing past the last link would otherwise leave the open panel over the page.
+  menu.addEventListener('focusout', ({ relatedTarget }) => {
+    if (relatedTarget instanceof Node && !menu.contains(relatedTarget)) menu.open = false;
   });
 
   // One orange button per screen: while the page's own one is visible, the Contact pill steps back to an outline.

@@ -7,7 +7,13 @@ import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const dist = fileURLToPath(new URL('../dist/', import.meta.url));
-const NEW_TAB = '(opens in a new tab)';
+// Arabic pages carry the translated hint; an untranslated dictionary falls back to English.
+const NEW_TAB = {
+  en: '(opens in a new tab)',
+  ar:
+    JSON.parse(readFileSync(new URL('../src/i18n/ar.json', import.meta.url), 'utf8'))['ui.newTab']?.ar?.trim() ||
+    '(opens in a new tab)',
+};
 // JSON data blocks never execute, so the CSP has nothing to allow.
 const DATA_TYPES = new Set(['application/ld+json', 'application/json']);
 // Netlify keys stored submissions by field name, so a rename made on every page still orphans the old column.
@@ -92,12 +98,14 @@ function contactForm(html) {
 test('the contact form keeps the Netlify contract, with the same fields on every page', () => {
   const found = pages.map((page) => ({ page, form: contactForm(page.html) })).filter(({ form }) => form);
   const withForm = new Set(found.map(({ page }) => page.path));
-  const exempt = new Set(['/404', '/thanks/']);
+  const exempt = new Set(['/404', '/thanks/', '/ar/thanks/']);
   assert.deepEqual(
     pages.filter(({ path }) => !exempt.has(path) && !withForm.has(path)).map(({ file }) => file),
     [],
-    'every page but /404 and /thanks/ ends with the contact form',
+    'every page but /404 and the thanks pages ends with the contact form',
   );
+  // Without JavaScript the form lands on the thanks page in the visitor's language.
+  const thanks = (path) => (path.startsWith('/ar/') ? '/ar/thanks/' : '/thanks/');
 
   const signature = ({ fields }) => fields.map(({ name, attrs }) => `${name}[${attrs.type ?? ''}] ${attrs.name}`);
   const problems = [];
@@ -105,7 +113,7 @@ test('the contact form keeps the Netlify contract, with the same fields on every
     const field = (name) => form.fields.find(({ attrs }) => attrs.name === name)?.attrs;
     const expect = (ok, message) => ok || problems.push(`${page.file}: ${message}`);
     expect(form.attrs.method?.toUpperCase() === 'POST', 'method is not POST');
-    expect(form.attrs.action === '/thanks/', 'action is not /thanks/');
+    expect(form.attrs.action === thanks(page.path), `action is not ${thanks(page.path)}`);
     expect(form.attrs['data-netlify'] === 'true', 'data-netlify="true" is missing');
     expect(form.attrs['netlify-honeypot'] === 'bot-field', 'netlify-honeypot="bot-field" is missing');
     expect(field('form-name')?.type === 'hidden' && field('form-name').value === 'contact', 'no hidden form-name');
@@ -135,22 +143,37 @@ test('every external link opens in a new tab and says so', () => {
   const problems = [];
   for (const page of pages) {
     const body = markup(page.html);
+    const newTab = page.path.startsWith('/ar/') ? NEW_TAB.ar : NEW_TAB.en;
     for (const link of tags(body, 'a')) {
       const { href = '', target, rel = '' } = link.attrs;
       if (!/^https?:\/\//i.test(href) || new URL(href).host === siteHost) continue;
       const text = inner(body, link, 'a');
       const hint = [...tags(text, 'span')].some(
-        (span) => span.attrs.class?.split(/\s+/).includes('sr-only') && inner(text, span, 'span').trim() === NEW_TAB,
+        (span) => span.attrs.class?.split(/\s+/).includes('sr-only') && inner(text, span, 'span').trim() === newTab,
       );
       const tokens = rel.split(/\s+/);
       const expect = (ok, message) => ok || problems.push(`${page.file}: ${href} ${message}`);
       expect(target === '_blank', 'has no target="_blank"');
       expect(tokens.includes('noreferrer') && tokens.includes('noopener'), 'needs rel="noreferrer noopener"');
-      expect(hint, `has no sr-only "${NEW_TAB}" span`);
+      expect(hint, `has no sr-only "${newTab}" span`);
       expect(!('aria-label' in link.attrs) && !('aria-labelledby' in link.attrs), 'replaces its text with a label');
     }
   }
   assert.deepEqual(problems, []);
+});
+
+// The Markdown link plugin reads its page list once at config load, so a cached build can keep a stale English link.
+test('Arabic pages link to the Arabic version of a page wherever one exists', () => {
+  const built = new Set(pages.map(({ path }) => path));
+  const problems = [];
+  for (const page of pages.filter(({ path }) => path.startsWith('/ar/'))) {
+    for (const { attrs } of tags(markup(page.html), 'a')) {
+      const path = (attrs.href ?? '').split('#')[0];
+      if (!path.startsWith('/') || path.startsWith('/ar/') || attrs.hreflang) continue;
+      if (built.has(`/ar${path}`)) problems.push(`${page.file}: ${attrs.href}`);
+    }
+  }
+  assert.deepEqual(problems, [], 'English links on Arabic pages; delete node_modules/.astro and rebuild');
 });
 
 test("every inline script is hashed in its page's CSP", () => {

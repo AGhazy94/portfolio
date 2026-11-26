@@ -43,7 +43,9 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
 
 - No new dependencies without explicit approval. Approved so far: GSAP, and
   `@fontsource/space-grotesk` + `@fontsource/geist` + `@fontsource/instrument-serif` (satori needs
-  their WOFF files for the OG image and icons), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
+  their WOFF files for the OG image and icons), `@fontsource/readex-pro` (2026-11-26, Arabic WOFF for the
+  `/ar/og.png` card; satori has no bidi, so `rtlLine()` in [src/lib/graphics.ts](src/lib/graphics.ts) lays
+  Arabic out word by word), and `knip` (dev only; `npm run knip` finds unused files, exports and dependencies,
   configured in [knip.jsonc](knip.jsonc)), and `@astrojs/markdown-satteri` + `satteri`, pinned to
   the versions Astro installs, for the external-link plugin in
   [src/lib/external-links.mjs](src/lib/external-links.mjs) (new tab, UTM tags on Markdown links).
@@ -74,6 +76,18 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   file name: `src/assets/content/<services|blog|work>/<id>.png|jpg|webp` (16:9, no text in the image),
   with `imageAlt` in the frontmatter; they feed the hero, cards, JSON-LD and og:image. Briefs live in
   the private `career-ops` repo.
+- **English and Arabic.** English is at the root, Arabic under `/ar/` (Astro i18n,
+  [src/i18n/](src/i18n/)). Components read copy through `useCopy(Astro.currentLocale)`, never
+  `data/profile` directly, and send internal links through its `href()`, which keeps a link in Arabic
+  only where that page exists. Interface strings are translated in `src/i18n/ar.json`
+  (`{ "path": { "en", "ar" } }`; dev lists what is missing at `/i18n/ar.todo.json`; a changed English
+  string shows in English until it is translated again). Long-form pages are translated as
+  `src/content/ar/<collection>/<same-id>.md`. `locales.ar.published` in
+  [src/i18n/locales.mjs](src/i18n/locales.mjs) gates production; dev and previews always build
+  Arabic, and publishing fails the build while any string is missing. Layout uses logical utilities
+  (`ms-`, `pe-`, `start-`, `text-start`), never `ml-`/`pr-`/`left-`; forward chevrons add
+  `rtl:rotate-90`. Arabic is set in Readex Pro (Arabic glyphs only, Latin falls through to the brand
+  faces) with no tracking and taller display line-heights.
 - **Every page renders through [src/layouts/Layout.astro](src/layouts/Layout.astro)**, which owns
   the title, description, canonical, OG/Twitter tags, icons and JSON-LD. No ad-hoc meta tags in a
   page. Collection pages go through [src/layouts/ContentPage.astro](src/layouts/ContentPage.astro),
@@ -158,11 +172,13 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   → About (statement, facts) → Writing → Contact → Footer. One component per section in `src/components/`.
   The hero links to selected work; the résumé remains in Experience. The mobile header keeps Contact visible.
 - Audience: clients first (founders, small teams, agencies, Arabic-market brands), recruiters second.
-  Positioning (decided 2026-11-20): a freelance product engineer who takes over stuck web apps and
-  ships the next release, builds MVPs and AI products (LLM features, agents), TypeScript front to
-  back. "Full-stack" stays a supporting search word, never the title: the full-stack service page
-  keeps "Full-Stack Next.js Developer for Hire" (about 480 US searches a month for "hire full stack
-  developer", against about 10 for "hire product engineer"). Arabic/RTL is one service page, not the
+  Positioning (decided 2026-11-26): "Product Engineer · Full-Stack & AI Developer" (`profile.title`;
+  `profile.roles` feeds the Person `jobTitle`). A freelance product engineer who takes over stuck web
+  apps and ships the next release, builds MVPs and AI products (LLM features, agents), TypeScript
+  front to back. Product engineer leads (the positioning), full-stack and AI developer carry the
+  buyer searches (US, Keyword Planner, 2026-11-26: "hire ai developer" ~590 a month, "hire full stack
+  developer" ~480, "ai development services" ~1,600, "hire product engineer" ~10). The full-stack
+  and AI service pages keep their "…for Hire" titles. Arabic/RTL is one service page, not the
   headline. The hero carries no employer or location line. The site's résumé is the Product
   Engineer variant; the other variants are for job applications. Python and retrieval (RAG) are not
   claimed anywhere until a shipped project backs them.
