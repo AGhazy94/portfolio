@@ -60,7 +60,13 @@ const contactPill =
             ))}
             {switchHref && (
               <li>
-                <a href={switchHref} hreflang={switchLang} lang={switchLang} class:list={[switchLinkClass, 'px-2.5']}>
+                <a
+                  href={switchHref}
+                  hreflang={switchLang}
+                  lang={switchLang}
+                  data-language-switch
+                  class:list={[switchLinkClass, 'px-2.5']}
+                >
                   {locales[target].name}
                 </a>
               </li>
@@ -109,6 +115,7 @@ const contactPill =
                     href={switchHref}
                     hreflang={switchLang}
                     lang={switchLang}
+                    data-language-switch
                     class="flex min-h-11 items-center rounded-field px-4 text-ui text-body hover:bg-surface-2 hover:text-fg"
                   >
                     {locales[target].name}
@@ -128,6 +135,13 @@ const contactPill =
   try {
     localStorage.removeItem('theme');
   } catch {}
+
+  // Netlify's home-page language redirect reads nf_lang before the browser language, so a picked language sticks.
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('[data-language-switch]')) {
+    link.addEventListener('click', () => {
+      document.cookie = `nf_lang=${link.lang}; path=/; max-age=31536000; samesite=lax; secure`;
+    });
+  }
 
   const menu = document.querySelector<HTMLDetailsElement>('[data-mobile-menu]')!;
   const menuToggle = menu.querySelector('summary')!;

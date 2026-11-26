@@ -84,7 +84,10 @@ No narrative, no restating the code, no section banners. Longer reasoning belong
   string shows in English until it is translated again). Long-form pages are translated as
   `src/content/ar/<collection>/<same-id>.md`. `locales.ar.published` in
   [src/i18n/locales.mjs](src/i18n/locales.mjs) gates production; dev and previews always build
-  Arabic, and publishing fails the build while any string is missing. Layout uses logical utilities
+  Arabic, and publishing fails the build while any string is missing. Arabic is published since
+  2026-11-26: [netlify.toml](netlify.toml) sends `/` to `/ar/` (302) when the browser prefers Arabic,
+  never by country, and the header's language switch sets the `nf_lang` cookie (listed in
+  `/privacy/`) so a picked language wins. Layout uses logical utilities
   (`ms-`, `pe-`, `start-`, `text-start`), never `ml-`/`pr-`/`left-`; forward chevrons add
   `rtl:rotate-90`. Arabic is set in Readex Pro (Arabic glyphs only, Latin falls through to the brand
   faces) with no tracking and taller display line-heights.

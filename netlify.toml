@@ -46,6 +46,15 @@
   to = "/:splat"
   status = 302
 
+# Browsers that prefer Arabic open the home page in Arabic. Forced, or the English index.html would win;
+# the header's language switch sets the nf_lang cookie, which Netlify reads instead of the browser language.
+[[redirects]]
+  from = "/"
+  to = "/ar/"
+  status = 302
+  force = true
+  conditions = {Language = ["ar"]}
+
 # Script and style hashes live in Astro's CSP meta tag; these directives only work as a header.
 # Same-origin framing lets the résumé dialog show /ahmed-ghazy-resume.pdf; a per-path rule could merge with this one rather than replace it.
 [[headers]]

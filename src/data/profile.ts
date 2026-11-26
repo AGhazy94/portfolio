@@ -424,7 +424,7 @@ export const ui = {
     description:
       'How ahmed-ghazy.com collects, uses and protects personal data from contact forms, analytics and essential website services.',
     lead: 'This notice explains what information this website collects, why it is used and the choices available to you.',
-    updated: 'Last updated: 19 November 2026.',
+    updated: 'Last updated: 26 November 2026.',
     change: 'Cookie settings',
     sections: [
       {
@@ -480,6 +480,13 @@ export const ui = {
               name: 'analytics-consent',
               provider: 'This website',
               purpose: 'Remembers whether analytics was accepted or rejected.',
+              duration: '12 months',
+            },
+            {
+              name: 'nf_lang',
+              provider: 'This website',
+              purpose:
+                'Remembers the language you picked with the language switch, so the home page opens in it. Set only when you use the switch.',
               duration: '12 months',
             },
           ],

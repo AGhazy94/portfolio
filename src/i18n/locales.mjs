@@ -8,7 +8,7 @@ export const defaultLocale = 'en';
 export const locales = {
   en: { lang: 'en', dir: 'ltr', name: 'English', ogLocale: 'en_US', dateLocale: 'en-GB', published: true },
   // Latin digits: the audience reads prices, versions and years in them, and they match the English pages.
-  ar: { lang: 'ar', dir: 'rtl', name: 'العربية', ogLocale: 'ar_AR', dateLocale: 'ar-EG-u-nu-latn', published: false },
+  ar: { lang: 'ar', dir: 'rtl', name: 'العربية', ogLocale: 'ar_AR', dateLocale: 'ar-EG-u-nu-latn', published: true },
 };
 
 // Pages that exist in every locale; collection pages exist once their translated Markdown does.
