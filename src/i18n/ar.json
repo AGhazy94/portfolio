@@ -593,7 +593,7 @@
   },
   "ui.contact.fields.name.placeholder": {
     "en": "Jane Smith",
-    "ar": "Jane Smith"
+    "ar": "سارة أحمد"
   },
   "ui.contact.fields.email.label": {
     "en": "Email",
@@ -778,6 +778,10 @@
   "ui.about.languages": {
     "en": "Languages",
     "ar": "اللغات"
+  },
+  "ui.about.separator": {
+    "en": ", ",
+    "ar": "، "
   },
   "ui.consent.label": {
     "en": "Cookie consent",
@@ -1078,6 +1082,10 @@
   "ui.footer.place": {
     "en": "Egypt",
     "ar": "مصر"
+  },
+  "ui.footer.email": {
+    "en": "Email",
+    "ar": "البريد"
   },
   "ui.footer.resume": {
     "en": "Résumé",

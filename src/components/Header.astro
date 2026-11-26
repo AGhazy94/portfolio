@@ -149,6 +149,10 @@ const contactPill =
   matchMedia('(min-width: 640px)').addEventListener('change', ({ matches }) => {
     if (matches) menu.open = false;
   });
+  // Tabbing past the last link would otherwise leave the open panel over the page.
+  menu.addEventListener('focusout', ({ relatedTarget }) => {
+    if (relatedTarget instanceof Node && !menu.contains(relatedTarget)) menu.open = false;
+  });
 
   // One orange button per screen: while the page's own one is visible, the Contact pill steps back to an outline.
   const header = document.querySelector<HTMLElement>('[data-header]')!;

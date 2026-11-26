@@ -10,6 +10,8 @@ const accentAt = profile.offer.indexOf(profile.offerAccent);
 if (accentAt < 0) throw new Error(`profile.offerAccent "${profile.offerAccent}" is not in profile.offer`);
 const offerStart = profile.offer.slice(0, accentAt);
 const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
+// A wrap at the hyphen of "Full-Stack" strands the hyphen on the far side of an Arabic line.
+const roleParts = ui.hero.role.split(/(\S+-\S+)/);
 ---
 
 <section
@@ -21,7 +23,10 @@ const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
 
   <div class="mx-auto flex max-w-page flex-col items-center text-center">
     <p class="inline-flex items-center gap-2 rounded-pill border border-divider bg-surface py-1 pe-3.5 ps-1 text-caption whitespace-nowrap text-body">
-      <span class="rounded-pill bg-loud px-2.5 py-0.5 font-medium text-bg">{ui.hero.badge}</span>
+      {/* Arabic descends past the Latin line box, so its label needs the extra room below. */}
+      <span class="rounded-pill bg-loud px-2.5 py-0.5 font-medium text-bg [&:lang(ar)]:pt-px [&:lang(ar)]:pb-1">
+        {ui.hero.badge}
+      </span>
       {/* The full line needs 320px, so narrower phones get the short one rather than a pill that wraps. */}
       <span class="max-[379px]:hidden">{ui.hero.availability}</span>
       <span class="min-[380px]:hidden">{ui.hero.availabilityShort}</span>
@@ -44,7 +49,7 @@ const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
         <span class="sr-only">, </span>
         {/* The dot is drawn, not typed, so crawlers read "name, role" without a stray "·". */}
         <span class="text-body before:mx-2 max-sm:mt-1 max-sm:block max-sm:before:hidden sm:whitespace-nowrap before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-[''] max-sm:rtl:text-balance">
-          {ui.hero.role}
+          {roleParts.map((part, index) => (index % 2 ? <span class="whitespace-nowrap">{part}</span> : part))}
         </span>
       </span>
       <span class="sr-only">. </span>

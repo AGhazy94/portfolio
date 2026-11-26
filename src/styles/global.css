@@ -291,7 +291,10 @@
     color: var(--color-fg);
   }
 
+  /* Code reads left to right; without isolation its quotes jump to the other end inside Arabic text. */
   .prose-page code {
+    direction: ltr;
+    unicode-bidi: isolate;
     border-radius: 6px;
     background: var(--color-surface);
     padding: 0.15em 0.4em;
@@ -347,13 +350,29 @@
   letter-spacing: 0;
 }
 
+/* Readex's teeth sit lower than Latin x-heights, so 13px Arabic captions read a size smaller; h3s wrap into stacked marks. */
+:root:lang(ar) {
+  --text-caption: 14px;
+  --text-title-sm--line-height: 1.5;
+}
+
 /* Arabic ascenders, descenders and dots need more room than the Latin display scale leaves. */
-:is(.type-hero, .type-section, .type-statement):lang(ar) {
+:is(.type-hero, .type-section):lang(ar) {
   line-height: 1.3;
+}
+
+/* Multi-line titles: a hamza with a mark above reaches 1.32em and met the line above at 1.3. */
+.type-statement:lang(ar) {
+  line-height: 1.45;
 }
 
 :is(.type-company, .type-project, .prose-page h2):lang(ar) {
   line-height: 1.4;
+}
+
+/* Readex 600 stems are 24% thicker than Space Grotesk 600; 500 matches the English headings' colour. */
+:is(.type-hero, .type-section, .type-company, .type-project, .prose-page h2):lang(ar) {
+  font-weight: 500;
 }
 
 /* Instrument Serif has no Arabic and a slanted Arabic face reads as an error: the accent word keeps only its blue. */

@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
               rel={external ? 'noreferrer noopener' : undefined}
               class="flex min-h-11 items-center px-1.5 transition-colors duration-200 hover:text-fg sm:px-2"
             >
-              {label}
+              {external ? label : ui.footer.email}
               {external && <span class="sr-only">{ui.newTab}</span>}
             </a>
           </li>

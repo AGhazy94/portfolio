@@ -408,6 +408,7 @@ export const ui = {
   about: {
     education: 'Education',
     languages: 'Languages',
+    separator: ', ',
   },
   consent: {
     label: 'Cookie consent',
@@ -575,6 +576,7 @@ export const ui = {
   },
   footer: {
     place: 'Egypt',
+    email: 'Email',
     resume: 'Résumé',
     privacy: 'Privacy Notice',
     legal: 'Legal Notice',

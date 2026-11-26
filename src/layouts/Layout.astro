@@ -90,7 +90,8 @@ const structuredData = {
       '@type': 'Person',
       '@id': personId,
       name: profile.name,
-      jobTitle: locale === 'en' ? profile.roles : profile.title,
+      // Identity facts stay identical under the shared @id in every language; only the description is localised.
+      jobTitle: profile.roles,
       description: profile.description,
       url: site.href,
       image: new URL(headshot.src, site).href,

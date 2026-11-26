@@ -162,6 +162,20 @@ test('every external link opens in a new tab and says so', () => {
   assert.deepEqual(problems, []);
 });
 
+// The Markdown link plugin reads its page list once at config load, so a cached build can keep a stale English link.
+test('Arabic pages link to the Arabic version of a page wherever one exists', () => {
+  const built = new Set(pages.map(({ path }) => path));
+  const problems = [];
+  for (const page of pages.filter(({ path }) => path.startsWith('/ar/'))) {
+    for (const { attrs } of tags(markup(page.html), 'a')) {
+      const path = (attrs.href ?? '').split('#')[0];
+      if (!path.startsWith('/') || path.startsWith('/ar/') || attrs.hreflang) continue;
+      if (built.has(`/ar${path}`)) problems.push(`${page.file}: ${attrs.href}`);
+    }
+  }
+  assert.deepEqual(problems, [], 'English links on Arabic pages; delete node_modules/.astro and rebuild');
+});
+
 test("every inline script is hashed in its page's CSP", () => {
   const problems = [];
   for (const page of pages) {

@@ -6,7 +6,7 @@ const { about, profile, statement, ui } = await useCopy(Astro.currentLocale);
 
 const section = ui.sections.find(({ id }) => id === 'about')!;
 const words = statement.split(' ');
-const languages = profile.languages.map(({ name, level }) => `${name} (${level})`).join(', ');
+const languages = profile.languages.map(({ name, level }) => `${name} (${level})`).join(ui.about.separator);
 ---
 
 <section id={section.id} aria-labelledby="about-title" class="gutter border-t border-divider py-20 md:py-28">
@@ -24,7 +24,7 @@ const languages = profile.languages.map(({ name, level }) => `${name} (${level})
         <div>
           <dt class="text-caption text-muted">{ui.about.education}</dt>
           <dd class="mt-1 leading-normal text-fg">
-            {profile.education.degree},{' '}
+            {`${profile.education.degree}${ui.about.separator}`}
             <bdi dir="ltr" class="whitespace-nowrap">
               {profile.education.years}
             </bdi>
