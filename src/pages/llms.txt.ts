@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getPosts, getServices, getWork } from '../lib/content';
 import { toPlainText } from '../lib/inline';
 import { about, experience, profile, projects, socials, statement, testimonials } from '../data/profile';
+import { locales } from '../i18n/locales.mjs';
 
 // Follows llmstxt.org: H1, blockquote, free-form sections, then H2 sections that only hold link lists.
 export const GET: APIRoute = async ({ site }) => {
@@ -62,6 +63,8 @@ export const GET: APIRoute = async ({ site }) => {
     '## Links',
     '',
     `- [Portfolio](${url('/')}): this site`,
+    // Production only links the Arabic site once it is built there.
+    ...(locales.ar.published ? [`- [Arabic version](${url('/ar/')}): this site in Arabic`] : []),
     `- [Résumé (PDF)](${url(profile.resume)}): the full résumé`,
     ...socials.map((social) => `- [${social.label}](${social.href})`),
     '',

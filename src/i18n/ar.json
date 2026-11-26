@@ -824,8 +824,8 @@
     "ar": "يوضّح هذا الإشعار المعلومات التي يجمعها الموقع وأسباب استخدامها والخيارات المتاحة لك."
   },
   "ui.privacy.updated": {
-    "en": "Last updated: 19 November 2026.",
-    "ar": "آخر تحديث في 19 نوفمبر 2026."
+    "en": "Last updated: 26 November 2026.",
+    "ar": "آخر تحديث في 26 نوفمبر 2026."
   },
   "ui.privacy.change": {
     "en": "Cookie settings",
@@ -932,6 +932,18 @@
     "ar": "يتذكّر ما إذا كنت قد قبلت التحليلات أو رفضتها."
   },
   "ui.privacy.sections.3.storage.rows.3.duration": {
+    "en": "12 months",
+    "ar": "12 شهرًا"
+  },
+  "ui.privacy.sections.3.storage.rows.4.provider": {
+    "en": "This website",
+    "ar": "هذا الموقع"
+  },
+  "ui.privacy.sections.3.storage.rows.4.purpose": {
+    "en": "Remembers the language you picked with the language switch, so the home page opens in it. Set only when you use the switch.",
+    "ar": "يتذكّر اللغة التي اخترتها من زر تبديل اللغة، لتفتح الصفحة الرئيسية بها. لا يُحفظ إلا عند استخدام الزر."
+  },
+  "ui.privacy.sections.3.storage.rows.4.duration": {
     "en": "12 months",
     "ar": "12 شهرًا"
   },
