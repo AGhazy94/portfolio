@@ -9,15 +9,15 @@
   },
   "profile.offer": {
     "en": "I take over web apps that are stuck and ship the next release.",
-    "ar": "أتسلّم تطبيقات الويب المتعثّرة ثم أُطلق الإصدار التالي."
+    "ar": "أتسلّم تطبيقات ويب متعثّرة وأطلق إصدارها التالي."
   },
   "profile.offerAccent": {
     "en": "ship",
-    "ar": "أُطلق"
+    "ar": "أطلق"
   },
   "profile.offerLead": {
     "en": "Including apps built with Lovable or Bolt. I also build MVPs and AI features.",
-    "ar": "يشمل ذلك التطبيقات المبنية باستخدام Lovable أو Bolt. وأبني أيضًا النسخ الأولى (MVP) وميزات الذكاء الاصطناعي."
+    "ar": "ومنها تطبيقات مبنية بـ Lovable أو Bolt. وأبني النسخ الأولى (MVP) وميزات الذكاء الاصطناعي."
   },
   "profile.description": {
     "en": "Freelance product engineer, full-stack and AI developer in Egypt. I take over stuck web apps, including Lovable and Bolt builds, and build MVPs and AI features.",
@@ -57,11 +57,11 @@
   },
   "statement": {
     "en": "Working in quality taught me to look at software from the customer’s side.",
-    "ar": "علّمني العمل في الجودة أن أنظر إلى البرمجيات من جهة العميل."
+    "ar": "علّمني العمل في الجودة أن أنظر إلى البرمجيات بعين العميل."
   },
   "about.0": {
     "en": "Before my first frontend job, I spent almost three years as a quality analyst at _VOIS (Vodafone), on a UK telecoms account. That’s where I learned to look for what breaks before I change anything, and I still work that way.",
-    "ar": "قبل أول وظيفة لي في تطوير الواجهات، أمضيت نحو 3 سنوات محلّل جودة في _VOIS (Vodafone) ضمن حساب اتصالات في المملكة المتحدة. هناك تعلّمت أن أبحث عمّا يتعطّل قبل أن أغيّر أي شيء، وما زلت أعمل بهذه الطريقة."
+    "ar": "قبل أول وظيفة لي في تطوير الواجهات، أمضيت نحو 3 سنوات محلّل جودة في \u2066_VOIS (Vodafone)\u2069 ضمن حساب اتصالات في المملكة المتحدة. هناك تعلّمت أن أبحث عمّا يتعطّل قبل أن أغيّر أي شيء، وما زلت أعمل بهذه الطريقة."
   },
   "about.1": {
     "en": "As a product engineer, I start with the problem a feature solves for the people using it, then build it front to back as a full-stack developer, AI features included. I started on the frontend and moved down the stack from there. When a feature needs an API, a database change or an AI step, I build that part too, in Node.js, PostgreSQL and Prisma.",
@@ -121,7 +121,7 @@
   },
   "experience.1.summary": {
     "en": "Headless CMS.",
-    "ar": "نظام إدارة محتوى منفصل عن الواجهة (Headless CMS)."
+    "ar": "نظام Headless CMS لإدارة المحتوى بمعزل عن الواجهة."
   },
   "experience.1.highlights.0": {
     "en": "Rebuilt the blog category and article pages of caisy’s marketing site from styled-components to Tailwind CSS, and rewrote a class-based photo-gallery slider as a hooks component.",
@@ -357,7 +357,7 @@
   },
   "ui.services.indexLead": {
     "en": "An app that is stuck or needs a new developer, a first product, or a feature your team needs.",
-    "ar": "لتطبيق متعثّر أو يحتاج إلى مطوّر جديد، أو منتج في بدايته، أو ميزة يحتاجها فريقك."
+    "ar": "لديك تطبيق متعثّر أو يحتاج إلى مطوّر جديد، أو تريد بناء نسخة أولى من منتجك أو إضافة ميزة يحتاجها فريقك."
   },
   "ui.services.indexDescription": {
     "en": "Full-stack and AI development services from a freelance product engineer: taking over stuck web apps, AI features and agents, MVPs and Arabic RTL apps.",
@@ -513,7 +513,7 @@
   },
   "ui.hero.role": {
     "en": "Product engineer, full-stack and AI developer",
-    "ar": "مهندس منتجات ومطوّر Full-Stack وذكاء اصطناعي"
+    "ar": "مهندس منتجات ومطوّر Full-Stack ومطوّر ذكاء اصطناعي"
   },
   "ui.hero.badge": {
     "en": "Available",
@@ -521,11 +521,11 @@
   },
   "ui.hero.availability": {
     "en": "Open to client projects and retainers",
-    "ar": "متاح لمشاريع العملاء والعقود الشهرية"
+    "ar": "لمشاريع العملاء والعقود الشهرية"
   },
   "ui.hero.availabilityShort": {
     "en": "Open to client projects",
-    "ar": "متاح لمشاريع العملاء"
+    "ar": "لمشاريع العملاء"
   },
   "ui.hero.contact": {
     "en": "Get in touch",
@@ -533,7 +533,7 @@
   },
   "ui.hero.work": {
     "en": "View selected work",
-    "ar": "تصفّح أعمالًا مختارة"
+    "ar": "شاهد بعض أعمالي"
   },
   "ui.experience.resume": {
     "en": "Full résumé",

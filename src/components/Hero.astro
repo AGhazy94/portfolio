@@ -15,7 +15,7 @@ const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
 <section
   id="top"
   aria-labelledby="hero-title"
-  class="gutter relative isolate overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28"
+  class="gutter relative isolate overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 max-sm:rtl:pt-8"
 >
   <div aria-hidden="true" class="hero-glow pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-3/4"></div>
 
@@ -35,7 +35,7 @@ const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
       height={56}
       densities={[1, 2]}
       loading="eager"
-      class="mt-8 size-14 rounded-full bg-surface object-cover ring-2 ring-brand"
+      class="mt-8 size-14 rounded-full bg-surface object-cover ring-2 ring-brand max-sm:rtl:mt-5"
     />
 
     <h1 id="hero-title" class="mt-4">
@@ -43,21 +43,19 @@ const offerEnd = profile.offer.slice(accentAt + profile.offerAccent.length);
         <span class="font-medium text-fg">{profile.name}</span>
         <span class="sr-only">, </span>
         {/* The dot is drawn, not typed, so crawlers read "name, role" without a stray "·". */}
-        <span class="text-body before:mx-2 max-sm:mt-1 max-sm:block max-sm:before:hidden sm:whitespace-nowrap before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-['']">
+        <span class="text-body before:mx-2 max-sm:mt-1 max-sm:block max-sm:before:hidden sm:whitespace-nowrap before:inline-block before:size-[3px] before:rounded-full before:bg-current before:align-middle before:content-[''] max-sm:rtl:text-balance">
           {ui.hero.role}
         </span>
       </span>
       <span class="sr-only">. </span>
-      <span class="type-hero mx-auto mt-6 block max-w-[18ch] text-fg">
-        {offerStart}
-        <span class="type-accent">{profile.offerAccent}</span>
-        {offerEnd}
+      <span class="type-hero mx-auto mt-6 block max-w-[18ch] text-fg max-sm:rtl:text-[clamp(2rem,9.6vw,2.625rem)]">
+        {[offerStart, <span class="type-accent">{profile.offerAccent}</span>, offerEnd]}
       </span>
     </h1>
-    <p class="type-lead mt-6 max-w-[44ch] text-pretty text-body">{profile.offerLead}</p>
+    <p class="type-lead mt-6 max-w-[44ch] text-pretty text-body max-sm:rtl:mt-4">{profile.offerLead}</p>
 
-    <div class="mt-9 flex flex-wrap items-center justify-center gap-3">
-      <a href="#contact" data-primary-cta class="btn-pill min-h-12 bg-loud text-bg">
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-3 max-sm:rtl:mt-6">
+      <a href="#contact" data-primary-cta class="btn-pill min-h-12 bg-loud text-bg max-sm:rtl:px-5">
         {ui.hero.contact}
       </a>
       <a
